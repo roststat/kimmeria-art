@@ -128,6 +128,34 @@
     border-color: var(--ink); color: var(--ink);
   }
 
+  /* ── EVENT PHOTO ── */
+  .event-photo {
+    width: 100%; aspect-ratio: 16/9;
+    background: var(--cream);
+    margin-bottom: 20px;
+    overflow: hidden;
+    position: relative;
+    flex-shrink: 0;
+  }
+  .event-photo img {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+  }
+  .event-photo-placeholder {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 8px;
+    color: var(--muted);
+  }
+  .event-photo-placeholder svg {
+    opacity: 0.3;
+  }
+  .event-photo-placeholder span {
+    font-size: 9px; letter-spacing: 0.15em;
+    text-transform: uppercase; font-weight: 600;
+    opacity: 0.4;
+  }
+
   /* ── EVENTS GRID ── */
   .events-grid {
     display: grid; grid-template-columns: repeat(3, 1fr);
@@ -445,7 +473,7 @@
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo">Киммерия <span>Арт</span></a>
+  <a href="#" class="nav-logo">Киммерия<span>-</span>Арт</a>
   <ul class="nav-links">
     <li><a href="#events">События</a></li>
     <li><a href="#hotels">Отели</a></li>
@@ -517,6 +545,7 @@
 
     <!-- UPCOMING -->
     <div class="event-card" data-tab="upcoming" data-format="кинопоказ" data-date="2026-04-14">
+      <div class="event-photo"><div class="event-photo-placeholder"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="1"/><circle cx="8.5" cy="10.5" r="1.5"/><path d="M21 15l-5-5L5 19"/></svg><span>Фото события</span></div></div>
       <div class="event-top">
         <div class="event-date">14 апреля · 19:00</div>
         <div class="event-format-tag">Кинопоказ</div>
@@ -533,6 +562,7 @@
     </div>
 
     <div class="event-card" data-tab="upcoming" data-format="лекция" data-date="2026-04-21">
+      <div class="event-photo"><div class="event-photo-placeholder"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="1"/><circle cx="8.5" cy="10.5" r="1.5"/><path d="M21 15l-5-5L5 19"/></svg><span>Фото события</span></div></div>
       <div class="event-top">
         <div class="event-date">21 апреля · 18:30</div>
         <div class="event-format-tag">Лекция</div>
@@ -549,6 +579,7 @@
     </div>
 
     <div class="event-card" data-tab="upcoming" data-format="экспедиция" data-date="2026-05-05">
+      <div class="event-photo"><div class="event-photo-placeholder"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="1"/><circle cx="8.5" cy="10.5" r="1.5"/><path d="M21 15l-5-5L5 19"/></svg><span>Фото события</span></div></div>
       <div class="event-top">
         <div class="event-date">5 мая · 10:00</div>
         <div class="event-format-tag">Экспедиция</div>
@@ -565,6 +596,7 @@
     </div>
 
     <div class="event-card" data-tab="upcoming" data-format="встреча" data-date="2026-05-18">
+      <div class="event-photo"><div class="event-photo-placeholder"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="1"/><circle cx="8.5" cy="10.5" r="1.5"/><path d="M21 15l-5-5L5 19"/></svg><span>Фото события</span></div></div>
       <div class="event-top">
         <div class="event-date">18 мая · 19:00</div>
         <div class="event-format-tag">Встреча</div>
@@ -581,6 +613,7 @@
     </div>
 
     <div class="event-card" data-tab="upcoming" data-format="кинопоказ" data-date="2026-06-02">
+      <div class="event-photo"><div class="event-photo-placeholder"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="1"/><circle cx="8.5" cy="10.5" r="1.5"/><path d="M21 15l-5-5L5 19"/></svg><span>Фото события</span></div></div>
       <div class="event-top">
         <div class="event-date">2 июня · 20:00</div>
         <div class="event-format-tag">Кинопоказ</div>
@@ -597,6 +630,7 @@
     </div>
 
     <div class="event-card" data-tab="upcoming" data-format="лекция" data-date="2026-06-15">
+      <div class="event-photo"><div class="event-photo-placeholder"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="1"/><circle cx="8.5" cy="10.5" r="1.5"/><path d="M21 15l-5-5L5 19"/></svg><span>Фото события</span></div></div>
       <div class="event-top">
         <div class="event-date">15 июня · 18:00</div>
         <div class="event-format-tag">Лекция</div>
@@ -614,6 +648,7 @@
 
     <!-- PAST -->
     <div class="event-card past hidden" data-tab="past" data-format="кинопоказ" data-date="2021-05-01">
+      <div class="event-photo"><div class="event-photo-placeholder"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="1"/><circle cx="8.5" cy="10.5" r="1.5"/><path d="M21 15l-5-5L5 19"/></svg><span>Фото события</span></div></div>
       <div class="event-top">
         <div class="event-date">Май 2021</div>
         <div class="event-format-tag">Кинопоказ</div>
@@ -629,6 +664,7 @@
     </div>
 
     <div class="event-card past hidden" data-tab="past" data-format="лекция" data-date="2021-09-01">
+      <div class="event-photo"><div class="event-photo-placeholder"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="1"/><circle cx="8.5" cy="10.5" r="1.5"/><path d="M21 15l-5-5L5 19"/></svg><span>Фото события</span></div></div>
       <div class="event-top">
         <div class="event-date">2021</div>
         <div class="event-format-tag">Лекция</div>
@@ -644,6 +680,7 @@
     </div>
 
     <div class="event-card past hidden" data-tab="past" data-format="встреча" data-date="2021-12-01">
+      <div class="event-photo"><div class="event-photo-placeholder"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="1"/><circle cx="8.5" cy="10.5" r="1.5"/><path d="M21 15l-5-5L5 19"/></svg><span>Фото события</span></div></div>
       <div class="event-top">
         <div class="event-date">Декабрь 2021</div>
         <div class="event-format-tag">Встреча</div>
@@ -659,6 +696,7 @@
     </div>
 
     <div class="event-card past hidden" data-tab="past" data-format="встреча" data-date="2024-04-01">
+      <div class="event-photo"><div class="event-photo-placeholder"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="1"/><circle cx="8.5" cy="10.5" r="1.5"/><path d="M21 15l-5-5L5 19"/></svg><span>Фото события</span></div></div>
       <div class="event-top">
         <div class="event-date">Апрель 2024</div>
         <div class="event-format-tag">Встреча</div>
@@ -807,7 +845,7 @@
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">Киммерия <span>Арт</span></div>
+  <div class="footer-logo">Киммерия<span>-</span>Арт</div>
   <div class="footer-links">
     <a href="#">ВКонтакте</a>
     <a href="#">Telegram</a>
