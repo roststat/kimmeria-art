@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Киммерия Арт</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #1a1714;
+    --paper: #f5f1eb;
+    --cream: #ede8df;
+    --gold: #b8964a;
+    --gold-light: #d4b06a;
+    --muted: #7a7168;
+    --border: rgba(26,23,20,0.12);
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 14px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 48px;
+    background: rgba(245,241,235,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--ink); text-decoration: none;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a {
+    font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--muted); text-decoration: none; font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-cta {
+    font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    font-weight: 600; color: var(--paper); background: var(--ink);
+    padding: 10px 22px; text-decoration: none; transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--gold); }
+
+  /* ── HERO COMPACT ── */
+  .hero-compact {
+    padding: 108px 48px 0;
+    display: flex; align-items: flex-end; justify-content: space-between;
+    gap: 32px;
+  }
+  .hero-text {}
+  .hero-eyebrow {
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); font-weight: 600; margin-bottom: 10px;
+  }
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px; font-weight: 300; line-height: 1.35;
+    max-width: 560px; color: var(--ink);
+  }
+  .hero-title em { font-style: italic; color: var(--gold); }
+  .hero-meta {
+    display: flex; gap: 32px; align-items: center;
+  }
+  .hero-stat {
+    text-align: right;
+  }
+  .hero-stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px; font-weight: 300; color: var(--gold); line-height: 1;
+  }
+  .hero-stat-label {
+    font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--muted); font-weight: 500; margin-top: 2px;
+  }
+  .hero-divider { width: 1px; height: 36px; background: var(--border); }
+
+  /* ── EVENTS SECTION ── */
+  .events-section { padding: 32px 48px 80px; }
+
+  /* ── FILTERS ── */
+  .filters-bar {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 24px 0; border-bottom: 1px solid var(--border);
+    margin-bottom: 32px; gap: 16px; flex-wrap: wrap;
+  }
+  .filters-left { display: flex; align-items: center; gap: 0; }
+
+  .tab-switch {
+    display: flex; border: 1px solid var(--border); overflow: hidden;
+  }
+  .tab-btn {
+    font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    font-weight: 600; padding: 10px 20px; cursor: pointer;
+    border: none; background: transparent; color: var(--muted);
+    transition: background 0.18s, color 0.18s; font-family: 'Montserrat', sans-serif;
+  }
+  .tab-btn.active { background: var(--ink); color: var(--paper); }
+  .tab-btn:not(.active):hover { background: var(--cream); color: var(--ink); }
+
+  .filters-right { display: flex; gap: 8px; flex-wrap: wrap; }
+  .filter-chip {
+    font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+    font-weight: 600; padding: 8px 16px; cursor: pointer;
+    border: 1px solid var(--border); background: transparent;
+    color: var(--muted); font-family: 'Montserrat', sans-serif;
+    transition: all 0.18s;
+  }
+  .filter-chip.active {
+    background: var(--ink); color: var(--paper); border-color: var(--ink);
+  }
+  .filter-chip:not(.active):hover {
+    border-color: var(--ink); color: var(--ink);
+  }
+
+  /* ── EVENTS GRID ── */
+  .events-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1px; background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .event-card {
+    background: var(--paper); padding: 32px;
+    cursor: pointer; transition: background 0.18s;
+    display: flex; flex-direction: column;
+  }
+  .event-card:hover { background: var(--cream); }
+  .event-card.past { opacity: 0.7; }
+  .event-card.past:hover { opacity: 1; }
+  .event-card.hidden { display: none; }
+
+  .event-top {
+    display: flex; justify-content: space-between;
+    align-items: flex-start; margin-bottom: 16px;
+  }
+  .event-date {
+    font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--gold); font-weight: 600;
+  }
+  .event-format-tag {
+    font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase;
+    font-weight: 600; padding: 4px 10px;
+    border: 1px solid var(--border); color: var(--muted);
+  }
+  .event-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 400; line-height: 1.3;
+    margin-bottom: 10px; flex: 1;
+  }
+  .event-desc {
+    font-size: 12px; color: var(--muted); line-height: 1.7;
+    margin-bottom: 24px;
+  }
+  .event-bottom {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-top: 20px; border-top: 1px solid var(--border);
+    margin-top: auto;
+  }
+  .event-location {
+    font-size: 11px; color: var(--muted);
+    display: flex; align-items: center; gap: 6px;
+  }
+  .event-location::before {
+    content: ''; width: 4px; height: 4px;
+    background: var(--gold); border-radius: 50; flex-shrink: 0;
+  }
+  .event-price-block { text-align: right; }
+  .event-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 400; color: var(--ink); line-height: 1;
+  }
+  .event-price-member {
+    font-size: 10px; color: var(--gold); font-weight: 600;
+    letter-spacing: 0.05em; margin-top: 2px;
+  }
+  .event-past-label {
+    font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--muted); font-weight: 500;
+    padding: 6px 12px; border: 1px solid var(--border);
+  }
+
+  /* пустое состояние */
+  .events-empty {
+    grid-column: 1/-1; padding: 64px 32px; text-align: center;
+    display: none;
+  }
+  .events-empty.visible { display: block; }
+  .events-empty p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 300; color: var(--muted);
+  }
+
+  /* ── MEMBERSHIP ── */
+  .membership-bar {
+    background: var(--ink); padding: 48px;
+    display: flex; align-items: center; justify-content: space-between; gap: 40px;
+  }
+  .membership-bar-left {}
+  .membership-bar-eyebrow {
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); font-weight: 600; margin-bottom: 8px;
+  }
+  .membership-bar-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30px; font-weight: 300; color: var(--paper); line-height: 1.2;
+  }
+  .membership-bar-title em { font-style: italic; color: var(--gold-light); }
+  .membership-perks {
+    display: flex; gap: 32px; flex-wrap: wrap;
+  }
+  .perk {
+    display: flex; align-items: flex-start; gap: 10px;
+  }
+  .perk-icon {
+    color: var(--gold); font-size: 14px; margin-top: 1px; flex-shrink: 0;
+  }
+  .perk-text { font-size: 12px; color: rgba(245,241,235,0.65); line-height: 1.5; }
+  .perk-text strong { color: var(--paper); font-weight: 500; display: block; }
+  .membership-bar-cta {
+    flex-shrink: 0;
+    font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    font-weight: 600; color: var(--ink); background: var(--gold);
+    padding: 16px 36px; text-decoration: none; white-space: nowrap;
+    transition: background 0.2s;
+  }
+  .membership-bar-cta:hover { background: var(--gold-light); }
+
+  /* ── HOTELS ── */
+  .section { padding: 80px 48px; }
+  .section-cream { background: var(--cream); }
+  .section-label {
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); font-weight: 600; margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 38px; font-weight: 300; line-height: 1.1; margin-bottom: 40px;
+  }
+  .hotels-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+    background: var(--border); border: 1px solid var(--border);
+  }
+  .hotel-card {
+    background: var(--paper); padding: 36px;
+    cursor: pointer; transition: background 0.18s;
+  }
+  .hotel-card:hover { background: var(--cream); }
+  .hotel-letter {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 40px; font-weight: 300; color: var(--gold);
+    line-height: 1; margin-bottom: 16px;
+  }
+  .hotel-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px; font-weight: 400; margin-bottom: 8px;
+  }
+  .hotel-desc { font-size: 12px; color: var(--muted); line-height: 1.7; margin-bottom: 20px; }
+  .hotel-link {
+    font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--gold); font-weight: 600; text-decoration: none;
+    border-bottom: 1px solid rgba(184,150,74,0.3); padding-bottom: 2px;
+    transition: border-color 0.2s;
+  }
+  .hotel-link:hover { border-color: var(--gold); }
+
+  /* ── JOIN ── */
+  .join-section {
+    display: grid; grid-template-columns: 1fr 1fr;
+  }
+  .join-left {
+    background: var(--ink); padding: 72px 56px;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .join-right { background: var(--cream); padding: 72px 56px; }
+  .join-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px; font-weight: 300; color: var(--paper);
+    line-height: 1.1; margin-bottom: 20px;
+  }
+  .join-title em { font-style: italic; color: var(--gold); }
+  .join-desc { font-size: 13px; color: rgba(245,241,235,0.55); line-height: 1.8; margin-bottom: 28px; }
+  .join-perks { list-style: none; }
+  .join-perks li {
+    font-size: 12px; color: rgba(245,241,235,0.65);
+    padding: 9px 0; border-bottom: 1px solid rgba(255,255,255,0.06);
+    display: flex; gap: 10px;
+  }
+  .join-perks li::before { content: '→'; color: var(--gold); flex-shrink: 0; }
+  .form-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px; font-weight: 400; margin-bottom: 6px;
+  }
+  .form-sub { font-size: 12px; color: var(--muted); margin-bottom: 28px; }
+  .form-group { margin-bottom: 18px; }
+  .form-label {
+    display: block; font-size: 10px; letter-spacing: 0.15em;
+    text-transform: uppercase; font-weight: 600; color: var(--muted); margin-bottom: 6px;
+  }
+  .form-input {
+    width: 100%; padding: 11px 14px;
+    border: 1px solid var(--border); background: var(--paper);
+    font-family: 'Montserrat', sans-serif; font-size: 13px; color: var(--ink);
+    outline: none; transition: border-color 0.2s; -webkit-appearance: none;
+  }
+  .form-input:focus { border-color: var(--gold); }
+  select.form-input { cursor: pointer; }
+  .form-submit {
+    width: 100%; padding: 15px;
+    background: var(--ink); color: var(--paper);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
+    font-weight: 600; border: none; cursor: pointer;
+    transition: background 0.2s; margin-top: 6px;
+  }
+  .form-submit:hover { background: var(--gold); }
+  .form-note { font-size: 11px; color: var(--muted); margin-top: 10px; text-align: center; }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials { padding: 80px 48px; background: var(--ink); }
+  .testimonials .section-title { color: var(--paper); }
+  .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.06); }
+  .testimonial { background: var(--ink); padding: 36px; }
+  .testimonial-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px; font-style: italic; font-weight: 300;
+    color: rgba(245,241,235,0.8); line-height: 1.6; margin-bottom: 20px;
+  }
+  .testimonial-author { font-size: 11px; color: var(--gold); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
+  .testimonial-role { font-size: 11px; color: rgba(245,241,235,0.3); margin-top: 3px; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink); border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 40px 48px; display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px; font-weight: 600; color: var(--paper);
+    letter-spacing: 0.08em; text-transform: uppercase;
+  }
+  .footer-logo span { color: var(--gold); }
+  .footer-links { display: flex; gap: 20px; }
+  .footer-links a {
+    font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: rgba(245,241,235,0.35); text-decoration: none; transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--gold); }
+  .footer-copy { font-size: 11px; color: rgba(245,241,235,0.2); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Киммерия <span>Арт</span></a>
+  <ul class="nav-links">
+    <li><a href="#events">События</a></li>
+    <li><a href="#hotels">Отели</a></li>
+    <li><a href="#membership">Членство</a></li>
+    <li><a href="#join">О клубе</a></li>
+  </ul>
+  <a href="#join" class="nav-cta">Вступить в клуб</a>
+</nav>
+
+<!-- HERO COMPACT -->
+<div class="hero-compact">
+  <div class="hero-text">
+    <p class="hero-eyebrow">Ялта · Крым · Интеллектуальный авторский клуб</p>
+    <h1 class="hero-title">
+      При кинокомпании «Киммерия».<br>
+      Кино, история, искусство —<br>
+      <em>и живой разговор после.</em>
+    </h1>
+  </div>
+  <div class="hero-meta">
+    <div class="hero-stat">
+      <div class="hero-stat-num">−30%</div>
+      <div class="hero-stat-label">членам клуба</div>
+    </div>
+    <div class="hero-divider"></div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">3+</div>
+      <div class="hero-stat-label">отеля-партнёра</div>
+    </div>
+    <div class="hero-divider"></div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">4</div>
+      <div class="hero-stat-label">формата событий</div>
+    </div>
+  </div>
+</div>
+
+<!-- EVENTS -->
+<section class="events-section" id="events">
+  <div class="filters-bar">
+
+    <div class="filters-left">
+      <div class="tab-switch">
+        <button class="tab-btn active" onclick="switchTab('upcoming', this)">Актуальные</button>
+        <button class="tab-btn" onclick="switchTab('past', this)">Прошедшие</button>
+      </div>
+    </div>
+
+    <div class="filters-right">
+      <button class="filter-chip active" onclick="toggleFilter('all', this)">Все</button>
+      <button class="filter-chip" onclick="toggleFilter('кинопоказ', this)">Кинопоказы</button>
+      <button class="filter-chip" onclick="toggleFilter('лекция', this)">Лекции</button>
+      <button class="filter-chip" onclick="toggleFilter('встреча', this)">Встречи</button>
+      <button class="filter-chip" onclick="toggleFilter('экспедиция', this)">Экспедиции</button>
+    </div>
+
+  </div>
+
+  <div class="events-grid" id="eventsGrid">
+
+    <!-- UPCOMING -->
+    <div class="event-card" data-tab="upcoming" data-format="кинопоказ">
+      <div class="event-top">
+        <div class="event-date">14 апреля · 19:00</div>
+        <div class="event-format-tag">Кинопоказ</div>
+      </div>
+      <h3 class="event-title">«Феодосийская сказка» — режиссёрский показ</h3>
+      <p class="event-desc">Закрытый показ с участием режиссёра Натальи Лебедевой. Обсуждение сразу после фильма.</p>
+      <div class="event-bottom">
+        <span class="event-location">Площадка клуба, Ялта</span>
+        <div class="event-price-block">
+          <div class="event-price">600 ₽</div>
+          <div class="event-price-member">420 ₽ членам клуба</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-tab="upcoming" data-format="лекция">
+      <div class="event-top">
+        <div class="event-date">21 апреля · 18:30</div>
+        <div class="event-format-tag">Лекция</div>
+      </div>
+      <h3 class="event-title">Документальное кино как исторический документ</h3>
+      <p class="event-desc">Лекция и дискуссия о роли документалистики в сохранении памяти Крыма.</p>
+      <div class="event-bottom">
+        <span class="event-location">Площадка клуба, Ялта</span>
+        <div class="event-price-block">
+          <div class="event-price">500 ₽</div>
+          <div class="event-price-member">350 ₽ членам клуба</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-tab="upcoming" data-format="экспедиция">
+      <div class="event-top">
+        <div class="event-date">5 мая · 10:00</div>
+        <div class="event-format-tag">Экспедиция</div>
+      </div>
+      <h3 class="event-title">Карадаг: заповедник и его история</h3>
+      <p class="event-desc">Выездное мероприятие на Карадагский заповедник. Съёмка, история, разговор об охране природы.</p>
+      <div class="event-bottom">
+        <span class="event-location">Карадаг, выезд из Ялты</span>
+        <div class="event-price-block">
+          <div class="event-price">1 200 ₽</div>
+          <div class="event-price-member">840 ₽ членам клуба</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-tab="upcoming" data-format="встреча">
+      <div class="event-top">
+        <div class="event-date">18 мая · 19:00</div>
+        <div class="event-format-tag">Встреча</div>
+      </div>
+      <h3 class="event-title">Разговор с документалистом: как снимать людей</h3>
+      <p class="event-desc">Встреча с режиссёром документального кино. Без сцены, без микрофонов — просто разговор.</p>
+      <div class="event-bottom">
+        <span class="event-location">Площадка клуба, Ялта</span>
+        <div class="event-price-block">
+          <div class="event-price">700 ₽</div>
+          <div class="event-price-member">490 ₽ членам клуба</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-tab="upcoming" data-format="кинопоказ">
+      <div class="event-top">
+        <div class="event-date">2 июня · 20:00</div>
+        <div class="event-format-tag">Кинопоказ</div>
+      </div>
+      <h3 class="event-title">«Четыре стихии» — показ и разбор</h3>
+      <p class="event-desc">Показ авторского фильма производства «Киммерии» с разбором от съёмочной группы.</p>
+      <div class="event-bottom">
+        <span class="event-location">Отель-партнёр, Ялта</span>
+        <div class="event-price-block">
+          <div class="event-price">600 ₽</div>
+          <div class="event-price-member">420 ₽ членам клуба</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-tab="upcoming" data-format="лекция">
+      <div class="event-top">
+        <div class="event-date">15 июня · 18:00</div>
+        <div class="event-format-tag">Лекция</div>
+      </div>
+      <h3 class="event-title">Крымская архитектура: что мы теряем</h3>
+      <p class="event-desc">Лекция историка об архитектурном наследии полуострова и проблемах его сохранения.</p>
+      <div class="event-bottom">
+        <span class="event-location">Площадка клуба, Ялта</span>
+        <div class="event-price-block">
+          <div class="event-price">500 ₽</div>
+          <div class="event-price-member">350 ₽ членам клуба</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAST -->
+    <div class="event-card past hidden" data-tab="past" data-format="кинопоказ">
+      <div class="event-top">
+        <div class="event-date">Май 2021</div>
+        <div class="event-format-tag">Кинопоказ</div>
+      </div>
+      <h3 class="event-title">Премьера «Феодосийской сказки»</h3>
+      <p class="event-desc">Первый полнометражный фильм крымского производства за 10 лет. Кинотеатр «Сатурн-IMAX».</p>
+      <div class="event-bottom">
+        <span class="event-location">Кинотеатр «Сатурн», Ялта</span>
+        <div class="event-price-block">
+          <span class="event-past-label">Завершено</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card past hidden" data-tab="past" data-format="лекция">
+      <div class="event-top">
+        <div class="event-date">2021</div>
+        <div class="event-format-tag">Лекция</div>
+      </div>
+      <h3 class="event-title">Видеоарт — кино или искусство?</h3>
+      <p class="event-desc">Лекция Владимира Могилевского — режиссёра монтажа фильмов Звягинцева. Гостиница «Ореанда».</p>
+      <div class="event-bottom">
+        <span class="event-location">Гостиница «Ореанда», Ялта</span>
+        <div class="event-price-block">
+          <span class="event-past-label">Завершено</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card past hidden" data-tab="past" data-format="встреча">
+      <div class="event-top">
+        <div class="event-date">Декабрь 2021</div>
+        <div class="event-format-tag">Встреча</div>
+      </div>
+      <h3 class="event-title">Фестиваль «Короткий метр в короткий день»</h3>
+      <p class="event-desc">Три дня, несколько площадок Ялты. Экспериментальное игровое и музыкальное кино.</p>
+      <div class="event-bottom">
+        <span class="event-location">Несколько площадок, Ялта</span>
+        <div class="event-price-block">
+          <span class="event-past-label">Завершено</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card past hidden" data-tab="past" data-format="встреча">
+      <div class="event-top">
+        <div class="event-date">Апрель 2024</div>
+        <div class="event-format-tag">Встреча</div>
+      </div>
+      <h3 class="event-title">Телемост Ялта–Якутск</h3>
+      <p class="event-desc">Межкультурный обмен с участием Якутии и Республики Сенегал. Проект «Я+Я».</p>
+      <div class="event-bottom">
+        <span class="event-location">Ялта</span>
+        <div class="event-price-block">
+          <span class="event-past-label">Завершено</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="events-empty" id="eventsEmpty">
+      <p>Событий по выбранному фильтру не найдено</p>
+    </div>
+  </div>
+</section>
+
+<!-- MEMBERSHIP BAR -->
+<div class="membership-bar" id="membership">
+  <div class="membership-bar-left">
+    <p class="membership-bar-eyebrow">Членство в клубе</p>
+    <h2 class="membership-bar-title">Вступление <em>бесплатно</em> —<br>скидка 30% на все события</h2>
+  </div>
+  <div class="membership-perks">
+    <div class="perk">
+      <span class="perk-icon">→</span>
+      <div class="perk-text"><strong>Клубный код</strong>Личный код после анкеты</div>
+    </div>
+    <div class="perk">
+      <span class="perk-icon">→</span>
+      <div class="perk-text"><strong>Скидка 30%</strong>На все события клуба</div>
+    </div>
+    <div class="perk">
+      <span class="perk-icon">→</span>
+      <div class="perk-text"><strong>Закрытые события</strong>Только для членов</div>
+    </div>
+    <div class="perk">
+      <span class="perk-icon">→</span>
+      <div class="perk-text"><strong>Предзапись</strong>Приоритетный доступ</div>
+    </div>
+  </div>
+  <a href="#join" class="membership-bar-cta">Вступить бесплатно</a>
+</div>
+
+<!-- HOTELS -->
+<section class="section" id="hotels">
+  <p class="section-label">Партнёры</p>
+  <h2 class="section-title">Отели-партнёры клуба</h2>
+  <div class="hotels-grid">
+    <div class="hotel-card">
+      <div class="hotel-letter">О</div>
+      <h3 class="hotel-name">Отель «Ореанда»</h3>
+      <p class="hotel-desc">Гости отеля записываются на события клуба по QR-коду в лобби и приезжают на нашу площадку.</p>
+      <a href="#" class="hotel-link">Программа для гостей →</a>
+    </div>
+    <div class="hotel-card">
+      <div class="hotel-letter">П</div>
+      <h3 class="hotel-name">Партнёр 2</h3>
+      <p class="hotel-desc">Гости отеля записываются через ссылку или стойку ресепшн и приезжают на мероприятия клуба.</p>
+      <a href="#" class="hotel-link">Программа для гостей →</a>
+    </div>
+    <div class="hotel-card" style="border-left: 2px dashed var(--border);">
+      <div class="hotel-letter" style="opacity:0.35">+</div>
+      <h3 class="hotel-name" style="opacity:0.5">Стать партнёром</h3>
+      <p class="hotel-desc" style="opacity:0.6">Предложите гостям культурную программу клуба. Комиссия с каждой регистрации.</p>
+      <a href="#join" class="hotel-link">Узнать условия →</a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <p class="section-label">Отзывы</p>
+  <h2 class="section-title">Говорят участники</h2>
+  <div class="testimonials-grid">
+    <div class="testimonial">
+      <p class="testimonial-text">«Пришла на показ как турист, осталась в клубе как участник. Такого разговора после фильма я не ожидала.»</p>
+      <div class="testimonial-author">Анна К.</div>
+      <div class="testimonial-role">Гость отеля, Москва</div>
+    </div>
+    <div class="testimonial">
+      <p class="testimonial-text">«Редкий формат — без лишней помпезности, но с настоящей глубиной. Именно то, чего не хватает в городе.»</p>
+      <div class="testimonial-author">Михаил Г.</div>
+      <div class="testimonial-role">Член клуба, Ялта</div>
+    </div>
+    <div class="testimonial">
+      <p class="testimonial-text">«Экспедиция на Карадаг — лучшее, что случилось в эту поездку. Уже записался на следующую.»</p>
+      <div class="testimonial-author">Павел Р.</div>
+      <div class="testimonial-role">Гость клуба, Симферополь</div>
+    </div>
+  </div>
+</section>
+
+<!-- JOIN -->
+<section class="join-section" id="join">
+  <div class="join-left">
+    <p class="section-label">Вступление</p>
+    <h2 class="join-title">Стать своим<br>в <em>Киммерии Арт</em></h2>
+    <p class="join-desc">Вступление бесплатное. Заполните анкету — получите клубный код и скидку 30% на все события.</p>
+    <ul class="join-perks">
+      <li>Личный клубный код сразу после регистрации</li>
+      <li>Скидка 30% на все события клуба</li>
+      <li>Приоритетная запись и предзапись</li>
+      <li>Доступ к закрытым событиям</li>
+      <li>Прямое общение с командой и авторами</li>
+    </ul>
+  </div>
+  <div class="join-right">
+    <h3 class="form-title">Анкета участника</h3>
+    <p class="form-sub">Займёт 2 минуты. Никакого спама.</p>
+    <div class="form-group">
+      <label class="form-label">Имя</label>
+      <input class="form-input" type="text" placeholder="Ваше имя">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Телефон или email</label>
+      <input class="form-input" type="text" placeholder="+7 или email">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Откуда вы</label>
+      <select class="form-input">
+        <option value="">Выберите...</option>
+        <option>Ялта и Крым</option>
+        <option>Приезжаю как турист</option>
+        <option>Другой город России</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Что интереснее всего</label>
+      <select class="form-input">
+        <option value="">Выберите...</option>
+        <option>Кинопоказы и обсуждения</option>
+        <option>Лекции и дискуссии</option>
+        <option>Встречи с авторами</option>
+        <option>Выездные экспедиции</option>
+        <option>Всё интересно</option>
+      </select>
+    </div>
+    <button class="form-submit">Получить клубный код</button>
+    <p class="form-note">Вступление бесплатно · Данные не передаются третьим лицам</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Киммерия <span>Арт</span></div>
+  <div class="footer-links">
+    <a href="#">ВКонтакте</a>
+    <a href="#">Telegram</a>
+    <a href="#">MAX</a>
+    <a href="#">Отелям</a>
+    <a href="#">О клубе</a>
+  </div>
+  <div class="footer-copy">© 2025 Киммерия Арт · Ялта</div>
+</footer>
+
+<script>
+  let currentTab = 'upcoming';
+  let currentFilter = 'all';
+
+  function switchTab(tab, btn) {
+    currentTab = tab;
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    applyFilters();
+  }
+
+  function toggleFilter(format, btn) {
+    currentFilter = format;
+    document.querySelectorAll('.filter-chip').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    applyFilters();
+  }
+
+  function applyFilters() {
+    const cards = document.querySelectorAll('.event-card[data-tab]');
+    let visible = 0;
+    cards.forEach(card => {
+      const tabMatch = card.dataset.tab === currentTab;
+      const formatMatch = currentFilter === 'all' || card.dataset.format === currentFilter;
+      if (tabMatch && formatMatch) {
+        card.classList.remove('hidden');
+        visible++;
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+    const empty = document.getElementById('eventsEmpty');
+    empty.classList.toggle('visible', visible === 0);
+  }
+</script>
+</body>
+</html>
