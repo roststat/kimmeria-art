@@ -143,6 +143,16 @@
   .event-card.past { opacity: 0.7; }
   .event-card.past:hover { opacity: 1; }
   .event-card.hidden { display: none; }
+  .event-card.next-up {
+    outline: 2px solid var(--gold);
+    outline-offset: -2px;
+  }
+  .event-card.next-up .event-date::after {
+    content: ' · Ближайшее';
+    color: var(--gold);
+    font-size: 9px;
+    letter-spacing: 0.1em;
+  }
 
   .event-top {
     display: flex; justify-content: space-between;
@@ -481,7 +491,7 @@
   <div class="events-grid" id="eventsGrid">
 
     <!-- UPCOMING -->
-    <div class="event-card" data-tab="upcoming" data-format="кинопоказ">
+    <div class="event-card" data-tab="upcoming" data-format="кинопоказ" data-date="2026-04-14">
       <div class="event-top">
         <div class="event-date">14 апреля · 19:00</div>
         <div class="event-format-tag">Кинопоказ</div>
@@ -497,7 +507,7 @@
       </div>
     </div>
 
-    <div class="event-card" data-tab="upcoming" data-format="лекция">
+    <div class="event-card" data-tab="upcoming" data-format="лекция" data-date="2026-04-21">
       <div class="event-top">
         <div class="event-date">21 апреля · 18:30</div>
         <div class="event-format-tag">Лекция</div>
@@ -513,7 +523,7 @@
       </div>
     </div>
 
-    <div class="event-card" data-tab="upcoming" data-format="экспедиция">
+    <div class="event-card" data-tab="upcoming" data-format="экспедиция" data-date="2026-05-05">
       <div class="event-top">
         <div class="event-date">5 мая · 10:00</div>
         <div class="event-format-tag">Экспедиция</div>
@@ -529,7 +539,7 @@
       </div>
     </div>
 
-    <div class="event-card" data-tab="upcoming" data-format="встреча">
+    <div class="event-card" data-tab="upcoming" data-format="встреча" data-date="2026-05-18">
       <div class="event-top">
         <div class="event-date">18 мая · 19:00</div>
         <div class="event-format-tag">Встреча</div>
@@ -545,7 +555,7 @@
       </div>
     </div>
 
-    <div class="event-card" data-tab="upcoming" data-format="кинопоказ">
+    <div class="event-card" data-tab="upcoming" data-format="кинопоказ" data-date="2026-06-02">
       <div class="event-top">
         <div class="event-date">2 июня · 20:00</div>
         <div class="event-format-tag">Кинопоказ</div>
@@ -561,7 +571,7 @@
       </div>
     </div>
 
-    <div class="event-card" data-tab="upcoming" data-format="лекция">
+    <div class="event-card" data-tab="upcoming" data-format="лекция" data-date="2026-06-15">
       <div class="event-top">
         <div class="event-date">15 июня · 18:00</div>
         <div class="event-format-tag">Лекция</div>
@@ -578,7 +588,7 @@
     </div>
 
     <!-- PAST -->
-    <div class="event-card past hidden" data-tab="past" data-format="кинопоказ">
+    <div class="event-card past hidden" data-tab="past" data-format="кинопоказ" data-date="2021-05-01">
       <div class="event-top">
         <div class="event-date">Май 2021</div>
         <div class="event-format-tag">Кинопоказ</div>
@@ -593,7 +603,7 @@
       </div>
     </div>
 
-    <div class="event-card past hidden" data-tab="past" data-format="лекция">
+    <div class="event-card past hidden" data-tab="past" data-format="лекция" data-date="2021-09-01">
       <div class="event-top">
         <div class="event-date">2021</div>
         <div class="event-format-tag">Лекция</div>
@@ -608,7 +618,7 @@
       </div>
     </div>
 
-    <div class="event-card past hidden" data-tab="past" data-format="встреча">
+    <div class="event-card past hidden" data-tab="past" data-format="встреча" data-date="2021-12-01">
       <div class="event-top">
         <div class="event-date">Декабрь 2021</div>
         <div class="event-format-tag">Встреча</div>
@@ -623,7 +633,7 @@
       </div>
     </div>
 
-    <div class="event-card past hidden" data-tab="past" data-format="встреча">
+    <div class="event-card past hidden" data-tab="past" data-format="встреча" data-date="2024-04-01">
       <div class="event-top">
         <div class="event-date">Апрель 2024</div>
         <div class="event-format-tag">Встреча</div>
@@ -787,6 +797,52 @@
   let currentTab = 'upcoming';
   let currentFilter = 'all';
 
+  function initEvents() {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const grid = document.getElementById('eventsGrid');
+    const cards = Array.from(grid.querySelectorAll('.event-card[data-date]'));
+
+    // Автоматически переводим в прошедшие если дата < сегодня
+    cards.forEach(card => {
+      const d = new Date(card.dataset.date);
+      if (d < today) {
+        card.dataset.tab = 'past';
+        card.classList.add('past');
+        // Добавляем метку "Завершено" если её нет
+        const priceBlock = card.querySelector('.event-price-block');
+        if (priceBlock && !priceBlock.querySelector('.event-past-label')) {
+          priceBlock.innerHTML = '<span class="event-past-label">Завершено</span>';
+        }
+      } else {
+        card.dataset.tab = 'upcoming';
+        card.classList.remove('past');
+      }
+    });
+
+    // Сортируем: предстоящие — по возрастанию даты (ближайшие сверху),
+    //            прошедшие — по убыванию (самые новые сверху)
+    const sorted = cards.sort((a, b) => {
+      const da = new Date(a.dataset.date);
+      const db = new Date(b.dataset.date);
+      const aFuture = da >= today;
+      const bFuture = db >= today;
+      if (aFuture && bFuture) return da - db;
+      if (!aFuture && !bFuture) return db - da;
+      return 0;
+    });
+
+    // Переставляем карточки в DOM
+    const empty = document.getElementById('eventsEmpty');
+    sorted.forEach(card => grid.insertBefore(card, empty));
+
+    // Подсвечиваем ближайшее предстоящее
+    const nextUp = sorted.find(c => new Date(c.dataset.date) >= today);
+    if (nextUp) nextUp.classList.add('next-up');
+
+    applyFilters();
+  }
+
   function switchTab(tab, btn) {
     currentTab = tab;
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -814,9 +870,10 @@
         card.classList.add('hidden');
       }
     });
-    const empty = document.getElementById('eventsEmpty');
-    empty.classList.toggle('visible', visible === 0);
+    document.getElementById('eventsEmpty').classList.toggle('visible', visible === 0);
   }
+
+  document.addEventListener('DOMContentLoaded', initEvents);
 </script>
 </body>
 </html>
