@@ -372,6 +372,22 @@
   .footer-links a:hover { color: var(--gold); }
   .footer-copy { font-size: 11px; color: rgba(245,241,235,0.2); }
 
+  /* ── FILTER SELECT (mobile only) ── */
+  .filters-right-mobile { display: none; }
+  .filter-select {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--ink);
+    background: var(--paper); border: 1px solid var(--border);
+    padding: 10px 36px 10px 14px; cursor: pointer;
+    outline: none; -webkit-appearance: none; appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%231a1714' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    width: 100%;
+  }
+  .filter-select:focus { border-color: var(--gold); }
+
   /* ── TABLET (≤ 900px) ── */
   @media (max-width: 900px) {
     nav { padding: 14px 20px; }
@@ -409,8 +425,8 @@
     .filters-left, .filters-right { width: 100%; }
     .tab-switch { width: 100%; }
     .tab-btn { flex: 1; text-align: center; }
-    .filters-right { overflow-x: auto; flex-wrap: nowrap; padding-bottom: 4px; }
-    .filter-chip { white-space: nowrap; flex-shrink: 0; }
+    .filters-right { display: none; }
+    .filters-right-mobile { display: block; width: 100%; }
     .event-card { padding: 20px 16px; }
     .membership-bar { padding: 28px 16px; }
     .membership-perks { gap: 16px; }
@@ -484,6 +500,15 @@
       <button class="filter-chip" onclick="toggleFilter('лекция', this)">Лекции</button>
       <button class="filter-chip" onclick="toggleFilter('встреча', this)">Встречи</button>
       <button class="filter-chip" onclick="toggleFilter('экспедиция', this)">Экспедиции</button>
+    </div>
+    <div class="filters-right-mobile">
+      <select class="filter-select" onchange="toggleFilterMobile(this.value)">
+        <option value="all">Все форматы</option>
+        <option value="кинопоказ">Кинопоказы</option>
+        <option value="лекция">Лекции</option>
+        <option value="встреча">Встречи</option>
+        <option value="экспедиция">Экспедиции</option>
+      </select>
     </div>
 
   </div>
@@ -854,6 +879,18 @@
     currentFilter = format;
     document.querySelectorAll('.filter-chip').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
+    // синхронизируем мобильный селект
+    const sel = document.querySelector('.filter-select');
+    if (sel) sel.value = format;
+    applyFilters();
+  }
+
+  function toggleFilterMobile(format) {
+    currentFilter = format;
+    // синхронизируем десктопные чипы
+    document.querySelectorAll('.filter-chip').forEach(b => {
+      b.classList.toggle('active', b.getAttribute('onclick').includes("'" + format + "'"));
+    });
     applyFilters();
   }
 
