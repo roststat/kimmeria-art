@@ -96,6 +96,8 @@
     display: flex; align-items: center; justify-content: space-between;
     padding: 24px 0; border-bottom: 1px solid var(--border);
     margin-bottom: 32px; gap: 16px; flex-wrap: wrap;
+    position: sticky; top: 61px; z-index: 90;
+    background: rgba(245,241,235,0.97); backdrop-filter: blur(8px);
   }
   .filters-left { display: flex; align-items: center; gap: 0; }
 
@@ -359,6 +361,58 @@
   }
   .footer-links a:hover { color: var(--gold); }
   .footer-copy { font-size: 11px; color: rgba(245,241,235,0.2); }
+
+  /* ── TABLET (≤ 900px) ── */
+  @media (max-width: 900px) {
+    nav { padding: 14px 20px; }
+    .nav-links { display: none; }
+    .hero-compact { padding: 90px 20px 0; flex-direction: column; align-items: flex-start; }
+    .hero-meta { gap: 20px; }
+    .events-section { padding: 24px 20px 60px; }
+    .filters-bar { top: 53px; padding: 16px 0; }
+    .filters-right { gap: 6px; }
+    .events-grid { grid-template-columns: 1fr; }
+    .event-card { padding: 24px 20px; }
+    .membership-bar { flex-direction: column; align-items: flex-start; padding: 36px 20px; gap: 24px; }
+    .section { padding: 48px 20px; }
+    .hotels-grid { grid-template-columns: 1fr; }
+    .hotel-card { padding: 28px 20px; }
+    .join-section { grid-template-columns: 1fr; }
+    .join-left { padding: 48px 20px; }
+    .join-right { padding: 48px 20px; }
+    .testimonials { padding: 48px 20px; }
+    .testimonials-grid { grid-template-columns: 1fr; gap: 1px; }
+    footer { padding: 28px 20px; flex-direction: column; gap: 16px; text-align: center; }
+    .footer-links { flex-wrap: wrap; justify-content: center; }
+  }
+
+  /* ── MOBILE (≤ 600px) ── */
+  @media (max-width: 600px) {
+    nav { padding: 12px 16px; }
+    .nav-cta { display: none; }
+    .hero-compact { padding: 76px 16px 0; gap: 20px; }
+    .hero-title { font-size: 22px; }
+    .hero-meta { gap: 14px; }
+    .hero-stat-num { font-size: 24px; }
+    .events-section { padding: 16px 16px 48px; }
+    .filters-bar { top: 49px; padding: 12px 0; gap: 10px; }
+    .filters-left, .filters-right { width: 100%; }
+    .tab-switch { width: 100%; }
+    .tab-btn { flex: 1; text-align: center; }
+    .filters-right { overflow-x: auto; flex-wrap: nowrap; padding-bottom: 4px; }
+    .filter-chip { white-space: nowrap; flex-shrink: 0; }
+    .event-card { padding: 20px 16px; }
+    .membership-bar { padding: 28px 16px; }
+    .membership-perks { gap: 16px; }
+    .section { padding: 36px 16px; }
+    .hotel-card { padding: 24px 16px; }
+    .join-left { padding: 36px 16px; }
+    .join-right { padding: 36px 16px; }
+    .join-title { font-size: 32px; }
+    .testimonials { padding: 36px 16px; }
+    .section-title { font-size: 28px; }
+    footer { padding: 24px 16px; }
+  }
 </style>
 </head>
 <body>
