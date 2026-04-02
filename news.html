@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Новости — Киммерия Арт</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #1a1714;
+    --paper: #f5f1eb;
+    --cream: #ede8df;
+    --gold: #b8964a;
+    --gold-light: #d4b06a;
+    --muted: #7a7168;
+    --border: rgba(26,23,20,0.12);
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 14px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 48px;
+    background: rgba(245,241,235,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--ink); text-decoration: none;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a {
+    font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--muted); text-decoration: none; font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover, .nav-links a.active { color: var(--ink); }
+  .nav-cta {
+    font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    font-weight: 600; color: var(--paper); background: var(--ink);
+    padding: 10px 22px; text-decoration: none; transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--gold); }
+
+  /* ── PAGE HEADER ── */
+  .page-header {
+    padding: 108px 48px 40px;
+    border-bottom: 1px solid var(--border);
+  }
+  .page-eyebrow {
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); font-weight: 600; margin-bottom: 10px;
+  }
+  .page-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px; font-weight: 300; line-height: 1.1;
+  }
+  .page-desc {
+    margin-top: 14px; font-size: 13px; color: var(--muted);
+    max-width: 560px; line-height: 1.8;
+  }
+
+  /* ── NEWS FEED ── */
+  .news-section { padding: 0 48px 80px; }
+
+  .news-item {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 0;
+    border-bottom: 1px solid var(--border);
+    padding: 48px 0;
+  }
+  .news-item:first-child { padding-top: 48px; }
+
+  .news-sidebar {
+    padding-right: 40px;
+    padding-top: 4px;
+  }
+  .news-date {
+    font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--gold); font-weight: 600; display: block; margin-bottom: 6px;
+  }
+  .news-tag {
+    font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase;
+    font-weight: 600; padding: 4px 10px;
+    border: 1px solid var(--border); color: var(--muted);
+    display: inline-block;
+  }
+
+  .news-body {}
+  .news-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px; font-weight: 400; line-height: 1.3;
+    margin-bottom: 14px;
+  }
+  .news-text {
+    font-size: 13px; color: var(--muted); line-height: 1.8;
+    margin-bottom: 20px;
+  }
+  .news-text strong { color: var(--ink); font-weight: 600; }
+  .news-photos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 4px;
+    margin-top: 20px;
+  }
+  .news-photos img {
+    width: 100%; aspect-ratio: 4/3;
+    object-fit: cover; display: block;
+  }
+  .news-photos.single img {
+    max-width: 360px; aspect-ratio: 3/4;
+  }
+
+  /* ── TG LINK ── */
+  .tg-banner {
+    background: var(--ink); padding: 48px;
+    display: flex; align-items: center; justify-content: space-between; gap: 32px;
+    margin: 0 48px 80px;
+  }
+  .tg-banner-text {}
+  .tg-banner-eyebrow {
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); font-weight: 600; margin-bottom: 8px;
+  }
+  .tg-banner-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px; font-weight: 300; color: var(--paper); line-height: 1.2;
+  }
+  .tg-banner-link {
+    flex-shrink: 0;
+    font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    font-weight: 600; color: var(--ink); background: var(--gold);
+    padding: 14px 28px; text-decoration: none; white-space: nowrap;
+    transition: background 0.2s;
+  }
+  .tg-banner-link:hover { background: var(--gold-light); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink); border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 40px 48px; display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px; font-weight: 600; color: var(--paper);
+    letter-spacing: 0.08em; text-transform: uppercase;
+  }
+  .footer-logo span { color: var(--gold); }
+  .footer-links { display: flex; gap: 20px; }
+  .footer-links a {
+    font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: rgba(245,241,235,0.35); text-decoration: none; transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--gold); }
+  .footer-copy { font-size: 11px; color: rgba(245,241,235,0.2); }
+
+  /* ── MOBILE ── */
+  @media (max-width: 900px) {
+    nav { padding: 14px 20px; }
+    .nav-links { display: none; }
+    .page-header { padding: 90px 20px 32px; }
+    .page-title { font-size: 32px; }
+    .news-section { padding: 0 20px 60px; }
+    .news-item { grid-template-columns: 1fr; gap: 12px; padding: 32px 0; }
+    .news-sidebar { padding-right: 0; display: flex; gap: 12px; align-items: center; }
+    .tg-banner { flex-direction: column; margin: 0 20px 60px; padding: 32px 20px; gap: 20px; }
+    footer { padding: 28px 20px; flex-direction: column; gap: 16px; text-align: center; }
+    .footer-links { flex-wrap: wrap; justify-content: center; }
+  }
+  @media (max-width: 600px) {
+    nav { padding: 12px 16px; }
+    .nav-cta { display: none; }
+    .page-header { padding: 76px 16px 28px; }
+    .news-section { padding: 0 16px 48px; }
+    .news-photos { grid-template-columns: repeat(2, 1fr); }
+    .tg-banner { margin: 0 16px 48px; padding: 28px 16px; }
+    footer { padding: 24px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">Киммерия<span>-</span>Арт</a>
+  <ul class="nav-links">
+    <li><a href="index.html#events">События</a></li>
+    <li><a href="news.html" class="active">Новости</a></li>
+    <li><a href="index.html#hotels">Отели</a></li>
+    <li><a href="index.html#membership">Членство</a></li>
+    <li><a href="index.html#join">О клубе</a></li>
+  </ul>
+  <a href="index.html#join" class="nav-cta">Вступить в клуб</a>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <p class="page-eyebrow">Телеграм-канал · Киммерия-Арт</p>
+  <h1 class="page-title">Новости клуба</h1>
+  <p class="page-desc">Анонсы мероприятий, отчёты после событий, размышления об искусстве и кино — жизнь арт-пространства «Киммерия» в реальном времени.</p>
+</div>
+
+<!-- NEWS FEED -->
+<div class="news-section">
+
+  <!-- Февраль 2025 -->
+  <div class="news-item">
+    <div class="news-sidebar">
+      <span class="news-date">24 февраля 2025</span>
+      <span class="news-tag">Отчёт</span>
+    </div>
+    <div class="news-body">
+      <h2 class="news-title">Пина Бауш, танцтеатр и «Весна священная»</h2>
+      <p class="news-text">В субботу в Киммерии-АРТ прошла лекция про хореографа Пину Бауш, посмотрели балет «Весна священная» и узнали про танцтеатр. <strong>Мария Отрада</strong> провела конструктивную беседу про современную хореографию — было очень интересно и познавательно! Очень рады, что в нашем пространстве появляются новые люди, с которыми интересно узнавать наш Мир с разных граней.</p>
+      <div class="news-photos">
+        <img src="photos/photo_266@24-02-2025_20-29-48.jpg" alt="Лекция Пина Бауш">
+        <img src="photos/photo_265@21-02-2025_13-40-39.jpg" alt="Афиша лекции">
+      </div>
+    </div>
+  </div>
+
+  <div class="news-item">
+    <div class="news-sidebar">
+      <span class="news-date">15 февраля 2025</span>
+      <span class="news-tag">Отчёт</span>
+    </div>
+    <div class="news-body">
+      <h2 class="news-title">Питер Гринуэй — игры разума и хаоса</h2>
+      <p class="news-text">Фильмы Питера Гринуэя строятся вокруг игр, чисел и списков, но получаются величественными и гипнотизирующими. Фильм «Утопая в цифрах» требует анализа и разбора по символике, мифологии и психоанализу. Благодарим <strong>Наталию Добрынскую</strong> за предложение посмотреть фильм. Думаем, мы ещё не раз вернёмся к кинематографическому языку Гринуэя.</p>
+      <div class="news-photos">
+        <img src="photos/photo_257@15-02-2025_21-53-47.jpg" alt="Обсуждение Гринуэя">
+        <img src="photos/photo_264@17-02-2025_20-57-20.jpg" alt="Вечер в клубе">
+      </div>
+    </div>
+  </div>
+
+  <div class="news-item">
+    <div class="news-sidebar">
+      <span class="news-date">9 февраля 2025</span>
+      <span class="news-tag">Отчёт</span>
+    </div>
+    <div class="news-body">
+      <h2 class="news-title">«Анора» — свободных мест не было</h2>
+      <p class="news-text">В пятницу смотрели фильм «Анора» режиссёра Шона Бейкера. Фильм нашумевший, поэтому вдвойне хотелось разобраться в причинах такого ажиотажа. Спасибо <strong>Стефании Джой</strong> за предложение посмотреть фильм и поднять интересующие нас всех темы. Свободных мест не было! Несмотря на то что обсуждение было достаточно бурным и информативным, осталось ощущение недосказанности — мысли о фильме не отпускали ещё несколько дней. Неоднозначный фильм, но точно не поверхностный.</p>
+      <div class="news-photos">
+        <img src="photos/photo_248@09-02-2025_18-19-37.jpg" alt="Просмотр Аноры">
+      </div>
+    </div>
+  </div>
+
+  <div class="news-item">
+    <div class="news-sidebar">
+      <span class="news-date">2 февраля 2025</span>
+      <span class="news-tag">Отчёт</span>
+    </div>
+    <div class="news-body">
+      <h2 class="news-title">Висконти, смерть и красота — «Семейный портрет в интерьере»</h2>
+      <p class="news-text">Какой красивый фильм мы смотрели в пятницу! «Семейный портрет в интерьере» 1974 года. Благодарим <strong>Ольгу Дарфи</strong> за интересный рассказ о фильме и его создателях. Психологическая драма, через которую автор тонко провёл осмысление жизни. Фильм многослойный, наполнен символами, хочется пересматривать и находить новое прочтение. Лукино Висконти снял фильм за полтора года до собственной смерти. Поднимались темы науки, искусства, безусловной любви и смены эпох.</p>
+    </div>
+  </div>
+
+  <div class="news-item">
+    <div class="news-sidebar">
+      <span class="news-date">25 января 2025</span>
+      <span class="news-tag">Отчёт</span>
+    </div>
+    <div class="news-body">
+      <h2 class="news-title">«Наука сна» — ПСС: Параллельная Синхронизация Случайностей</h2>
+      <p class="news-text">Благодарим <strong>Екатерину Сорокину</strong> за непринуждённый рассказ о режиссёре Мишеле Гондри и знакомство с его первыми работами — музыкальными клипами неординарной певицы Бьорк. ПСС — Параллельная Синхронизация Случайностей. Мне кажется, мы живём в этом. Какие прекрасные люди к нам приходят в киноклуб! Все такие разные, но такие интересные.</p>
+      <div class="news-photos">
+        <img src="photos/photo_228@21-01-2025_22-58-53.jpg" alt="После просмотра Науки сна">
+      </div>
+    </div>
+  </div>
+
+  <div class="news-item">
+    <div class="news-sidebar">
+      <span class="news-date">15 января 2025</span>
+      <span class="news-tag">Анонс</span>
+    </div>
+    <div class="news-body">
+      <h2 class="news-title">Новый год открываем иранским кинематографом</h2>
+      <p class="news-text">Дорогие друзья! Приветствуем вас в Новом году и очень ждём в нашем киноклубе каждую пятницу! Открываем год знакомством с иранским кинематографом — приглашаем 17 января в 19:00 на кинопросмотр с обсуждением фильма <strong>«Дети небес»</strong> (1997) режиссёра Маджида Маджиди. Первый иранский фильм, номинированный на «Оскар». Представит фильм музыкант и путешественник Михаил из Иркутска.</p>
+      <div class="news-photos single">
+        <img src="photos/photo_227@15-01-2025_23-06-07.jpg" alt="Анонс Детей небес">
+      </div>
+    </div>
+  </div>
+
+  <!-- Декабрь 2024 -->
+  <div class="news-item">
+    <div class="news-sidebar">
+      <span class="news-date">10 декабря 2024</span>
+      <span class="news-tag">Отчёт</span>
+    </div>
+    <div class="news-body">
+      <h2 class="news-title">«Субстанция» — самый отвратительный и великолепный фильм года</h2>
+      <p class="news-text">В прошлую пятницу смотрели «Субстанцию» с <strong>Алисой Селецкой</strong>. Боди-хоррор — необычный жанр для нашего киноклуба, но фильм затрагивает более глубокие вопросы. При обсуждении всплывают разные точки зрения и формы восприятия. Всё больше убеждаемся в том, что живое общение обогащает нас, умение слышать и уважать собеседника делает нас самих более гармоничными с окружающим Миром.</p>
+    </div>
+  </div>
+
+  <div class="news-item">
+    <div class="news-sidebar">
+      <span class="news-date">3 декабря 2024</span>
+      <span class="news-tag">Анонс</span>
+    </div>
+    <div class="news-body">
+      <h2 class="news-title">«Субстанция» — 6 декабря: самый нашумевший фильм 2024</h2>
+      <p class="news-text">«Вы когда-нибудь мечтали о лучшей версии себя?» Кино французской режиссёра <strong>Каролин Фаржа</strong> получило 90% на Rotten Tomatoes и престижную награду в Каннах. В премьере аплодировали 13 минут подряд. Боди-хоррор, который будет жёстко говорить с нами о невероятно актуальных болезнях нашего времени: конфликт желаемого и действительного, безумная гонка за недостижимыми идеалами общества.</p>
+      <div class="news-photos single">
+        <img src="photos/photo_194@03-12-2024_18-35-16.jpg" alt="Анонс Субстанции">
+      </div>
+    </div>
+  </div>
+
+  <!-- Октябрь 2024 -->
+  <div class="news-item">
+    <div class="news-sidebar">
+      <span class="news-date">19 октября 2024</span>
+      <span class="news-tag">Отчёт</span>
+    </div>
+    <div class="news-body">
+      <h2 class="news-title">«Королевство зверей» — что нас делает Человеком?</h2>
+      <p class="news-text">Благодарим <strong>Стефанию Джой</strong> за выбор фильма и за поднятые темы: гуманизм, сострадание, безусловная любовь. Что нас делает Человеком? И зачем? Спасибо всем присутствующим за активное участие в обсуждении, доброжелательную атмосферу и умение слышать собеседника.</p>
+    </div>
+  </div>
+
+  <div class="news-item">
+    <div class="news-sidebar">
+      <span class="news-date">18 октября 2024</span>
+      <span class="news-tag">Мастер-классы</span>
+    </div>
+    <div class="news-body">
+      <h2 class="news-title">Бесплатные мастер-классы Школы киноискусства</h2>
+      <p class="news-text">Завтра в субботу 19 октября пройдут бесплатные мастер-классы в Школе киноискусства «Киммерия». Расписание: <strong>11:00</strong> — Основы публичных выступлений (Наталия Добрынская); <strong>13:00</strong> — Видеопроизводство и операторское искусство (Игорь Гордиенко); <strong>15:00</strong> — Режиссура (Антон Ярош); <strong>17:00</strong> — Артист разговорного жанра: стендап комик (Юрий Софин); <strong>19:00</strong> — Экспериментальное кино. Теория и история современного искусства (Владимир Могилевский).</p>
+    </div>
+  </div>
+
+  <div class="news-item">
+    <div class="news-sidebar">
+      <span class="news-date">15 октября 2024</span>
+      <span class="news-tag">Анонс</span>
+    </div>
+    <div class="news-body">
+      <h2 class="news-title">«Королевство зверей» — что в нас от Бога? Что от зверя?</h2>
+      <p class="news-text">Фильм Тома Кайе 2023 года — настоящая шкатулка с секретами. Когда спрашиваешь у посмотревших, о чём этот фильм, каждый отвечает по-своему. Приглашаем вместе со <strong>Стефанией Джой</strong> посмотреть и поразмышлять о природе человека, его месте в мире. Фантастика, антиутопия, боди-хоррор — но в центре сюжета драма одной семьи. Ксенофобия, сегрегация, страх по отношению к «другим», вопросы экологии. И всё это — на фоне великолепных натуральных съёмок лесных пейзажей.</p>
+      <div class="news-photos single">
+        <img src="photos/photo_142@15-10-2024_14-55-19.jpg" alt="Анонс Королевства зверей">
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- TG BANNER -->
+<div class="tg-banner">
+  <div class="tg-banner-text">
+    <p class="tg-banner-eyebrow">Следите за нами</p>
+    <p class="tg-banner-title">Все анонсы и новости — в Telegram-канале клуба</p>
+  </div>
+  <a href="https://t.me/kimmeria_art" target="_blank" class="tg-banner-link">Подписаться →</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Киммерия<span>-</span>Арт</div>
+  <div class="footer-links">
+    <a href="https://vk.com/kimmeria_art" target="_blank">ВКонтакте</a>
+    <a href="https://t.me/kimmeria_art" target="_blank">Telegram</a>
+    <a href="news.html">Новости</a>
+    <a href="#">Отелям</a>
+    <a href="index.html#join">О клубе</a>
+  </div>
+  <div class="footer-copy">© 2025 Киммерия Арт · Ялта</div>
+</footer>
+
+</body>
+</html>
