@@ -168,6 +168,78 @@
   .footer-links a:hover { color: var(--gold); }
   .footer-copy { font-size: 11px; color: rgba(245,241,235,0.2); }
 
+  /* ── NEWS ACTIONS (likes + share) ── */
+  .news-actions {
+    display: flex; align-items: center; gap: 16px; margin-top: 20px;
+  }
+  .news-like-btn {
+    display: flex; align-items: center; gap: 6px;
+    background: none; border: 1px solid var(--border);
+    padding: 7px 14px; cursor: pointer; font-family: 'Montserrat', sans-serif;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
+    color: var(--muted); transition: all 0.2s;
+  }
+  .news-like-btn:hover { border-color: var(--gold); color: var(--gold); }
+  .news-like-btn.liked { border-color: var(--gold); color: var(--gold); background: rgba(184,150,74,0.07); }
+  .news-like-btn svg { width: 14px; height: 14px; flex-shrink: 0; transition: transform 0.15s; }
+  .news-like-btn.liked svg { transform: scale(1.2); }
+  .news-share-btn {
+    display: flex; align-items: center; gap: 6px;
+    background: none; border: 1px solid var(--border);
+    padding: 7px 14px; cursor: pointer; font-family: 'Montserrat', sans-serif;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
+    color: var(--muted); transition: all 0.2s; position: relative;
+  }
+  .news-share-btn:hover { border-color: var(--ink); color: var(--ink); }
+  .news-share-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+  .share-popup {
+    position: absolute; bottom: calc(100% + 8px); left: 0;
+    background: var(--ink); color: var(--paper);
+    font-size: 10px; letter-spacing: 0.1em; padding: 6px 12px;
+    white-space: nowrap; pointer-events: none;
+    opacity: 0; transform: translateY(4px); transition: all 0.2s;
+  }
+  .share-popup.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── LIGHTBOX ── */
+  .news-photos img { cursor: zoom-in; transition: opacity 0.15s; }
+  .news-photos img:hover { opacity: 0.88; }
+
+  .lightbox-overlay {
+    position: fixed; inset: 0; z-index: 9999;
+    background: rgba(26,23,20,0.95);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none; transition: opacity 0.25s;
+  }
+  .lightbox-overlay.open { opacity: 1; pointer-events: all; }
+  .lightbox-img {
+    max-width: 90vw; max-height: 90vh;
+    object-fit: contain; display: block;
+    transform: scale(0.95); transition: transform 0.25s;
+  }
+  .lightbox-overlay.open .lightbox-img { transform: scale(1); }
+  .lightbox-close {
+    position: absolute; top: 24px; right: 28px;
+    background: none; border: none; cursor: pointer;
+    color: rgba(245,241,235,0.6); font-size: 28px; line-height: 1;
+    transition: color 0.2s; font-family: 'Montserrat', sans-serif;
+  }
+  .lightbox-close:hover { color: var(--paper); }
+  .lightbox-nav {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    background: none; border: none; cursor: pointer;
+    color: rgba(245,241,235,0.5); font-size: 36px; line-height: 1;
+    padding: 16px; transition: color 0.2s;
+  }
+  .lightbox-nav:hover { color: var(--paper); }
+  .lightbox-nav.prev { left: 16px; }
+  .lightbox-nav.next { right: 16px; }
+  .lightbox-counter {
+    position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%);
+    font-size: 10px; letter-spacing: 0.15em; color: rgba(245,241,235,0.35);
+    font-family: 'Montserrat', sans-serif; font-weight: 600;
+  }
+
   /* ── MOBILE ── */
   @media (max-width: 900px) {
     nav { padding: 14px 20px; }
@@ -490,6 +562,15 @@
   <a href="https://t.me/kimmeria_art" target="_blank" class="tg-banner-link">Подписаться →</a>
 </div>
 
+<!-- LIGHTBOX -->
+<div class="lightbox-overlay" id="lightbox" onclick="closeLightboxOnOverlay(event)">
+  <button class="lightbox-close" onclick="closeLightbox()">×</button>
+  <button class="lightbox-nav prev" onclick="lightboxStep(-1)">&#8249;</button>
+  <img class="lightbox-img" id="lightbox-img" src="" alt="">
+  <button class="lightbox-nav next" onclick="lightboxStep(1)">&#8250;</button>
+  <div class="lightbox-counter" id="lightbox-counter"></div>
+</div>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">Киммерия<span>-</span>Арт</div>
@@ -503,5 +584,145 @@
   <div class="footer-copy">© 2025 Киммерия Арт · Ялта</div>
 </footer>
 
+<script>
+// ── LIKES ──
+// Persist per-session in localStorage (key = post title hash)
+function titleKey(title) {
+  return 'like_' + btoa(encodeURIComponent(title)).slice(0, 20);
+}
+
+function toggleLike(btn) {
+  const key = btn.dataset.key;
+  const countEl = btn.querySelector('.like-count');
+  let count = parseInt(localStorage.getItem(key) || '0');
+  const liked = btn.classList.contains('liked');
+  if (liked) {
+    count = Math.max(0, count - 1);
+    btn.classList.remove('liked');
+  } else {
+    count += 1;
+    btn.classList.add('liked');
+  }
+  localStorage.setItem(key, count);
+  countEl.textContent = count;
+}
+
+// ── SHARE ──
+function sharePost(btn, title) {
+  const url = window.location.href.split('#')[0];
+  const text = title + ' — Киммерия-Арт\n' + url;
+  const popup = btn.querySelector('.share-popup');
+
+  if (navigator.share) {
+    navigator.share({ title: title, url: url }).catch(() => {});
+    return;
+  }
+  navigator.clipboard.writeText(url).then(() => {
+    popup.classList.add('visible');
+    setTimeout(() => popup.classList.remove('visible'), 2000);
+  }).catch(() => {
+    // fallback for non-https
+    const ta = document.createElement('textarea');
+    ta.value = url; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    document.execCommand('copy'); document.body.removeChild(ta);
+    popup.classList.add('visible');
+    setTimeout(() => popup.classList.remove('visible'), 2000);
+  });
+}
+
+// ── INIT: inject action bars + lightbox click handlers ──
+document.addEventListener('DOMContentLoaded', function() {
+  // Inject like/share bars into each news-body
+  document.querySelectorAll('.news-body').forEach(function(body) {
+    const titleEl = body.querySelector('.news-title');
+    const title = titleEl ? titleEl.textContent.trim() : '';
+    const key = titleKey(title);
+    const saved = parseInt(localStorage.getItem(key) || '0');
+    const likedClass = saved > 0 ? ' liked' : '';
+
+    const actions = document.createElement('div');
+    actions.className = 'news-actions';
+    actions.innerHTML =
+      '<button class="news-like-btn' + likedClass + '" data-key="' + key + '" onclick="toggleLike(this)">' +
+        '<svg viewBox="0 0 24 24" fill="' + (saved > 0 ? 'currentColor' : 'none') + '" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>' +
+        '<span class="like-count">' + saved + '</span>' +
+      '</button>' +
+      '<button class="news-share-btn" onclick="sharePost(this, \'' + title.replace(/'/g, "\\'") + '\')">' +
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>' +
+        'Поделиться' +
+        '<span class="share-popup">Ссылка скопирована!</span>' +
+      '</button>';
+    body.appendChild(actions);
+  });
+
+  // Lightbox: collect all .news-photos img elements
+  initLightbox();
+});
+
+// ── LIGHTBOX ──
+var lbImages = [];
+var lbIndex = 0;
+
+function initLightbox() {
+  document.querySelectorAll('.news-photos img').forEach(function(img) {
+    img.addEventListener('click', function() {
+      // rebuild image list from the same .news-photos container, then fall back to all
+      var container = img.closest('.news-photos');
+      lbImages = Array.from(container.querySelectorAll('img'));
+      lbIndex = lbImages.indexOf(img);
+      openLightbox();
+    });
+  });
+  document.addEventListener('keydown', function(e) {
+    var lb = document.getElementById('lightbox');
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight') lightboxStep(1);
+    if (e.key === 'ArrowLeft') lightboxStep(-1);
+  });
+}
+
+function openLightbox() {
+  var lb = document.getElementById('lightbox');
+  var imgEl = document.getElementById('lightbox-img');
+  imgEl.src = lbImages[lbIndex].src;
+  imgEl.alt = lbImages[lbIndex].alt;
+  updateCounter();
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function closeLightboxOnOverlay(e) {
+  if (e.target === document.getElementById('lightbox')) closeLightbox();
+}
+
+function lightboxStep(dir) {
+  lbIndex = (lbIndex + dir + lbImages.length) % lbImages.length;
+  var imgEl = document.getElementById('lightbox-img');
+  imgEl.style.opacity = '0';
+  setTimeout(function() {
+    imgEl.src = lbImages[lbIndex].src;
+    imgEl.alt = lbImages[lbIndex].alt;
+    imgEl.style.opacity = '1';
+    updateCounter();
+  }, 120);
+}
+
+function updateCounter() {
+  var el = document.getElementById('lightbox-counter');
+  if (lbImages.length > 1) {
+    el.textContent = (lbIndex + 1) + ' / ' + lbImages.length;
+    el.style.display = '';
+  } else {
+    el.style.display = 'none';
+  }
+}
+</script>
 </body>
 </html>

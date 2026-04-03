@@ -74,6 +74,12 @@
       .event-main { padding: 24px 16px; } .event-sidebar { padding: 24px 16px; }
       .event-back-section { padding: 0 16px 32px; } footer { padding: 24px 16px; }
     }
+
+    .btn-share { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 14px 24px; background: transparent; color: var(--muted); font-family: 'Montserrat', sans-serif; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; border: 1px solid var(--border); cursor: pointer; transition: all 0.2s; margin-top: 8px; position: relative; }
+    .btn-share:hover { border-color: var(--ink); color: var(--ink); }
+    .btn-share svg { width: 13px; height: 13px; flex-shrink: 0; }
+    .share-popup { position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%) translateY(4px); background: var(--ink); color: var(--paper); font-size: 10px; letter-spacing: 0.1em; padding: 6px 14px; white-space: nowrap; pointer-events: none; opacity: 0; transition: all 0.2s; }
+    .share-popup.visible { opacity: 1; transform: translateX(-50%) translateY(0); }
   </style>
 </head>
 <body>
@@ -162,5 +168,23 @@
   <div class="footer-copy">© 2025 Киммерия Арт · Ялта</div>
 </footer>
 
+<script>
+function shareEvent(btn) {
+  var url = window.location.href;
+  var titleEl = document.querySelector('.event-hero-title');
+  var title = (titleEl ? titleEl.textContent.trim() : document.title) + ' — Киммерия-Арт';
+  var popup = btn.querySelector('.share-popup');
+  if (navigator.share) { navigator.share({ title: title, url: url }).catch(function(){}); return; }
+  function showPopup() { popup.classList.add('visible'); setTimeout(function() { popup.classList.remove('visible'); }, 2000); }
+  function fallback() {
+    var ta = document.createElement('textarea');
+    ta.value = url; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+    showPopup();
+  }
+  if (navigator.clipboard) { navigator.clipboard.writeText(url).then(showPopup).catch(fallback); }
+  else { fallback(); }
+}
+</script>
 </body>
 </html>
