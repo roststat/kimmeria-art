@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>«Субстанция» — Кинопоказ — Киммерия Арт</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --ink: #1a1714; --paper: #f5f1eb; --cream: #ede8df;
+      --gold: #b8964a; --gold-light: #d4b06a; --muted: #7a7168;
+      --border: rgba(26,23,20,0.12);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Montserrat', sans-serif; background: var(--paper); color: var(--ink); font-size: 14px; line-height: 1.7; overflow-x: hidden; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 18px 48px; background: rgba(245,241,235,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 19px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); text-decoration: none; }
+    .nav-logo span { color: var(--gold); }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-back { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: var(--ink); }
+    .event-hero { padding-top: 61px; position: relative; height: 70vh; min-height: 480px; overflow: hidden; }
+    .event-hero img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .event-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(26,23,20,0.1) 0%, rgba(26,23,20,0.75) 100%); display: flex; align-items: flex-end; padding: 48px; }
+    .event-hero-tag { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 10px; }
+    .event-hero-title { font-family: 'Cormorant Garamond', serif; font-size: 56px; font-weight: 300; color: #f5f1eb; line-height: 1.1; }
+    .event-hero-date { font-size: 13px; color: rgba(245,241,235,0.7); margin-top: 10px; }
+    .event-past-banner { background: var(--ink); color: var(--paper); text-align: center; padding: 12px 48px; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 600; }
+    .event-main { display: grid; grid-template-columns: 1fr 360px; gap: 0; max-width: 1200px; margin: 0 auto; padding: 60px 48px; align-items: start; }
+    .event-section-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 12px; }
+    .event-description { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 300; line-height: 1.7; color: var(--ink); margin-bottom: 32px; max-width: 620px; }
+    .event-details-list { list-style: none; margin-bottom: 40px; }
+    .event-details-list li { font-size: 13px; color: var(--muted); padding: 10px 0; border-bottom: 1px solid var(--border); display: flex; gap: 12px; align-items: baseline; }
+    .event-details-list li strong { color: var(--ink); font-weight: 600; min-width: 80px; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; }
+    .event-body-text { font-size: 13px; color: var(--muted); line-height: 1.8; max-width: 580px; margin-bottom: 40px; }
+    .event-body-text p { margin-bottom: 16px; }
+    .event-sidebar { position: sticky; top: 81px; background: var(--cream); padding: 36px; margin-left: 48px; }
+    .sidebar-date-block { margin-bottom: 24px; border-bottom: 1px solid var(--border); padding-bottom: 24px; }
+    .sidebar-date-label { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 6px; }
+    .sidebar-date { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 300; line-height: 1.2; }
+    .sidebar-time { font-size: 13px; color: var(--muted); margin-top: 4px; }
+    .sidebar-place-label { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 4px; margin-top: 16px; }
+    .sidebar-place { font-size: 13px; color: var(--ink); line-height: 1.5; }
+    .sidebar-price-block { margin-top: 24px; border-top: 1px solid var(--border); padding-top: 24px; margin-bottom: 24px; }
+    .sidebar-price-label { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 12px; }
+    .sidebar-price-main { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 300; color: var(--muted); line-height: 1; margin-bottom: 6px; opacity: 0.7; }
+    .sidebar-price-member { font-size: 12px; color: var(--muted); font-weight: 600; letter-spacing: 0.05em; opacity: 0.7; }
+    .btn-past { display: block; width: 100%; padding: 16px 24px; text-align: center; background: var(--cream); color: var(--muted); font-family: 'Montserrat', sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 600; border: 1px solid var(--border); cursor: default; }
+    .btn-secondary { display: block; width: 100%; padding: 14px 24px; text-align: center; background: transparent; color: var(--muted); font-family: 'Montserrat', sans-serif; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; text-decoration: none; border: 1px solid var(--border); transition: all 0.2s; margin-top: 8px; }
+    .btn-secondary:hover { border-color: var(--ink); color: var(--ink); }
+    .event-back-section { padding: 0 48px 60px; }
+    footer { background: var(--ink); border-top: 1px solid rgba(255,255,255,0.06); padding: 40px 48px; display: flex; justify-content: space-between; align-items: center; }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 600; color: var(--paper); letter-spacing: 0.08em; text-transform: uppercase; }
+    .footer-logo span { color: var(--gold); }
+    .footer-links { display: flex; gap: 20px; }
+    .footer-links a { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(245,241,235,0.35); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-copy { font-size: 11px; color: rgba(245,241,235,0.2); }
+    @media (max-width: 900px) {
+      nav { padding: 14px 20px; } .nav-links { display: none; }
+      .event-hero { height: 50vh; } .event-hero-overlay { padding: 28px 20px; }
+      .event-hero-title { font-size: 36px; } .event-past-banner { padding: 12px 20px; }
+      .event-main { grid-template-columns: 1fr; padding: 36px 20px; }
+      .event-sidebar { margin-left: 0; margin-top: 40px; position: static; }
+      footer { padding: 28px 20px; flex-direction: column; gap: 16px; text-align: center; }
+      .footer-links { flex-wrap: wrap; justify-content: center; }
+      .event-back-section { padding: 0 20px 40px; }
+    }
+    @media (max-width: 600px) {
+      nav { padding: 12px 16px; } .event-hero-title { font-size: 28px; }
+      .event-main { padding: 24px 16px; } .event-sidebar { padding: 24px 16px; }
+      .event-back-section { padding: 0 16px 32px; } footer { padding: 24px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Киммерия<span>-</span>Арт</a>
+  <ul class="nav-links">
+    <li><a href="index.html#events">События</a></li>
+    <li><a href="news.html">Новости</a></li>
+    <li><a href="index.html#hotels">Отели</a></li>
+    <li><a href="index.html#membership">Членство</a></li>
+    <li><a href="index.html#join">О клубе</a></li>
+  </ul>
+  <a href="index.html#events" class="nav-back">← Все события</a>
+</nav>
+
+<div class="event-hero">
+  <img src="photos/photo_194@06-12-2024_18-30-00.jpg" alt="Субстанция — кинопоказ">
+  <div class="event-hero-overlay">
+    <div>
+      <div class="event-hero-tag">Кинопоказ · 18+</div>
+      <h1 class="event-hero-title">«Субстанция»</h1>
+      <div class="event-hero-date">6 декабря 2024 · Пятница · 19:00</div>
+    </div>
+  </div>
+</div>
+
+<div class="event-past-banner">Мероприятие завершено</div>
+
+<div class="event-main">
+  <div class="event-content">
+    <p class="event-section-label">О фильме и показе</p>
+    <div class="event-description">
+      Провокационный боди-хоррор Каролин Фаржа — победитель Каннского кинофестиваля 2024 в категории «Лучший сценарий». Дерзкий, неудобный и незабываемый фильм о женском теле, возрасте и одержимости молодостью.
+    </div>
+
+    <ul class="event-details-list">
+      <li><strong>Режиссёр</strong> Каролин Фаржа</li>
+      <li><strong>Страна / год</strong> Франция / США, 2024</li>
+      <li><strong>В ролях</strong> Деми Мур, Маргарет Куэлли</li>
+      <li><strong>Дата</strong> 6 декабря 2024, пятница (завершено)</li>
+      <li><strong>Время</strong> 19:00</li>
+      <li><strong>Место</strong> г. Ялта, ул. Кирова, 83б, 2 эт.</li>
+      <li><strong>Ведёт</strong> Алиса Селецкая</li>
+      <li><strong>Возраст</strong> Строго 18+</li>
+      <li><strong>Включено</strong> Вкусный чай и угощение</li>
+    </ul>
+
+    <div class="event-body-text">
+      <p>«Субстанция» — это радикальный взгляд на культуру молодости и красоты. Фаржа создала фильм, который невозможно смотреть равнодушно: он одновременно отвратителен и прекрасен, смешон и страшен.</p>
+      <p>Деми Мур в роли стареющей телезвезды даёт лучшее выступление своей карьеры. Фильм поднимает вопросы, которые касаются каждого: что значит стареть в эпоху соцсетей? Чего мы готовы лишиться ради того, чтобы оставаться «актуальными»?</p>
+      <p>Обсуждение ведёт Алиса Селецкая — о феминистском прочтении фильма, о том, почему боди-хоррор стал языком современного женского кино, и о том, как Каннский фестиваль открывает новые имена.</p>
+    </div>
+  </div>
+
+  <div class="event-sidebar">
+    <div class="sidebar-date-block">
+      <div class="sidebar-date-label">Когда</div>
+      <div class="sidebar-date">6 декабря 2024<br>Пятница</div>
+      <div class="sidebar-time">Начало в 19:00</div>
+      <div class="sidebar-place-label">Где</div>
+      <div class="sidebar-place">г. Ялта<br>ул. Кирова, 83б, 2 эт.</div>
+    </div>
+    <div class="sidebar-price-block">
+      <div class="sidebar-price-label">Стоимость была</div>
+      <div class="sidebar-price-main">650 ₽</div>
+      <div class="sidebar-price-member">500 ₽ членам клуба</div>
+    </div>
+    <div class="btn-past">Мероприятие завершено</div>
+    <a href="index.html#events" class="btn-secondary">← Все события</a>
+  </div>
+</div>
+
+<div class="event-back-section">
+  <a href="index.html#events" class="nav-back">← Все события</a>
+</div>
+
+<footer>
+  <div class="footer-logo">Киммерия<span>-</span>Арт</div>
+  <div class="footer-links">
+    <a href="https://vk.com/kimmeria_art" target="_blank">ВКонтакте</a>
+    <a href="https://t.me/kimmeria_art" target="_blank">Telegram</a>
+    <a href="news.html">Новости</a>
+    <a href="index.html#join">О клубе</a>
+  </div>
+  <div class="footer-copy">© 2025 Киммерия Арт · Ялта</div>
+</footer>
+
+</body>
+</html>
