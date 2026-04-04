@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>«УЖЕ» — авторская постановка Мимлы Же — Киммерия Арт</title>
-    <meta property="og:type" content="article">
+  <meta property="og:type" content="article">
   <meta property="og:site_name" content="Киммерия-Арт">
   <meta property="og:url" content="https://art-kimmeria.ru/event-uzhe.html">
   <meta property="og:title" content="«УЖЕ» — спектакль Мимлы Же · 5 апреля 2026">
@@ -16,263 +16,86 @@
   <meta name="twitter:title" content="«УЖЕ» — спектакль Мимлы Же · 5 апреля 2026">
   <meta name="twitter:description" content="Авторская экспериментальная постановка. Четыре стихотворные сказки. Галерея «Стикс», Ялта.">
   <meta name="twitter:image" content="https://art-kimmeria.ru/photos/photo_819@30-03-2026_09-17-02.jpg">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --ink: #1a1714;
-      --paper: #f5f1eb;
-      --cream: #ede8df;
-      --gold: #b8964a;
-      --gold-light: #d4b06a;
-      --muted: #7a7168;
-      --border: rgba(26,23,20,0.12);
-    }
     html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Montserrat', sans-serif;
-      background: var(--paper);
-      color: var(--ink);
-      font-size: 14px;
-      line-height: 1.7;
-      overflow-x: hidden;
-    }
-
-    /* NAV */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 18px 48px;
-      background: rgba(245,241,235,0.95);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-    }
-    .nav-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 19px; font-weight: 600; letter-spacing: 0.08em;
-      text-transform: uppercase; color: var(--ink); text-decoration: none;
-    }
-    .nav-logo span { color: var(--gold); }
-    .nav-links { display: flex; gap: 28px; list-style: none; }
-    .nav-links a {
-      font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--muted); text-decoration: none; font-weight: 500;
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--ink); }
-    .nav-back {
-      font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
-      font-weight: 600; color: var(--muted); text-decoration: none;
-      transition: color 0.2s;
-    }
-    .nav-back:hover { color: var(--ink); }
-
-    /* HERO */
-    .event-hero {
-      padding-top: 61px;
-      position: relative;
-      height: 70vh; min-height: 480px;
-      overflow: hidden;
-    }
-    .event-hero img {
-      width: 100%; height: 100%; object-fit: cover; display: block;
-    }
-    .event-hero-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to bottom, rgba(26,23,20,0.1) 0%, rgba(26,23,20,0.7) 100%);
-      display: flex; align-items: flex-end;
-      padding: 48px;
-    }
-    .event-hero-text {}
-    .event-hero-tag {
-      font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--gold); font-weight: 600; margin-bottom: 10px;
-    }
-    .event-hero-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 48px; font-weight: 300; color: #f5f1eb; line-height: 1.15;
-    }
-    .event-hero-date {
-      font-size: 13px; color: rgba(245,241,235,0.7); margin-top: 10px;
-      letter-spacing: 0.05em;
-    }
-
-    /* MAIN LAYOUT */
-    .event-main {
-      display: grid; grid-template-columns: 1fr 360px;
-      gap: 0; max-width: 1200px; margin: 0 auto;
-      padding: 60px 48px;
-      align-items: start;
-    }
-
-    /* LEFT COLUMN */
-    .event-content {}
-    .event-section-label {
-      font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--gold); font-weight: 600; margin-bottom: 12px;
-    }
-    .event-description {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 20px; font-weight: 300; line-height: 1.7;
-      color: var(--ink); margin-bottom: 32px;
-      max-width: 620px;
-    }
-    .event-details-list {
-      list-style: none; margin-bottom: 40px;
-    }
-    .event-details-list li {
-      font-size: 13px; color: var(--muted);
-      padding: 10px 0; border-bottom: 1px solid var(--border);
-      display: flex; gap: 12px; align-items: baseline;
-    }
-    .event-details-list li strong {
-      color: var(--ink); font-weight: 600; min-width: 80px;
-      font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
-    }
-    .event-crew {
-      margin-bottom: 40px;
-    }
-    .event-crew-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 26px; font-weight: 300; margin-bottom: 16px;
-    }
-    .event-crew-list {
-      list-style: none;
-    }
-    .event-crew-list li {
-      font-size: 13px; color: var(--muted);
-      padding: 8px 0; border-bottom: 1px solid var(--border);
-      display: flex; gap: 12px;
-    }
-    .event-crew-list li strong {
-      color: var(--ink); font-weight: 500; min-width: 140px;
-    }
-
-    /* RIGHT COLUMN — STICKY SIDEBAR */
-    .event-sidebar {
-      position: sticky; top: 81px;
-      background: var(--cream);
-      padding: 36px;
-      margin-left: 48px;
-    }
-    .sidebar-date-block { margin-bottom: 24px; border-bottom: 1px solid var(--border); padding-bottom: 24px; }
-    .sidebar-date-label {
-      font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
-      color: var(--gold); font-weight: 600; margin-bottom: 6px;
-    }
-    .sidebar-date {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 26px; font-weight: 300; line-height: 1.2;
-    }
-    .sidebar-time { font-size: 13px; color: var(--muted); margin-top: 4px; }
-    .sidebar-place-label {
-      font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
-      color: var(--muted); font-weight: 600; margin-bottom: 4px; margin-top: 16px;
-    }
-    .sidebar-place { font-size: 13px; color: var(--ink); line-height: 1.5; }
-
-    .sidebar-price-block { margin-top: 24px; border-top: 1px solid var(--border); padding-top: 24px; margin-bottom: 24px; }
-    .sidebar-price-label {
-      font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
-      color: var(--muted); font-weight: 600; margin-bottom: 12px;
-    }
-    .sidebar-price-main {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 36px; font-weight: 300; color: var(--ink); line-height: 1;
-      margin-bottom: 6px;
-    }
-    .sidebar-price-member {
-      font-size: 12px; color: var(--gold); font-weight: 600; letter-spacing: 0.05em;
-    }
-    .sidebar-price-note {
-      font-size: 11px; color: var(--muted); margin-top: 8px; line-height: 1.5;
-    }
-
-    .btn-primary {
-      display: block; width: 100%;
-      padding: 16px 24px; text-align: center;
-      background: var(--ink); color: var(--paper);
-      font-family: 'Montserrat', sans-serif;
-      font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
-      font-weight: 600; text-decoration: none;
-      transition: background 0.2s; cursor: pointer; border: none;
-    }
-    .btn-primary:hover { background: var(--gold); }
-    .btn-secondary {
-      display: block; width: 100%;
-      padding: 14px 24px; text-align: center;
-      background: transparent; color: var(--muted);
-      font-family: 'Montserrat', sans-serif;
-      font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
-      font-weight: 600; text-decoration: none;
-      border: 1px solid var(--border);
-      transition: all 0.2s; margin-top: 8px;
-    }
-    .btn-secondary:hover { border-color: var(--ink); color: var(--ink); }
-
-    .sidebar-age {
-      text-align: center; margin-top: 12px;
-      font-size: 11px; color: var(--muted);
-    }
-
-    /* BACK LINK */
-    .event-back-section {
-      padding: 0 48px 60px;
-    }
-
-    /* FOOTER */
-    footer {
-      background: var(--ink); border-top: 1px solid rgba(255,255,255,0.06);
-      padding: 40px 48px; display: flex; justify-content: space-between; align-items: center;
-    }
-    .footer-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 17px; font-weight: 600; color: var(--paper);
-      letter-spacing: 0.08em; text-transform: uppercase;
-    }
-    .footer-logo span { color: var(--gold); }
+    body { font-family: 'Inter', sans-serif; background: #ffffff; color: #111111; font-size: 14px; line-height: 1.6; overflow-x: hidden; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 60px; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid #e8e8e8; }
+    .nav-logo { font-size: 17px; font-weight: 700; color: #111111; text-decoration: none; letter-spacing: -0.01em; }
+    .nav-links { display: flex; gap: 4px; list-style: none; }
+    .nav-links a { font-size: 13px; font-weight: 500; color: #111111; text-decoration: none; padding: 6px 12px; border-radius: 100px; transition: background 0.15s; }
+    .nav-links a:hover { background: #f5f5f5; }
+    .nav-back { font-size: 13px; font-weight: 600; color: #111111; text-decoration: none; padding: 8px 16px; border-radius: 100px; border: 1px solid #e8e8e8; transition: background 0.15s; }
+    .nav-back:hover { background: #f5f5f5; }
+    .event-hero { padding-top: 60px; position: relative; height: 70vh; min-height: 480px; overflow: hidden; }
+    .event-hero img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .event-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.7) 100%); display: flex; align-items: flex-end; padding: 48px; }
+    .event-hero-tag { display: inline-block; background: rgba(255,255,255,0.15); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.25); color: #ffffff; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 12px; border-radius: 100px; margin-bottom: 14px; }
+    .event-hero-title { font-size: 52px; font-weight: 700; color: #ffffff; line-height: 1.1; margin-bottom: 10px; }
+    .event-hero-date { font-size: 15px; font-weight: 500; color: rgba(255,255,255,0.85); }
+    .event-main { display: grid; grid-template-columns: 1fr 360px; gap: 48px; max-width: 1200px; margin: 0 auto; padding: 60px 48px; align-items: start; }
+    .event-section-label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #666666; font-weight: 600; margin-bottom: 12px; }
+    .event-description { font-size: 20px; font-weight: 500; line-height: 1.6; color: #111111; margin-bottom: 32px; max-width: 620px; }
+    .event-details-list { list-style: none; margin-bottom: 40px; }
+    .event-details-list li { font-size: 14px; color: #666666; padding: 12px 0; border-bottom: 1px solid #e8e8e8; display: flex; gap: 16px; align-items: baseline; }
+    .event-details-list li strong { color: #111111; font-weight: 600; min-width: 90px; font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; }
+    .event-crew { margin-bottom: 40px; }
+    .event-crew-title { font-size: 20px; font-weight: 600; color: #111111; margin-bottom: 16px; }
+    .event-crew-list { list-style: none; }
+    .event-crew-list li { font-size: 14px; color: #666666; padding: 10px 0; border-bottom: 1px solid #e8e8e8; display: flex; gap: 16px; }
+    .event-crew-list li strong { color: #111111; font-weight: 600; min-width: 160px; }
+    .event-sidebar { position: sticky; top: 80px; background: #ffffff; border: 1px solid #e8e8e8; border-radius: 16px; padding: 32px; }
+    .sidebar-date-block { margin-bottom: 24px; border-bottom: 1px solid #e8e8e8; padding-bottom: 24px; }
+    .sidebar-date-label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #666666; font-weight: 600; margin-bottom: 6px; }
+    .sidebar-date { font-size: 24px; font-weight: 700; line-height: 1.3; color: #111111; }
+    .sidebar-time { font-size: 14px; color: #666666; margin-top: 6px; }
+    .sidebar-place-label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #666666; font-weight: 600; margin-bottom: 4px; margin-top: 20px; }
+    .sidebar-place { font-size: 14px; color: #111111; line-height: 1.5; }
+    .sidebar-price-block { margin-top: 24px; border-top: 1px solid #e8e8e8; padding-top: 24px; margin-bottom: 24px; }
+    .sidebar-price-label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #666666; font-weight: 600; margin-bottom: 12px; }
+    .sidebar-price-main { font-size: 28px; font-weight: 700; color: #111111; line-height: 1; margin-bottom: 6px; }
+    .sidebar-price-note { font-size: 12px; color: #666666; margin-top: 8px; line-height: 1.5; }
+    .sidebar-age { text-align: center; margin-top: 12px; font-size: 12px; color: #666666; }
+    .btn-primary { display: block; width: 100%; padding: 16px 24px; text-align: center; background: #111111; color: #ffffff; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; text-decoration: none; border-radius: 100px; transition: opacity 0.15s; border: none; cursor: pointer; }
+    .btn-primary:hover { opacity: 0.85; }
+    .btn-secondary { display: block; width: 100%; padding: 14px 24px; text-align: center; background: #ffffff; color: #111111; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; text-decoration: none; border: 1px solid #e8e8e8; border-radius: 100px; transition: background 0.15s; margin-top: 10px; }
+    .btn-secondary:hover { background: #f5f5f5; }
+    .event-back-section { padding: 0 48px 60px; }
+    .event-back-link { font-size: 13px; font-weight: 600; color: #111111; text-decoration: none; padding: 8px 16px; border-radius: 100px; border: 1px solid #e8e8e8; display: inline-block; transition: background 0.15s; }
+    .event-back-link:hover { background: #f5f5f5; }
+    .btn-share { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 14px 24px; background: #ffffff; color: #111111; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; border: 1px solid #e8e8e8; border-radius: 100px; cursor: pointer; transition: background 0.15s; margin-top: 10px; position: relative; }
+    .btn-share:hover { background: #f5f5f5; }
+    .btn-share svg { width: 15px; height: 15px; flex-shrink: 0; }
+    .share-popup { position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%) translateY(4px); background: #111111; color: #ffffff; font-size: 12px; font-weight: 500; padding: 6px 14px; border-radius: 100px; white-space: nowrap; pointer-events: none; opacity: 0; transition: all 0.2s; }
+    .share-popup.visible { opacity: 1; transform: translateX(-50%) translateY(0); }
+    footer { background: #111111; padding: 40px 48px; display: flex; justify-content: space-between; align-items: center; }
+    .footer-logo { font-size: 17px; font-weight: 700; color: #ffffff; letter-spacing: -0.01em; }
     .footer-links { display: flex; gap: 20px; }
-    .footer-links a {
-      font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
-      color: rgba(245,241,235,0.35); text-decoration: none; transition: color 0.2s;
-    }
-    .footer-links a:hover { color: var(--gold); }
-    .footer-copy { font-size: 11px; color: rgba(245,241,235,0.2); }
-
-    /* RESPONSIVE */
+    .footer-links a { font-size: 13px; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.15s; }
+    .footer-links a:hover { color: #ffffff; }
+    .footer-copy { font-size: 12px; color: rgba(255,255,255,0.3); }
     @media (max-width: 900px) {
-      nav { padding: 14px 20px; }
-      .nav-links { display: none; }
-      .event-hero { height: 50vh; }
-      .event-hero-overlay { padding: 28px 20px; }
+      nav { padding: 0 20px; } .nav-links { display: none; }
+      .event-hero { height: 50vh; } .event-hero-overlay { padding: 28px 20px; }
       .event-hero-title { font-size: 32px; }
-      .event-main { grid-template-columns: 1fr; padding: 36px 20px; }
-      .event-sidebar { margin-left: 0; margin-top: 40px; position: static; }
+      .event-main { grid-template-columns: 1fr; padding: 36px 20px; gap: 32px; }
+      .event-sidebar { position: static; }
       footer { padding: 28px 20px; flex-direction: column; gap: 16px; text-align: center; }
       .footer-links { flex-wrap: wrap; justify-content: center; }
       .event-back-section { padding: 0 20px 40px; }
     }
     @media (max-width: 600px) {
-      nav { padding: 12px 16px; }
-      .event-hero-title { font-size: 26px; }
-      .event-main { padding: 24px 16px; }
-      .event-sidebar { padding: 24px 16px; }
-      .event-back-section { padding: 0 16px 32px; }
-      footer { padding: 24px 16px; }
+      nav { padding: 0 16px; } .event-hero-title { font-size: 26px; }
+      .event-main { padding: 24px 16px; } .event-sidebar { padding: 24px; }
+      .event-back-section { padding: 0 16px 32px; } footer { padding: 24px 16px; }
     }
-
-    .btn-share { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 14px 24px; background: transparent; color: var(--muted); font-family: 'Montserrat', sans-serif; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; border: 1px solid var(--border); cursor: pointer; transition: all 0.2s; margin-top: 8px; position: relative; }
-    .btn-share:hover { border-color: var(--ink); color: var(--ink); }
-    .btn-share svg { width: 13px; height: 13px; flex-shrink: 0; }
-    .share-popup { position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%) translateY(4px); background: var(--ink); color: var(--paper); font-size: 10px; letter-spacing: 0.1em; padding: 6px 14px; white-space: nowrap; pointer-events: none; opacity: 0; transition: all 0.2s; }
-    .share-popup.visible { opacity: 1; transform: translateX(-50%) translateY(0); }
   </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
-  <a href="index.html" class="nav-logo">Киммерия<span>-</span>Арт</a>
+  <a href="index.html" class="nav-logo">Киммерия-Арт</a>
   <ul class="nav-links">
     <li><a href="index.html#events">События</a></li>
     <li><a href="news.html">Новости</a></li>
@@ -283,11 +106,10 @@
   <a href="index.html#events" class="nav-back">← Все события</a>
 </nav>
 
-<!-- HERO -->
 <div class="event-hero">
   <img src="photos/photo_819@30-03-2026_09-17-02.jpg" alt="Спектакль УЖЕ — Мимла Же">
   <div class="event-hero-overlay">
-    <div class="event-hero-text">
+    <div>
       <div class="event-hero-tag">Спектакль · 12+</div>
       <h1 class="event-hero-title">«УЖЕ»</h1>
       <div class="event-hero-date">5 апреля 2026 · Воскресенье · 18:00</div>
@@ -295,10 +117,7 @@
   </div>
 </div>
 
-<!-- MAIN CONTENT -->
 <div class="event-main">
-
-  <!-- LEFT -->
   <div class="event-content">
     <p class="event-section-label">О спектакле</p>
     <div class="event-description">
@@ -331,13 +150,12 @@
       </ul>
     </div>
 
-    <p style="font-size:13px;color:var(--muted);line-height:1.7;max-width:580px;">
+    <p style="font-size:14px;color:#666666;line-height:1.7;max-width:580px;">
       Элементы декораций и костюмов созданы автором из переработанного пластика.<br>
       «У́ЖЕ» (чем хотелось бы) или «УЖÉ» (давно пора) — решать зрителям!
     </p>
   </div>
 
-  <!-- RIGHT: SIDEBAR -->
   <div class="event-sidebar">
     <div class="sidebar-date-block">
       <div class="sidebar-date-label">Когда</div>
@@ -346,13 +164,11 @@
       <div class="sidebar-place-label">Где</div>
       <div class="sidebar-place">Галерея «Стикс»<br>г. Ялта, ул. Игнатенко, 10</div>
     </div>
-
     <div class="sidebar-price-block">
       <div class="sidebar-price-label">Билеты</div>
       <div class="sidebar-price-main">По билетам</div>
       <div class="sidebar-price-note">Продажа билетов на сайте afisha.payberry.ru/yzhe</div>
     </div>
-
     <a href="https://afisha.payberry.ru/yzhe" target="_blank" class="btn-primary">Купить билет</a>
     <a href="index.html#events" class="btn-secondary">← Все события</a>
     <button class="btn-share" onclick="shareEvent(this)">
@@ -362,24 +178,21 @@
     </button>
     <div class="sidebar-age">12+</div>
   </div>
-
 </div>
 
-<!-- BACK -->
 <div class="event-back-section">
-  <a href="index.html#events" class="nav-back">← Все события</a>
+  <a href="index.html#events" class="event-back-link">← Все события</a>
 </div>
 
-<!-- FOOTER -->
 <footer>
-  <div class="footer-logo">Киммерия<span>-</span>Арт</div>
+  <div class="footer-logo">Киммерия-Арт</div>
   <div class="footer-links">
     <a href="https://vk.com/kimmeria_art" target="_blank">ВКонтакте</a>
     <a href="https://t.me/kimmeria_art" target="_blank">Telegram</a>
     <a href="news.html">Новости</a>
     <a href="index.html#join">О клубе</a>
   </div>
-  <div class="footer-copy">© 2025 Киммерия Арт · Ялта</div>
+  <div class="footer-copy">© 2025 Киммерия-Арт · Ялта</div>
 </footer>
 
 <script>
