@@ -56,17 +56,25 @@ nav {
 }
 .nav-cta:hover { opacity: 0.8; }
 
-/* ── HERO BANNER ── */
-.hero-banner {
+/* ── HERO CAROUSEL ── */
+.hero-carousel-wrap {
   margin-top: 60px;
+  padding: 24px 40px 0;
+}
+.hero-carousel {
   position: relative; height: 480px; overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+}
+.hero-slide {
+  position: absolute; inset: 0;
+  opacity: 0; transition: opacity 0.6s ease;
   cursor: pointer; display: block; text-decoration: none;
 }
-.hero-banner img {
+.hero-slide.active { opacity: 1; z-index: 1; }
+.hero-slide img {
   width: 100%; height: 100%; object-fit: cover; display: block;
-  transition: transform 0.4s ease;
 }
-.hero-banner:hover img { transform: scale(1.02); }
 .hero-overlay {
   position: absolute; inset: 0;
   background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.2) 60%, transparent 100%);
@@ -99,6 +107,32 @@ nav {
   transition: opacity 0.15s;
 }
 .hero-btn:hover { opacity: 0.9; }
+
+/* Arrows */
+.hero-arrow {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  z-index: 10; width: 44px; height: 44px; border-radius: 50%;
+  background: rgba(255,255,255,0.18); backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.25);
+  color: #ffffff; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s; font-size: 18px; line-height: 1;
+  user-select: none;
+}
+.hero-arrow:hover { background: rgba(255,255,255,0.32); }
+.hero-arrow-prev { left: 18px; }
+.hero-arrow-next { right: 18px; }
+
+/* Dots */
+.hero-dots {
+  display: flex; justify-content: center; gap: 7px;
+  padding: 14px 0 0;
+}
+.hero-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: #d0d0d0; border: none; cursor: pointer; padding: 0;
+  transition: background 0.2s, transform 0.2s;
+}
+.hero-dot.active { background: #111111; transform: scale(1.25); }
 
 /* ── AD BANNER (between hero and grid) ── */
 .ad-banner-top {
@@ -450,6 +484,8 @@ footer {
 @media (max-width: 900px) {
   nav { padding: 0 20px; }
   .nav-links { display: none; }
+  .hero-carousel-wrap { padding: 16px 20px 0; }
+  .hero-carousel { height: 380px; }
   .hero-content { padding: 28px 24px; }
   .hero-title { font-size: 24px; }
   .ad-banner-top { padding: 14px 20px; flex-direction: column; align-items: flex-start; gap: 10px; }
@@ -474,7 +510,11 @@ footer {
 @media (max-width: 600px) {
   nav { padding: 0 16px; }
   .nav-cta { display: none; }
-  .hero-banner { height: 340px; }
+  .hero-carousel-wrap { padding: 10px 12px 0; }
+  .hero-carousel { height: 300px; border-radius: 14px; }
+  .hero-arrow { width: 36px; height: 36px; font-size: 14px; }
+  .hero-arrow-prev { left: 10px; }
+  .hero-arrow-next { right: 10px; }
   .hero-content { padding: 20px 18px; }
   .hero-title { font-size: 20px; }
   .events-section { padding: 0 16px 48px; }
@@ -509,17 +549,71 @@ footer {
   <a href="#join" class="nav-cta">Вступить</a>
 </nav>
 
-<!-- HERO BANNER -->
-<a class="hero-banner" href="event-uzhe.html">
-  <img src="photos/photo_819@30-03-2026_09-17-02.jpg" alt="Спектакль УЖЕ">
-  <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <div class="hero-event-tag">Ближайшее событие</div>
-    <h1 class="hero-title">«УЖЕ» — авторская постановка Мимлы Же</h1>
-    <div class="hero-date">5 апреля 2026 · 18:00</div>
-    <a href="https://afisha.payberry.ru/yzhe" class="hero-btn" onclick="event.stopPropagation()">Купить билет</a>
+<!-- HERO CAROUSEL -->
+<div class="hero-carousel-wrap">
+  <div class="hero-carousel" id="heroCarousel">
+
+    <!-- Слайд 1: УЖЕ -->
+    <a class="hero-slide active" href="event-uzhe.html">
+      <img src="photos/photo_819@30-03-2026_09-17-02.jpg" alt="Спектакль УЖЕ">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <div class="hero-event-tag">Ближайшее событие</div>
+        <h1 class="hero-title">«УЖЕ» — авторская постановка Мимлы Же</h1>
+        <div class="hero-date">5 апреля 2026 · 18:00</div>
+        <a href="https://afisha.payberry.ru/yzhe" class="hero-btn" onclick="event.stopPropagation()">Купить билет</a>
+      </div>
+    </a>
+
+    <!-- Слайд 2: Назаров -->
+    <a class="hero-slide" href="event-nazarov.html">
+      <img src="photos/photo_814@27-03-2026_18-42-39.jpg" alt="Лекция Назаров">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <div class="hero-event-tag">Лекция</div>
+        <h1 class="hero-title">«Тёмная энергия и тёмная материя» — Сергей Назаров</h1>
+        <div class="hero-date">28 марта 2026</div>
+        <span class="hero-btn">Подробнее</span>
+      </div>
+    </a>
+
+    <!-- Слайд 3: Говорухин -->
+    <a class="hero-slide" href="event-govoryukhin.html">
+      <img src="photos/photo_803@23-03-2026_19-31-02.jpg" alt="Вечер памяти Говорухина">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <div class="hero-event-tag">Кинопоказ</div>
+        <h1 class="hero-title">90 лет Говорухину — вечер памяти и показ «АССА-2024»</h1>
+        <div class="hero-date">25 марта 2026</div>
+        <span class="hero-btn">Подробнее</span>
+      </div>
+    </a>
+
+    <!-- Слайд 4: Пина Бауш -->
+    <a class="hero-slide" href="event-pina-bausch.html">
+      <img src="photos/photo_256@13-02-2025_11-45-57.jpg" alt="Пина Бауш">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <div class="hero-event-tag">Лекция</div>
+        <h1 class="hero-title">Пина Бауш. Танцтеатр. Весна священная</h1>
+        <div class="hero-date">22 февраля 2025</div>
+        <span class="hero-btn">Подробнее</span>
+      </div>
+    </a>
+
+    <!-- Стрелки -->
+    <button class="hero-arrow hero-arrow-prev" onclick="heroMove(-1)">&#8592;</button>
+    <button class="hero-arrow hero-arrow-next" onclick="heroMove(1)">&#8594;</button>
   </div>
-</a>
+
+  <!-- Точки -->
+  <div class="hero-dots" id="heroDots">
+    <button class="hero-dot active" onclick="heroGo(0)"></button>
+    <button class="hero-dot" onclick="heroGo(1)"></button>
+    <button class="hero-dot" onclick="heroGo(2)"></button>
+    <button class="hero-dot" onclick="heroGo(3)"></button>
+  </div>
+</div>
 
 <!-- AD BANNER TOP -->
 <div class="ad-banner-top">
@@ -1113,6 +1207,38 @@ footer {
       ta.value = u; ta.style.cssText = 'position:fixed;opacity:0';
       document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
     }
+  }
+
+  /* ── HERO CAROUSEL ── */
+  var heroCurrent = 0;
+  var heroTotal = document.querySelectorAll('.hero-slide').length;
+  var heroTimer;
+
+  function heroGo(idx) {
+    var slides = document.querySelectorAll('.hero-slide');
+    var dots = document.querySelectorAll('.hero-dot');
+    slides[heroCurrent].classList.remove('active');
+    dots[heroCurrent].classList.remove('active');
+    heroCurrent = (idx + heroTotal) % heroTotal;
+    slides[heroCurrent].classList.add('active');
+    dots[heroCurrent].classList.add('active');
+    heroResetTimer();
+  }
+
+  function heroMove(dir) { heroGo(heroCurrent + dir); }
+
+  function heroResetTimer() {
+    clearInterval(heroTimer);
+    heroTimer = setInterval(function() { heroGo(heroCurrent + 1); }, 5000);
+  }
+
+  heroResetTimer();
+
+  /* Пауза при наведении */
+  var carousel = document.getElementById('heroCarousel');
+  if (carousel) {
+    carousel.addEventListener('mouseenter', function() { clearInterval(heroTimer); });
+    carousel.addEventListener('mouseleave', heroResetTimer);
   }
 </script>
 </body>
