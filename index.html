@@ -56,16 +56,66 @@ nav {
 }
 .nav-cta:hover { opacity: 0.8; }
 
-/* ── HERO CAROUSEL ── */
-.hero-carousel-wrap {
+/* ── HERO SECTION ── */
+.hero-section {
   margin-top: 60px;
   padding: 24px 40px 0;
+  display: flex;
+  gap: 16px;
+  align-items: stretch;
+}
+.hero-carousel-wrap {
+  flex: 2;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+.hero-ad-wrap {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
 }
 .hero-carousel {
   position: relative; height: 480px; overflow: hidden;
   border-radius: 20px;
   box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+  flex: 1;
 }
+.hero-ad-banner {
+  flex: 1;
+  border-radius: 20px;
+  background: #111111;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 32px 28px;
+  min-height: 480px;
+  overflow: hidden;
+  position: relative;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.hero-ad-banner:hover { opacity: 0.92; }
+.hero-ad-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+  color: rgba(255,255,255,0.35); margin-bottom: 8px;
+}
+.hero-ad-title {
+  font-size: 22px; font-weight: 700; color: #ffffff; line-height: 1.25;
+  margin-bottom: 10px;
+}
+.hero-ad-desc {
+  font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.6;
+}
+.hero-ad-btn {
+  display: inline-block;
+  font-size: 12px; font-weight: 700; color: #111111; background: #ffffff;
+  padding: 9px 20px; border-radius: 100px; text-decoration: none;
+  align-self: flex-start; margin-top: 24px;
+  transition: opacity 0.15s;
+}
+.hero-ad-banner:hover .hero-ad-btn { opacity: 0.85; }
 .hero-slide {
   position: absolute; inset: 0;
   opacity: 0; transition: opacity 0.6s ease;
@@ -472,7 +522,9 @@ footer {
 @media (max-width: 900px) {
   nav { padding: 0 20px; }
   .nav-links { display: none; }
-  .hero-carousel-wrap { padding: 16px 20px 0; }
+  .hero-section { padding: 16px 20px 0; gap: 0; }
+  .hero-carousel-wrap { flex: none; width: 100%; }
+  .hero-ad-wrap { display: none; }
   .hero-carousel { height: 380px; }
   .hero-content { padding: 28px 24px; }
   .hero-title { font-size: 24px; }
@@ -496,7 +548,7 @@ footer {
 @media (max-width: 600px) {
   nav { padding: 0 16px; }
   .nav-cta { display: none; }
-  .hero-carousel-wrap { padding: 10px 12px 0; }
+  .hero-section { padding: 10px 12px 0; }
   .hero-carousel { height: 300px; border-radius: 14px; }
   .hero-arrow { width: 36px; height: 36px; font-size: 14px; }
   .hero-arrow-prev { left: 10px; }
@@ -535,7 +587,10 @@ footer {
   <a href="#join" class="nav-cta">Вступить</a>
 </nav>
 
-<!-- HERO CAROUSEL -->
+<!-- HERO SECTION -->
+<div class="hero-section">
+
+<!-- КАРУСЕЛЬ (2/3) -->
 <div class="hero-carousel-wrap">
   <div class="hero-carousel" id="heroCarousel">
 
@@ -601,13 +656,19 @@ footer {
   </div>
 </div>
 
-<!-- AD BANNER TOP -->
-<div class="ad-banner-top">
-  <div class="ad-banner-top-text">
-    <strong>Стать партнёром клуба</strong> — разместите свою рекламу здесь
-  </div>
-  <a href="#join" class="ad-banner-top-btn">Подробнее</a>
+<!-- РЕКЛАМНЫЙ БАННЕР (1/3) -->
+<div class="hero-ad-wrap">
+  <a href="index.html#join" class="hero-ad-banner">
+    <div>
+      <div class="hero-ad-label">Рекламное место</div>
+      <div class="hero-ad-title">Ваш бренд рядом с культурой Ялты</div>
+      <div class="hero-ad-desc">Разместите рекламу здесь и охватите аудиторию ценителей кино, искусства и культурного отдыха в Крыму.</div>
+    </div>
+    <span class="hero-ad-btn">Стать партнёром</span>
+  </a>
 </div>
+
+</div><!-- /hero-section -->
 
 <!-- EVENTS -->
 <section class="events-section" id="events">
