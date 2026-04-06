@@ -369,18 +369,6 @@ nav {
 }
 .membership-cta:hover { opacity: 0.9; }
 
-/* ── HOTELS ── */
-.hotels-section { padding: 64px 40px; }
-.section-label {
-  font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
-  color: #666666; margin-bottom: 8px;
-}
-.section-title {
-  font-size: 28px; font-weight: 700; color: #111111; line-height: 1.2; margin-bottom: 32px;
-}
-.hotels-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
-}
 .hotel-card {
   border: 1px solid #e8e8e8; border-radius: 16px; padding: 28px;
   cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;
@@ -495,8 +483,6 @@ footer {
   .membership-section { padding: 48px 20px; }
   .membership-inner { flex-direction: column; gap: 32px; }
   .membership-perks { grid-template-columns: repeat(2, 1fr); }
-  .hotels-section { padding: 48px 20px; }
-  .hotels-grid { grid-template-columns: 1fr; }
   .testimonials-section { padding: 48px 20px; }
   .testimonials-grid { grid-template-columns: 1fr; gap: 12px; }
   .join-section { grid-template-columns: 1fr; }
@@ -524,7 +510,7 @@ footer {
   .filters-right-mobile { display: block; width: 100%; }
   .membership-section { padding: 36px 16px; }
   .membership-perks { grid-template-columns: 1fr 1fr; gap: 12px 20px; }
-  .hotels-section { padding: 36px 16px; }
+
   .testimonials-section { padding: 36px 16px; }
   .join-left { padding: 36px 18px; }
   .join-right { padding: 36px 18px; }
@@ -542,7 +528,7 @@ footer {
   <ul class="nav-links">
     <li><a href="#events">События</a></li>
     <li><a href="news.html">Новости</a></li>
-    <li><a href="#hotels">Отели</a></li>
+    <li><a href="hotels.html">Отели</a></li>
     <li><a href="#membership">Членство</a></li>
     <li><a href="#join">О клубе</a></li>
   </ul>
@@ -975,49 +961,6 @@ footer {
   </div>
 </section>
 
-<!-- HOTELS -->
-<section class="hotels-section" id="hotels">
-  <p class="section-label">Партнёры</p>
-  <h2 class="section-title">Отели-партнёры клуба</h2>
-  <div class="hotels-grid">
-    <div class="hotel-card" onclick="location.href='oreanda.html'" style="cursor:pointer">
-      <div class="hotel-letter">О</div>
-      <h3 class="hotel-name">Отель «Ореанда»</h3>
-      <p class="hotel-desc">Гости отеля записываются на события клуба по QR-коду в лобби и приезжают на нашу площадку.</p>
-      <a href="oreanda.html" class="hotel-link">Программа для гостей →</a>
-    </div>
-    <div class="hotel-card" onclick="location.href='partner2.html'" style="cursor:pointer">
-      <div class="hotel-letter">П</div>
-      <h3 class="hotel-name">Партнёр 2</h3>
-      <p class="hotel-desc">Гости отеля записываются через ссылку или стойку ресепшн и приезжают на мероприятия клуба.</p>
-      <a href="partner2.html" class="hotel-link">Программа для гостей →</a>
-    </div>
-    <div class="hotel-card" onclick="location.href='partner3.html'" style="cursor:pointer">
-      <div class="hotel-letter">П</div>
-      <h3 class="hotel-name">Партнёр 3</h3>
-      <p class="hotel-desc">Гости отеля записываются через ссылку или стойку ресепшн и приезжают на мероприятия клуба.</p>
-      <a href="partner3.html" class="hotel-link">Программа для гостей →</a>
-    </div>
-    <div class="hotel-card" onclick="location.href='partner4.html'" style="cursor:pointer">
-      <div class="hotel-letter">П</div>
-      <h3 class="hotel-name">Партнёр 4</h3>
-      <p class="hotel-desc">Гости отеля записываются через ссылку или стойку ресепшн и приезжают на мероприятия клуба.</p>
-      <a href="partner4.html" class="hotel-link">Программа для гостей →</a>
-    </div>
-    <div class="hotel-card" onclick="location.href='partner5.html'" style="cursor:pointer">
-      <div class="hotel-letter">П</div>
-      <h3 class="hotel-name">Партнёр 5</h3>
-      <p class="hotel-desc">Гости отеля записываются через ссылку или стойку ресепшн и приезжают на мероприятия клуба.</p>
-      <a href="partner5.html" class="hotel-link">Программа для гостей →</a>
-    </div>
-    <div class="hotel-card" style="border-style: dashed; cursor: default;">
-      <div class="hotel-letter">+</div>
-      <h3 class="hotel-name" style="opacity:0.55">Стать партнёром</h3>
-      <p class="hotel-desc">Предложите гостям культурную программу клуба. Комиссия с каждой регистрации.</p>
-      <a href="#join" class="hotel-link">Узнать условия →</a>
-    </div>
-  </div>
-</section>
 
 <!-- TESTIMONIALS -->
 <section class="testimonials-section">

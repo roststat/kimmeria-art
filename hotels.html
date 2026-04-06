@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Отели-партнёры — Киммерия-Арт</title>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Киммерия-Арт">
+  <meta property="og:url" content="https://art-kimmeria.ru/hotels.html">
+  <meta property="og:title" content="Отели-партнёры — Киммерия-Арт">
+  <meta property="og:description" content="Отели Ялты, партнёры клуба Киммерия-Арт. Гости получают доступ к событиям клуба.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: #ffffff; color: #111111; font-size: 14px; line-height: 1.6; overflow-x: hidden; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: 60px; display: flex; align-items: center; justify-content: space-between;
+      padding: 0 40px;
+      background: rgba(255,255,255,0.95); backdrop-filter: blur(20px);
+      border-bottom: 1px solid #e8e8e8;
+    }
+    .nav-logo { font-size: 17px; font-weight: 700; color: #111111; text-decoration: none; letter-spacing: -0.01em; }
+    .nav-links { display: flex; gap: 4px; list-style: none; }
+    .nav-links a { font-size: 13px; font-weight: 500; color: #111111; text-decoration: none; padding: 6px 12px; border-radius: 100px; transition: background 0.15s; }
+    .nav-links a:hover { background: #f5f5f5; }
+    .nav-links a.active { background: #f0f0f0; font-weight: 600; }
+    .nav-cta { font-size: 13px; font-weight: 600; color: #ffffff; background: #111111; padding: 8px 18px; border-radius: 100px; text-decoration: none; transition: opacity 0.15s; }
+    .nav-cta:hover { opacity: 0.8; }
+
+    /* PAGE HEADER */
+    .page-header {
+      margin-top: 60px;
+      padding: 64px 40px 48px;
+      border-bottom: 1px solid #e8e8e8;
+    }
+    .page-header-label {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+      color: #666666; margin-bottom: 10px;
+    }
+    .page-header-title {
+      font-size: 40px; font-weight: 700; color: #111111; line-height: 1.15; margin-bottom: 12px;
+    }
+    .page-header-desc {
+      font-size: 15px; color: #666666; max-width: 560px; line-height: 1.7;
+    }
+
+    /* HOTELS GRID */
+    .hotels-section { padding: 48px 40px 80px; }
+    .hotels-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .hotel-card {
+      border: 1px solid #e8e8e8; border-radius: 16px; padding: 28px;
+      cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .hotel-card:hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(0,0,0,0.08); }
+    .hotel-letter { font-size: 36px; font-weight: 700; color: #111111; line-height: 1; margin-bottom: 14px; opacity: 0.15; }
+    .hotel-name { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+    .hotel-desc { font-size: 13px; color: #666666; line-height: 1.6; margin-bottom: 16px; }
+    .hotel-link { font-size: 12px; font-weight: 600; color: #111111; text-decoration: none; border-bottom: 1px solid #e8e8e8; padding-bottom: 2px; transition: border-color 0.15s; }
+    .hotel-link:hover { border-color: #111111; }
+
+    /* CTA BANNER */
+    .partner-cta {
+      margin: 0 40px 80px;
+      background: #111111; border-radius: 20px;
+      padding: 48px 52px;
+      display: flex; align-items: center; justify-content: space-between; gap: 32px;
+      flex-wrap: wrap;
+    }
+    .partner-cta-text {}
+    .partner-cta-label { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 10px; }
+    .partner-cta-title { font-size: 26px; font-weight: 700; color: #ffffff; line-height: 1.3; margin-bottom: 8px; }
+    .partner-cta-desc { font-size: 14px; color: rgba(255,255,255,0.55); max-width: 480px; line-height: 1.6; }
+    .partner-cta-btn { flex-shrink: 0; font-size: 14px; font-weight: 700; color: #111111; background: #ffffff; padding: 14px 28px; border-radius: 100px; text-decoration: none; transition: opacity 0.15s; white-space: nowrap; }
+    .partner-cta-btn:hover { opacity: 0.9; }
+
+    footer { background: #111111; padding: 36px 40px; display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; }
+    .footer-logo { font-size: 16px; font-weight: 700; color: #ffffff; }
+    .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+    .footer-links a { font-size: 12px; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.15s; }
+    .footer-links a:hover { color: #ffffff; }
+    .footer-copy { font-size: 12px; color: rgba(255,255,255,0.25); }
+
+    @media (max-width: 900px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .page-header { padding: 48px 20px 36px; }
+      .page-header-title { font-size: 30px; }
+      .hotels-section { padding: 36px 20px 60px; }
+      .hotels-grid { grid-template-columns: 1fr; }
+      .partner-cta { margin: 0 20px 60px; padding: 32px 28px; }
+      footer { padding: 28px 20px; flex-direction: column; text-align: center; }
+      .footer-links { justify-content: center; }
+    }
+    @media (max-width: 600px) {
+      nav { padding: 0 16px; }
+      .nav-cta { display: none; }
+      .page-header { padding: 36px 16px 28px; }
+      .page-header-title { font-size: 26px; }
+      .hotels-section { padding: 24px 16px 48px; }
+      .partner-cta { margin: 0 16px 48px; padding: 28px 20px; flex-direction: column; }
+      footer { padding: 24px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Киммерия-Арт</a>
+  <ul class="nav-links">
+    <li><a href="index.html#events">События</a></li>
+    <li><a href="news.html">Новости</a></li>
+    <li><a href="hotels.html" class="active">Отели</a></li>
+    <li><a href="index.html#membership">Членство</a></li>
+    <li><a href="index.html#join">О клубе</a></li>
+  </ul>
+  <a href="index.html#join" class="nav-cta">Вступить</a>
+</nav>
+
+<div class="page-header">
+  <p class="page-header-label">Партнёры</p>
+  <h1 class="page-header-title">Отели-партнёры клуба</h1>
+  <p class="page-header-desc">Гости отелей-партнёров получают доступ к событиям клуба — кинопоказам, лекциям, спектаклям и выставкам в Ялте.</p>
+</div>
+
+<section class="hotels-section">
+  <div class="hotels-grid">
+    <div class="hotel-card" onclick="location.href='oreanda.html'">
+      <div class="hotel-letter">О</div>
+      <h3 class="hotel-name">Отель «Ореанда»</h3>
+      <p class="hotel-desc">Гости отеля записываются на события клуба по QR-коду в лобби и приезжают на нашу площадку.</p>
+      <a href="oreanda.html" class="hotel-link">Программа для гостей →</a>
+    </div>
+    <div class="hotel-card" onclick="location.href='partner2.html'">
+      <div class="hotel-letter">П</div>
+      <h3 class="hotel-name">Партнёр 2</h3>
+      <p class="hotel-desc">Гости отеля записываются через ссылку или стойку ресепшн и приезжают на мероприятия клуба.</p>
+      <a href="partner2.html" class="hotel-link">Программа для гостей →</a>
+    </div>
+    <div class="hotel-card" onclick="location.href='partner3.html'">
+      <div class="hotel-letter">П</div>
+      <h3 class="hotel-name">Партнёр 3</h3>
+      <p class="hotel-desc">Гости отеля записываются через ссылку или стойку ресепшн и приезжают на мероприятия клуба.</p>
+      <a href="partner3.html" class="hotel-link">Программа для гостей →</a>
+    </div>
+    <div class="hotel-card" onclick="location.href='partner4.html'">
+      <div class="hotel-letter">П</div>
+      <h3 class="hotel-name">Партнёр 4</h3>
+      <p class="hotel-desc">Гости отеля записываются через ссылку или стойку ресепшн и приезжают на мероприятия клуба.</p>
+      <a href="partner4.html" class="hotel-link">Программа для гостей →</a>
+    </div>
+    <div class="hotel-card" onclick="location.href='partner5.html'">
+      <div class="hotel-letter">П</div>
+      <h3 class="hotel-name">Партнёр 5</h3>
+      <p class="hotel-desc">Гости отеля записываются через ссылку или стойку ресепшн и приезжают на мероприятия клуба.</p>
+      <a href="partner5.html" class="hotel-link">Программа для гостей →</a>
+    </div>
+    <div class="hotel-card" style="border-style: dashed; cursor: default;">
+      <div class="hotel-letter">+</div>
+      <h3 class="hotel-name" style="opacity:0.55">Стать партнёром</h3>
+      <p class="hotel-desc">Предложите гостям культурную программу клуба. Комиссия с каждой регистрации.</p>
+      <a href="index.html#join" class="hotel-link">Узнать условия →</a>
+    </div>
+  </div>
+</section>
+
+<div class="partner-cta">
+  <div class="partner-cta-text">
+    <div class="partner-cta-label">Для отелей</div>
+    <div class="partner-cta-title">Добавьте культурную программу для ваших гостей</div>
+    <p class="partner-cta-desc">Мы берём на себя организацию событий, вы получаете дополнительную ценность для гостей и комиссию с каждой регистрации.</p>
+  </div>
+  <a href="index.html#join" class="partner-cta-btn">Обсудить партнёрство</a>
+</div>
+
+<footer>
+  <div class="footer-logo">Киммерия-Арт</div>
+  <div class="footer-links">
+    <a href="https://vk.com/kimmeria_art" target="_blank">ВКонтакте</a>
+    <a href="https://t.me/kimmeria_art" target="_blank">Telegram</a>
+    <a href="news.html">Новости</a>
+    <a href="index.html#join">О клубе</a>
+  </div>
+  <div class="footer-copy">© 2025 Киммерия-Арт · Ялта</div>
+</footer>
+
+</body>
+</html>
