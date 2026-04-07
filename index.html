@@ -628,10 +628,20 @@ footer {
 @media (max-width: 900px) {
   nav { padding: 0 20px; }
   .nav-links { display: none; }
-  .hero-section { padding: 16px 20px 16px; gap: 0; height: calc(100vh - 60px); }
+  .hero-section { padding: 16px 20px 16px; gap: 12px; height: calc(100vh - 60px); flex-direction: column; }
   .hero-carousel-wrap { flex: none; width: 100%; min-height: 0; }
-  .hero-ad-wrap { display: none; }
   .hero-carousel { height: 100%; }
+  .hero-ad-wrap { flex: none; width: 100%; }
+  .hero-ad-banner {
+    flex-direction: row; align-items: center;
+    padding: 16px 24px; border-radius: 14px;
+    justify-content: space-between; gap: 20px;
+  }
+  .hero-ad-banner > div { display: flex; align-items: center; gap: 16px; }
+  .hero-ad-label { margin-bottom: 0; }
+  .hero-ad-title { font-size: 15px; margin-bottom: 0; }
+  .hero-ad-desc { display: none; }
+  .hero-ad-btn { margin-top: 0; white-space: nowrap; }
   .hero-content { padding: 28px 24px; }
   .hero-title { font-size: 24px; }
   .ad-banner-top { padding: 14px 20px; flex-direction: column; align-items: flex-start; gap: 10px; }
@@ -675,6 +685,9 @@ footer {
   .join-title { font-size: 28px; }
   footer { padding: 24px 16px; }
   .ad-banner-grid { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .hero-ad-banner { padding: 12px 16px; border-radius: 12px; }
+  .hero-ad-title { font-size: 13px; }
+  .hero-ad-btn { font-size: 9px; padding: 7px 14px; }
 
   /* каталог мероприятий */
   .catalogue-item {
