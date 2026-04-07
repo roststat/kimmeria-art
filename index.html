@@ -28,7 +28,7 @@ body {
   font-family: 'Onest', Arial, sans-serif;
   background: #ffffff;
   color: #111111;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.6;
   overflow-x: hidden;
 }
@@ -72,15 +72,16 @@ nav {
   height: calc(100vh - 60px);
 }
 .hero-carousel-wrap {
-  flex: 2;
+  flex: 1;
   min-width: 0;
   display: flex;
   flex-direction: column;
   min-height: 0;
 }
 .hero-ad-wrap {
-  flex: 1;
-  min-width: 0;
+  flex: none;
+  width: 260px;
+  min-width: 260px;
   display: flex;
   flex-direction: column;
 }
@@ -194,6 +195,42 @@ nav {
   transition: background 0.2s, transform 0.2s;
 }
 .hero-dot.active { background: var(--accent); transform: scale(1.25); }
+
+/* ── HERO STUB (когда нет актуальных событий) ── */
+.hero-stub {
+  display: none;
+  flex: 1;
+  min-width: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.18);
+  padding: 60px 48px;
+  position: relative;
+  overflow: hidden;
+}
+.hero-stub::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 30% 60%, rgba(87,165,147,0.25) 0%, transparent 60%);
+  pointer-events: none;
+}
+.hero-stub-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 20px; position: relative;
+}
+.hero-stub-title {
+  font-size: 36px; font-weight: 700; color: #ffffff;
+  line-height: 1.2; max-width: 540px; position: relative;
+}
+.hero-stub-sub {
+  font-size: 15px; color: rgba(255,255,255,0.55);
+  margin-top: 16px; position: relative;
+}
 
 /* ── AD BANNER (between hero and grid) ── */
 .ad-banner-top {
@@ -377,7 +414,7 @@ nav {
   font-size: 22px; font-weight: 700; color: #111111; line-height: 1.3; margin-bottom: 8px;
 }
 .catalogue-subtitle {
-  font-size: 14px; color: #666666; line-height: 1.6; max-width: 560px;
+  font-size: 16px; color: #666666; line-height: 1.6; max-width: 560px;
 }
 .catalogue-list { list-style: none; border-top: 1px solid #e8e8e8; }
 .catalogue-item {
@@ -461,7 +498,7 @@ nav {
   margin-bottom: 8px;
 }
 .membership-sub {
-  font-size: 14px; color: #666666; line-height: 1.6;
+  font-size: 16px; color: #666666; line-height: 1.6;
 }
 .membership-perks {
   display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px 40px;
@@ -539,7 +576,7 @@ nav {
 .join-title {
   font-size: 36px; font-weight: 700; color: #111111; line-height: 1.15; margin-bottom: 16px;
 }
-.join-desc { font-size: 14px; color: #666666; line-height: 1.7; margin-bottom: 28px; }
+.join-desc { font-size: 16px; color: #666666; line-height: 1.7; margin-bottom: 28px; }
 .join-perks { list-style: none; }
 .join-perks li {
   font-size: 13px; color: #444444;
@@ -557,7 +594,7 @@ nav {
 }
 .form-input {
   width: 100%; padding: 11px 14px; border: 1px solid #e8e8e8; border-radius: 10px;
-  background: #ffffff; font-family: 'Inter', sans-serif; font-size: 14px; color: #111111;
+  background: #ffffff; font-family: 'Inter', sans-serif; font-size: 16px; color: #111111;
   outline: none; transition: border-color 0.2s; -webkit-appearance: none;
 }
 .form-input:focus { border-color: #111111; }
@@ -619,7 +656,7 @@ footer {
   .nav-cta { display: none; }
   .hero-section { padding: 10px 12px 10px; height: calc(100vh - 60px); }
   .hero-carousel { height: 100%; border-radius: 14px; }
-  .hero-arrow { width: 36px; height: 36px; font-size: 14px; }
+  .hero-arrow { width: 36px; height: 36px; font-size: 16px; }
   .hero-arrow-prev { left: 10px; }
   .hero-arrow-next { right: 10px; }
   .hero-content { padding: 20px 18px; }
@@ -647,7 +684,7 @@ footer {
   }
   .catalogue-item-desc { display: none; }
   .catalogue-badge { min-width: unset; }
-  .catalogue-item-title { font-size: 14px; flex-basis: 100%; }
+  .catalogue-item-title { font-size: 16px; flex-basis: 100%; }
   .catalogue-item-tag {
     font-size: 10px; padding: 3px 10px;
   }
@@ -739,6 +776,13 @@ footer {
     <button class="hero-dot" onclick="heroGo(2)"></button>
     <button class="hero-dot" onclick="heroGo(3)"></button>
   </div>
+</div>
+
+<!-- ЗАГЛУШКА (показывается когда нет актуальных событий) -->
+<div class="hero-stub" id="heroStub">
+  <div class="hero-stub-label">Арт-пространство · Ялта</div>
+  <div class="hero-stub-title">Эксклюзивные Арт-мероприятия на берегу Крыма</div>
+  <div class="hero-stub-sub">Следите за анонсами — скоро новые события</div>
 </div>
 
 <!-- РЕКЛАМНЫЙ БАННЕР (1/3) -->
@@ -1449,6 +1493,31 @@ footer {
     clearInterval(heroTimer);
     heroTimer = setInterval(function() { heroGo(heroCurrent + 1); }, 5000);
   }
+
+  /* Проверяем наличие актуальных событий по датам слайдов */
+  (function() {
+    var today = new Date();
+    today.setHours(0,0,0,0);
+    var hasUpcoming = false;
+    document.querySelectorAll('.hero-slide .hero-date').forEach(function(el) {
+      var txt = el.textContent.trim();
+      // Парсим дату вида "5 апреля 2026" или "5 апреля 2026 · 18:00"
+      var months = {
+        'января':0,'февраля':1,'марта':2,'апреля':3,'мая':4,'июня':5,
+        'июля':6,'августа':7,'сентября':8,'октября':9,'ноября':10,'декабря':11
+      };
+      var m = txt.match(/(\d+)\s+([а-яё]+)\s+(\d{4})/i);
+      if (m) {
+        var d = new Date(parseInt(m[3]), months[m[2].toLowerCase()], parseInt(m[1]));
+        if (d >= today) hasUpcoming = true;
+      }
+    });
+    if (!hasUpcoming) {
+      document.querySelector('.hero-carousel-wrap').style.display = 'none';
+      var stub = document.getElementById('heroStub');
+      stub.style.display = 'flex';
+    }
+  })();
 
   heroResetTimer();
 
