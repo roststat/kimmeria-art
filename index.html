@@ -120,13 +120,13 @@ nav {
 }
 .hero-ad-btn {
   display: inline-block;
-  font-size: 10px; font-weight: 700; color: #ffffff; background: var(--accent);
+  font-size: 10px; font-weight: 700; color: #ffffff; background: #111111;
   padding: 9px 20px; border-radius: 100px; text-decoration: none;
   letter-spacing: 0.07em; text-transform: uppercase;
   align-self: flex-start; margin-top: 24px;
   transition: background 0.15s;
 }
-.hero-ad-banner:hover .hero-ad-btn { opacity: 0.85; }
+.hero-ad-banner:hover .hero-ad-btn { background: #333333; }
 .hero-slide {
   position: absolute; inset: 0;
   opacity: 0; transition: opacity 0.6s ease;
@@ -666,7 +666,8 @@ footer {
 @media (max-width: 600px) {
   nav { padding: 0 16px; }
   .nav-cta { display: none; }
-  .hero-section { padding: 10px 12px 10px; height: calc(100vh - 60px); }
+  .hero-section { padding: 10px 12px 10px; height: auto; }
+  .hero-carousel-wrap { height: calc(100vh - 60px - 70px - 22px); }
   .hero-carousel { height: 100%; border-radius: 14px; }
   .hero-arrow { width: 36px; height: 36px; font-size: 16px; }
   .hero-arrow-prev { left: 10px; }
