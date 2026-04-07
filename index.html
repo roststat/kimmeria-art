@@ -18,10 +18,14 @@
 <meta name="twitter:image" content="https://art-kimmeria.ru/photos/photo_819@30-03-2026_09-17-02.jpg">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
+:root {
+  --accent: #57A593;
+  --accent-dark: #3d8a79;
+}
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'HelveticaNeueCyr', 'TTHoves', 'Inter', Arial, sans-serif;
   background: #ffffff;
   color: #111111;
   font-size: 14px;
@@ -40,21 +44,23 @@ nav {
   border-bottom: 1px solid #e8e8e8;
 }
 .nav-logo {
-  font-size: 17px; font-weight: 700; color: #111111; text-decoration: none;
-  letter-spacing: -0.01em;
+  font-size: 15px; font-weight: 700; color: #111111; text-decoration: none;
+  letter-spacing: 0.06em; text-transform: uppercase;
 }
 .nav-links { display: flex; gap: 4px; list-style: none; }
 .nav-links a {
-  font-size: 13px; font-weight: 500; color: #111111; text-decoration: none;
+  font-size: 11px; font-weight: 600; color: #111111; text-decoration: none;
   padding: 6px 12px; border-radius: 100px; transition: background 0.15s;
+  letter-spacing: 0.07em; text-transform: uppercase;
 }
-.nav-links a:hover { background: #f5f5f5; }
+.nav-links a:hover { background: #f0faf8; color: var(--accent); }
 .nav-cta {
-  font-size: 13px; font-weight: 600; color: #ffffff; background: #111111;
+  font-size: 11px; font-weight: 700; color: #ffffff; background: var(--accent);
   padding: 8px 18px; border-radius: 100px; text-decoration: none;
-  transition: opacity 0.15s;
+  letter-spacing: 0.07em; text-transform: uppercase;
+  transition: background 0.15s;
 }
-.nav-cta:hover { opacity: 0.8; }
+.nav-cta:hover { background: var(--accent-dark); }
 
 /* ── HERO SECTION ── */
 .hero-section {
@@ -111,10 +117,11 @@ nav {
 }
 .hero-ad-btn {
   display: inline-block;
-  font-size: 12px; font-weight: 700; color: #ffffff; background: #111111;
+  font-size: 10px; font-weight: 700; color: #ffffff; background: var(--accent);
   padding: 9px 20px; border-radius: 100px; text-decoration: none;
+  letter-spacing: 0.07em; text-transform: uppercase;
   align-self: flex-start; margin-top: 24px;
-  transition: opacity 0.15s;
+  transition: background 0.15s;
 }
 .hero-ad-banner:hover .hero-ad-btn { opacity: 0.85; }
 .hero-slide {
@@ -136,9 +143,9 @@ nav {
 }
 .hero-event-tag {
   display: inline-block;
-  background: rgba(255,255,255,0.15); backdrop-filter: blur(8px);
-  border: 1px solid rgba(255,255,255,0.25);
-  color: #ffffff; font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
+  background: var(--accent); backdrop-filter: blur(8px);
+  border: 1px solid var(--accent);
+  color: #ffffff; font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
   text-transform: uppercase; padding: 5px 12px; border-radius: 100px;
   margin-bottom: 14px;
 }
@@ -152,12 +159,13 @@ nav {
 }
 .hero-btn {
   display: inline-block;
-  background: #ffffff; color: #111111;
-  font-size: 13px; font-weight: 700; padding: 10px 22px;
+  background: var(--accent); color: #ffffff;
+  font-size: 11px; font-weight: 700; padding: 10px 22px;
+  letter-spacing: 0.07em; text-transform: uppercase;
   border-radius: 100px; text-decoration: none;
-  transition: opacity 0.15s;
+  transition: background 0.15s;
 }
-.hero-btn:hover { opacity: 0.9; }
+.hero-btn:hover { background: var(--accent-dark); }
 
 /* Arrows */
 .hero-arrow {
@@ -183,7 +191,7 @@ nav {
   background: #d0d0d0; border: none; cursor: pointer; padding: 0;
   transition: background 0.2s, transform 0.2s;
 }
-.hero-dot.active { background: #111111; transform: scale(1.25); }
+.hero-dot.active { background: var(--accent); transform: scale(1.25); }
 
 /* ── AD BANNER (between hero and grid) ── */
 .ad-banner-top {
@@ -220,25 +228,27 @@ nav {
   background: #f5f5f5; border-radius: 100px; padding: 4px;
 }
 .tab-btn {
-  font-family: 'Inter', sans-serif;
-  font-size: 13px; font-weight: 600; padding: 7px 16px;
+  font-family: 'HelveticaNeueCyr', 'TTHoves', 'Inter', Arial, sans-serif;
+  font-size: 11px; font-weight: 700; padding: 7px 16px;
+  letter-spacing: 0.07em; text-transform: uppercase;
   border: none; cursor: pointer; border-radius: 100px;
   background: transparent; color: #666666;
   transition: background 0.15s, color 0.15s;
 }
-.tab-btn.active { background: #111111; color: #ffffff; }
+.tab-btn.active { background: var(--accent); color: #ffffff; }
 .tab-btn:not(.active):hover { background: #e8e8e8; color: #111111; }
 
 .filters-chips { display: flex; gap: 6px; flex-wrap: wrap; }
 .filter-chip {
-  font-family: 'Inter', sans-serif;
-  font-size: 12px; font-weight: 500; padding: 6px 14px;
+  font-family: 'HelveticaNeueCyr', 'TTHoves', 'Inter', Arial, sans-serif;
+  font-size: 10px; font-weight: 700; padding: 6px 14px;
+  letter-spacing: 0.07em; text-transform: uppercase;
   border: 1px solid #e8e8e8; border-radius: 100px; cursor: pointer;
   background: #ffffff; color: #666666;
   transition: all 0.15s;
 }
-.filter-chip.active { background: #111111; color: #ffffff; border-color: #111111; }
-.filter-chip:not(.active):hover { border-color: #111111; color: #111111; }
+.filter-chip.active { background: var(--accent); color: #ffffff; border-color: var(--accent); }
+.filter-chip:not(.active):hover { border-color: var(--accent); color: var(--accent); }
 
 .filters-right-mobile { display: none; }
 .filter-select {
@@ -269,7 +279,7 @@ nav {
   box-shadow: 0 8px 32px rgba(0,0,0,0.08);
 }
 .event-card.hidden { display: none; }
-.event-card.next-up { border-color: #111111; border-width: 2px; }
+.event-card.next-up { border-color: var(--accent); border-width: 2px; }
 
 .event-photo-wrap {
   position: relative; aspect-ratio: 16/10; overflow: hidden; flex-shrink: 0;
@@ -282,9 +292,9 @@ nav {
 
 .event-badge {
   position: absolute; top: 10px; left: 10px;
-  background: rgba(0,0,0,0.55); backdrop-filter: blur(6px);
-  color: #ffffff; font-size: 10px; font-weight: 600;
-  letter-spacing: 0.06em; text-transform: uppercase;
+  background: var(--accent); backdrop-filter: blur(6px);
+  color: #ffffff; font-size: 10px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
   padding: 4px 10px; border-radius: 100px;
 }
 .event-share-btn {
@@ -343,11 +353,12 @@ nav {
 }
 .event-buy-btn {
   display: inline-block;
-  font-size: 12px; font-weight: 600; color: #ffffff; background: #111111;
+  font-size: 10px; font-weight: 700; color: #ffffff; background: var(--accent);
   padding: 7px 14px; border-radius: 100px; text-decoration: none;
-  transition: opacity 0.15s; white-space: nowrap;
+  letter-spacing: 0.07em; text-transform: uppercase;
+  transition: background 0.15s; white-space: nowrap;
 }
-.event-buy-btn:hover { opacity: 0.8; }
+.event-buy-btn:hover { background: var(--accent-dark); }
 
 /* ── CATALOGUE (вместо пустого состояния) ── */
 .events-catalogue {
@@ -399,11 +410,12 @@ nav {
 }
 .catalogue-footer-text { font-size: 13px; color: #666666; }
 .catalogue-footer-btn {
-  font-size: 13px; font-weight: 700; color: #ffffff; background: #111111;
+  font-size: 10px; font-weight: 700; color: #ffffff; background: var(--accent);
   padding: 10px 22px; border-radius: 100px; text-decoration: none;
-  transition: opacity 0.15s;
+  letter-spacing: 0.07em; text-transform: uppercase;
+  transition: background 0.15s;
 }
-.catalogue-footer-btn:hover { opacity: 0.8; }
+.catalogue-footer-btn:hover { background: var(--accent-dark); }
 
 /* ── AD BANNER INSIDE GRID ── */
 .ad-banner-grid {
@@ -422,11 +434,12 @@ nav {
 }
 .ad-banner-grid-btn {
   flex-shrink: 0;
-  font-size: 13px; font-weight: 600; color: #ffffff; background: #111111;
+  font-size: 10px; font-weight: 700; color: #ffffff; background: var(--accent);
   padding: 10px 20px; border-radius: 100px; text-decoration: none;
-  transition: opacity 0.15s; white-space: nowrap;
+  letter-spacing: 0.07em; text-transform: uppercase;
+  transition: background 0.15s; white-space: nowrap;
 }
-.ad-banner-grid-btn:hover { opacity: 0.75; }
+.ad-banner-grid-btn:hover { background: var(--accent-dark); }
 
 /* ── MEMBERSHIP ── */
 .membership-section {
@@ -464,11 +477,12 @@ nav {
 .membership-cta-wrap { display: flex; align-items: center; flex-shrink: 0; }
 .membership-cta {
   display: inline-block;
-  font-size: 14px; font-weight: 700; color: #ffffff; background: #111111;
+  font-size: 11px; font-weight: 700; color: #ffffff; background: var(--accent);
   padding: 14px 28px; border-radius: 100px; text-decoration: none;
-  transition: opacity 0.15s; white-space: nowrap;
+  letter-spacing: 0.07em; text-transform: uppercase;
+  transition: background 0.15s; white-space: nowrap;
 }
-.membership-cta:hover { opacity: 0.8; }
+.membership-cta:hover { background: var(--accent-dark); }
 
 .hotel-card {
   border: 1px solid #e8e8e8; border-radius: 16px; padding: 28px;
@@ -547,12 +561,13 @@ nav {
 .form-input:focus { border-color: #111111; }
 select.form-input { cursor: pointer; }
 .form-submit {
-  width: 100%; padding: 14px; background: #111111; color: #ffffff;
-  font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700;
+  width: 100%; padding: 14px; background: var(--accent); color: #ffffff;
+  font-family: 'HelveticaNeueCyr', 'TTHoves', 'Inter', Arial, sans-serif;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
   border: none; border-radius: 100px; cursor: pointer;
-  transition: opacity 0.15s; margin-top: 6px;
+  transition: background 0.15s; margin-top: 6px;
 }
-.form-submit:hover { opacity: 0.8; }
+.form-submit:hover { background: var(--accent-dark); }
 .form-note { font-size: 12px; color: #666666; margin-top: 10px; text-align: center; }
 
 /* ── FOOTER ── */
