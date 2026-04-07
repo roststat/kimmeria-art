@@ -161,14 +161,15 @@ nav {
   margin-bottom: 20px;
 }
 .hero-btn {
-  display: inline-block;
-  background: var(--accent); color: #ffffff;
+  display: inline-flex; align-items: center; gap: 7px;
+  background: linear-gradient(135deg, #1a4a3a, #57A593); color: #ffffff;
   font-size: 11px; font-weight: 700; padding: 10px 22px;
   letter-spacing: 0.07em; text-transform: uppercase;
   border-radius: 100px; text-decoration: none;
-  transition: background 0.15s;
+  transition: opacity 0.15s;
 }
-.hero-btn:hover { background: var(--accent-dark); }
+.hero-btn:hover { opacity: 0.88; }
+.hero-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
 
 /* Arrows */
 .hero-arrow {
@@ -391,13 +392,15 @@ nav {
   background: #f5f5f5; padding: 4px 10px; border-radius: 100px;
 }
 .event-buy-btn {
-  display: inline-block;
-  font-size: 10px; font-weight: 700; color: #ffffff; background: var(--accent);
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 10px; font-weight: 700; color: #ffffff;
+  background: linear-gradient(135deg, #1a4a3a, #57A593);
   padding: 7px 14px; border-radius: 100px; text-decoration: none;
   letter-spacing: 0.07em; text-transform: uppercase;
-  transition: background 0.15s; white-space: nowrap;
+  transition: opacity 0.15s; white-space: nowrap;
 }
-.event-buy-btn:hover { background: var(--accent-dark); }
+.event-buy-btn:hover { opacity: 0.88; }
+.event-buy-btn svg { width: 12px; height: 12px; flex-shrink: 0; }
 
 /* ── CATALOGUE (вместо пустого состояния) ── */
 .events-catalogue {
@@ -740,7 +743,7 @@ footer {
         <div class="hero-event-tag">Ближайшее событие</div>
         <h1 class="hero-title">«УЖЕ» — авторская постановка Мимлы Же</h1>
         <div class="hero-date">5 апреля 2026 · 18:00</div>
-        <a href="https://afisha.payberry.ru/yzhe" class="hero-btn" onclick="event.stopPropagation()">Купить билет</a>
+        <a href="https://afisha.payberry.ru/yzhe" class="hero-btn" onclick="event.stopPropagation()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9a1 1 0 0 1 0-2V5a1 1 0 0 1 1-1h18a1 1 0 0 1 1 1v2a1 1 0 0 1 0 2v2a1 1 0 0 1 0 2v2a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-2a1 1 0 0 1 0-2V9z"/><line x1="9" y1="4" x2="9" y2="20"/></svg>Купить билет</a>
       </div>
     </a>
 
@@ -861,7 +864,7 @@ footer {
           <span class="event-location">Галерея «Стикс», ул. Игнатенко, 10</span>
           <div>
             <div class="event-price">По билетам</div>
-            <a href="https://afisha.payberry.ru/yzhe" class="event-buy-btn" onclick="event.stopPropagation()">Купить</a>
+            <a href="https://afisha.payberry.ru/yzhe" class="event-buy-btn" onclick="event.stopPropagation()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9a1 1 0 0 1 0-2V5a1 1 0 0 1 1-1h18a1 1 0 0 1 1 1v2a1 1 0 0 1 0 2v2a1 1 0 0 1 0 2v2a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-2a1 1 0 0 1 0-2V9z"/><line x1="9" y1="4" x2="9" y2="20"/></svg>Купить</a>
           </div>
         </div>
       </div>
