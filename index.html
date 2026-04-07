@@ -1516,6 +1516,9 @@ footer {
       document.querySelector('.hero-carousel-wrap').style.display = 'none';
       var stub = document.getElementById('heroStub');
       stub.style.display = 'flex';
+      // Переключаем фильтр событий на «Прошедшие»
+      var pastBtn = document.querySelector('.tab-btn[onclick*="past"]');
+      if (pastBtn) pastBtn.click();
     }
   })();
 
