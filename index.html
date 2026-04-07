@@ -65,16 +65,18 @@ nav {
 /* ── HERO SECTION ── */
 .hero-section {
   margin-top: 60px;
-  padding: 24px 40px 0;
+  padding: 24px 40px 24px;
   display: flex;
   gap: 16px;
   align-items: stretch;
+  height: calc(100vh - 60px);
 }
 .hero-carousel-wrap {
   flex: 2;
   min-width: 0;
   display: flex;
   flex-direction: column;
+  min-height: 0;
 }
 .hero-ad-wrap {
   flex: 1;
@@ -83,7 +85,7 @@ nav {
   flex-direction: column;
 }
 .hero-carousel {
-  position: relative; height: 480px; overflow: hidden;
+  position: relative; height: 100%; overflow: hidden;
   border-radius: 20px;
   box-shadow: 0 8px 40px rgba(0,0,0,0.12);
   flex: 1;
@@ -97,7 +99,7 @@ nav {
   flex-direction: column;
   justify-content: space-between;
   padding: 32px 28px;
-  min-height: 480px;
+  min-height: 0;
   overflow: hidden;
   position: relative;
   text-decoration: none;
@@ -589,10 +591,10 @@ footer {
 @media (max-width: 900px) {
   nav { padding: 0 20px; }
   .nav-links { display: none; }
-  .hero-section { padding: 16px 20px 0; gap: 0; }
-  .hero-carousel-wrap { flex: none; width: 100%; }
+  .hero-section { padding: 16px 20px 16px; gap: 0; height: calc(100vh - 60px); }
+  .hero-carousel-wrap { flex: none; width: 100%; min-height: 0; }
   .hero-ad-wrap { display: none; }
-  .hero-carousel { height: 380px; }
+  .hero-carousel { height: 100%; }
   .hero-content { padding: 28px 24px; }
   .hero-title { font-size: 24px; }
   .ad-banner-top { padding: 14px 20px; flex-direction: column; align-items: flex-start; gap: 10px; }
@@ -615,8 +617,8 @@ footer {
 @media (max-width: 600px) {
   nav { padding: 0 16px; }
   .nav-cta { display: none; }
-  .hero-section { padding: 10px 12px 0; }
-  .hero-carousel { height: 300px; border-radius: 14px; }
+  .hero-section { padding: 10px 12px 10px; height: calc(100vh - 60px); }
+  .hero-carousel { height: 100%; border-radius: 14px; }
   .hero-arrow { width: 36px; height: 36px; font-size: 14px; }
   .hero-arrow-prev { left: 10px; }
   .hero-arrow-next { right: 10px; }
