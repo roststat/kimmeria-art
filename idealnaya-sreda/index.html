@@ -84,6 +84,11 @@
     .sidebar-place small { display: block; font-size: 13px; color: #999999; margin-top: 2px; }
     .btn-primary { display: block; width: 100%; padding: 16px 24px; text-align: center; background: #111111; color: #ffffff; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; text-decoration: none; border-radius: 100px; transition: opacity 0.15s; }
     .btn-primary:hover { opacity: 0.85; }
+    .btn-share { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 14px 24px; background: #ffffff; color: #111111; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; border: 1px solid #e8e8e8; border-radius: 100px; cursor: pointer; transition: background 0.15s; margin-top: 10px; position: relative; }
+    .btn-share:hover { background: #f5f5f5; }
+    .btn-share svg { width: 15px; height: 15px; flex-shrink: 0; }
+    .share-popup { position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%) translateY(4px); background: #111111; color: #ffffff; font-size: 12px; font-weight: 500; padding: 6px 14px; border-radius: 100px; white-space: nowrap; pointer-events: none; opacity: 0; transition: all 0.2s; }
+    .share-popup.visible { opacity: 1; transform: translateX(-50%) translateY(0); }
     .sidebar-info-card { background: #f8f8f8; border-radius: 16px; padding: 24px; }
     .sidebar-info-title { font-size: 14px; font-weight: 700; color: #111111; margin-bottom: 10px; }
     .sidebar-info-text { font-size: 13px; color: #666666; line-height: 1.7; }
@@ -262,6 +267,11 @@
       <div class="sidebar-note">По телефону: <strong>+7-978-060-29-86</strong></div>
     </div>
     <a href="tel:+79780602986" class="btn-primary">Записаться по телефону</a>
+    <button class="btn-share" onclick="sharePage(this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+      Поделиться
+      <span class="share-popup">Ссылка скопирована!</span>
+    </button>
     <div style="margin-top: 16px;">
       <div class="sidebar-info-card">
         <div class="sidebar-info-title">О партнёрстве</div>
@@ -286,6 +296,14 @@
 </footer>
 
 <script>
+function sharePage(btn) {
+  var url = window.location.href;
+  var popup = btn.querySelector('.share-popup');
+  if (navigator.share) { navigator.share({ title: 'Идеальная среда — Киммерия-Арт', url: url }).catch(function(){}); return; }
+  function showPopup() { popup.classList.add('visible'); setTimeout(function(){ popup.classList.remove('visible'); }, 2000); }
+  if (navigator.clipboard) { navigator.clipboard.writeText(url).then(showPopup).catch(fallback); }
+  else { var ta = document.createElement('textarea'); ta.value = url; ta.style.cssText = 'position:fixed;opacity:0'; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); showPopup(); }
+}
 function toggleMenu() {
   var burger = document.getElementById('navBurger');
   var menu = document.getElementById('mobileMenu');
