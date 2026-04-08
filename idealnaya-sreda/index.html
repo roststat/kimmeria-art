@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Идеальная среда — клуб в Киммерии-Арт</title>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Киммерия-Арт">
+  <meta property="og:url" content="https://art-kimmeria.ru/idealnaya-sreda.html">
+  <meta property="og:title" content="Идеальная среда — клуб в Ялте">
+  <meta property="og:description" content="Клуб для общения с интересными людьми. Лекции, дискуссии, творческие встречи. Каждую среду в 19:00.">
+  <meta property="og:image" content="https://art-kimmeria.ru/photos/photo_846@08-04-2026_19-23-20.jpg">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: #ffffff; color: #111111; font-size: 16px; line-height: 1.6; overflow-x: hidden; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 60px; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid #e8e8e8; }
+    .nav-logo { font-size: 17px; font-weight: 700; color: #111111; text-decoration: none; letter-spacing: -0.01em; }
+    .nav-links { display: flex; gap: 4px; list-style: none; }
+    .nav-links a { font-size: 13px; font-weight: 500; color: #111111; text-decoration: none; padding: 6px 12px; border-radius: 100px; transition: background 0.15s; }
+    .nav-links a:hover { background: #f5f5f5; }
+    .nav-back { font-size: 13px; font-weight: 600; color: #111111; text-decoration: none; padding: 8px 16px; border-radius: 100px; border: 1px solid #e8e8e8; transition: background 0.15s; }
+    .nav-back:hover { background: #f5f5f5; }
+
+    /* HERO */
+    .hero { padding-top: 60px; position: relative; height: 65vh; min-height: 440px; overflow: hidden; }
+    .hero img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.72) 100%); display: flex; align-items: flex-end; padding: 48px; }
+    .hero-tag { display: inline-block; background: rgba(255,255,255,0.15); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.25); color: #ffffff; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 12px; border-radius: 100px; margin-bottom: 14px; }
+    .hero-title { font-size: 54px; font-weight: 700; color: #ffffff; line-height: 1.1; margin-bottom: 10px; }
+    .hero-sub { font-size: 16px; font-weight: 500; color: rgba(255,255,255,0.85); }
+
+    /* MAIN LAYOUT */
+    .page-main { display: grid; grid-template-columns: 1fr 340px; gap: 56px; max-width: 1200px; margin: 0 auto; padding: 60px 48px; align-items: start; }
+
+    /* ABOUT */
+    .section-label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #666666; font-weight: 600; margin-bottom: 12px; }
+    .about-lead { font-size: 20px; font-weight: 500; line-height: 1.65; color: #111111; margin-bottom: 28px; max-width: 620px; }
+    .about-text { font-size: 16px; color: #444444; line-height: 1.8; margin-bottom: 32px; max-width: 620px; }
+
+    /* RULES */
+    .rules-block { background: #f8f8f8; border-radius: 16px; padding: 28px 32px; margin-bottom: 48px; max-width: 620px; }
+    .rules-title { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #111111; margin-bottom: 16px; }
+    .rules-list { list-style: none; }
+    .rules-list li { font-size: 15px; color: #444444; line-height: 1.7; padding: 8px 0; border-bottom: 1px solid #e8e8e8; padding-left: 20px; position: relative; }
+    .rules-list li:last-child { border-bottom: none; }
+    .rules-list li::before { content: '—'; position: absolute; left: 0; color: #aaaaaa; }
+
+    /* SCHEDULE */
+    .schedule-title { font-size: 22px; font-weight: 700; color: #111111; margin-bottom: 8px; }
+    .schedule-subtitle { font-size: 14px; color: #666666; margin-bottom: 28px; }
+    .schedule-list { list-style: none; }
+    .schedule-item { display: grid; grid-template-columns: 90px 80px 1fr; gap: 20px; padding: 20px 0; border-bottom: 1px solid #e8e8e8; align-items: center; }
+    .schedule-item:first-child { border-top: 1px solid #e8e8e8; }
+    .schedule-date { font-size: 13px; font-weight: 700; color: #111111; padding-top: 2px; }
+    .schedule-date span { display: block; font-size: 11px; font-weight: 500; color: #999999; margin-top: 2px; }
+    .schedule-thumb { width: 70px; height: 93px; border-radius: 0; overflow: hidden; flex-shrink: 0; }
+    .schedule-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s; }
+    .schedule-thumb:hover img { transform: scale(1.05); }
+    .schedule-name { font-size: 16px; font-weight: 600; color: #111111; line-height: 1.4; margin-bottom: 4px; }
+    .schedule-cycle { font-size: 13px; color: #666666; margin-bottom: 4px; }
+    .schedule-author { font-size: 13px; color: #999999; }
+    .schedule-more { display: inline-block; margin-top: 10px; font-size: 12px; font-weight: 600; color: #111111; text-decoration: none; padding: 6px 14px; border: 1px solid #e8e8e8; border-radius: 100px; transition: background 0.15s; }
+    .schedule-more:hover { background: #f5f5f5; }
+    .schedule-num { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; background: #f0f0f0; color: #666666; padding: 2px 8px; border-radius: 100px; margin-bottom: 6px; }
+
+    /* AUTHOR */
+    .author-block { margin-top: 48px; padding-top: 40px; border-top: 1px solid #e8e8e8; max-width: 620px; }
+    .author-label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #666666; font-weight: 600; margin-bottom: 16px; }
+    .author-name { font-size: 22px; font-weight: 700; color: #111111; margin-bottom: 10px; }
+    .author-desc { font-size: 15px; color: #444444; line-height: 1.8; }
+
+    /* SIDEBAR */
+    .sidebar { position: sticky; top: 80px; }
+    .sidebar-card { background: #ffffff; border: 1px solid #e8e8e8; border-radius: 16px; padding: 32px; margin-bottom: 16px; }
+    .sidebar-label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #666666; font-weight: 600; margin-bottom: 6px; }
+    .sidebar-value { font-size: 22px; font-weight: 700; color: #111111; line-height: 1.3; margin-bottom: 4px; }
+    .sidebar-note { font-size: 14px; color: #666666; margin-top: 6px; line-height: 1.5; }
+    .sidebar-divider { border: none; border-top: 1px solid #e8e8e8; margin: 20px 0; }
+    .sidebar-place { font-size: 15px; color: #111111; line-height: 1.6; }
+    .sidebar-place small { display: block; font-size: 13px; color: #999999; margin-top: 2px; }
+    .btn-primary { display: block; width: 100%; padding: 16px 24px; text-align: center; background: #111111; color: #ffffff; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; text-decoration: none; border-radius: 100px; transition: opacity 0.15s; }
+    .btn-primary:hover { opacity: 0.85; }
+    .sidebar-info-card { background: #f8f8f8; border-radius: 16px; padding: 24px; }
+    .sidebar-info-title { font-size: 14px; font-weight: 700; color: #111111; margin-bottom: 10px; }
+    .sidebar-info-text { font-size: 13px; color: #666666; line-height: 1.7; }
+
+    /* BACK */
+    .back-section { max-width: 1200px; margin: 0 auto; padding: 0 48px 60px; }
+    .back-link { font-size: 13px; font-weight: 600; color: #111111; text-decoration: none; padding: 8px 16px; border-radius: 100px; border: 1px solid #e8e8e8; display: inline-block; transition: background 0.15s; }
+    .back-link:hover { background: #f5f5f5; }
+
+    /* FOOTER */
+    footer { background: #111111; padding: 40px 48px; display: flex; justify-content: space-between; align-items: center; }
+    .footer-logo { font-size: 17px; font-weight: 700; color: #ffffff; letter-spacing: -0.01em; }
+    .footer-links { display: flex; gap: 20px; }
+    .footer-links a { font-size: 13px; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.15s; }
+    .footer-links a:hover { color: #ffffff; }
+    .footer-copy { font-size: 12px; color: rgba(255,255,255,0.3); }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      nav { padding: 0 20px; } .nav-links { display: none; }
+      .hero { height: 50vh; } .hero-overlay { padding: 28px 20px; }
+      .hero-title { font-size: 34px; }
+      .page-main { grid-template-columns: 1fr; padding: 36px 20px; gap: 40px; }
+      .sidebar { position: static; }
+      footer { padding: 28px 20px; flex-direction: column; gap: 16px; text-align: center; }
+      .footer-links { flex-wrap: wrap; justify-content: center; }
+      .back-section { padding: 0 20px 40px; }
+    }
+    @media (max-width: 600px) {
+      nav { padding: 0 16px; } .hero-title { font-size: 26px; }
+      .page-main { padding: 24px 16px; }
+      .back-section { padding: 0 16px 32px; } footer { padding: 24px 16px; }
+      .rules-block { padding: 20px; }
+      .schedule-item { grid-template-columns: 50px 60px 1fr; gap: 10px; }
+      .schedule-thumb { width: 50px; height: 67px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">Киммерия-Арт</a>
+  <ul class="nav-links">
+    <li><a href="/#events">События</a></li>
+    <li><a href="/news/">Новости</a></li>
+    <li><a href="/#hotels">Отели</a></li>
+  </ul>
+  <a href="/" class="nav-back">← На главную</a>
+</nav>
+
+<div class="hero">
+  <img src="/photos/photo_846@08-04-2026_19-23-20.jpg" alt="Идеальная среда — клуб в Ялте">
+  <div class="hero-overlay">
+    <div>
+      <div class="hero-tag">Партнёрский клуб</div>
+      <h1 class="hero-title">Идеальная среда</h1>
+      <div class="hero-sub">Клуб для общения с интересными людьми · Каждую среду в 19:00</div>
+    </div>
+  </div>
+</div>
+
+<div class="page-main">
+  <div class="content">
+
+    <p class="section-label">О клубе</p>
+    <p class="about-lead">«Идеальная среда» открывается на базе Арт-пространства «Киммерия» — удобная площадка для интересных лекций, групповых обсуждений мира литературы и искусства, публичных выступлений и творческих встреч.</p>
+    <p class="about-text">Каждую среду, после окончания работы и перед тем, как идти домой, вы можете заглянуть в «третье место» — туда, где можно принадлежать себе, своим мыслям и разговорам с друзьями. Философия «третьего места» и есть основа «Идеальной среды».</p>
+
+    <div class="rules-block">
+      <div class="rules-title">Правила клуба</div>
+      <ul class="rules-list">
+        <li>Члены клуба относятся друг к другу дружелюбно и бережно: тот, кто привык строить стеклянные зАмки, никогда не бросит камень.</li>
+        <li>Мы можем не разделять вашу точку зрения, но всегда даём возможность высказаться.</li>
+        <li>Политика, национальность и зарплаты могут обсуждаться — но всегда без ксенофобии и обсценной лексики.</li>
+        <li>Любой член клуба может заявить своё выступление в «Идеальной среде».</li>
+        <li>Мы не рассматриваем финансы как основу отношений, но ценим вашу заинтересованность в клубе.</li>
+      </ul>
+    </div>
+
+    <h2 class="schedule-title">Расписание на апрель</h2>
+    <p class="schedule-subtitle">Авторский цикл лекций «Территория Божественных игр» — Наталия Добрынская</p>
+    <ul class="schedule-list">
+      <li class="schedule-item">
+        <a href="/lecture-afrodita/" class="schedule-thumb"><img src="/photos/lecture-afrodita.jpg" alt="Пространство Афродиты" loading="lazy"></a>
+        <div class="schedule-date">15 апр<span>Среда · 19:00</span></div>
+        <div>
+          <div class="schedule-num">Лекция 1</div>
+          <div class="schedule-name">«Пространство Афродиты»</div>
+          <div class="schedule-cycle">Цикл «Территория Божественных игр»</div>
+          <div class="schedule-author">Наталия Добрынская</div>
+          <a href="/lecture-afrodita/" class="schedule-more">Подробнее →</a>
+        </div>
+      </li>
+      <li class="schedule-item">
+        <a href="/lecture-gekata/" class="schedule-thumb"><img src="/photos/lecture-gekata.jpg" alt="Геката в Фияльте" loading="lazy"></a>
+        <div class="schedule-date">22 апр<span>Среда · 19:00</span></div>
+        <div>
+          <div class="schedule-num">Лекция 2</div>
+          <div class="schedule-name">«Геката в Фияльте»</div>
+          <div class="schedule-cycle">Цикл «Территория Божественных игр»</div>
+          <div class="schedule-author">Наталия Добрынская</div>
+          <a href="/lecture-gekata/" class="schedule-more">Подробнее →</a>
+        </div>
+      </li>
+      <li class="schedule-item">
+        <a href="/lecture-lilit/" class="schedule-thumb"><img src="/photos/lecture-lilit.jpg" alt="Осторожно, Лилит!" loading="lazy"></a>
+        <div class="schedule-date">29 апр<span>Среда · 19:00</span></div>
+        <div>
+          <div class="schedule-num">Лекция 3</div>
+          <div class="schedule-name">«Осторожно, Лилит!»</div>
+          <div class="schedule-cycle">Цикл «Территория Божественных игр»</div>
+          <div class="schedule-author">Наталия Добрынская</div>
+          <a href="/lecture-lilit/" class="schedule-more">Подробнее →</a>
+        </div>
+      </li>
+    </ul>
+
+    <div class="author-block">
+      <div class="author-label">Автор и лектор</div>
+      <div class="author-name">Наталия Добрынская</div>
+      <p class="author-desc">Писатель, беллетрист, преподаватель английского и латыни, тренер публичных выступлений, краевед-исследователь. Идейный основатель клуба «Идеальная среда». Автор уникальных маршрутов по Крыму.</p>
+    </div>
+
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-card">
+      <div class="sidebar-label">Когда</div>
+      <div class="sidebar-value">Каждую среду</div>
+      <div class="sidebar-note">Начало в 19:00</div>
+      <hr class="sidebar-divider">
+      <div class="sidebar-label">Где</div>
+      <div class="sidebar-place">
+        Арт-пространство «Киммерия»
+        <small>г. Ялта, ул. Игнатенко, 5, оф. 2</small>
+      </div>
+      <hr class="sidebar-divider">
+      <div class="sidebar-label">Билеты</div>
+      <div class="sidebar-note">По телефону: <strong>+7-978-060-29-86</strong></div>
+    </div>
+    <a href="tel:+79780602986" class="btn-primary">Записаться по телефону</a>
+    <div style="margin-top: 16px;">
+      <div class="sidebar-info-card">
+        <div class="sidebar-info-title">О партнёрстве</div>
+        <div class="sidebar-info-text">«Идеальная среда» — партнёрский клуб, работающий на базе Киммерии-Арт. Мероприятия клуба проходят в нашем пространстве каждую среду.</div>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<div class="back-section">
+  <a href="/" class="back-link">← На главную</a>
+</div>
+
+<footer>
+  <div class="footer-logo">Киммерия-Арт</div>
+  <div class="footer-links">
+    <a href="https://vk.com/kimmeria_art" target="_blank">ВКонтакте</a>
+    <a href="https://t.me/kimmeria_art" target="_blank">Telegram</a>
+    <a href="/news/">Новости</a>
+  </div>
+  <div class="footer-copy">© 2025 Киммерия-Арт · Ялта</div>
+</footer>
+
+</body>
+</html>
