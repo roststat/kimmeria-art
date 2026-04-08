@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>«Лучше я буду рыбой...» — спектакль-притча · Киммерия-Арт</title>
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Киммерия-Арт">
+  <meta property="og:url" content="https://art-kimmeria.ru/event-ryba/">
+  <meta property="og:title" content="«Лучше я буду рыбой...» · 20 апреля 2026">
+  <meta property="og:description" content="Спектакль-притча по мотивам повести Чингиза Айтматова «Белый пароход». Театр анимации, тотемы, живая этническая музыка. 12+">
+  <meta property="og:image" content="https://art-kimmeria.ru/photos/event-ryba.jpg">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: #ffffff; color: #111111; font-size: 16px; line-height: 1.6; overflow-x: hidden; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 60px; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid #e8e8e8; }
+    .nav-logo { font-size: 17px; font-weight: 700; color: #111111; text-decoration: none; letter-spacing: -0.01em; }
+    .nav-links { display: flex; gap: 4px; list-style: none; }
+    .nav-links a { font-size: 13px; font-weight: 500; color: #111111; text-decoration: none; padding: 6px 12px; border-radius: 100px; transition: background 0.15s; }
+    .nav-links a:hover { background: #f5f5f5; }
+    .nav-back { font-size: 13px; font-weight: 600; color: #111111; text-decoration: none; padding: 8px 16px; border-radius: 100px; border: 1px solid #e8e8e8; transition: background 0.15s; }
+    .nav-back:hover { background: #f5f5f5; }
+
+    .event-hero { padding-top: 60px; position: relative; height: 70vh; min-height: 480px; overflow: hidden; }
+    .event-hero img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+    .event-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.72) 100%); display: flex; align-items: flex-end; padding: 48px; }
+    .event-hero-tag { display: inline-block; background: rgba(255,255,255,0.15); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.25); color: #ffffff; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 12px; border-radius: 100px; margin-bottom: 14px; }
+    .event-hero-title { font-size: 52px; font-weight: 700; color: #ffffff; line-height: 1.1; margin-bottom: 10px; }
+    .event-hero-date { font-size: 15px; font-weight: 500; color: rgba(255,255,255,0.85); }
+
+    .event-main { display: grid; grid-template-columns: 1fr 360px; gap: 48px; max-width: 1200px; margin: 0 auto; padding: 60px 48px; align-items: start; }
+    .section-label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #666666; font-weight: 600; margin-bottom: 12px; }
+    .event-description { font-size: 20px; font-weight: 500; line-height: 1.65; color: #111111; margin-bottom: 28px; max-width: 620px; }
+    .event-text { font-size: 16px; color: #444444; line-height: 1.85; margin-bottom: 28px; max-width: 620px; }
+
+    .event-details-list { list-style: none; margin-bottom: 40px; }
+    .event-details-list li { font-size: 16px; color: #666666; padding: 12px 0; border-bottom: 1px solid #e8e8e8; display: flex; gap: 16px; align-items: baseline; }
+    .event-details-list li:first-child { border-top: 1px solid #e8e8e8; }
+    .event-details-list li strong { color: #111111; font-weight: 600; min-width: 130px; font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; }
+
+    .event-crew { margin-bottom: 40px; }
+    .event-crew-title { font-size: 18px; font-weight: 700; color: #111111; margin-bottom: 16px; }
+    .event-crew-list { list-style: none; }
+    .event-crew-list li { font-size: 15px; color: #666666; padding: 10px 0; border-bottom: 1px solid #e8e8e8; display: flex; gap: 16px; }
+    .event-crew-list li:first-child { border-top: 1px solid #e8e8e8; }
+    .event-crew-list li strong { color: #111111; font-weight: 600; min-width: 180px; font-size: 13px; }
+
+    .event-sidebar { position: sticky; top: 80px; background: #ffffff; border: 1px solid #e8e8e8; border-radius: 16px; padding: 32px; }
+    .sidebar-label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #666666; font-weight: 600; margin-bottom: 6px; }
+    .sidebar-value { font-size: 24px; font-weight: 700; color: #111111; line-height: 1.3; }
+    .sidebar-note { font-size: 14px; color: #666666; margin-top: 6px; line-height: 1.5; }
+    .sidebar-divider { border: none; border-top: 1px solid #e8e8e8; margin: 20px 0; }
+    .sidebar-place { font-size: 15px; color: #111111; line-height: 1.6; }
+    .sidebar-place small { display: block; font-size: 13px; color: #999999; margin-top: 2px; }
+    .sidebar-price-main { font-size: 32px; font-weight: 700; color: #111111; line-height: 1; margin-bottom: 4px; }
+    .sidebar-age { text-align: center; margin-top: 12px; font-size: 12px; color: #666666; }
+    .btn-primary { display: block; width: 100%; padding: 16px 24px; text-align: center; background: #111111; color: #ffffff; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; text-decoration: none; border-radius: 100px; transition: opacity 0.15s; }
+    .btn-primary:hover { opacity: 0.85; }
+    .btn-secondary { display: block; width: 100%; padding: 14px 24px; text-align: center; background: #ffffff; color: #111111; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; text-decoration: none; border: 1px solid #e8e8e8; border-radius: 100px; transition: background 0.15s; margin-top: 10px; }
+    .btn-secondary:hover { background: #f5f5f5; }
+    .btn-share { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 14px 24px; background: #ffffff; color: #111111; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; border: 1px solid #e8e8e8; border-radius: 100px; cursor: pointer; transition: background 0.15s; margin-top: 10px; position: relative; }
+    .btn-share:hover { background: #f5f5f5; }
+    .btn-share svg { width: 15px; height: 15px; flex-shrink: 0; }
+    .share-popup { position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%) translateY(4px); background: #111111; color: #ffffff; font-size: 12px; font-weight: 500; padding: 6px 14px; border-radius: 100px; white-space: nowrap; pointer-events: none; opacity: 0; transition: all 0.2s; }
+    .share-popup.visible { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    .back-section { max-width: 1200px; margin: 0 auto; padding: 0 48px 60px; }
+    .back-link { font-size: 13px; font-weight: 600; color: #111111; text-decoration: none; padding: 8px 16px; border-radius: 100px; border: 1px solid #e8e8e8; display: inline-block; transition: background 0.15s; }
+    .back-link:hover { background: #f5f5f5; }
+
+    footer { background: #111111; padding: 40px 48px; display: flex; justify-content: space-between; align-items: center; }
+    .footer-logo { font-size: 17px; font-weight: 700; color: #ffffff; letter-spacing: -0.01em; }
+    .footer-links { display: flex; gap: 20px; }
+    .footer-links a { font-size: 13px; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.15s; }
+    .footer-links a:hover { color: #ffffff; }
+    .footer-copy { font-size: 12px; color: rgba(255,255,255,0.3); }
+
+    .nav-burger { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 40px; height: 40px; background: none; border: none; cursor: pointer; padding: 8px; border-radius: 8px; transition: background 0.15s; }
+    .nav-burger:hover { background: #f5f5f5; }
+    .nav-burger span { display: block; width: 22px; height: 2px; background: #111111; border-radius: 2px; transition: all 0.25s; }
+    .nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-burger.open span:nth-child(2) { opacity: 0; }
+    .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu { display: none; position: fixed; top: 60px; left: 0; right: 0; bottom: 0; background: #ffffff; z-index: 99; padding: 24px 20px; flex-direction: column; gap: 4px; overflow-y: auto; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { font-size: 20px; font-weight: 600; color: #111111; text-decoration: none; padding: 14px 16px; border-radius: 12px; transition: background 0.15s; }
+    .mobile-menu a:hover { background: #f5f5f5; }
+    .mobile-menu-divider { height: 1px; background: #e8e8e8; margin: 8px 0; }
+
+    @media (max-width: 900px) {
+      nav { padding: 0 20px; } .nav-links { display: none; } .nav-back { display: none; } .nav-burger { display: flex; }
+      .event-hero { height: 50vh; } .event-hero-overlay { padding: 28px 20px; }
+      .event-hero-title { font-size: 32px; }
+      .event-main { grid-template-columns: 1fr; padding: 36px 20px; gap: 32px; }
+      .event-sidebar { position: static; }
+      footer { padding: 28px 20px; flex-direction: column; gap: 16px; text-align: center; }
+      .footer-links { flex-wrap: wrap; justify-content: center; }
+      .back-section { padding: 0 20px 40px; }
+    }
+    @media (max-width: 600px) {
+      nav { padding: 0 16px; } .event-hero-title { font-size: 26px; }
+      .event-main { padding: 24px 16px; } .back-section { padding: 0 16px 32px; } footer { padding: 24px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">Киммерия-Арт</a>
+  <ul class="nav-links">
+    <li><a href="/#events">События</a></li>
+    <li><a href="/news/">Новости</a></li>
+    <li><a href="/idealnaya-sreda/">Идеальная среда</a></li>
+    <li><a href="/hotels/">Отели</a></li>
+  </ul>
+  <a href="/#events" class="nav-back">← Все события</a>
+  <button class="nav-burger" id="navBurger" onclick="toggleMenu()" aria-label="Меню">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="/">Главная</a>
+  <a href="/#events">События</a>
+  <a href="/news/">Новости</a>
+  <a href="/idealnaya-sreda/">Идеальная среда</a>
+  <a href="/hotels/">Отели</a>
+  <div class="mobile-menu-divider"></div>
+  <a href="/#join">О клубе</a>
+</div>
+
+<div class="event-hero">
+  <img src="/photos/event-ryba.jpg" alt="Лучше я буду рыбой — спектакль-притча">
+  <div class="event-hero-overlay">
+    <div>
+      <div class="event-hero-tag">Спектакль · 12+</div>
+      <h1 class="event-hero-title">«Лучше я буду рыбой...»</h1>
+      <div class="event-hero-date">20 апреля 2026 · Понедельник · 18:30</div>
+    </div>
+  </div>
+</div>
+
+<div class="event-main">
+  <div class="event-content">
+    <p class="section-label">О спектакле</p>
+    <p class="event-description">Спектакль-притча по мотивам повести Чингиза Айтматова «Белый пароход» — о чистоте, предательстве и вечном выборе между человеческим и звериным.</p>
+    <p class="event-text">Четыре актрисы («4 стороны света») проводят зрителя через мозаику воспоминаний, используя элементы театра анимации, тотемы ручной работы, киргизские национальные мотивы в музыке и сценографии. Глубокий, визуально изысканный, медитативный спектакль.</p>
+    <p class="event-text">Постановка отмечена наградами, в ней занята Заслуженная артистка Республики Крым. Синтез драмы, театра анимации, живой этнической музыки и визуальной поэзии.</p>
+
+    <ul class="event-details-list">
+      <li><strong>Дата</strong> 20 апреля 2026, понедельник</li>
+      <li><strong>Время</strong> 18:30</li>
+      <li><strong>Место</strong> Галерея «Стикс», г. Ялта, ул. Игнатенко, 10</li>
+      <li><strong>Продолжительность</strong> 60 минут</li>
+      <li><strong>Возраст</strong> 12+</li>
+    </ul>
+
+    <div class="event-crew">
+      <h2 class="event-crew-title">Создатели</h2>
+      <ul class="event-crew-list">
+        <li><strong>Режиссёры</strong> Усанина С., Акс Е.</li>
+        <li><strong>Художник</strong> Свежевская Лизавета</li>
+        <li><strong>Создатель тотемов</strong> Браилов Андрей</li>
+        <li><strong>Звук</strong> Кокуев Антон</li>
+      </ul>
+    </div>
+
+    <div class="event-crew">
+      <h2 class="event-crew-title">Организаторы</h2>
+      <ul class="event-crew-list">
+        <li><strong>Кинокомпания</strong> «Киммерия»</li>
+        <li><strong>Площадка</strong> Антикварно-художественная галерея «Стикс»</li>
+        <li><strong>Партнёр</strong> SFERARTA</li>
+      </ul>
+    </div>
+  </div>
+
+  <aside class="event-sidebar">
+    <div class="sidebar-label">Когда</div>
+    <div class="sidebar-value">20 апреля 2026<br>Понедельник</div>
+    <div class="sidebar-note">Начало в 18:30</div>
+    <hr class="sidebar-divider">
+    <div class="sidebar-label">Где</div>
+    <div class="sidebar-place">Галерея «Стикс»<small>г. Ялта, ул. Игнатенко, 10</small></div>
+    <hr class="sidebar-divider">
+    <div class="sidebar-label">Стоимость</div>
+    <div class="sidebar-price-main">По билетам</div>
+    <div class="sidebar-note">Уточняйте по телефону:<br><strong>+7-978-060-29-86</strong></div>
+    <hr class="sidebar-divider">
+    <a href="tel:+79780602986" class="btn-primary">Записаться</a>
+    <a href="/#events" class="btn-secondary">← Все события</a>
+    <button class="btn-share" onclick="shareEvent(this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+      Поделиться
+      <span class="share-popup">Ссылка скопирована!</span>
+    </button>
+    <div class="sidebar-age">12+</div>
+  </aside>
+</div>
+
+<div class="back-section">
+  <a href="/#events" class="back-link">← Все события</a>
+</div>
+
+<footer>
+  <div class="footer-logo">Киммерия-Арт</div>
+  <div class="footer-links">
+    <a href="https://vk.com/kimmeria_art" target="_blank">ВКонтакте</a>
+    <a href="https://t.me/kimmeria_art" target="_blank">Telegram</a>
+    <a href="/news/">Новости</a>
+  </div>
+  <div class="footer-copy">© 2025 Киммерия-Арт · Ялта</div>
+</footer>
+
+<script>
+function shareEvent(btn) {
+  var url = window.location.href;
+  var popup = btn.querySelector('.share-popup');
+  if (navigator.share) { navigator.share({ title: '«Лучше я буду рыбой...» — Киммерия-Арт', url: url }).catch(function(){}); return; }
+  function showPopup() { popup.classList.add('visible'); setTimeout(function(){ popup.classList.remove('visible'); }, 2000); }
+  if (navigator.clipboard) { navigator.clipboard.writeText(url).then(showPopup).catch(fallback); }
+  else { var ta = document.createElement('textarea'); ta.value = url; ta.style.cssText = 'position:fixed;opacity:0'; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); showPopup(); }
+}
+function toggleMenu() {
+  var burger = document.getElementById('navBurger');
+  var menu = document.getElementById('mobileMenu');
+  burger.classList.toggle('open');
+  menu.classList.toggle('open');
+  document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+}
+</script>
+</body>
+</html>
