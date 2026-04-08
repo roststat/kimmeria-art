@@ -68,6 +68,27 @@ nav {
   transition: background 0.15s;
 }
 .nav-cta:hover { background: var(--accent-dark); }
+.nav-dropdown-wrap { position: relative; display: flex; align-items: center; }
+.nav-dropdown-btn {
+  width: 36px; height: 36px; border-radius: 8px; border: 1px solid #e8e8e8;
+  background: #ffffff; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: background 0.15s; gap: 3px; flex-direction: column; padding: 0;
+}
+.nav-dropdown-btn:hover { background: #f5f5f5; }
+.nav-dropdown-btn span { display: block; width: 4px; height: 4px; background: #111111; border-radius: 50%; }
+.nav-dropdown-menu {
+  position: absolute; top: calc(100% + 10px); left: 0;
+  background: #ffffff; border: 1px solid #e8e8e8; border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1); padding: 8px; min-width: 220px;
+  display: none; flex-direction: column; z-index: 200;
+}
+.nav-dropdown-menu.open { display: flex; }
+.nav-dropdown-menu a {
+  font-size: 12px; font-weight: 700; color: #111111; text-decoration: none;
+  padding: 10px 14px; border-radius: 8px; letter-spacing: 0.08em; text-transform: uppercase;
+  transition: background 0.15s; display: block;
+}
+.nav-dropdown-menu a:hover { background: #f5f5f5; }
 .nav-burger {
   display: none; flex-direction: column; justify-content: center; gap: 5px;
   width: 40px; height: 40px; background: none; border: none; cursor: pointer;
@@ -757,11 +778,23 @@ footer {
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo">Киммерия-Арт</a>
+  <div style="display:flex;align-items:center;gap:10px;">
+    <a href="#" class="nav-logo">Киммерия-Арт</a>
+    <div class="nav-dropdown-wrap">
+      <button class="nav-dropdown-btn" onclick="toggleDropdown()" id="navDropdownBtn" aria-label="Разделы">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-dropdown-menu" id="navDropdownMenu">
+        <a href="#">КИНОКЛУБ</a>
+        <a href="/idealnaya-sreda/">ИДЕАЛЬНАЯ СРЕДА</a>
+        <a href="/hotels/">ОТЕЛИ</a>
+        <a href="/news/">НОВОСТИ</a>
+      </div>
+    </div>
+  </div>
   <ul class="nav-links">
     <li><a href="#events">События</a></li>
     <li><a href="/news/">Новости</a></li>
-    <li><a href="/idealnaya-sreda/">Идеальная среда</a></li>
     <li><a href="/hotels/">Отели</a></li>
     <li><a href="#join">О клубе</a></li>
   </ul>
@@ -1600,6 +1633,17 @@ footer {
 </script>
 </div><!-- /page-wrap -->
 <script>
+function toggleDropdown() {
+  var menu = document.getElementById('navDropdownMenu');
+  menu.classList.toggle('open');
+}
+document.addEventListener('click', function(e) {
+  var wrap = document.getElementById('navDropdownBtn');
+  var menu = document.getElementById('navDropdownMenu');
+  if (menu && wrap && !wrap.contains(e.target) && !menu.contains(e.target)) {
+    menu.classList.remove('open');
+  }
+});
 function toggleMenu() {
   var burger = document.getElementById('navBurger');
   var menu = document.getElementById('mobileMenu');
