@@ -118,6 +118,28 @@
       .nav-back { display: none; }
       .nav-burger { display: flex; }
     }
+
+    .cycle-info-card {
+      display: flex; align-items: center; gap: 16px;
+      max-width: 1200px; margin: 0 auto;
+      padding: 18px 48px;
+      background: #f0f7f5; border-bottom: 1px solid #d6ece7;
+    }
+    .cycle-info-icon { flex: none; width: 36px; height: 36px; color: #1a4a3a; }
+    .cycle-info-icon svg { width: 100%; height: 100%; }
+    .cycle-info-text { flex: 1; min-width: 0; }
+    .cycle-info-title { font-size: 13px; font-weight: 700; color: #1a4a3a; }
+    .cycle-info-desc { font-size: 12px; color: #4a7a6a; margin-top: 2px; }
+    .cycle-info-link {
+      flex: none; font-size: 12px; font-weight: 600; color: #1a4a3a;
+      text-decoration: none; padding: 7px 16px; border-radius: 100px;
+      border: 1px solid #1a4a3a; transition: background 0.15s; white-space: nowrap;
+    }
+    .cycle-info-link:hover { background: #1a4a3a; color: #fff; }
+    @media (max-width: 600px) {
+      .cycle-info-card { padding: 14px 16px; flex-wrap: wrap; gap: 10px; }
+      .cycle-info-link { width: 100%; text-align: center; }
+    }
   </style>
 </head>
 <body>
@@ -128,8 +150,6 @@
   </ul>
   <a href="/idealnaya-sreda/" class="nav-back">← Идеальная среда</a>
 </nav>
-  <a href="/#join">О клубе</a>
-</div>
 
 <div class="event-hero">
   <img class="hero-bg" src="/photos/lecture-afrodita.jpg" alt="Пространство Афродиты">
@@ -141,6 +161,17 @@
       <div class="event-hero-date">15 апреля 2026 · Среда · 19:00</div>
     </div>
   </div>
+</div>
+
+<div class="cycle-info-card">
+  <div class="cycle-info-icon">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+  </div>
+  <div class="cycle-info-text">
+    <div class="cycle-info-title">Часть цикла лекций «Территория Божественных игр»</div>
+    <div class="cycle-info-desc">Лекции самостоятельные — можно приходить на любую отдельно, в любом порядке.</div>
+  </div>
+  <a href="/idealnaya-sreda/" class="cycle-info-link">Все лекции →</a>
 </div>
 
 <div class="event-main">
