@@ -53,7 +53,7 @@
     .schedule-title { font-size: 22px; font-weight: 700; color: #111111; margin-bottom: 8px; }
     .schedule-subtitle { font-size: 14px; color: #666666; margin-bottom: 28px; }
     .schedule-list { list-style: none; }
-    .schedule-item { display: grid; grid-template-columns: 80px 1fr 90px; gap: 20px; padding: 20px 0; border-bottom: 1px solid #e8e8e8; align-items: center; }
+    .schedule-item { display: grid; grid-template-columns: 90px 80px 1fr; gap: 20px; padding: 20px 0; border-bottom: 1px solid #e8e8e8; align-items: center; }
     .schedule-item:first-child { border-top: 1px solid #e8e8e8; }
     .schedule-date { font-size: 13px; font-weight: 700; color: #111111; padding-top: 2px; }
     .schedule-date span { display: block; font-size: 11px; font-weight: 500; color: #999999; margin-top: 2px; }
@@ -117,7 +117,8 @@
       .page-main { padding: 24px 16px; }
       .back-section { padding: 0 16px 32px; } footer { padding: 24px 16px; }
       .rules-block { padding: 20px; }
-      .schedule-item { grid-template-columns: 60px 1fr; gap: 12px; }
+      .schedule-item { grid-template-columns: 60px 60px 1fr; gap: 10px; }
+      .schedule-thumb { width: 60px; height: 60px; }
     }
   </style>
 </head>
@@ -166,6 +167,7 @@
     <p class="schedule-subtitle">Авторский цикл лекций «Территория Божественных игр» — Наталия Добрынская</p>
     <ul class="schedule-list">
       <li class="schedule-item">
+        <a href="lecture-afrodita.html" class="schedule-thumb"><img src="photos/lecture-afrodita.jpg" alt="Пространство Афродиты" loading="lazy"></a>
         <div class="schedule-date">15 апр<span>Среда · 19:00</span></div>
         <div>
           <div class="schedule-num">Лекция 1</div>
@@ -174,9 +176,9 @@
           <div class="schedule-author">Наталия Добрынская</div>
           <a href="lecture-afrodita.html" class="schedule-more">Подробнее →</a>
         </div>
-        <a href="lecture-afrodita.html" class="schedule-thumb"><img src="photos/lecture-afrodita.jpg" alt="Пространство Афродиты" loading="lazy"></a>
       </li>
       <li class="schedule-item">
+        <a href="lecture-gekata.html" class="schedule-thumb"><img src="photos/lecture-gekata.jpg" alt="Геката в Фияльте" loading="lazy"></a>
         <div class="schedule-date">22 апр<span>Среда · 19:00</span></div>
         <div>
           <div class="schedule-num">Лекция 2</div>
@@ -185,9 +187,9 @@
           <div class="schedule-author">Наталия Добрынская</div>
           <a href="lecture-gekata.html" class="schedule-more">Подробнее →</a>
         </div>
-        <a href="lecture-gekata.html" class="schedule-thumb"><img src="photos/lecture-gekata.jpg" alt="Геката в Фияльте" loading="lazy"></a>
       </li>
       <li class="schedule-item">
+        <a href="lecture-lilit.html" class="schedule-thumb"><img src="photos/lecture-lilit.jpg" alt="Осторожно, Лилит!" loading="lazy"></a>
         <div class="schedule-date">29 апр<span>Среда · 19:00</span></div>
         <div>
           <div class="schedule-num">Лекция 3</div>
@@ -196,7 +198,6 @@
           <div class="schedule-author">Наталия Добрынская</div>
           <a href="lecture-lilit.html" class="schedule-more">Подробнее →</a>
         </div>
-        <a href="lecture-lilit.html" class="schedule-thumb"><img src="photos/lecture-lilit.jpg" alt="Осторожно, Лилит!" loading="lazy"></a>
       </li>
     </ul>
 
