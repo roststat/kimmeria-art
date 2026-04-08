@@ -62,6 +62,36 @@ nav {
 }
 .nav-links a:hover { background: #f0faf8; color: var(--accent); }
 
+/* ── NAV DOTS (left, dark) ── */
+.nav-dots-wrap { position: relative; display: flex; align-items: center; margin-right: 10px; }
+.nav-dots-btn {
+  width: 34px; height: 34px; border-radius: 8px; border: 1px solid #e8e8e8;
+  background: #ffffff; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: 3px; padding: 0; transition: background 0.15s;
+}
+.nav-dots-btn:hover { background: #f5f5f5; }
+.nav-dots-btn span { display: block; width: 4px; height: 4px; background: #111111; border-radius: 50%; }
+.nav-dots-menu {
+  position: absolute; top: calc(100% + 10px); left: 0;
+  background: #2a2a2a; border-radius: 14px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.22); padding: 10px 10px 0; min-width: 230px;
+  display: none; flex-direction: column; z-index: 200;
+}
+.nav-dots-menu.open { display: flex; }
+.nav-dots-menu a {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 12px; font-weight: 700; color: #ffffff; text-decoration: none;
+  padding: 11px 12px; border-radius: 8px;
+  transition: background 0.15s; text-transform: uppercase; letter-spacing: 0.07em;
+}
+.nav-dots-menu a:hover { background: rgba(255,255,255,0.1); }
+.nav-dots-menu a svg { width: 16px; height: 16px; flex-shrink: 0; color: rgba(255,255,255,0.55); }
+.nav-dots-footer {
+  font-size: 10px; font-weight: 500; color: rgba(255,255,255,0.3);
+  letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 10px 12px 12px; border-top: 1px solid rgba(255,255,255,0.08); margin-top: 4px;
+}
+
 /* ── NAV DROPDOWN ── */
 .nav-dropdown-wrap { position: relative; display: flex; align-items: center; }
 .nav-dropdown-btn {
@@ -580,7 +610,25 @@ footer {
 
 <!-- NAV -->
 <nav>
-  <a href="/" class="nav-logo">Киммерия-Арт</a>
+  <div style="display:flex;align-items:center;gap:10px;">
+    <a href="/" class="nav-logo">Киммерия-Арт</a>
+    <div class="nav-dots-wrap">
+      <button class="nav-dots-btn" id="navDotsBtn" onclick="toggleDots()" aria-label="Группа компаний">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-dots-menu" id="navDotsMenu">
+        <a href="https://kimmeria-company.ru/" target="_blank">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 10l4.553-2.069A1 1 0 0 1 21 8.82v6.362a1 1 0 0 1-1.447.894L15 14"/><rect x="1" y="6" width="14" height="12" rx="2"/></svg>
+          Кинокомпания
+        </a>
+        <a href="#" onclick="return false;" style="cursor:default;opacity:0.6;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          Киношкола
+        </a>
+        <div class="nav-dots-footer">Группа компаний КИММЕРИЯ</div>
+      </div>
+    </div>
+  </div>
   <ul class="nav-links"></ul>
   <div class="nav-dropdown-wrap">
     <button class="nav-dropdown-btn" id="navDropdownBtn" onclick="toggleDropdown()">
@@ -1301,6 +1349,20 @@ footer {
 </script>
 </div><!-- /page-wrap -->
 <script>
+function toggleDots() {
+  var btn = document.getElementById('navDotsBtn');
+  var menu = document.getElementById('navDotsMenu');
+  btn.classList.toggle('open');
+  menu.classList.toggle('open');
+}
+document.addEventListener('click', function(e) {
+  var btn = document.getElementById('navDotsBtn');
+  var menu = document.getElementById('navDotsMenu');
+  if (btn && menu && !btn.contains(e.target) && !menu.contains(e.target)) {
+    btn.classList.remove('open');
+    menu.classList.remove('open');
+  }
+});
 function toggleDropdown() {
   var btn = document.getElementById('navDropdownBtn');
   var menu = document.getElementById('navDropdownMenu');
