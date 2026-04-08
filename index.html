@@ -128,7 +128,27 @@ nav {
   background: #ffffff;
   border-bottom: 1px solid #e8e8e8;
 }
-.hero-new-inner { max-width: 860px; }
+.hero-new-inner {
+  max-width: 1200px;
+  display: flex;
+  align-items: center;
+  gap: 60px;
+}
+.hero-new-text { flex: 1; min-width: 0; }
+.hero-new-image {
+  flex: none;
+  width: 340px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero-new-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: brightness(0) saturate(100%) invert(25%) sepia(40%) saturate(600%) hue-rotate(120deg) brightness(60%);
+  mix-blend-mode: multiply;
+}
 .hero-new-label {
   font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
   color: #999999; margin-bottom: 20px;
@@ -726,6 +746,8 @@ footer {
   .nav-links { display: none; }
   .nav-burger { display: flex; }
   .hero-new { padding: 48px 20px 40px; }
+  .hero-new-inner { flex-direction: column; gap: 32px; }
+  .hero-new-image { width: 260px; }
   .hero-new-title { font-size: 34px; }
   .hero-section { padding: 16px 20px 16px; gap: 12px; height: calc(100vh - 60px); flex-direction: column; }
   .hero-carousel-wrap { flex: none; width: 100%; min-height: 0; }
@@ -766,6 +788,7 @@ footer {
   nav { padding: 0 16px; }
   .nav-cta { display: none; }
   .hero-new { padding: 32px 16px 28px; }
+  .hero-new-image { width: 200px; }
   .hero-new-title { font-size: 26px; }
   .hero-section { padding: 10px 12px 10px; height: auto; }
   .hero-carousel-wrap { height: calc(100vh - 60px - 70px - 22px); }
@@ -842,6 +865,7 @@ footer {
 <!-- HERO NEW -->
 <div class="hero-new">
   <div class="hero-new-inner">
+    <div class="hero-new-text">
     <div class="hero-new-label">Светские мероприятия · Ялта · Крым</div>
     <h1 class="hero-new-title">Эксклюзивные<br>Арт-мероприятия на берегу Крыма</h1>
     <div class="hero-new-tags">
@@ -865,6 +889,10 @@ footer {
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
         И много другое
       </span>
+    </div>
+    </div>
+    <div class="hero-new-image">
+      <img src="/photos/hero-archer.jpg" alt="Киммерия-Арт">
     </div>
   </div>
 </div>
