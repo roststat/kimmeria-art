@@ -90,6 +90,31 @@
       .gallery-grid { grid-template-columns: 1fr; }
       .event-back-section { padding: 0 16px 32px; } footer { padding: 24px 16px; }
     }
+
+    .nav-burger {
+      display: none; flex-direction: column; justify-content: center; gap: 5px;
+      width: 40px; height: 40px; background: none; border: none; cursor: pointer;
+      padding: 8px; border-radius: 8px; transition: background 0.15s;
+    }
+    .nav-burger:hover { background: #f5f5f5; }
+    .nav-burger span { display: block; width: 22px; height: 2px; background: #111111; border-radius: 2px; transition: all 0.25s; }
+    .nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-burger.open span:nth-child(2) { opacity: 0; }
+    .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu {
+      display: none; position: fixed; top: 60px; left: 0; right: 0; bottom: 0;
+      background: #ffffff; z-index: 99; padding: 24px 20px;
+      flex-direction: column; gap: 4px; overflow-y: auto;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { font-size: 20px; font-weight: 600; color: #111111; text-decoration: none; padding: 14px 16px; border-radius: 12px; transition: background 0.15s; }
+    .mobile-menu a:hover { background: #f5f5f5; }
+    .mobile-menu-divider { height: 1px; background: #e8e8e8; margin: 8px 0; }
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .nav-back { display: none; }
+      .nav-burger { display: flex; }
+    }
   </style>
 </head>
 <body>
@@ -104,7 +129,19 @@
     <li><a href="/#join">О клубе</a></li>
   </ul>
   <a href="/#events" class="nav-back">← Все события</a>
+  <button class="nav-burger" id="navBurger" onclick="toggleMenu()" aria-label="Меню">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="/">Главная</a>
+  <a href="/#events">События</a>
+  <a href="/news/">Новости</a>
+  <a href="/idealnaya-sreda/">Идеальная среда</a>
+  <a href="/hotels/">Отели</a>
+  <div class="mobile-menu-divider"></div>
+  <a href="/#join">О клубе</a>
+</div>
 
 <div class="event-hero">
   <img src="/photos/photo_256@13-02-2025_11-45-57.jpg" alt="Пина Бауш. Танцтеатр">
@@ -202,6 +239,20 @@ function shareEvent(btn) {
   }
   if (navigator.clipboard) { navigator.clipboard.writeText(url).then(showPopup).catch(fallback); }
   else { fallback(); }
+}
+</script>
+<script>
+function toggleMenu() {
+  var burger = document.getElementById('navBurger');
+  var menu = document.getElementById('mobileMenu');
+  burger.classList.toggle('open');
+  menu.classList.toggle('open');
+  document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+}
+function closeMenu() {
+  document.getElementById('navBurger').classList.remove('open');
+  document.getElementById('mobileMenu').classList.remove('open');
+  document.body.style.overflow = '';
 }
 </script>
 </body>
