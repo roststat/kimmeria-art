@@ -62,6 +62,32 @@ nav {
 }
 .nav-links a:hover { background: #f0faf8; color: var(--accent); }
 
+/* ── NAV DROPDOWN ── */
+.nav-dropdown-wrap { position: relative; display: flex; align-items: center; }
+.nav-dropdown-btn {
+  font-size: 11px; font-weight: 600; color: #111111;
+  padding: 6px 14px; border-radius: 100px; border: 1px solid #e8e8e8;
+  background: #ffffff; cursor: pointer; display: flex; align-items: center; gap: 6px;
+  letter-spacing: 0.07em; text-transform: uppercase; transition: background 0.15s;
+}
+.nav-dropdown-btn:hover { background: #f5f5f5; }
+.nav-dropdown-btn svg { width: 10px; height: 10px; transition: transform 0.2s; }
+.nav-dropdown-btn.open svg { transform: rotate(180deg); }
+.nav-dropdown-menu {
+  position: absolute; top: calc(100% + 10px); right: 0;
+  background: #ffffff; border: 1px solid #e8e8e8; border-radius: 14px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1); padding: 8px; min-width: 210px;
+  display: none; flex-direction: column; z-index: 200;
+}
+.nav-dropdown-menu.open { display: flex; }
+.nav-dropdown-menu a {
+  font-size: 13px; font-weight: 600; color: #111111; text-decoration: none;
+  padding: 10px 14px; border-radius: 8px;
+  transition: background 0.15s; display: block;
+}
+.nav-dropdown-menu a:hover { background: #f5f5f5; }
+.nav-dropdown-menu a small { display: block; font-size: 11px; font-weight: 400; color: #999999; margin-top: 1px; }
+
 /* ── HERO NEW ── */
 .hero-new {
   margin-top: 60px;
@@ -553,12 +579,18 @@ footer {
 
 <!-- NAV -->
 <nav>
-  <div style="display:flex;align-items:center;gap:10px;">
+  <a href="/" class="nav-logo">Киммерия-Арт</a>
+  <ul class="nav-links"></ul>
+  <div class="nav-dropdown-wrap">
+    <button class="nav-dropdown-btn" id="navDropdownBtn" onclick="toggleDropdown()">
+      Проекты
+      <svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M1 1l4 4 4-4"/></svg>
+    </button>
+    <div class="nav-dropdown-menu" id="navDropdownMenu">
+      <a href="/kinoklub/">Киноклуб<small>Авторские кинопоказы</small></a>
+      <a href="/idealnaya-sreda/">Идеальная среда<small>Лекции и встречи</small></a>
+    </div>
   </div>
-    <a href="#" class="nav-logo">Киммерия-Арт</a>
-  </div>
-  <ul class="nav-links">
-  </ul>
 </nav>
 
 <!-- HERO NEW -->
@@ -1269,13 +1301,16 @@ footer {
 </div><!-- /page-wrap -->
 <script>
 function toggleDropdown() {
+  var btn = document.getElementById('navDropdownBtn');
   var menu = document.getElementById('navDropdownMenu');
+  btn.classList.toggle('open');
   menu.classList.toggle('open');
 }
 document.addEventListener('click', function(e) {
-  var wrap = document.getElementById('navDropdownBtn');
+  var btn = document.getElementById('navDropdownBtn');
   var menu = document.getElementById('navDropdownMenu');
-  if (menu && wrap && !wrap.contains(e.target) && !menu.contains(e.target)) {
+  if (btn && menu && !btn.contains(e.target) && !menu.contains(e.target)) {
+    btn.classList.remove('open');
     menu.classList.remove('open');
   }
 });
