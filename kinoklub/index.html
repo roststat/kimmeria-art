@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Киноклуб — Киммерия-Арт · Ялта</title>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Киммерия-Арт">
+  <meta property="og:url" content="https://art-kimmeria.ru/kinoklub/">
+  <meta property="og:title" content="Киноклуб — Киммерия-Арт · Ялта">
+  <meta property="og:description" content="Авторский киноклуб в Ялте. Показы мирового кино с живым обсуждением. Каннские лауреаты, арт-хаус, документальное кино.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: #ffffff; color: #111111; font-size: 16px; line-height: 1.6; overflow-x: hidden; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 60px; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid #e8e8e8; }
+    .nav-logo { font-size: 17px; font-weight: 700; color: #111111; text-decoration: none; letter-spacing: -0.01em; }
+    .nav-links { display: flex; gap: 4px; list-style: none; }
+    .nav-back { font-size: 13px; font-weight: 600; color: #111111; text-decoration: none; padding: 8px 16px; border-radius: 100px; border: 1px solid #e8e8e8; transition: background 0.15s; }
+    .nav-back:hover { background: #f5f5f5; }
+
+    /* HERO */
+    .hero { padding-top: 60px; position: relative; height: 65vh; min-height: 440px; overflow: hidden; }
+    .hero img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.75) 100%); display: flex; align-items: flex-end; padding: 48px; }
+    .hero-tag { display: inline-block; background: rgba(255,255,255,0.15); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.25); color: #ffffff; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 12px; border-radius: 100px; margin-bottom: 14px; }
+    .hero-title { font-size: 54px; font-weight: 700; color: #ffffff; line-height: 1.1; margin-bottom: 10px; }
+    .hero-sub { font-size: 16px; font-weight: 500; color: rgba(255,255,255,0.85); }
+
+    /* MAIN LAYOUT */
+    .page-main { display: grid; grid-template-columns: 1fr 340px; gap: 56px; max-width: 1200px; margin: 0 auto; padding: 60px 48px; align-items: start; }
+
+    /* ABOUT */
+    .section-label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #666666; font-weight: 600; margin-bottom: 12px; }
+    .about-lead { font-size: 20px; font-weight: 500; line-height: 1.65; color: #111111; margin-bottom: 28px; max-width: 620px; }
+    .about-text { font-size: 16px; color: #444444; line-height: 1.8; margin-bottom: 32px; max-width: 620px; }
+
+    /* SCHEDULE */
+    .schedule-section { margin-bottom: 56px; }
+    .schedule-heading { font-size: 22px; font-weight: 700; color: #111111; margin-bottom: 6px; }
+    .schedule-subtitle { font-size: 14px; color: #999999; margin-bottom: 28px; }
+    .schedule-empty { padding: 40px 32px; background: #f8f8f8; border-radius: 16px; text-align: center; max-width: 620px; }
+    .schedule-empty-icon { font-size: 32px; margin-bottom: 12px; }
+    .schedule-empty-text { font-size: 15px; color: #666666; line-height: 1.7; }
+    .schedule-empty-text strong { color: #111111; display: block; font-size: 17px; margin-bottom: 6px; }
+
+    /* ARCHIVE */
+    .archive-section { margin-bottom: 56px; }
+    .archive-heading { font-size: 22px; font-weight: 700; color: #111111; margin-bottom: 6px; }
+    .archive-subtitle { font-size: 14px; color: #999999; margin-bottom: 28px; }
+    .archive-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; max-width: 620px; }
+    .archive-card { display: flex; flex-direction: column; border-radius: 14px; border: 1px solid #e8e8e8; overflow: hidden; text-decoration: none; color: #111111; transition: box-shadow 0.2s, transform 0.2s; }
+    .archive-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.1); transform: translateY(-2px); }
+    .archive-photo { aspect-ratio: 3/2; overflow: hidden; flex-shrink: 0; }
+    .archive-photo img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s; }
+    .archive-card:hover .archive-photo img { transform: scale(1.04); }
+    .archive-body { padding: 16px; flex: 1; display: flex; flex-direction: column; }
+    .archive-date { font-size: 11px; font-weight: 600; color: #999999; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 6px; }
+    .archive-title { font-size: 14px; font-weight: 700; color: #111111; line-height: 1.4; margin-bottom: 6px; }
+    .archive-desc { font-size: 12px; color: #666666; line-height: 1.6; flex: 1; }
+    .archive-tag { display: inline-block; margin-top: 10px; font-size: 10px; font-weight: 700; color: #666666; background: #f0f0f0; padding: 3px 10px; border-radius: 100px; letter-spacing: 0.05em; text-transform: uppercase; align-self: flex-start; }
+
+    /* SIDEBAR */
+    .sidebar { position: sticky; top: 80px; }
+    .sidebar-card { background: #ffffff; border: 1px solid #e8e8e8; border-radius: 16px; padding: 32px; margin-bottom: 16px; }
+    .sidebar-label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #666666; font-weight: 600; margin-bottom: 6px; }
+    .sidebar-value { font-size: 22px; font-weight: 700; color: #111111; line-height: 1.3; margin-bottom: 4px; }
+    .sidebar-note { font-size: 14px; color: #666666; margin-top: 6px; line-height: 1.5; }
+    .sidebar-divider { border: none; border-top: 1px solid #e8e8e8; margin: 20px 0; }
+    .sidebar-place { font-size: 15px; color: #111111; line-height: 1.6; }
+    .sidebar-place small { display: block; font-size: 13px; color: #999999; margin-top: 2px; }
+    .btn-primary { display: block; width: 100%; padding: 16px 24px; text-align: center; background: #111111; color: #ffffff; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; text-decoration: none; border-radius: 100px; transition: opacity 0.15s; }
+    .btn-primary:hover { opacity: 0.85; }
+    .btn-share { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 14px 24px; background: #ffffff; color: #111111; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; border: 1px solid #e8e8e8; border-radius: 100px; cursor: pointer; transition: background 0.15s; margin-top: 10px; position: relative; }
+    .btn-share:hover { background: #f5f5f5; }
+    .btn-share svg { width: 15px; height: 15px; flex-shrink: 0; }
+    .share-popup { position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%) translateY(4px); background: #111111; color: #ffffff; font-size: 12px; font-weight: 500; padding: 6px 14px; border-radius: 100px; white-space: nowrap; pointer-events: none; opacity: 0; transition: all 0.2s; }
+    .share-popup.visible { opacity: 1; transform: translateX(-50%) translateY(0); }
+    .sidebar-info-card { background: #f8f8f8; border-radius: 16px; padding: 24px; }
+    .sidebar-info-title { font-size: 14px; font-weight: 700; color: #111111; margin-bottom: 10px; }
+    .sidebar-info-text { font-size: 13px; color: #666666; line-height: 1.7; }
+
+    /* BACK */
+    .back-section { max-width: 1200px; margin: 0 auto; padding: 0 48px 60px; }
+    .back-link { font-size: 13px; font-weight: 600; color: #111111; text-decoration: none; padding: 8px 16px; border-radius: 100px; border: 1px solid #e8e8e8; display: inline-block; transition: background 0.15s; }
+    .back-link:hover { background: #f5f5f5; }
+
+    /* FOOTER */
+    footer { background: #111111; padding: 40px 48px; display: flex; justify-content: space-between; align-items: center; }
+    .footer-logo { font-size: 17px; font-weight: 700; color: #ffffff; letter-spacing: -0.01em; }
+    .footer-links { display: flex; gap: 20px; }
+    .footer-links a { font-size: 13px; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.15s; }
+    .footer-links a:hover { color: #ffffff; }
+    .footer-copy { font-size: 12px; color: rgba(255,255,255,0.3); }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      nav { padding: 0 20px; }
+      .nav-back { display: none; }
+      .hero { height: 50vh; } .hero-overlay { padding: 28px 20px; }
+      .hero-title { font-size: 34px; }
+      .page-main { grid-template-columns: 1fr; padding: 36px 20px; gap: 40px; }
+      .sidebar { position: static; }
+      .archive-grid { grid-template-columns: repeat(2, 1fr); max-width: 100%; }
+      footer { padding: 28px 20px; flex-direction: column; gap: 16px; text-align: center; }
+      .footer-links { flex-wrap: wrap; justify-content: center; }
+      .back-section { padding: 0 20px 40px; }
+    }
+    @media (max-width: 600px) {
+      nav { padding: 0 16px; }
+      .hero-title { font-size: 26px; }
+      .page-main { padding: 24px 16px; }
+      .archive-grid { grid-template-columns: 1fr; }
+      .back-section { padding: 0 16px 32px; }
+      footer { padding: 24px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">Киммерия-Арт</a>
+  <ul class="nav-links"></ul>
+  <a href="/" class="nav-back">← На главную</a>
+</nav>
+
+<div class="hero">
+  <img src="/photos/photo_803@23-03-2026_19-31-02.jpg" alt="Киноклуб Киммерия-Арт">
+  <div class="hero-overlay">
+    <div>
+      <div class="hero-tag">Авторский киноклуб</div>
+      <h1 class="hero-title">Киноклуб</h1>
+      <div class="hero-sub">Мировое кино с живым обсуждением · Ялта</div>
+    </div>
+  </div>
+</div>
+
+<div class="page-main">
+  <div class="content">
+
+    <p class="section-label">О клубе</p>
+    <p class="about-lead">Киноклуб Киммерии-Арт — это показы авторского, документального и фестивального кино с живым обсуждением после сеанса.</p>
+    <p class="about-text">Мы смотрим фильмы, которые не идут в обычных кинотеатрах: лауреатов Каннского, Берлинского и Венецианского фестивалей, классику мирового арт-хауса, документальное кино. После каждого показа — разговор с ведущим и между собой. Камерный зал, живая атмосфера.</p>
+
+    <!-- РАСПИСАНИЕ -->
+    <div class="schedule-section" id="schedule">
+      <h2 class="schedule-heading">Ближайшие показы</h2>
+      <p class="schedule-subtitle">Расписание обновляется</p>
+      <div class="schedule-empty">
+        <div class="schedule-empty-icon">🎬</div>
+        <div class="schedule-empty-text">
+          <strong>Скоро анонс</strong>
+          Следите за обновлениями в наших социальных сетях — расписание появится здесь.
+        </div>
+      </div>
+    </div>
+
+    <!-- АРХИВ -->
+    <div class="archive-section">
+      <h2 class="archive-heading">Архив показов</h2>
+      <p class="archive-subtitle">Фильмы, которые мы уже посмотрели вместе</p>
+      <div class="archive-grid">
+
+        <a href="/event-govoryukhin/" class="archive-card">
+          <div class="archive-photo"><img src="/photos/photo_803@23-03-2026_19-31-02.jpg" alt="Вечер памяти Говорухина" loading="lazy"></div>
+          <div class="archive-body">
+            <div class="archive-date">25 марта 2026</div>
+            <div class="archive-title">90 лет Говорухину — вечер памяти и показ «АССА-2024»</div>
+            <div class="archive-desc">К 90-летию Станислава Говорухина. Документальный фильм представил режиссёр Дмитрий Смирнов.</div>
+            <span class="archive-tag">Завершено</span>
+          </div>
+        </a>
+
+        <a href="/event-otschet/" class="archive-card">
+          <div class="archive-photo"><img src="/photos/photo_255@11-02-2025_12-36-02.jpg" alt="Отсчёт утопленников" loading="lazy"></div>
+          <div class="archive-body">
+            <div class="archive-date">14 февраля 2025</div>
+            <div class="archive-title">«Отсчёт утопленников» — Питер Гринуэй</div>
+            <div class="archive-desc">Нидерланды/Великобритания, 1988. Приз МКФ в Каннах. Ведёт Наталия Добрынская.</div>
+            <span class="archive-tag">Завершено</span>
+          </div>
+        </a>
+
+        <a href="/event-anora/" class="archive-card">
+          <div class="archive-photo"><img src="/photos/photo_247@04-02-2025_21-37-42.jpg" alt="Анора" loading="lazy"></div>
+          <div class="archive-body">
+            <div class="archive-date">7 февраля 2025</div>
+            <div class="archive-title">«Анора» — победитель Каннского фестиваля 2024</div>
+            <div class="archive-desc">6 номинаций на «Оскар» 2025. Режиссёр Шон Бейкер. Ведёт Стефания Джой.</div>
+            <span class="archive-tag">Завершено</span>
+          </div>
+        </a>
+
+        <a href="/event-semeynyy-portret/" class="archive-card">
+          <div class="archive-photo"><img src="/photos/photo_236@29-01-2025_11-29-02.jpg" alt="Семейный портрет в интерьере" loading="lazy"></div>
+          <div class="archive-body">
+            <div class="archive-date">31 января 2025</div>
+            <div class="archive-title">«Семейный портрет в интерьере» — Висконти</div>
+            <div class="archive-desc">Полемическая драма 1974 года. Ведёт режиссёр Ольга Дарфи.</div>
+            <span class="archive-tag">Завершено</span>
+          </div>
+        </a>
+
+        <a href="/event-deti-nebes/" class="archive-card">
+          <div class="archive-photo"><img src="/photos/photo_227@15-01-2025_23-06-07.jpg" alt="Дети небес" loading="lazy"></div>
+          <div class="archive-body">
+            <div class="archive-date">17 января 2025</div>
+            <div class="archive-title">«Дети небес» — первый иранский фильм на «Оскар»</div>
+            <div class="archive-desc">Режиссёр Маджид Маджиди, 1997. Ведёт музыкант Михаил из Иркутска.</div>
+            <span class="archive-tag">Завершено</span>
+          </div>
+        </a>
+
+        <a href="/event-proekt-florida/" class="archive-card">
+          <div class="archive-photo"><img src="/photos/photo_200@12-12-2024_10-06-26.jpg" alt="Проект Флорида" loading="lazy"></div>
+          <div class="archive-body">
+            <div class="archive-date">13 декабря 2024</div>
+            <div class="archive-title">«Проект Флорида» — Шон Бейкер</div>
+            <div class="archive-desc">Мир детей из дешёвых отелей вокруг «Мира Уолта Диснея». Ведёт Владимир Могилевский.</div>
+            <span class="archive-tag">Завершено</span>
+          </div>
+        </a>
+
+        <a href="/event-substanciya/" class="archive-card">
+          <div class="archive-photo"><img src="/photos/photo_194@03-12-2024_18-35-16.jpg" alt="Субстанция" loading="lazy"></div>
+          <div class="archive-body">
+            <div class="archive-date">6 декабря 2024</div>
+            <div class="archive-title">«Субстанция» — Каролин Фаржа, 2024</div>
+            <div class="archive-desc">Боди-хоррор, победитель Каннс-2024. 13 минут аплодисментов на премьере. Ведёт Алиса Селецкая.</div>
+            <span class="archive-tag">Завершено</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-card">
+      <div class="sidebar-label">Формат</div>
+      <div class="sidebar-value">Кинопоказ</div>
+      <div class="sidebar-note">с живым обсуждением после сеанса</div>
+      <hr class="sidebar-divider">
+      <div class="sidebar-label">Где</div>
+      <div class="sidebar-place">
+        Арт-пространство «Киммерия»
+        <small>г. Ялта, ул. Игнатенко, 5, оф. 2</small>
+      </div>
+      <hr class="sidebar-divider">
+      <div class="sidebar-label">Стоимость</div>
+      <div class="sidebar-value" style="font-size:28px;">650 ₽</div>
+      <div class="sidebar-note">студенты и пенсионеры — 500 ₽</div>
+      <hr class="sidebar-divider">
+      <div class="sidebar-label">Записаться</div>
+      <div class="sidebar-note">По телефону: <strong>+7-978-060-29-86</strong></div>
+    </div>
+    <a href="tel:+79780602986" class="btn-primary">Записаться по телефону</a>
+    <button class="btn-share" onclick="sharePage(this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+      Поделиться
+      <span class="share-popup">Ссылка скопирована!</span>
+    </button>
+    <div style="margin-top: 16px;">
+      <div class="sidebar-info-card">
+        <div class="sidebar-info-title">Следите за анонсами</div>
+        <div class="sidebar-info-text">Расписание ближайших показов публикуем в ВКонтакте и Telegram. Подписывайтесь, чтобы не пропустить.</div>
+        <div style="display:flex;gap:8px;margin-top:14px;">
+          <a href="https://vk.com/kimmeria_art" target="_blank" style="flex:1;display:block;text-align:center;font-size:12px;font-weight:600;color:#111111;text-decoration:none;padding:8px;border:1px solid #e8e8e8;border-radius:100px;transition:background 0.15s;" onmouseover="this.style.background='#f5f5f5'" onmouseout="this.style.background=''">ВКонтакте</a>
+          <a href="https://t.me/kimmeria_art" target="_blank" style="flex:1;display:block;text-align:center;font-size:12px;font-weight:600;color:#111111;text-decoration:none;padding:8px;border:1px solid #e8e8e8;border-radius:100px;transition:background 0.15s;" onmouseover="this.style.background='#f5f5f5'" onmouseout="this.style.background=''">Telegram</a>
+        </div>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<div class="back-section">
+  <a href="/" class="back-link">← На главную</a>
+</div>
+
+<footer>
+  <div class="footer-logo">Киммерия-Арт</div>
+  <div class="footer-links">
+    <a href="https://vk.com/kimmeria_art" target="_blank">ВКонтакте</a>
+    <a href="https://t.me/kimmeria_art" target="_blank">Telegram</a>
+  </div>
+  <div class="footer-copy">© 2026 Киммерия-Арт · Ялта</div>
+</footer>
+
+<script>
+function sharePage(btn) {
+  var url = window.location.href;
+  var popup = btn.querySelector('.share-popup');
+  if (navigator.share) { navigator.share({ title: 'Киноклуб — Киммерия-Арт', url: url }).catch(function(){}); return; }
+  function showPopup() { popup.classList.add('visible'); setTimeout(function(){ popup.classList.remove('visible'); }, 2000); }
+  if (navigator.clipboard) { navigator.clipboard.writeText(url).then(showPopup).catch(function(){ fallback(); showPopup(); }); }
+  else { fallback(); showPopup(); }
+  function fallback() { var ta = document.createElement('textarea'); ta.value = url; ta.style.cssText = 'position:fixed;opacity:0'; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); }
+}
+</script>
+</body>
+</html>
