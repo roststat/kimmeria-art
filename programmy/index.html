@@ -71,8 +71,8 @@
     .archive-item:first-child { border-top: 1px solid #e8e8e8; }
     .archive-item:hover { opacity: 0.75; }
     .archive-thumb {
-      flex: none; width: 82px; height: 110px;
-      background: #1a4a3a; border-radius: 4px;
+      flex: none; width: 120px; height: 160px;
+      background: #1a4a3a; border-radius: 6px;
       display: flex; align-items: center; justify-content: center;
       overflow: hidden; position: relative;
     }
@@ -82,7 +82,7 @@
       display: flex; align-items: center; justify-content: center;
       background: linear-gradient(135deg, #1a4a3a 0%, #0f2e24 100%);
     }
-    .archive-thumb-placeholder svg { width: 36px; height: 36px; opacity: 0.45; }
+    .archive-thumb-placeholder svg { width: 48px; height: 48px; opacity: 0.45; }
     .archive-body { flex: 1; min-width: 0; }
     .archive-badge {
       display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.07em;
@@ -103,7 +103,7 @@
     .popup-overlay.open { opacity: 1; pointer-events: all; }
 
     .popup {
-      background: #ffffff; border-radius: 20px; max-width: 680px; width: 100%;
+      background: #ffffff; border-radius: 20px; max-width: 880px; width: 100%;
       max-height: 90vh; overflow-y: auto;
       box-shadow: 0 24px 80px rgba(0,0,0,0.2);
       transform: translateY(16px); transition: transform 0.25s;
@@ -158,13 +158,38 @@
       font-size: 13px; color: #555555; line-height: 1.6; margin-top: 20px;
     }
     .popup-audience strong { display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #999999; margin-bottom: 4px; }
-    .popup-cta {
-      display: block; width: 100%; padding: 15px 24px; text-align: center;
-      background: #111111; color: #ffffff; font-family: 'Inter', sans-serif;
-      font-size: 14px; font-weight: 600; text-decoration: none; border-radius: 100px;
-      border: none; cursor: pointer; margin-top: 24px; transition: opacity 0.15s;
+    /* POPUP FORM */
+    .popup-form-block {
+      margin-top: 28px; padding-top: 24px; border-top: 1px solid #e8e8e8;
     }
-    .popup-cta:hover { opacity: 0.85; }
+    .popup-form-title {
+      font-size: 16px; font-weight: 700; color: #111111; margin-bottom: 4px;
+    }
+    .popup-form-sub {
+      font-size: 13px; color: #888888; margin-bottom: 18px; line-height: 1.5;
+    }
+    .popup-form { display: flex; flex-direction: column; gap: 12px; }
+    .popup-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .popup-input {
+      width: 100%; padding: 12px 16px; border: 1px solid #e8e8e8; border-radius: 10px;
+      background: #ffffff; font-family: 'Inter', sans-serif; font-size: 14px; color: #111111;
+      outline: none; transition: border-color 0.2s; -webkit-appearance: none;
+    }
+    .popup-input:focus { border-color: #111111; }
+    .popup-input::placeholder { color: #bbbbbb; }
+    .popup-submit {
+      width: 100%; padding: 14px 24px; background: #111111; color: #ffffff;
+      font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600;
+      border: none; border-radius: 100px; cursor: pointer; margin-top: 4px;
+      transition: opacity 0.15s;
+    }
+    .popup-submit:hover { opacity: 0.85; }
+    .popup-form-success {
+      display: none; background: #f0faf8; border: 1px solid #c6e8df;
+      border-radius: 12px; padding: 16px 20px; margin-top: 4px;
+      font-size: 14px; color: #1a4a3a; line-height: 1.6; text-align: center;
+    }
+    .popup-form-success.visible { display: block; }
 
     /* BACK + FOOTER */
     .back-section { max-width: 1200px; margin: 0 auto; padding: 0 48px 60px; }
@@ -196,8 +221,8 @@
       .hero-title { font-size: 26px; }
       .hero-archer { display: none; }
       .page-main { padding: 28px 16px 48px; }
-      .archive-thumb { width: 64px; height: 86px; }
-      .archive-thumb-placeholder svg { width: 24px; height: 24px; }
+      .archive-thumb { width: 86px; height: 116px; }
+      .archive-thumb-placeholder svg { width: 32px; height: 32px; }
       .back-section { padding: 0 16px 32px; }
       footer { padding: 24px 16px; }
       .popup-body { padding: 16px 18px 24px; }
@@ -674,6 +699,22 @@ function buildPopup(key) {
     sectionsHTML += '<div class="popup-section"><div class="popup-section-label">' + s.label + '</div><div class="popup-section-text">' + s.text + '</div></div>';
   });
 
+  var formHTML =
+    '<div class="popup-form-block">' +
+    '<div class="popup-form-title">Заказать программу на вашу площадку</div>' +
+    '<div class="popup-form-sub">Оставьте заявку — мы свяжемся и обсудим детали</div>' +
+    '<form class="popup-form" onsubmit="submitForm(event, this)">' +
+    '<div class="popup-form-row">' +
+    '<input class="popup-input" type="text" name="name" placeholder="Ваше имя" required>' +
+    '<input class="popup-input" type="text" name="venue" placeholder="Название площадки" required>' +
+    '</div>' +
+    '<input class="popup-input" type="tel" name="phone" placeholder="Телефон" required>' +
+    '<input type="hidden" name="program" value="' + d.title + '">' +
+    '<button type="submit" class="popup-submit">Отправить заявку</button>' +
+    '</form>' +
+    '<div class="popup-form-success" id="formSuccess">Заявка отправлена! Мы свяжемся с вами в ближайшее время.</div>' +
+    '</div>';
+
   return thumbHTML +
     '<div class="popup-body">' +
     '<div class="popup-badge">' + d.badge + '</div>' +
@@ -682,7 +723,7 @@ function buildPopup(key) {
     '<hr class="popup-divider">' +
     sectionsHTML +
     '<div class="popup-audience"><strong>Аудитория</strong>' + d.audience + '</div>' +
-    '<a href="tel:+79780602986" class="popup-cta">Записаться: +7-978-060-29-86</a>' +
+    formHTML +
     '</div>';
 }
 
@@ -704,6 +745,17 @@ function closePopupOutside(e) {
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') closePopup();
 });
+
+function submitForm(e, form) {
+  e.preventDefault();
+  var data = new FormData(form);
+  var body = 'Программа: ' + data.get('program') + '\nИмя: ' + data.get('name') + '\nПлощадка: ' + data.get('venue') + '\nТелефон: ' + data.get('phone');
+  // Отправка через mailto как запасной вариант; при наличии бэкенда заменить на fetch
+  var mailto = 'mailto:info@art-kimmeria.ru?subject=' + encodeURIComponent('Заявка на программу: ' + data.get('program')) + '&body=' + encodeURIComponent(body);
+  window.location.href = mailto;
+  form.style.display = 'none';
+  document.getElementById('formSuccess').classList.add('visible');
+}
 </script>
 </body>
 </html>
