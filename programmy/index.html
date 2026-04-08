@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Все программы — Киммерия-Арт · Ялта</title>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Киммерия-Арт">
+  <meta property="og:url" content="https://art-kimmeria.ru/programmy/">
+  <meta property="og:title" content="Все программы — Киммерия-Арт · Ялта">
+  <meta property="og:description" content="Спектакли, лекции, кинопоказы, перформансы. Все авторские программы Киммерии-Арт в Ялте.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: #ffffff; color: #111111; font-size: 16px; line-height: 1.6; overflow-x: hidden; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 60px; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid #e8e8e8; }
+    .nav-logo { font-size: 15px; font-weight: 700; color: #111111; text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; }
+    .nav-back { font-size: 13px; font-weight: 600; color: #111111; text-decoration: none; padding: 8px 16px; border-radius: 100px; border: 1px solid #e8e8e8; transition: background 0.15s; }
+    .nav-back:hover { background: #f5f5f5; }
+
+    /* HERO */
+    .hero {
+      padding-top: 60px; position: relative; height: 52vh; min-height: 360px; overflow: hidden;
+      background: #0d1f18;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 55% 80% at 75% 50%, rgba(26,74,58,0.75) 0%, transparent 65%),
+        radial-gradient(ellipse 40% 60% at 15% 60%, rgba(15,46,36,0.5) 0%, transparent 60%);
+    }
+    .hero-text-bg {
+      position: absolute; inset: 0; display: flex; align-items: center;
+      opacity: 0.055; font-size: 160px; font-weight: 900; letter-spacing: -0.04em;
+      color: #ffffff; white-space: nowrap; user-select: none; font-family: Georgia, serif;
+      padding-left: 20px;
+    }
+    .hero-archer {
+      position: absolute; right: 6%; top: 50%; transform: translateY(-50%);
+      width: 220px; opacity: 0.18;
+    }
+    .hero-archer img { width: 100%; display: block; }
+    .hero-overlay { position: absolute; inset: 0; display: flex; align-items: flex-end; padding: 48px; }
+    .hero-tag { display: inline-block; background: rgba(255,255,255,0.12); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.2); color: #ffffff; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 12px; border-radius: 100px; margin-bottom: 14px; }
+    .hero-title { font-size: 52px; font-weight: 700; color: #ffffff; line-height: 1.1; margin-bottom: 10px; }
+    .hero-sub { font-size: 16px; font-weight: 500; color: rgba(255,255,255,0.65); }
+
+    /* MAIN */
+    .page-main { max-width: 1200px; margin: 0 auto; padding: 64px 48px 80px; }
+
+    /* SECTION HEADER */
+    .section-header { margin-bottom: 32px; padding-bottom: 20px; border-bottom: 2px solid #e8e8e8; }
+    .section-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #999999; margin-bottom: 8px; }
+    .section-title { font-size: 26px; font-weight: 700; color: #111111; line-height: 1.2; }
+    .section-subtitle { font-size: 14px; color: #888888; margin-top: 6px; }
+
+    /* PROGRAM BLOCK */
+    .program-block { margin-bottom: 72px; }
+
+    /* ARCHIVE LIST — same style as kinoklub */
+    .archive-list { list-style: none; }
+    .archive-item {
+      display: flex; align-items: center; gap: 20px;
+      padding: 18px 0; border-bottom: 1px solid #e8e8e8;
+      text-decoration: none; color: #111111; cursor: pointer;
+      transition: opacity 0.15s;
+    }
+    .archive-item:first-child { border-top: 1px solid #e8e8e8; }
+    .archive-item:hover { opacity: 0.75; }
+    .archive-thumb {
+      flex: none; width: 82px; height: 110px;
+      background: #1a4a3a; border-radius: 4px;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden; position: relative;
+    }
+    .archive-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .archive-thumb-placeholder {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, #1a4a3a 0%, #0f2e24 100%);
+    }
+    .archive-thumb-placeholder svg { width: 36px; height: 36px; opacity: 0.45; }
+    .archive-body { flex: 1; min-width: 0; }
+    .archive-badge {
+      display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.07em;
+      text-transform: uppercase; background: #f0f0f0; color: #666666;
+      padding: 3px 10px; border-radius: 100px; margin-bottom: 6px;
+    }
+    .archive-title { font-size: 15px; font-weight: 700; color: #111111; line-height: 1.35; margin-bottom: 4px; }
+    .archive-desc { font-size: 13px; color: #666666; line-height: 1.55; }
+    .archive-arrow { flex: none; color: #cccccc; font-size: 18px; }
+
+    /* POPUP OVERLAY */
+    .popup-overlay {
+      position: fixed; inset: 0; z-index: 500;
+      background: rgba(0,0,0,0.55); backdrop-filter: blur(6px);
+      display: flex; align-items: center; justify-content: center;
+      padding: 20px; opacity: 0; pointer-events: none; transition: opacity 0.25s;
+    }
+    .popup-overlay.open { opacity: 1; pointer-events: all; }
+
+    .popup {
+      background: #ffffff; border-radius: 20px; max-width: 680px; width: 100%;
+      max-height: 90vh; overflow-y: auto;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.2);
+      transform: translateY(16px); transition: transform 0.25s;
+      position: relative;
+    }
+    .popup-overlay.open .popup { transform: translateY(0); }
+
+    .popup-close {
+      position: sticky; top: 0; z-index: 10;
+      display: flex; justify-content: flex-end;
+      padding: 16px 20px 0;
+      background: #ffffff;
+    }
+    .popup-close-btn {
+      width: 36px; height: 36px; border-radius: 50%; border: 1px solid #e8e8e8;
+      background: #ffffff; cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: background 0.15s; flex-shrink: 0;
+    }
+    .popup-close-btn:hover { background: #f5f5f5; }
+    .popup-close-btn svg { width: 14px; height: 14px; }
+
+    .popup-thumb {
+      width: 100%; aspect-ratio: 16/7; overflow: hidden;
+      background: linear-gradient(135deg, #1a4a3a 0%, #0f2e24 100%);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .popup-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .popup-thumb-placeholder {
+      display: flex; align-items: center; justify-content: center;
+      width: 100%; height: 100%;
+    }
+    .popup-thumb-placeholder svg { width: 80px; height: 80px; opacity: 0.3; }
+
+    .popup-body { padding: 28px 36px 36px; }
+    .popup-badge {
+      display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; background: #f0f0f0; color: #666666;
+      padding: 4px 12px; border-radius: 100px; margin-bottom: 14px;
+    }
+    .popup-title { font-size: 26px; font-weight: 700; color: #111111; line-height: 1.2; margin-bottom: 16px; }
+    .popup-lead { font-size: 16px; color: #333333; line-height: 1.75; margin-bottom: 20px; }
+    .popup-section { margin-bottom: 18px; }
+    .popup-section-label {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      color: #999999; margin-bottom: 6px;
+    }
+    .popup-section-text { font-size: 14px; color: #444444; line-height: 1.75; }
+    .popup-divider { border: none; border-top: 1px solid #e8e8e8; margin: 20px 0; }
+    .popup-audience {
+      background: #f8f8f8; border-radius: 12px; padding: 16px 20px;
+      font-size: 13px; color: #555555; line-height: 1.6; margin-top: 20px;
+    }
+    .popup-audience strong { display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #999999; margin-bottom: 4px; }
+    .popup-cta {
+      display: block; width: 100%; padding: 15px 24px; text-align: center;
+      background: #111111; color: #ffffff; font-family: 'Inter', sans-serif;
+      font-size: 14px; font-weight: 600; text-decoration: none; border-radius: 100px;
+      border: none; cursor: pointer; margin-top: 24px; transition: opacity 0.15s;
+    }
+    .popup-cta:hover { opacity: 0.85; }
+
+    /* BACK + FOOTER */
+    .back-section { max-width: 1200px; margin: 0 auto; padding: 0 48px 60px; }
+    .back-link { font-size: 13px; font-weight: 600; color: #111111; text-decoration: none; padding: 8px 16px; border-radius: 100px; border: 1px solid #e8e8e8; display: inline-block; transition: background 0.15s; }
+    .back-link:hover { background: #f5f5f5; }
+    footer { background: #111111; padding: 40px 48px; display: flex; justify-content: space-between; align-items: center; }
+    .footer-logo { font-size: 17px; font-weight: 700; color: #ffffff; }
+    .footer-links { display: flex; gap: 20px; }
+    .footer-links a { font-size: 13px; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.15s; }
+    .footer-links a:hover { color: #ffffff; }
+    .footer-copy { font-size: 12px; color: rgba(255,255,255,0.3); }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      nav { padding: 0 20px; }
+      .hero-overlay { padding: 28px 20px; }
+      .hero-title { font-size: 34px; }
+      .hero-archer { width: 140px; opacity: 0.12; }
+      .page-main { padding: 40px 20px 60px; }
+      .back-section { padding: 0 20px 40px; }
+      footer { padding: 28px 20px; flex-direction: column; gap: 16px; text-align: center; }
+      .footer-links { flex-wrap: wrap; justify-content: center; }
+      .popup-body { padding: 20px 24px 28px; }
+      .popup-title { font-size: 22px; }
+    }
+    @media (max-width: 600px) {
+      nav { padding: 0 16px; }
+      .hero { height: 44vh; min-height: 300px; }
+      .hero-title { font-size: 26px; }
+      .hero-archer { display: none; }
+      .page-main { padding: 28px 16px 48px; }
+      .archive-thumb { width: 64px; height: 86px; }
+      .archive-thumb-placeholder svg { width: 24px; height: 24px; }
+      .back-section { padding: 0 16px 32px; }
+      footer { padding: 24px 16px; }
+      .popup-body { padding: 16px 18px 24px; }
+      .popup-overlay { padding: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">Киммерия-Арт</a>
+  <a href="/" class="nav-back">← На главную</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-text-bg">ПРОГРАММЫ</div>
+  <div class="hero-archer">
+    <img src="/photos/hero-archer.png" alt="">
+  </div>
+  <div class="hero-overlay">
+    <div>
+      <div class="hero-tag">Киммерия-Арт · Ялта</div>
+      <h1 class="hero-title">Все программы</h1>
+      <div class="hero-sub">Спектакли · Лекции · Кинопоказы · Перформансы</div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="page-main">
+
+  <!-- СПЕКТАКЛИ И ПЕРФОРМАНСЫ -->
+  <div class="program-block">
+    <div class="section-header">
+      <div class="section-eyebrow">Программа</div>
+      <div class="section-title">Спектакли и перформансы</div>
+      <div class="section-subtitle">Авторские постановки, иммерсивный театр, современный танец</div>
+    </div>
+    <ul class="archive-list">
+
+      <li class="archive-item" onclick="openPopup('uzhe')">
+        <div class="archive-thumb"><div class="archive-thumb-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.2"><path d="M2 9a1 1 0 0 1 0-2V5a1 1 0 0 1 1-1h18a1 1 0 0 1 1 1v2a1 1 0 0 1 0 2v2a1 1 0 0 1 0 2v2a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-2a1 1 0 0 1 0-2V9z"/><line x1="9" y1="4" x2="9" y2="20"/></svg></div></div>
+        <div class="archive-body">
+          <div class="archive-badge">Спектакль · 12+</div>
+          <div class="archive-title">«УЖЕ» — авторская постановка Мимлы Же</div>
+          <div class="archive-desc">Четыре стихотворные сказки. Бытовой символизм, философия и эко-эстетика. Декорации из переработанного пластика.</div>
+        </div>
+        <div class="archive-arrow">→</div>
+      </li>
+
+      <li class="archive-item" onclick="openPopup('ryba')">
+        <div class="archive-thumb"><div class="archive-thumb-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.2"><path d="M2 9a1 1 0 0 1 0-2V5a1 1 0 0 1 1-1h18a1 1 0 0 1 1 1v2a1 1 0 0 1 0 2v2a1 1 0 0 1 0 2v2a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-2a1 1 0 0 1 0-2V9z"/><line x1="9" y1="4" x2="9" y2="20"/></svg></div></div>
+        <div class="archive-body">
+          <div class="archive-badge">Спектакль · 12+ · 60 мин</div>
+          <div class="archive-title">«Лучше я буду рыбой…» — спектакль-притча</div>
+          <div class="archive-desc">По мотивам Чингиза Айтматова «Белый пароход». Театр анимации, тотемы ручной работы, живая этническая музыка.</div>
+        </div>
+        <div class="archive-arrow">→</div>
+      </li>
+
+      <li class="archive-item" onclick="openPopup('tri-a')">
+        <div class="archive-thumb"><div class="archive-thumb-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.2"><path d="M2 9a1 1 0 0 1 0-2V5a1 1 0 0 1 1-1h18a1 1 0 0 1 1 1v2a1 1 0 0 1 0 2v2a1 1 0 0 1 0 2v2a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-2a1 1 0 0 1 0-2V9z"/><line x1="9" y1="4" x2="9" y2="20"/></svg></div></div>
+        <div class="archive-body">
+          <div class="archive-badge">Спектакль-выставка · 18+ · 75 мин</div>
+          <div class="archive-title">«Три А» — спектакль-выставка</div>
+          <div class="archive-desc">Иммерсивное действо на стыке театра, contemporary dance и вернисажа. Картины трёх крымских художниц «оживают».</div>
+        </div>
+        <div class="archive-arrow">→</div>
+      </li>
+
+      <li class="archive-item" onclick="openPopup('lyubov')">
+        <div class="archive-thumb"><div class="archive-thumb-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.2"><path d="M2 9a1 1 0 0 1 0-2V5a1 1 0 0 1 1-1h18a1 1 0 0 1 1 1v2a1 1 0 0 1 0 2v2a1 1 0 0 1 0 2v2a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-2a1 1 0 0 1 0-2V9z"/><line x1="9" y1="4" x2="9" y2="20"/></svg></div></div>
+        <div class="archive-body">
+          <div class="archive-badge">Перформанс · 18+</div>
+          <div class="archive-title">«Любовь, море и десерты»</div>
+          <div class="archive-desc">Музыкально-поэтический перформанс. Авторская музыка Лолиты Полтавской и театрализованная поэзия Мимлы Же. Абсурдистский декаданс.</div>
+        </div>
+        <div class="archive-arrow">→</div>
+      </li>
+
+      <li class="archive-item" onclick="openPopup('pina')">
+        <div class="archive-thumb"><div class="archive-thumb-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.2"><path d="M2 9a1 1 0 0 1 0-2V5a1 1 0 0 1 1-1h18a1 1 0 0 1 1 1v2a1 1 0 0 1 0 2v2a1 1 0 0 1 0 2v2a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-2a1 1 0 0 1 0-2V9z"/><line x1="9" y1="4" x2="9" y2="20"/></svg></div></div>
+        <div class="archive-body">
+          <div class="archive-badge">Лекция и практика</div>
+          <div class="archive-title">Пина Бауш. Танцтеатр. Весна священная</div>
+          <div class="archive-desc">Лекция о великом хореографе — живая история человека, а не легенды. После лекции — показ «Весны священной». Лектор: Мария Отрада.</div>
+        </div>
+        <div class="archive-arrow">→</div>
+      </li>
+
+    </ul>
+  </div>
+
+  <!-- ЛЕКЦИИ -->
+  <div class="program-block">
+    <div class="section-header">
+      <div class="section-eyebrow">Программа</div>
+      <div class="section-title">Лекции</div>
+      <div class="section-subtitle">Наука, мифология, история культуры</div>
+    </div>
+    <ul class="archive-list">
+
+      <li class="archive-item" onclick="openPopup('nazarov-dark')">
+        <div class="archive-thumb"><div class="archive-thumb-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></div></div>
+        <div class="archive-body">
+          <div class="archive-badge">Научпоп · Астрофизика</div>
+          <div class="archive-title">«Тёмная энергия и тёмная материя» — Сергей Назаров</div>
+          <div class="archive-desc">Один из лучших лекторов России. Научный сотрудник КрАО. Лекция прошла с аншлагом 28 марта 2026.</div>
+        </div>
+        <div class="archive-arrow">→</div>
+      </li>
+
+      <li class="archive-item" onclick="openPopup('nazarov-black')">
+        <div class="archive-thumb"><div class="archive-thumb-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></div></div>
+        <div class="archive-body">
+          <div class="archive-badge">Научпоп · Астрофизика</div>
+          <div class="archive-title">«Чёрные дыры» — Сергей Назаров</div>
+          <div class="archive-desc">Самые загадочные объекты Вселенной — природа, обнаружение и первая в истории фотография чёрной дыры.</div>
+        </div>
+        <div class="archive-arrow">→</div>
+      </li>
+
+      <li class="archive-item" onclick="openPopup('afrodita')">
+        <div class="archive-thumb"><img src="/photos/lecture-afrodita.jpg" alt="Пространство Афродиты" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+        <div class="archive-body">
+          <div class="archive-badge">Лекция · Цикл 1/3</div>
+          <div class="archive-title">«Пространство Афродиты» — Наталия Добрынская</div>
+          <div class="archive-desc">Ялта как пространство богини любви. Проводники: Пушкин и Чехов. Цикл «Территория Божественных игр».</div>
+        </div>
+        <div class="archive-arrow">→</div>
+      </li>
+
+      <li class="archive-item" onclick="openPopup('gekata')">
+        <div class="archive-thumb"><img src="/photos/lecture-gekata.jpg" alt="Геката в Фияльте" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+        <div class="archive-body">
+          <div class="archive-badge">Лекция · Цикл 2/3</div>
+          <div class="archive-title">«Геката в Фияльте» — Наталия Добрынская</div>
+          <div class="archive-desc">Тёмная женственность, Набоков и «Весна в Фияльте». Богини Геката и Персефона.</div>
+        </div>
+        <div class="archive-arrow">→</div>
+      </li>
+
+      <li class="archive-item" onclick="openPopup('lilit')">
+        <div class="archive-thumb"><img src="/photos/lecture-lilit.jpg" alt="Осторожно, Лилит!" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+        <div class="archive-body">
+          <div class="archive-badge">Лекция · Цикл 3/3</div>
+          <div class="archive-title">«Осторожно, Лилит!» — Наталия Добрынская</div>
+          <div class="archive-desc">Лилит — первая женщина, демон ночи и символ свободы. Самая будоражащая часть цикла.</div>
+        </div>
+        <div class="archive-arrow">→</div>
+      </li>
+
+    </ul>
+  </div>
+
+  <!-- КИНОПОКАЗЫ С ЛЕКЦИЯМИ -->
+  <div class="program-block">
+    <div class="section-header">
+      <div class="section-eyebrow">Программа</div>
+      <div class="section-title">Кинопоказы с лекциями</div>
+      <div class="section-subtitle">Классика мирового кино с разбором и обсуждением</div>
+    </div>
+    <ul class="archive-list">
+
+      <li class="archive-item" onclick="openPopup('koshki')">
+        <div class="archive-thumb"><div class="archive-thumb-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="8"/><line x1="12" y1="16" x2="12" y2="22"/><line x1="2" y1="12" x2="8" y2="12"/><line x1="16" y1="12" x2="22" y2="12"/></svg></div></div>
+        <div class="archive-body">
+          <div class="archive-badge">Кинопоказ + лекция</div>
+          <div class="archive-title">«Люди-кошки» — США, 1942, реж. Жак Турнёр</div>
+          <div class="archive-desc">Ялтинский след в Голливуде: автор фильма Вэл Льютон родился в Ялте. Лектор: Наталия Добрынская.</div>
+        </div>
+        <div class="archive-arrow">→</div>
+      </li>
+
+      <li class="archive-item" onclick="openPopup('lebed')">
+        <div class="archive-thumb"><div class="archive-thumb-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="8"/><line x1="12" y1="16" x2="12" y2="22"/><line x1="2" y1="12" x2="8" y2="12"/><line x1="16" y1="12" x2="22" y2="12"/></svg></div></div>
+        <div class="archive-body">
+          <div class="archive-badge">Кинопоказ + лекция</div>
+          <div class="archive-title">«Умирающий лебедь» — Россия, 1917, реж. Евгений Бауэр</div>
+          <div class="archive-desc">Манифест русского декаданса в кино. Показ в рамках «Дней Александра Ханжонкова». Лектор: Наталия Добрынская.</div>
+        </div>
+        <div class="archive-arrow">→</div>
+      </li>
+
+      <li class="archive-item" onclick="openPopup('salomeya')">
+        <div class="archive-thumb"><div class="archive-thumb-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="8"/><line x1="12" y1="16" x2="12" y2="22"/><line x1="2" y1="12" x2="8" y2="12"/><line x1="16" y1="12" x2="22" y2="12"/></svg></div></div>
+        <div class="archive-body">
+          <div class="archive-badge">Кинопоказ + лекция</div>
+          <div class="archive-title">«Саломея» — США, 1923, по пьесе Оскара Уайльда</div>
+          <div class="archive-desc">Алла Назимова — самая высокооплачиваемая актриса мира, уроженка Ялты. Лектор: Наталия Добрынская.</div>
+        </div>
+        <div class="archive-arrow">→</div>
+      </li>
+
+    </ul>
+  </div>
+
+  <!-- КИНОПОКАЗ + МАСТЕР-КЛАСС -->
+  <div class="program-block">
+    <div class="section-header">
+      <div class="section-eyebrow">Программа</div>
+      <div class="section-title">Кинопоказ и мастер-класс</div>
+      <div class="section-subtitle">Документальное кино с практическим погружением</div>
+    </div>
+    <ul class="archive-list">
+
+      <li class="archive-item" onclick="openPopup('stihii')">
+        <div class="archive-thumb"><div class="archive-thumb-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="8"/><line x1="12" y1="16" x2="12" y2="22"/><line x1="2" y1="12" x2="8" y2="12"/><line x1="16" y1="12" x2="22" y2="12"/></svg></div></div>
+        <div class="archive-body">
+          <div class="archive-badge">Кинопоказ + мастер-класс</div>
+          <div class="archive-title">«4 стихии» + гончарный мастер-класс</div>
+          <div class="archive-desc">Документальный фильм кинокомпании «Киммерия», отмеченный спецпризом Минкультуры. Гончарный мастер-класс с Павлом Ермоленко.</div>
+        </div>
+        <div class="archive-arrow">→</div>
+      </li>
+
+    </ul>
+  </div>
+
+  <!-- ПОСТОЯННЫЕ КЛУБЫ -->
+  <div class="program-block">
+    <div class="section-header">
+      <div class="section-eyebrow">Постоянные программы</div>
+      <div class="section-title">Клубы и регулярные встречи</div>
+      <div class="section-subtitle">Программы, которые проходят на регулярной основе</div>
+    </div>
+    <ul class="archive-list">
+
+      <li class="archive-item" onclick="location.href='/kinoklub/'">
+        <div class="archive-thumb">
+          <div class="archive-thumb-placeholder" style="background:linear-gradient(135deg,#0a1a14,#1a4a3a);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="8"/><line x1="12" y1="16" x2="12" y2="22"/><line x1="2" y1="12" x2="8" y2="12"/><line x1="16" y1="12" x2="22" y2="12"/></svg>
+          </div>
+        </div>
+        <div class="archive-body">
+          <div class="archive-badge">Авторский киноклуб</div>
+          <div class="archive-title">Киноклуб Киммерии-Арт</div>
+          <div class="archive-desc">Показы арт-хауса, документального и фестивального кино с живым обсуждением. Каннские лауреаты, классика мирового кино. 650 ₽</div>
+        </div>
+        <div class="archive-arrow">→</div>
+      </li>
+
+      <li class="archive-item" onclick="location.href='/idealnaya-sreda/'">
+        <div class="archive-thumb">
+          <img src="/photos/photo_846@08-04-2026_19-23-20.jpg" alt="Идеальная среда" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+        <div class="archive-body">
+          <div class="archive-badge">Партнёрский клуб · Каждую среду</div>
+          <div class="archive-title">Идеальная среда</div>
+          <div class="archive-desc">Лекции, дискуссии, творческие встречи. Философия «третьего места» — там, где можно принадлежать себе и своим мыслям. 19:00</div>
+        </div>
+        <div class="archive-arrow">→</div>
+      </li>
+
+    </ul>
+  </div>
+
+</div><!-- /page-main -->
+
+<div class="back-section">
+  <a href="/" class="back-link">← На главную</a>
+</div>
+
+<footer>
+  <div class="footer-logo">Киммерия-Арт</div>
+  <div class="footer-links">
+    <a href="https://vk.com/kimmeria_art" target="_blank">ВКонтакте</a>
+    <a href="https://t.me/kimmeria_art" target="_blank">Telegram</a>
+  </div>
+  <div class="footer-copy">© 2026 Киммерия-Арт · Ялта</div>
+</footer>
+
+
+<!-- POPUP OVERLAY -->
+<div class="popup-overlay" id="popupOverlay" onclick="closePopupOutside(event)">
+  <div class="popup" id="popup">
+    <div class="popup-close">
+      <button class="popup-close-btn" onclick="closePopup()">
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="1" y1="1" x2="13" y2="13"/><line x1="13" y1="1" x2="1" y2="13"/></svg>
+      </button>
+    </div>
+    <div id="popupContent"></div>
+  </div>
+</div>
+
+<script>
+// ── ARCHER SVG placeholder для попапа ──
+var archerSVG = '<svg viewBox="0 0 200 300" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:80px;height:80px;opacity:0.3"><image href="/photos/hero-archer.png" width="200" height="300"/></svg>';
+
+var archerPlaceholder = '<div class="popup-thumb"><div class="popup-thumb-placeholder"><img src="/photos/hero-archer.png" alt="" style="width:90px;height:auto;opacity:0.28;filter:brightness(10)"></div></div>';
+
+// ── DATA ──
+var programs = {
+  'uzhe': {
+    badge: 'Спектакль · 12+ · Мультимедийный поэтический перформанс',
+    title: '«УЖЕ» — авторская постановка Мимлы Же',
+    thumb: null,
+    lead: 'Авторская экспериментальная постановка поэтессы и художницы Мимлы Же. Спектакль собран из четырёх стихотворных сказок, в которых бытовой символизм соседствует с философскими вопросами о выборе, поиске себя и счастье.',
+    sections: [
+      { label: 'Программа (четыре новеллы)', text: 'Муха — героиня, поставленная в обстоятельства. Авоська и Пакет — спор о целях жизни. Русалка — в поисках себя. Королевская чета — в попытках обрести счастье.' },
+      { label: 'Эко-философия', text: 'Элементы декораций и костюмов созданы автором из переработанного пластика.' },
+      { label: 'Команда', text: 'Автор и исполнитель — Мимла Же. Музыка — Евгений Аникин. Фотоматериал для видеоарта — Анна Скат.' },
+      { label: 'Об авторе', text: 'Севастопольская поэтесса и художница, работает на пересечении поэзии, визуального искусства и перформанса. На крымских выставках представляла сюрреалистичные проволочные портреты.' }
+    ],
+    audience: 'Ценители поэзии и современного искусства, люди с тонким эстетическим вкусом, экологически осознанная аудитория. 12+'
+  },
+  'ryba': {
+    badge: 'Спектакль · 12+ · 60 минут',
+    title: '«Лучше я буду рыбой…» — спектакль-притча',
+    thumb: '/photos/event-ryba.jpg',
+    lead: 'Спектакль по мотивам философской повести Чингиза Айтматова «Белый пароход» (1970). Четыре актрисы («4 стороны света») проводят зрителя через мозаику воспоминаний, используя элементы театра анимации, тотемы ручной работы, киргизские национальные мотивы и живую этническую музыку.',
+    sections: [
+      { label: 'Об оригинале', text: '«Белый пароход» — повесть о семилетнем мальчике и его добром деде Момуне. О том, как мальчик обернулся рыбой и уплыл, не желая примириться с обманом и злом. Удостоена Государственной премии СССР 1977 года.' },
+      { label: 'Команда', text: 'Режиссёр — Усанина С. Художник — Свежевская Е. В составе — Заслуженная артистка Республики Крым.' }
+    ],
+    audience: 'Ценители глубокого, медитативного, визуально изысканного театра. Любители литературы Айтматова и этнической эстетики. 12+'
+  },
+  'tri-a': {
+    badge: 'Спектакль-выставка · 18+ · 1 час 15 минут',
+    title: '«Три А» — спектакль-выставка',
+    thumb: null,
+    lead: 'Уникальный проект, ломающий границы между зрителем и художником. В основе — подлинные картины трёх известных крымских художниц: Анны Павленко, Анны Храпко и Аллы Лебеденко. Каждая картина становится отправной точкой для театрального исследования.',
+    sections: [
+      { label: 'Формат', text: 'Иммерсивное действо на стыке театра, contemporary dance и вернисажа. Картины художниц выставляются в пространстве и «оживают» через театральное действие.' },
+      { label: 'Команда', text: 'Режиссёр — Светлана Усанина. В составе — Евгения Акс, Юлия Яценко и другие. Художницы проекта: Анна Павленко, Анна Храпко, Алла Лебеденко.' }
+    ],
+    audience: 'Взрослая, вдумчивая аудитория, ценители современного искусства и психологического театра. 18+'
+  },
+  'lyubov': {
+    badge: 'Перформанс · 18+ · Абсурдистский декаданс',
+    title: '«Любовь, море и десерты»',
+    thumb: null,
+    lead: 'Проект создан на стыке авторской музыки и театрализованной поэзии. Это не концерт и не чтение стихов — атмосферное погружение в мир, где роскошь граничит с иронией, а чувственная поэзия сплетается с утончённой музыкой.',
+    sections: [
+      { label: 'Команда', text: 'Музыка — Лолита Полтавская (фортепиано, авторские произведения). Поэзия — Мимла Же (театрализованное авторское прочтение).' },
+      { label: 'Технический райдер', text: 'Требуется рояль или фортепиано.' }
+    ],
+    audience: 'Ценители камерного искусства, интеллектуальной игры и декадентской эстетики. Взрослая, искушённая аудитория. 18+'
+  },
+  'pina': {
+    badge: 'Лекция и практика',
+    title: 'Пина Бауш. Танцтеатр. Весна священная',
+    thumb: '/photos/photo_256@13-02-2025_11-45-57.jpg',
+    lead: 'Лекция о Пине Бауш как о человеке и художнике — не о легенде с придыханием, а о живом человеке с уязвимостями, личными трагедиями и радостями. После лекции — просмотр балета «Весна священная».',
+    sections: [
+      { label: 'О Пине Бауш', text: 'Филиппина Бауш (1940–2009) — немецкая танцовщица и хореограф, один из крупнейших хореографов XX века. В 1973 году возглавила труппу в Вуппертале, переименовав её в Tanztheater Wuppertal.' },
+      { label: 'Метод работы', text: 'Бауш не давала готовую хореографию — она задавала вопросы. Ключевой инструмент — «ключи»: слова или фразы, открывающие дверь в пространство создания движения.' },
+      { label: 'Лектор', text: 'Мария Отрада — педагог-хореограф современного танца, культуролог.' }
+    ],
+    audience: 'Любители современного танца и театра. Все, кому интересны творческие методы и человеческие истории за великими именами.'
+  },
+  'nazarov-dark': {
+    badge: 'Научно-популярная лекция · Астрофизика',
+    title: '«Тёмная энергия и тёмная материя» — Сергей Назаров',
+    thumb: '/photos/photo_814@27-03-2026_18-42-39.jpg',
+    lead: 'Один из лучших лекторов России предлагает разобрать тему тёмной материи и тёмной энергии «по косточкам». Лекция прошла в Ялте впервые, 28 марта 2026 года — с аншлагом.',
+    sections: [
+      { label: 'Формат', text: 'Научно-популярная лекция с мультимедийным сопровождением. Камерный формат. Включены приветственный напиток и угощение.' },
+      { label: 'Другие темы Сергея Назарова', text: '«Чёрные дыры»; «Я подарю тебе звезду» — о покупке звёзд и астероидов; «Жизнь звёзд»; «История телескопов и методов наблюдений»; и другие темы по запросу.' },
+      { label: 'О лекторе', text: 'Популяризатор науки, научный сотрудник лаборатории радиоастрономии КрАО. Первооткрыватель ряда астероидов и переменных звёзд. В 2019 году занял второе место во всероссийском конкурсе «Лектор года».' }
+    ],
+    audience: 'Все, кому интересна наука о Вселенной — от школьников до взрослых. Без специальных знаний.'
+  },
+  'nazarov-black': {
+    badge: 'Научно-популярная лекция · Астрофизика',
+    title: '«Чёрные дыры» — Сергей Назаров',
+    thumb: null,
+    lead: 'Лекция о самых загадочных объектах Вселенной. Сергей Назаров рассказывает о природе чёрных дыр, о том, как они образуются, как их обнаруживают и что происходит внутри. Первая в истории фотография чёрной дыры и последние открытия астрофизики.',
+    sections: [
+      { label: 'Формат', text: 'Научно-популярная лекция с мультимедийным сопровождением. Камерный формат. Включены приветственный напиток и угощение.' },
+      { label: 'О лекторе', text: 'Популяризатор науки, научный сотрудник КрАО. Первооткрыватель ряда астероидов и переменных звёзд.' }
+    ],
+    audience: 'Все, кому интересна наука о Вселенной — от школьников до взрослых. Без специальных знаний.'
+  },
+  'afrodita': {
+    badge: 'Лекция · Цикл «Территория Божественных игр» · 1 из 3',
+    title: '«Пространство Афродиты» — Наталия Добрынская',
+    thumb: '/photos/lecture-afrodita.jpg',
+    lead: 'Первая и самая нежная часть цикла. Лекция исследует Ялту как пространство богини любви. Проводники вечера: Пушкин и Чехов. Необходимо слушать в апреле, когда воздух напоён мёдом цветов.',
+    sections: [
+      { label: 'О цикле', text: 'Три авторские лекции, объединённые единой идеей: Ялта как пространство мифа. Каждая встреча исследует один из женских архетипов античной мифологии через призму русской и мировой литературы.' },
+      { label: 'Формат', text: 'Авторская лекция с чтением поэзии и прозы, демонстрацией шедевров мирового искусства. Камерный формат.' },
+      { label: 'О лекторе', text: 'Наталия Добрынская — писатель, беллетрист, преподаватель английского и латыни, тренер публичных выступлений, краевед-исследователь. Идейный основатель клуба «Идеальная среда».' }
+    ],
+    audience: 'Любители мифологии, истории и литературы. Поклонники Пушкина, Чехова, Набокова. Ценители Крыма.'
+  },
+  'gekata': {
+    badge: 'Лекция · Цикл «Территория Божественных игр» · 2 из 3',
+    title: '«Геката в Фияльте» — Наталия Добрынская',
+    thumb: '/photos/lecture-gekata.jpg',
+    lead: 'Логическое продолжение цикла — тёмная женственность, подземный мир, лунный свет. Богини Геката и Персефона приоткрывают завесу тайны. Проводник вечера: Владимир Набоков и его повесть «Весна в Фияльте» — литературный двойник Ялты.',
+    sections: [
+      { label: 'Формат', text: 'Авторская лекция с чтением поэзии и прозы, демонстрацией шедевров мирового искусства. Камерный формат.' },
+      { label: 'О лекторе', text: 'Наталия Добрынская — писатель, беллетрист, преподаватель английского и латыни, краевед-исследователь. Идейный основатель клуба «Идеальная среда».' }
+    ],
+    audience: 'Любители мифологии, истории и литературы. Поклонники Набокова и Серебряного века. Ценители Крыма.'
+  },
+  'lilit': {
+    badge: 'Лекция · Цикл «Территория Божественных игр» · 3 из 3',
+    title: '«Осторожно, Лилит!» — Наталия Добрынская',
+    thumb: '/photos/lecture-lilit.jpg',
+    lead: 'Самая будоражащая часть цикла. Лилит — первая женщина, отказавшаяся подчиниться, демон ночи и символ свободы. Встреча запланирована как предсказуемо непрогнозируемая. То, что это будет на сто процентов любопытно — гарантировано.',
+    sections: [
+      { label: 'Формат', text: 'Авторская лекция с чтением поэзии и прозы, демонстрацией шедевров мирового искусства. Камерный формат.' },
+      { label: 'О лекторе', text: 'Наталия Добрынская — писатель, беллетрист, преподаватель английского и латыни, краевед-исследователь. Идейный основатель клуба «Идеальная среда».' }
+    ],
+    audience: 'Любители мифологии, феминистской мысли и литературы. Ценители нестандартного взгляда.'
+  },
+  'koshki': {
+    badge: 'Кинопоказ + лекция',
+    title: '«Люди-кошки» — США, 1942, реж. Жак Турнёр',
+    thumb: null,
+    lead: 'Кинопоказ легендарного фильма с предварительной лекцией и дискуссией после просмотра. Наталия Добрынская расскажет об истории создания фильма и его образах. После просмотра — открытое обсуждение.',
+    sections: [
+      { label: 'О фильме', text: '«Люди-кошки» (Cat People, 1942) — первый из серии триллеров, спродюсированных Вэлом Льютоном. Бюджет — 134 000 $, сборы — 4 миллиона. В 1993 году включён в Национальный реестр фильмов США.' },
+      { label: 'Ялтинский след', text: 'Образ женщины-кошки придумал Вэл Льютон (Владимир Левентон) — человек, родившийся в Ялте в 1904 году. Его тётя — Алла Назимова — первая русская звезда немого Голливуда, также уроженка Ялты. История одной ялтинской семьи вписана в историю мирового кино дважды.' },
+      { label: 'Ведущая', text: 'Наталия Добрынская.' }
+    ],
+    audience: 'Любители классического кино, поклонники психологических триллеров, все, кому интересна связь Крыма с мировой культурой.'
+  },
+  'lebed': {
+    badge: 'Кинопоказ + лекция',
+    title: '«Умирающий лебедь» — Россия, 1917, реж. Евгений Бауэр',
+    thumb: null,
+    lead: 'Просмотр художественного фильма с беседой до и после просмотра в рамках «Дней Александра Ханжонкова в Ялте». Наталия Добрынская расскажет, как сложились судьбы Бауэра, Ханжонкова и Каралли.',
+    sections: [
+      { label: 'О фильме', text: '«Умирающий лебедь» считается манифестом русского декаданса в истории кино. Снят в 1916 году, вышел в прокат 17 января 1917 — за месяц до революции.' },
+      { label: 'О Вере Каралли', text: 'Прима-балерина Императорского Большого театра, участница «Русских сезонов» Дягилева в Париже. Фаворитка великого князя Дмитрия Павловича. По некоторым версиям, соучаствовала в убийстве Распутина.' },
+      { label: 'Ведущая', text: 'Наталия Добрынская.' }
+    ],
+    audience: 'Любители классического и немого кино, истории российского кинематографа. Все, кому интересен декаданс.'
+  },
+  'salomeya': {
+    badge: 'Кинопоказ + лекция',
+    title: '«Саломея» — США, 1923, по пьесе Оскара Уайльда',
+    thumb: null,
+    lead: 'Просмотр фильма с творческим обсуждением после. Наталия Добрынская расскажет об истории создания фильма и раскроет драматические детали пути Аллы Назимовой — от русского провинциального театра до вершин мирового кинематографа.',
+    sections: [
+      { label: 'О фильме', text: 'Назимова не только исполнила роль Саломеи, но и написала сценарий, спродюсировала фильм и вложила около 300 000 $. При выходе провалился, сегодня — классика немого кино и веха феминистского кинематографа.' },
+      { label: 'Об Алле Назимовой', text: 'Родилась в Ялте 22 мая 1879 года. Брала уроки у Станиславского. В 1905 уехала в Америку. Стала самой высокооплачиваемой актрисой мира — 13 000 $ в неделю. Удостоена звезды на Аллее Славы. Крёстная мать Ненси Дэвис — будущей Нэнси Рейган.' },
+      { label: 'Ведущая', text: 'Наталия Добрынская.' }
+    ],
+    audience: 'Любители классического кино, художники и дизайнеры, все, кому интересна связь Ялты с мировой культурой.'
+  },
+  'stihii': {
+    badge: 'Кинопоказ документального фильма + гончарный мастер-класс',
+    title: '«4 стихии» + гончарный мастер-класс',
+    thumb: null,
+    lead: 'Показ документального фильма «Четыре стихии», снятого кинокомпанией «Киммерия» при поддержке Фонда «Хранители Традиций». После показа — гончарный мастер-класс с Павлом Ермоленко.',
+    sections: [
+      { label: 'О фильме', text: 'Главный герой — Павел Ермоленко, Заслуженный ремесленник Республики Крым. Фильм передаёт атмосферу творческого процесса от добычи глины до обжига. Отмечен специальным призом Министерства культуры РК на фестивале «КрымДок».' },
+      { label: 'О мастере', text: 'Павел Ермоленко — народный мастер Союза художников России. Основатель Школы керамики и творческой резиденции в Красновке. Организует ежегодный фестиваль ремёсел «Лепят все».' }
+    ],
+    audience: 'Все, кому интересно традиционное ремесло, ручной труд и документальное кино.'
+  }
+};
+
+function buildPopup(key) {
+  var d = programs[key];
+  if (!d) return '';
+
+  var thumbHTML = '';
+  if (d.thumb) {
+    thumbHTML = '<div class="popup-thumb"><img src="' + d.thumb + '" alt="' + d.title + '"></div>';
+  } else {
+    thumbHTML = '<div class="popup-thumb"><div class="popup-thumb-placeholder"><img src="/photos/hero-archer.png" alt="" style="width:90px;height:auto;opacity:0.28;filter:brightness(10)"></div></div>';
+  }
+
+  var sectionsHTML = '';
+  d.sections.forEach(function(s) {
+    sectionsHTML += '<div class="popup-section"><div class="popup-section-label">' + s.label + '</div><div class="popup-section-text">' + s.text + '</div></div>';
+  });
+
+  return thumbHTML +
+    '<div class="popup-body">' +
+    '<div class="popup-badge">' + d.badge + '</div>' +
+    '<div class="popup-title">' + d.title + '</div>' +
+    '<div class="popup-lead">' + d.lead + '</div>' +
+    '<hr class="popup-divider">' +
+    sectionsHTML +
+    '<div class="popup-audience"><strong>Аудитория</strong>' + d.audience + '</div>' +
+    '<a href="tel:+79780602986" class="popup-cta">Записаться: +7-978-060-29-86</a>' +
+    '</div>';
+}
+
+function openPopup(key) {
+  document.getElementById('popupContent').innerHTML = buildPopup(key);
+  document.getElementById('popupOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closePopup() {
+  document.getElementById('popupOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function closePopupOutside(e) {
+  if (e.target === document.getElementById('popupOverlay')) closePopup();
+}
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closePopup();
+});
+</script>
+</body>
+</html>
