@@ -401,16 +401,18 @@ nav {
 .filter-chip.active { background: var(--accent); color: #ffffff; border-color: var(--accent); }
 .filter-chip:not(.active):hover { border-color: var(--accent); color: var(--accent); }
 
-.filters-right-mobile { display: none; }
+.filters-right-mobile { display: none; position: relative; }
 .filter-select {
-  font-family: 'Inter', sans-serif;
-  font-size: 13px; font-weight: 500; color: #111111;
-  background: #ffffff; border: 1px solid #e8e8e8; border-radius: 100px;
-  padding: 8px 36px 8px 16px; cursor: pointer;
-  outline: none; -webkit-appearance: none; appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23111111' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-  background-repeat: no-repeat; background-position: right 14px center; width: 100%;
+  position: absolute; inset: 0; opacity: 0; cursor: pointer;
+  width: 100%; height: 100%;
 }
+.filter-mobile-btn {
+  width: 36px; height: 36px; border-radius: 8px;
+  border: 1px solid #e8e8e8; background: #ffffff;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; pointer-events: none;
+}
+.filter-mobile-btn svg { width: 16px; height: 16px; color: #111111; }
 
 /* ── EVENTS GRID ── */
 .events-grid {
@@ -744,7 +746,7 @@ footer {
   .nav-links { display: none; }
   .nav-burger { display: flex; }
   .hero-new { padding: 48px 20px 40px; }
-  .hero-new-inner { flex-direction: column; gap: 32px; }
+  .hero-new-inner { flex-direction: column; gap: 16px; }
   .hero-new-image { width: 260px; }
   .hero-new-title { font-size: 34px; }
   .hero-section { padding: 16px 20px 16px; gap: 12px; height: calc(100vh - 60px); flex-direction: column; }
@@ -800,7 +802,7 @@ footer {
   .events-grid { grid-template-columns: 1fr; }
   .filters-bar { gap: 8px; }
   .filters-chips { display: none; }
-  .filters-right-mobile { display: block; width: 100%; }
+  .filters-right-mobile { display: block; }
   .membership-section { padding: 36px 16px; }
   .membership-perks { grid-template-columns: 1fr 1fr; gap: 12px 20px; }
 
@@ -911,6 +913,9 @@ footer {
       <button class="filter-chip" onclick="toggleFilter('экспедиция', this)">Экспедиции</button>
     </div>
     <div class="filters-right-mobile">
+      <div class="filter-mobile-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
+      </div>
       <select class="filter-select" onchange="toggleFilterMobile(this.value)">
         <option value="all">Все форматы</option>
         <option value="кинопоказ">Кинопоказы</option>
