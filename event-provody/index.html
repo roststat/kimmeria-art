@@ -109,6 +109,29 @@
     .btn-share svg { width: 15px; height: 15px; flex-shrink: 0; }
     .share-popup { position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%) translateY(4px); background: #111111; color: #ffffff; font-size: 12px; font-weight: 500; padding: 6px 14px; border-radius: 100px; white-space: nowrap; pointer-events: none; opacity: 0; transition: all 0.2s; }
     .share-popup.visible { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    /* ЛАЙТБОКС */
+    .lightbox {
+      display: none; position: fixed; inset: 0; z-index: 1000;
+      background: rgba(0,0,0,0.92); align-items: center; justify-content: center;
+      cursor: zoom-out;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 92vw; max-height: 92vh;
+      object-fit: contain; border-radius: 4px;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.6);
+      cursor: default;
+    }
+    .lightbox-close {
+      position: absolute; top: 20px; right: 24px;
+      font-size: 32px; color: #ffffff; cursor: pointer;
+      line-height: 1; opacity: 0.7; transition: opacity 0.15s;
+      background: none; border: none; padding: 0;
+    }
+    .lightbox-close:hover { opacity: 1; }
+    .event-hero-poster img { cursor: zoom-in; }
+    .gallery-grid img { cursor: zoom-in; }
     footer { background: #111111; padding: 40px 48px; display: flex; justify-content: space-between; align-items: center; }
     .footer-logo { font-size: 17px; font-weight: 700; color: #ffffff; letter-spacing: -0.01em; }
     .footer-links { display: flex; gap: 20px; }
@@ -180,7 +203,7 @@
   <div class="event-hero-bg" style="background-image: url('/photos/provody-cover.jpg');"></div>
   <div class="event-hero-inner">
     <div class="event-hero-poster">
-      <img src="/photos/provody-cover.jpg" alt="Проводы — Сергей Четверухин">
+      <img src="/photos/provody-cover.jpg" alt="Проводы — Сергей Четверухин" onclick="openLightbox(this.src)">
     </div>
     <div class="event-hero-text">
       <div class="event-hero-tag">Закрытый кинопоказ · Встреча с режиссёром · 12+</div>
@@ -233,8 +256,8 @@
     <div class="event-gallery">
       <h2 class="event-gallery-title">Фотоотчёт</h2>
       <div class="gallery-grid">
-        <img src="/photos/provody-1.jpg" alt="Проводы — фото 1" loading="lazy">
-        <img src="/photos/provody-2.jpg" alt="Проводы — фото 2" loading="lazy">
+        <img src="/photos/provody-1.jpg" alt="Проводы — фото 1" loading="lazy" onclick="openLightbox(this.src)">
+        <img src="/photos/provody-2.jpg" alt="Проводы — фото 2" loading="lazy" onclick="openLightbox(this.src)">
       </div>
     </div>
   </div>
@@ -277,7 +300,24 @@
   <div class="footer-copy">© 2024 Киммерия-Арт · Ялта</div>
 </footer>
 
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img id="lightboxImg" src="" alt="" onclick="event.stopPropagation()">
+</div>
+
 <script>
+function openLightbox(src) {
+  document.getElementById('lightboxImg').src = src;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeLightbox();
+});
 function shareEvent(btn) {
   var url = window.location.href;
   var titleEl = document.querySelector('.event-hero-title');
