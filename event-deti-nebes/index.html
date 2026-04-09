@@ -147,16 +147,19 @@
   <a href="/#events" class="nav-back">← Все события</a>
 </nav>
 
-<section class="event-hero">
-  <img src="/photos/photo_227@17-01-2025_19-17-35.jpg" alt="«Дети небес»">
-  <div class="event-hero-overlay">
-    <div class="event-hero-content">
+<div class="event-hero">
+  <div class="event-hero-bg" style="background-image: url('/photos/photo_227@17-01-2025_19-17-35.jpg');"></div>
+  <div class="event-hero-inner">
+    <div class="event-hero-poster">
+      <img src="/photos/photo_227@17-01-2025_19-17-35.jpg" alt="«Дети небес»" onclick="openLightbox(this.src)">
+    </div>
+    <div class="event-hero-text">
       <div class="event-hero-tag">Кинопоказ · Маджид Маджиди</div>
       <h1 class="event-hero-title">«Дети небес»</h1>
       <div class="event-hero-date">17 января 2025 · Пятница · 19:00</div>
     </div>
   </div>
-</section>
+</div>
 
 <div class="event-past-banner">Мероприятие уже состоялось</div>
 
@@ -184,8 +187,8 @@
     <div class="event-gallery">
       <div class="event-gallery-title">Фотографии с мероприятия</div>
       <div class="gallery-grid-2">
-        <img src="/photos/photo_227@17-01-2025_19-17-35.jpg" alt="Кинопоказ «Дети небес» 1">
-        <img src="/photos/photo_228@17-01-2025_19-17-35.jpg" alt="Кинопоказ «Дети небес» 2">
+        <img src="/photos/photo_227@17-01-2025_19-17-35.jpg" alt="Кинопоказ «Дети небес» 1" onclick="openLightbox(this.src)">
+        <img src="/photos/photo_228@17-01-2025_19-17-35.jpg" alt="Кинопоказ «Дети небес» 2" onclick="openLightbox(this.src)">
       </div>
     </div>
   </div>
@@ -236,6 +239,11 @@
   <div class="footer-copy">© 2025 Киммерия-Арт · Ялта</div>
 </footer>
 
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">×</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
 <script>
 function toggleMenu() {
   var burger = document.getElementById('navBurger');
@@ -249,6 +257,18 @@ function closeMenu() {
   document.getElementById('mobileMenu').classList.remove('open');
   document.body.style.overflow = '';
 }
+function openLightbox(src) {
+  document.getElementById('lightbox-img').src = src;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeLightbox();
+});
 </script>
 </body>
 </html>
