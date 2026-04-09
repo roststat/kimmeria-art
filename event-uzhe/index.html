@@ -81,8 +81,10 @@
     .footer-copy { font-size: 12px; color: rgba(255,255,255,0.3); }
     @media (max-width: 900px) {
       nav { padding: 0 20px; } .nav-links { display: none; }
-      .event-hero { height: 50vh; } .event-hero-overlay { padding: 28px 20px; }
-      .event-hero-title { font-size: 32px; }
+      .event-hero-inner { grid-template-columns: 1fr; gap: 24px; padding: 32px 20px; }
+      .event-hero-poster { max-width: 220px; max-height: 300px; margin: 0 auto; }
+      .event-hero-text { text-align: center; }
+      .event-hero-title { font-size: 28px; }
       .event-main { grid-template-columns: 1fr; padding: 36px 20px; gap: 32px; }
       .event-sidebar { position: static; }
       footer { padding: 28px 20px; flex-direction: column; gap: 16px; text-align: center; }
@@ -90,7 +92,10 @@
       .event-back-section { padding: 0 20px 40px; }
     }
     @media (max-width: 600px) {
-      nav { padding: 0 16px; } .event-hero-title { font-size: 26px; }
+      nav { padding: 0 16px; }
+      .event-hero-poster { max-width: 160px; }
+      .event-hero-title { font-size: 22px; }
+      .event-hero-inner { padding: 24px 16px; }
       .event-main { padding: 24px 16px; } .event-sidebar { padding: 24px; }
       .event-back-section { padding: 0 16px 32px; } footer { padding: 24px 16px; }
     }
@@ -139,12 +144,15 @@
 </nav>
 
 <div class="event-hero">
-  <img src="/photos/photo_819@30-03-2026_09-17-02.jpg" alt="Спектакль УЖЕ — Мимла Же">
-  <div class="event-hero-overlay">
-    <div>
+  <div class="event-hero-bg" style="background-image: url('/photos/photo_819@30-03-2026_09-17-02.jpg');"></div>
+  <div class="event-hero-inner">
+    <div class="event-hero-poster">
+      <img src="/photos/photo_819@30-03-2026_09-17-02.jpg" alt="Спектакль УЖЕ — Мимла Же" onclick="openLightbox(this.src)">
+    </div>
+    <div class="event-hero-text">
       <div class="event-hero-tag">Спектакль · 12+</div>
       <h1 class="event-hero-title">«УЖЕ»</h1>
-      <div class="event-hero-date">5 апреля 2026 · Воскресенье · 18:00</div>
+      <div class="event-hero-date">5 апреля 2026 · Воскресенье · 18:00
     </div>
   </div>
 </div>
@@ -215,13 +223,13 @@
 <div class="event-gallery">
   <p class="event-gallery-title">Фотографии с мероприятия</p>
   <div class="gallery-grid">
-    <a href="photos/photo_830@06-04-2026_23-06-38.jpg" target="_blank"><img src="/photos/photo_830@06-04-2026_23-06-38.jpg" alt="Спектакль УЖЕ — фото 1" loading="lazy"></a>
-    <a href="photos/photo_831@06-04-2026_23-06-38.jpg" target="_blank"><img src="/photos/photo_831@06-04-2026_23-06-38.jpg" alt="Спектакль УЖЕ — фото 2" loading="lazy"></a>
-    <a href="photos/photo_832@06-04-2026_23-06-38.jpg" target="_blank"><img src="/photos/photo_832@06-04-2026_23-06-38.jpg" alt="Спектакль УЖЕ — фото 3" loading="lazy"></a>
-    <a href="photos/photo_833@06-04-2026_23-06-38.jpg" target="_blank"><img src="/photos/photo_833@06-04-2026_23-06-38.jpg" alt="Спектакль УЖЕ — фото 4" loading="lazy"></a>
-    <a href="photos/photo_834@06-04-2026_23-06-38.jpg" target="_blank"><img src="/photos/photo_834@06-04-2026_23-06-38.jpg" alt="Спектакль УЖЕ — фото 5" loading="lazy"></a>
-    <a href="photos/photo_835@06-04-2026_23-06-38.jpg" target="_blank"><img src="/photos/photo_835@06-04-2026_23-06-38.jpg" alt="Спектакль УЖЕ — фото 6" loading="lazy"></a>
-    <a href="photos/photo_836@06-04-2026_23-06-38.jpg" target="_blank"><img src="/photos/photo_836@06-04-2026_23-06-38.jpg" alt="Спектакль УЖЕ — фото 7" loading="lazy"></a>
+    <a href="photos/photo_830@06-04-2026_23-06-38.jpg" target="_blank"><img src="/photos/photo_830@06-04-2026_23-06-38.jpg" alt="Спектакль УЖЕ — фото 1" loading="lazy" onclick="openLightbox(this.src)"></a>
+    <a href="photos/photo_831@06-04-2026_23-06-38.jpg" target="_blank"><img src="/photos/photo_831@06-04-2026_23-06-38.jpg" alt="Спектакль УЖЕ — фото 2" loading="lazy" onclick="openLightbox(this.src)"></a>
+    <a href="photos/photo_832@06-04-2026_23-06-38.jpg" target="_blank"><img src="/photos/photo_832@06-04-2026_23-06-38.jpg" alt="Спектакль УЖЕ — фото 3" loading="lazy" onclick="openLightbox(this.src)"></a>
+    <a href="photos/photo_833@06-04-2026_23-06-38.jpg" target="_blank"><img src="/photos/photo_833@06-04-2026_23-06-38.jpg" alt="Спектакль УЖЕ — фото 4" loading="lazy" onclick="openLightbox(this.src)"></a>
+    <a href="photos/photo_834@06-04-2026_23-06-38.jpg" target="_blank"><img src="/photos/photo_834@06-04-2026_23-06-38.jpg" alt="Спектакль УЖЕ — фото 5" loading="lazy" onclick="openLightbox(this.src)"></a>
+    <a href="photos/photo_835@06-04-2026_23-06-38.jpg" target="_blank"><img src="/photos/photo_835@06-04-2026_23-06-38.jpg" alt="Спектакль УЖЕ — фото 6" loading="lazy" onclick="openLightbox(this.src)"></a>
+    <a href="photos/photo_836@06-04-2026_23-06-38.jpg" target="_blank"><img src="/photos/photo_836@06-04-2026_23-06-38.jpg" alt="Спектакль УЖЕ — фото 7" loading="lazy" onclick="openLightbox(this.src)"></a>
   </div>
 </div>
 
@@ -240,7 +248,22 @@
   <div class="footer-copy">© 2025 Киммерия-Арт · Ялта</div>
 </footer>
 
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">&#x2715;</button>
+  <img id="lightboxImg" src="" alt="" onclick="event.stopPropagation()">
+</div>
+
 <script>
+function openLightbox(src) {
+  document.getElementById('lightboxImg').src = src;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeLightbox(); });
 function shareEvent(btn) {
   var url = window.location.href;
   var titleEl = document.querySelector('.event-hero-title');

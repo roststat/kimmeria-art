@@ -85,8 +85,10 @@
 
     @media (max-width: 900px) {
       nav { padding: 0 20px; } .nav-links { display: none; }
-      .event-hero { height: 50vh; } .event-hero-overlay { padding: 28px 20px; }
-      .event-hero-title { font-size: 32px; }
+      .event-hero-inner { grid-template-columns: 1fr; gap: 24px; padding: 32px 20px; }
+      .event-hero-poster { max-width: 220px; max-height: 300px; margin: 0 auto; }
+      .event-hero-text { text-align: center; }
+      .event-hero-title { font-size: 28px; }
       .event-main { grid-template-columns: 1fr; padding: 36px 20px; gap: 32px; }
       .event-sidebar { position: static; }
       footer { padding: 28px 20px; flex-direction: column; gap: 16px; text-align: center; }
@@ -94,7 +96,10 @@
       .back-section { padding: 0 20px 40px; }
     }
     @media (max-width: 600px) {
-      nav { padding: 0 16px; } .event-hero-title { font-size: 26px; }
+      nav { padding: 0 16px; }
+      .event-hero-poster { max-width: 160px; }
+      .event-hero-title { font-size: 22px; }
+      .event-hero-inner { padding: 24px 16px; }
       .event-main { padding: 24px 16px; } .back-section { padding: 0 16px 32px; } footer { padding: 24px 16px; }
     }
 
@@ -156,26 +161,18 @@
 </nav>
 
 <div class="event-hero">
-  <img class="hero-bg" src="/photos/lecture-afrodita.jpg" alt="Пространство Афродиты">
-  <div class="event-hero-overlay">
-    <div>
+  <div class="event-hero-bg" style="background-image: url('/photos/lecture-afrodita.jpg');"></div>
+  <div class="event-hero-inner">
+    <div class="event-hero-poster">
+      <img src="/photos/lecture-afrodita.jpg" alt="Пространство Афродиты" onclick="openLightbox(this.src)">
+    </div>
+    <div class="event-hero-text">
       <div class="event-hero-tag">Лекция · Часть 1 из 3</div>
       <div class="event-hero-cycle">Цикл «Ялта: Территория Божественных игр»</div>
       <h1 class="event-hero-title">Пространство Афродиты</h1>
-      <div class="event-hero-date">15 апреля 2026 · Среда · 19:00</div>
+      <div class="event-hero-date">15 апреля 2026 · Среда · 19:00
     </div>
   </div>
-</div>
-
-<div class="cycle-info-card">
-  <div class="cycle-info-icon">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-  </div>
-  <div class="cycle-info-text">
-    <div class="cycle-info-title">Часть цикла лекций «Ялта: Территория Божественных игр»</div>
-    <div class="cycle-info-desc">Лекции самостоятельные — можно приходить на любую отдельно, в любом порядке.</div>
-  </div>
-  <a href="/idealnaya-sreda/" class="cycle-info-link">Все лекции →</a>
 </div>
 
 <div class="event-main">
