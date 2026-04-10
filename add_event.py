@@ -611,10 +611,18 @@ def main():
     slug = data["SLUG"]
     dt = datetime.strptime(data["ДАТА"], "%Y-%m-%d")
 
-    # Обложка
+    # Обложка — ищем в нескольких местах:
+    # 1) абсолютный путь как есть
+    # 2) рядом с txt-файлом
+    # 3) рядом с папкой сайта (на случай если txt лежит в сайте, а обложка — рядом в исходниках)
     cover_src = data["ОБЛОЖКА"].strip()
     if not os.path.isabs(cover_src):
-        cover_src = os.path.join(os.path.dirname(os.path.abspath(event_file)), cover_src)
+        txt_dir = os.path.dirname(os.path.abspath(event_file))
+        candidates = [
+            os.path.join(txt_dir, cover_src),
+            os.path.join(SITE_DIR, cover_src),
+        ]
+        cover_src = next((p for p in candidates if os.path.exists(p)), candidates[0])
 
     has_cover = os.path.exists(cover_src)
     if not has_cover:
@@ -629,7 +637,17 @@ def main():
         print(f"[OK] Обложка скопирована: {cover_web_path}")
 
     # Фотографии с мероприятия (все jpg/png в папке, кроме обложки)
-    event_folder = os.path.dirname(os.path.abspath(event_file))
+    # ПАПКА_ФОТО задаётся явно, иначе — папка рядом с txt (или папка обложки если она в другом месте)
+    if data.get("ПАПКА_ФОТО"):
+        foto_dir = data["ПАПКА_ФОТО"].strip()
+        if not os.path.isabs(foto_dir):
+            foto_dir = os.path.join(os.path.dirname(os.path.abspath(event_file)), foto_dir)
+    else:
+        # Если обложка лежит не рядом с txt — берём папку обложки
+        txt_dir = os.path.dirname(os.path.abspath(event_file))
+        cover_dir = os.path.dirname(cover_src) if has_cover else txt_dir
+        foto_dir = cover_dir if cover_dir != SITE_DIR else txt_dir
+    event_folder = foto_dir
     cover_basename = os.path.basename(cover_src).lower()
     img_exts = {".jpg", ".jpeg", ".png", ".webp"}
     gallery_paths = []
