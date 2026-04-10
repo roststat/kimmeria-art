@@ -85,6 +85,19 @@ def format_weekday(dt):
 # Генерация HTML страницы мероприятия
 # ──────────────────────────────────────────────
 
+NEW_VENUE_DATE = datetime(2026, 4, 1)
+NEW_VENUE      = "г. Ялта, ул. Игнатенко, 5"
+OLD_VENUE      = "г. Ялта, ул. Кирова, 83б, 2 эт."
+OLD_VENUE_CARD = "Ул. Кирова, 83б, Ялта"
+NEW_VENUE_CARD = "Ул. Игнатенко, 5, Ялта"
+
+def default_venue(dt, card=False):
+    """Возвращает дефолтный адрес в зависимости от даты мероприятия."""
+    if dt >= NEW_VENUE_DATE:
+        return NEW_VENUE_CARD if card else NEW_VENUE
+    return OLD_VENUE_CARD if card else OLD_VENUE
+
+
 def build_details_list(data, dt):
     rows = []
 
@@ -99,7 +112,8 @@ def build_details_list(data, dt):
 
     rows.append(f'      <li><strong>Дата</strong> {format_date_ru(dt)}, {format_weekday(dt).lower()} (завершено)</li>')
     rows.append(f'      <li><strong>Время</strong> {data["ВРЕМЯ"]}</li>')
-    rows.append(f'      <li><strong>Место</strong> г. Ялта, ул. Кирова, 83б, 2 эт.</li>')
+    mesto = data.get("МЕСТО") or default_venue(dt)
+    rows.append(f'      <li><strong>Место</strong> {mesto}</li>')
 
     if data.get("ВОЗРАСТ"):
         rows.append(f'      <li><strong>Возраст</strong> {data["ВОЗРАСТ"]}</li>')
@@ -344,7 +358,7 @@ def build_event_page(data, dt, cover_web_path, gallery_paths=None):
       <div class="sidebar-date">{date_str}<br>{weekday}</div>
       <div class="sidebar-time">Начало в {data["ВРЕМЯ"]}</div>
       <div class="sidebar-place-label">Где</div>
-      <div class="sidebar-place">г. Ялта<br>ул. Кирова, 83б, 2 эт.</div>
+      <div class="sidebar-place">{data.get("МЕСТО") or default_venue(dt)}</div>
     </div>
     <div class="sidebar-price-block">
       <div class="sidebar-price-label">Стоимость была</div>
@@ -463,7 +477,7 @@ def build_index_card(data, dt, cover_web_path, has_cover):
         <h3 class="event-title">{title}</h3>
         <p class="event-desc">{card_desc}</p>
         <div class="event-bottom">
-          <span class="event-location">Ул. Кирова, 83б, Ялта</span>
+          <span class="event-location">{data.get("МЕСТО") or default_venue(dt, card=True)}</span>
           <div>
             <div class="event-price" style="opacity:0.5">{data.get("ЦЕНА_ОСНОВНАЯ", "650")} / {data.get("ЦЕНА_ЧЛЕНЫ_КОРОТКАЯ", "500")} ₽</div>
             <span class="event-past-tag">Завершено</span>
