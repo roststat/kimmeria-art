@@ -1,0 +1,62 @@
+backend:
+  name: github
+  repo: roststat/kimmeria-art
+  branch: master
+  base_url: https://kimmeria-art.vercel.app
+  auth_endpoint: /api/auth
+
+media_folder: photos
+public_folder: /photos
+
+locale: ru
+
+collections:
+  - name: events
+    label: Мероприятия
+    label_singular: Мероприятие
+    folder: _events
+    create: true
+    slug: "{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - { label: Slug (адрес страницы, латиницей через дефис), name: slug, widget: string, hint: "Например: event-nazvanie-filma" }
+      - { label: Название, name: title, widget: string }
+      - { label: Дата, name: date, widget: datetime, format: YYYY-MM-DD, date_format: DD.MM.YYYY, time_format: false }
+      - { label: Время, name: time, widget: string, default: "19:00" }
+      - label: Формат
+        name: format
+        widget: select
+        options:
+          - { label: Кинопоказ, value: Кинопоказ }
+          - { label: Лекция, value: Лекция }
+          - { label: Встреча, value: Встреча }
+          - { label: Спектакль, value: Спектакль }
+          - { label: Экспедиция, value: Экспедиция }
+          - { label: Мастер-класс, value: Мастер-класс }
+          - { label: Вечер памяти, value: Вечер памяти }
+          - { label: Выставка, value: Выставка }
+      - { label: Обложка, name: cover, widget: image }
+      - { label: Краткое описание (для карточки), name: description_card, widget: text }
+      - { label: Полное описание (для страницы), name: description_full, widget: text }
+      - { label: Режиссёр, name: director, widget: string, required: false }
+      - { label: Страна / Год, name: country_year, widget: string, required: false }
+      - { label: В ролях, name: cast, widget: string, required: false }
+      - { label: Ведущий / Спикер, name: host, widget: string, required: false }
+      - label: Возрастное ограничение
+        name: age
+        widget: select
+        required: false
+        options: ["6+", "12+", "16+", "18+"]
+      - { label: Цена (основная), name: price_main, widget: string, default: "650 ₽", required: false }
+      - { label: Цена (члены клуба), name: price_member, widget: string, default: "500 ₽ членам клуба", required: false }
+      - label: Добавить в архив киноклуба
+        name: add_to_kinoklub
+        widget: boolean
+        default: false
+        hint: "Включи только для кинопоказов"
+      - label: Фотографии с мероприятия
+        name: gallery
+        widget: list
+        required: false
+        field: { label: Фото, name: photo, widget: image }
