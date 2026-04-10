@@ -27,10 +27,30 @@ WEEKDAYS_RU = {
 # ──────────────────────────────────────────────
 
 def parse_md(path):
+    try:
+        import yaml
+        with open(path, encoding="utf-8") as f:
+            content = f.read()
+        m = re.match(r'^---\n(.*?)\n---\n?(.*)', content, re.DOTALL)
+        if not m:
+            print(f"[WARN] Нет frontmatter в {path}")
+            return {}, ""
+        data = yaml.safe_load(m.group(1)) or {}
+        # Все значения приводим к строке где нужно
+        for k, v in data.items():
+            if isinstance(v, bool):
+                data[k] = v
+            elif v is None:
+                data[k] = ""
+        body = m.group(2).strip()
+        return data, body
+    except ImportError:
+        pass
+
+    # Fallback без PyYAML
     with open(path, encoding="utf-8") as f:
         content = f.read()
 
-    # Разделяем frontmatter и тело
     m = re.match(r'^---\n(.*?)\n---\n?(.*)', content, re.DOTALL)
     if not m:
         print(f"[WARN] Нет frontmatter в {path}")
@@ -38,34 +58,51 @@ def parse_md(path):
 
     frontmatter = m.group(1)
     body = m.group(2).strip()
-
     data = {}
     current_key = None
     current_lines = []
-    in_list = False
+    is_block = False  # >- или |
 
     for line in frontmatter.split("\n"):
-        # Список (gallery)
-        if line.startswith("  - "):
+        # Элемент списка
+        if re.match(r'^  - ', line):
             if current_key:
-                if current_key not in data:
+                if not isinstance(data.get(current_key), list):
                     data[current_key] = []
                 data[current_key].append(line[4:].strip().strip('"'))
             continue
 
-        kv = re.match(r'^(\w+):\s*(.*)', line)
+        # Продолжение блочного скаляра (>- или |)
+        if is_block and (line.startswith("  ") or line == ""):
+            current_lines.append(line.strip())
+            continue
+
+        kv = re.match(r'^([\w]+):\s*(.*)', line)
         if kv:
+            # Сохраняем предыдущий ключ
             if current_key and current_key not in data:
-                data[current_key] = "\n".join(current_lines).strip()
+                data[current_key] = "\n\n".join(
+                    p for p in "\n".join(current_lines).split("\n\n") if p.strip()
+                ).strip()
             current_key = kv.group(1)
             val = kv.group(2).strip().strip('"')
-            if val:
+            is_block = val in (">-", ">", "|", "|-")
+            if is_block:
+                current_lines = []
+            elif val:
                 data[current_key] = val
+                current_key = None
             else:
                 current_lines = []
         else:
-            if current_key and isinstance(data.get(current_key), str):
+            if current_key:
                 current_lines.append(line)
+
+    # Последний ключ
+    if current_key and current_key not in data:
+        data[current_key] = "\n\n".join(
+            p for p in "\n".join(current_lines).split("\n\n") if p.strip()
+        ).strip()
 
     return data, body
 
@@ -145,7 +182,9 @@ def build_page(data, body, dt):
     date_str = format_date_ru(dt)
     weekday = format_weekday(dt)
     details = build_details(data, dt)
-    body_text = build_body_text(body if body else data.get("description_full", ""))
+    # Берём description_full из frontmatter, или тело MD, или пусто
+    desc_full = data.get("description_full", "") or body or ""
+    body_text = build_body_text(desc_full)
     gallery_html = build_gallery(gallery, title)
 
     cover_bg = f"url('{cover}')" if cover else "none"
