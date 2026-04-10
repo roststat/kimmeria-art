@@ -119,6 +119,12 @@ def parse_date(date_val):
     if isinstance(date_val, date):
         return datetime(date_val.year, date_val.month, date_val.day)
     date_str = str(date_val).strip()
+    # ДД.ММ.ГГГГ
+    try:
+        return datetime.strptime(date_str, "%d.%m.%Y")
+    except Exception:
+        pass
+    # ГГГГ-ММ-ДД (старый формат, для совместимости)
     try:
         return datetime.strptime(date_str[:10], "%Y-%m-%d")
     except Exception:
