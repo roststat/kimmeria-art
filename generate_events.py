@@ -111,13 +111,18 @@ def parse_md(path):
 # Форматирование дат
 # ──────────────────────────────────────────────
 
-def parse_date(date_str):
-    from datetime import datetime
-    for fmt in ("%Y-%m-%d", "%Y-%m-%dT%H:%M:%S.%fZ", "%Y-%m-%dT%H:%M:%SZ"):
-        try:
-            return datetime.strptime(date_str[:10], "%Y-%m-%d")
-        except Exception:
-            pass
+def parse_date(date_val):
+    from datetime import datetime, date
+    # PyYAML парсит даты как объект date — конвертируем
+    if isinstance(date_val, datetime):
+        return date_val
+    if isinstance(date_val, date):
+        return datetime(date_val.year, date_val.month, date_val.day)
+    date_str = str(date_val).strip()
+    try:
+        return datetime.strptime(date_str[:10], "%Y-%m-%d")
+    except Exception:
+        pass
     raise ValueError(f"Не могу распарсить дату: {date_str}")
 
 def format_date_ru(dt):
