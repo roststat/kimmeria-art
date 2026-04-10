@@ -294,8 +294,9 @@ function sharePage(btn) {
   var popup = btn.querySelector('.share-popup');
   if (navigator.share) { navigator.share({ title: 'Идеальная среда — Киммерия-Арт', url: url }).catch(function(){}); return; }
   function showPopup() { popup.classList.add('visible'); setTimeout(function(){ popup.classList.remove('visible'); }, 2000); }
-  if (navigator.clipboard) { navigator.clipboard.writeText(url).then(showPopup).catch(fallback); }
-  else { var ta = document.createElement('textarea'); ta.value = url; ta.style.cssText = 'position:fixed;opacity:0'; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); showPopup(); }
+  function copyFallback() { var ta = document.createElement('textarea'); ta.value = url; ta.style.cssText = 'position:fixed;opacity:0;top:0;left:0'; document.body.appendChild(ta); ta.focus(); ta.select(); try { document.execCommand('copy'); showPopup(); } catch(e) {} document.body.removeChild(ta); }
+  if (navigator.clipboard) { navigator.clipboard.writeText(url).then(showPopup).catch(copyFallback); }
+  else { copyFallback(); }
 }
 function toggleMenu() {
   var burger = document.getElementById('navBurger');

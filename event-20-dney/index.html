@@ -286,7 +286,7 @@ function shareEvent(btn) {
     document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
     showPopup();
   }
-  if (navigator.clipboard) { navigator.clipboard.writeText(url).then(showPopup).catch(fallback); }
+  if (navigator.clipboard) { navigator.clipboard.writeText(url).then(showPopup).catch(copyFallback); }
   else { fallback(); }
 }
 function toggleMenu() {
