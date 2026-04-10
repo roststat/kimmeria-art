@@ -119,7 +119,24 @@ def build_body_text(data):
     return "\n".join(parts)
 
 
-def build_event_page(data, dt, cover_web_path):
+def build_gallery_html(gallery_paths, slug, title):
+    """gallery_paths — список web-путей (photos/...)"""
+    if not gallery_paths:
+        return ""
+    imgs = "\n".join(
+        f'        <img src="/{p}" alt="{title} фото {i+1}" onclick="openLightbox(this.src)" loading="lazy">'
+        for i, p in enumerate(gallery_paths)
+    )
+    return f"""
+    <div class="event-gallery">
+      <h2 class="event-gallery-title">Фотоотчёт</h2>
+      <div class="gallery-grid-2">
+{imgs}
+      </div>
+    </div>"""
+
+
+def build_event_page(data, dt, cover_web_path, gallery_paths=None):
     slug = data["SLUG"]
     title = data["НАЗВАНИЕ"]
     format_ = data["ФОРМАТ"]
@@ -133,6 +150,7 @@ def build_event_page(data, dt, cover_web_path):
     weekday = format_weekday(dt)
     details = build_details_list(data, dt)
     body_text = build_body_text(data)
+    gallery_html = build_gallery_html(gallery_paths or [], slug, title)
 
     return f"""<!DOCTYPE html>
 <html lang="ru">
@@ -191,6 +209,10 @@ def build_event_page(data, dt, cover_web_path):
     .event-details-list li strong {{ color: #111111; font-weight: 600; min-width: 90px; font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; }}
     .event-body-text {{ font-size: 15px; color: #444444; line-height: 1.8; max-width: 580px; margin-bottom: 40px; }}
     .event-body-text p {{ margin-bottom: 16px; }}
+    .event-gallery {{ margin-bottom: 40px; max-width: 620px; }}
+    .event-gallery-title {{ font-size: 20px; font-weight: 600; color: #111111; margin-bottom: 16px; }}
+    .gallery-grid-2 {{ display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }}
+    .gallery-grid-2 img {{ width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; border-radius: 8px; cursor: zoom-in; }}
     .event-sidebar {{ position: sticky; top: 80px; background: #ffffff; border: 1px solid #e8e8e8; border-radius: 16px; padding: 32px; }}
     .sidebar-date-block {{ margin-bottom: 24px; border-bottom: 1px solid #e8e8e8; padding-bottom: 24px; }}
     .sidebar-date-label {{ font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #666666; font-weight: 600; margin-bottom: 6px; }}
@@ -313,6 +335,7 @@ def build_event_page(data, dt, cover_web_path):
     <div class="event-body-text">
 {body_text}
     </div>
+{gallery_html}
   </div>
 
   <div class="event-sidebar">
@@ -591,12 +614,28 @@ def main():
         cover_web_path = f"photos/{cover_filename}"
         print(f"[OK] Обложка скопирована: {cover_web_path}")
 
+    # Фотографии с мероприятия (все jpg/png в папке, кроме обложки)
+    event_folder = os.path.dirname(os.path.abspath(event_file))
+    cover_basename = os.path.basename(cover_src).lower()
+    img_exts = {".jpg", ".jpeg", ".png", ".webp"}
+    gallery_paths = []
+    for fname in sorted(os.listdir(event_folder)):
+        if fname.lower() == cover_basename:
+            continue
+        if os.path.splitext(fname)[1].lower() in img_exts:
+            dest_name = f"{slug}-photo-{len(gallery_paths)+1}{os.path.splitext(fname)[1]}"
+            dest_path = os.path.join(SITE_DIR, "photos", dest_name)
+            shutil.copy2(os.path.join(event_folder, fname), dest_path)
+            gallery_paths.append(f"photos/{dest_name}")
+    if gallery_paths:
+        print(f"[OK] Фотографий с мероприятия: {len(gallery_paths)}")
+
     # Создать папку страницы
     event_dir = os.path.join(SITE_DIR, slug)
     os.makedirs(event_dir, exist_ok=True)
 
     # Сгенерировать страницу
-    page_html = build_event_page(data, dt, cover_web_path)
+    page_html = build_event_page(data, dt, cover_web_path, gallery_paths)
     page_path = os.path.join(event_dir, "index.html")
     with open(page_path, "w", encoding="utf-8") as f:
         f.write(page_html)
