@@ -643,22 +643,29 @@ def main():
         if not os.path.isabs(foto_dir):
             foto_dir = os.path.join(os.path.dirname(os.path.abspath(event_file)), foto_dir)
     else:
-        # Если обложка лежит не рядом с txt — берём папку обложки
         txt_dir = os.path.dirname(os.path.abspath(event_file))
         cover_dir = os.path.dirname(cover_src) if has_cover else txt_dir
-        foto_dir = cover_dir if cover_dir != SITE_DIR else txt_dir
+        # Никогда не берём фото из корня сайта — там лежат favicon и другой мусор
+        if cover_dir == SITE_DIR or cover_dir == os.path.join(SITE_DIR, "photos"):
+            foto_dir = txt_dir if txt_dir != SITE_DIR else None
+        else:
+            foto_dir = cover_dir
     event_folder = foto_dir
     cover_basename = os.path.basename(cover_src).lower()
     img_exts = {".jpg", ".jpeg", ".png", ".webp"}
     gallery_paths = []
-    for fname in sorted(os.listdir(event_folder)):
-        if fname.lower() == cover_basename:
-            continue
-        if os.path.splitext(fname)[1].lower() in img_exts:
-            dest_name = f"{slug}-photo-{len(gallery_paths)+1}{os.path.splitext(fname)[1]}"
-            dest_path = os.path.join(SITE_DIR, "photos", dest_name)
-            shutil.copy2(os.path.join(event_folder, fname), dest_path)
-            gallery_paths.append(f"photos/{dest_name}")
+    if not event_folder or not os.path.isdir(event_folder) or os.path.abspath(event_folder) == SITE_DIR:
+        print("[i]  Папка с фото не определена — фотоотчёт пропущен")
+        event_folder = None
+    if event_folder:
+        for fname in sorted(os.listdir(event_folder)):
+            if fname.lower() == cover_basename:
+                continue
+            if os.path.splitext(fname)[1].lower() in img_exts:
+                dest_name = f"{slug}-photo-{len(gallery_paths)+1}{os.path.splitext(fname)[1]}"
+                dest_path = os.path.join(SITE_DIR, "photos", dest_name)
+                shutil.copy2(os.path.join(event_folder, fname), dest_path)
+                gallery_paths.append(f"photos/{dest_name}")
     if gallery_paths:
         print(f"[OK] Фотографий с мероприятия: {len(gallery_paths)}")
 
