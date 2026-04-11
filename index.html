@@ -458,6 +458,64 @@ footer {
 .footer-links a:hover { color: #111111; }
 .footer-copy { font-size: 12px; color: #bbbbbb; }
 
+/* ── IDEALNAYA SREDA MODAL ── */
+.is-overlay {
+  display: none; position: fixed; inset: 0; z-index: 300;
+  background: rgba(0,0,0,0.5); align-items: flex-end; justify-content: center;
+  backdrop-filter: blur(4px);
+}
+.is-overlay.open { display: flex; }
+.is-sheet {
+  background: #ffffff; border-radius: 20px 20px 0 0;
+  padding: 32px 32px 40px; max-width: 560px; width: 100%;
+  box-shadow: 0 -8px 40px rgba(0,0,0,0.15);
+  animation: slideUp 0.28s ease;
+}
+@keyframes slideUp {
+  from { transform: translateY(40px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.is-sheet-badge {
+  display: inline-block; font-size: 10px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: #ffffff; background: #1a4a3a; padding: 4px 12px; border-radius: 100px;
+  margin-bottom: 16px;
+}
+.is-sheet-title {
+  font-size: 26px; font-weight: 700; color: #111111; line-height: 1.2; margin-bottom: 12px;
+}
+.is-sheet-text {
+  font-size: 15px; color: #555555; line-height: 1.75; margin-bottom: 24px;
+}
+.is-sheet-details {
+  display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 28px;
+}
+.is-sheet-detail {
+  font-size: 13px; color: #444444;
+  background: #f5f5f5; padding: 8px 14px; border-radius: 100px;
+}
+.is-sheet-detail strong { color: #111111; }
+.is-sheet-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.is-btn-primary {
+  flex: 1; min-width: 140px; padding: 14px 20px; text-align: center;
+  background: #111111; color: #ffffff;
+  font-size: 13px; font-weight: 700; text-decoration: none;
+  border-radius: 100px; transition: opacity 0.15s; display: inline-block;
+}
+.is-btn-primary:hover { opacity: 0.85; }
+.is-btn-secondary {
+  flex: 1; min-width: 140px; padding: 14px 20px; text-align: center;
+  background: #ffffff; color: #111111; border: 1px solid #e8e8e8;
+  font-size: 13px; font-weight: 600; text-decoration: none;
+  border-radius: 100px; transition: background 0.15s; cursor: pointer;
+  font-family: inherit; display: inline-block;
+}
+.is-btn-secondary:hover { background: #f5f5f5; }
+@media (max-width: 600px) {
+  .is-sheet { padding: 24px 20px 32px; border-radius: 16px 16px 0 0; }
+  .is-sheet-title { font-size: 22px; }
+}
+
 /* ── TABLET ── */
 @media (max-width: 900px) {
   nav { padding: 0 20px; }
@@ -535,7 +593,7 @@ footer {
     </button>
     <div class="nav-dropdown-menu" id="navDropdownMenu">
       <a href="/kinoklub/">Киноклуб<small>Авторские кинопоказы</small></a>
-      <a href="/idealnaya-sreda/">Идеальная среда<small>Лекции и встречи</small></a>
+      <a href="#" onclick="openIdealnayaSreda(event)">Идеальная среда<small>Лекции и встречи</small></a>
       <a href="/programmy/" style="border-top:1px solid #e8e8e8;margin-top:4px;padding-top:14px;">Все программы<small>Полный каталог</small></a>
     </div>
   </div>
@@ -1650,6 +1708,24 @@ footer {
 
 </script>
 </div><!-- /page-wrap -->
+<!-- IDEALNAYA SREDA MODAL -->
+<div class="is-overlay" id="idealnayaSredaOverlay" onclick="closeIdealnayaSreda(event)">
+  <div class="is-sheet" onclick="event.stopPropagation()">
+    <div class="is-sheet-badge">Партнёрский клуб</div>
+    <div class="is-sheet-title">Идеальная среда</div>
+    <p class="is-sheet-text">Партнёрский клуб «Идеальная среда» работает на базе арт-пространства «Киммерия». Это место для общения с интересными людьми: лекции, дискуссии, творческие встречи — каждую среду в 19:00.</p>
+    <div class="is-sheet-details">
+      <span class="is-sheet-detail"><strong>Когда</strong> · Каждую среду, 19:00</span>
+      <span class="is-sheet-detail"><strong>Где</strong> · ул. Игнатенко, 5, оф. 2</span>
+      <span class="is-sheet-detail"><strong>Стоимость</strong> · 1 000 ₽</span>
+    </div>
+    <div class="is-sheet-actions">
+      <a href="/idealnaya-sreda/" class="is-btn-primary">Расписание и билеты</a>
+      <button class="is-btn-secondary" onclick="closeIdealnayaSreda()">Закрыть</button>
+    </div>
+  </div>
+</div>
+
 <script>
 function toggleDots() {
   var btn = document.getElementById('navDotsBtn');
@@ -1671,6 +1747,25 @@ function toggleDropdown() {
   btn.classList.toggle('open');
   menu.classList.toggle('open');
 }
+function openIdealnayaSreda(e) {
+  if (e) e.preventDefault();
+  var btn = document.getElementById('navDropdownBtn');
+  var menu = document.getElementById('navDropdownMenu');
+  if (btn) btn.classList.remove('open');
+  if (menu) menu.classList.remove('open');
+  document.getElementById('idealnayaSredaOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeIdealnayaSreda(e) {
+  document.getElementById('idealnayaSredaOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    document.getElementById('idealnayaSredaOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+});
 document.addEventListener('click', function(e) {
   var btn = document.getElementById('navDropdownBtn');
   var menu = document.getElementById('navDropdownMenu');

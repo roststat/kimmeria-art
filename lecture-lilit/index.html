@@ -173,7 +173,16 @@
   <ul class="nav-links">
   </ul>
   <a href="/idealnaya-sreda/" class="nav-back">← Идеальная среда</a>
+  <button class="nav-burger" id="navBurger" onclick="toggleMenu()" aria-label="Меню">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="/idealnaya-sreda/" onclick="closeMenu()">← Идеальная среда</a>
+  <div class="mobile-menu-divider"></div>
+  <a href="/" onclick="closeMenu()">На главную</a>
+</div>
 
 <div class="event-hero">
   <div class="event-hero-bg" style="background-image: url('/photos/lecture-lilit.jpg');"></div>
