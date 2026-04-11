@@ -178,6 +178,18 @@
       .nav-back { display: none; }
       .nav-burger { display: flex; }
     }
+  
+    .nav-back-mobile {
+      display: none; font-size: 13px; font-weight: 700; color: #ffffff;
+      background: #1a4a3a; text-decoration: none; padding: 8px 18px;
+      border-radius: 100px; transition: opacity 0.15s; white-space: nowrap;
+    }
+    .nav-back-mobile:hover { opacity: 0.85; }
+    @media (max-width: 900px) {
+      .nav-back-mobile { display: inline-block; }
+      .nav-back { display: none; }
+      .nav-burger { display: none !important; }
+    }
   </style>
 </head>
 <body>
@@ -186,16 +198,9 @@
   <a href="/" class="nav-logo">Киммерия-Арт</a>
   <ul class="nav-links"></ul>
   <a href="/#events" class="nav-back">← Все события</a>
-  <button class="nav-burger" id="navBurger" onclick="toggleMenu()" aria-label="Меню">
-    <span></span><span></span><span></span>
-  </button>
+  <a href="/#events" class="nav-back-mobile">Все события</a>
 </nav>
 
-<div class="mobile-menu" id="mobileMenu">
-  <a href="/" onclick="closeMenu()">Главная</a>
-  <a href="/kinoklub/" onclick="closeMenu()">Киноклуб</a>
-  <a href="/programmy/" onclick="closeMenu()">Программы</a>
-  <div class="mobile-menu-divider"></div>
   <a href="/#events" onclick="closeMenu()">← Все события</a>
 </div>
 

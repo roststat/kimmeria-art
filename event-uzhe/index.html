@@ -148,6 +148,18 @@
       .nav-back { display: none; }
       .nav-burger { display: flex; }
     }
+  
+    .nav-back-mobile {
+      display: none; font-size: 13px; font-weight: 700; color: #ffffff;
+      background: #1a4a3a; text-decoration: none; padding: 8px 18px;
+      border-radius: 100px; transition: opacity 0.15s; white-space: nowrap;
+    }
+    .nav-back-mobile:hover { opacity: 0.85; }
+    @media (max-width: 900px) {
+      .nav-back-mobile { display: inline-block; }
+      .nav-back { display: none; }
+      .nav-burger { display: none !important; }
+    }
   </style>
 </head>
 <body>
@@ -157,6 +169,7 @@
   <ul class="nav-links">
   </ul>
   <a href="/#events" class="nav-back">← Все события</a>
+  <a href="/#events" class="nav-back-mobile">Все события</a>
 </nav>
 
 <div class="event-hero">

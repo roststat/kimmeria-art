@@ -87,6 +87,18 @@
       .event-sidebar { padding: 24px; } .event-back-section { padding: 0 16px 32px; }
       footer { padding: 24px 16px; }
     }
+  
+    .nav-back-mobile {
+      display: none; font-size: 13px; font-weight: 700; color: #ffffff;
+      background: #1a4a3a; text-decoration: none; padding: 8px 18px;
+      border-radius: 100px; transition: opacity 0.15s; white-space: nowrap;
+    }
+    .nav-back-mobile:hover { opacity: 0.85; }
+    @media (max-width: 900px) {
+      .nav-back-mobile { display: inline-block; }
+      .nav-back { display: none; }
+      .nav-burger { display: none !important; }
+    }
   </style>
 </head>
 <body>
@@ -94,6 +106,7 @@
   <a href="/" class="nav-logo">Киммерия-Арт</a>
   <ul class="nav-links"></ul>
   <a href="/kinoklub/" class="nav-back">← Киноклуб</a>
+  <a href="/#events" class="nav-back-mobile">Все события</a>
 </nav>
 <div class="event-hero">
   <div class="event-hero-bg"></div>
