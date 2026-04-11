@@ -2,5 +2,21 @@
   "rewrites": [
     { "source": "/api/auth/callback", "destination": "/api/auth/callback" },
     { "source": "/api/auth", "destination": "/api/auth/index" }
+  ],
+  "headers": [
+    {
+      "source": "/events.json",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Cache-Control", "value": "public, max-age=300" }
+      ]
+    },
+    {
+      "source": "/widget.js",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Cache-Control", "value": "public, max-age=300" }
+      ]
+    }
   ]
 }

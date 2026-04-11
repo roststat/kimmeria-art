@@ -1,0 +1,74 @@
+[
+  {
+    "id": "uzhe",
+    "title": "«УЖЕ» — авторская постановка Мимлы Же",
+    "description": "Четыре стихотворные сказки о Мухе, Авоське, Русалке и Королевской чете. Бытовой символизм, философия и самоирония. 12+",
+    "date": "2026-04-05",
+    "date_label": "5 апреля · 18:00",
+    "format": "спектакль",
+    "location": "Галерея «Стикс», ул. Игнатенко, 10",
+    "price": "800 ₽",
+    "image": "https://art-kimmeria.ru/photos/photo_819@30-03-2026_09-17-02.jpg",
+    "url": "https://art-kimmeria.ru/event-uzhe/"
+  },
+  {
+    "id": "ryba",
+    "title": "«Лучше я буду рыбой...»",
+    "description": "Спектакль-притча по мотивам Чингиза Айтматова «Белый пароход». Театр анимации, тотемы, живая этническая музыка. 12+",
+    "date": "2026-04-20",
+    "date_label": "20 апреля · 18:30",
+    "format": "спектакль",
+    "location": "Галерея «Стикс», ул. Игнатенко, 10",
+    "price": "800 ₽",
+    "image": "https://art-kimmeria.ru/photos/event-ryba.jpg",
+    "url": "https://art-kimmeria.ru/event-ryba/"
+  },
+  {
+    "id": "lecture-afrodita",
+    "title": "«Пространство Афродиты»",
+    "description": "Первая лекция цикла «Ялта: Территория Божественных игр». Ялта как пространство богини любви — через Пушкина и Чехова.",
+    "date": "2026-04-15",
+    "date_label": "15 апреля · 19:00",
+    "format": "лекция",
+    "location": "Арт-пространство «Киммерия», ул. Игнатенко, 5",
+    "price": "1 000 ₽",
+    "image": "https://art-kimmeria.ru/photos/lecture-afrodita.jpg",
+    "url": "https://art-kimmeria.ru/lecture-afrodita/"
+  },
+  {
+    "id": "lecture-gekata",
+    "title": "«Геката в Фияльте»",
+    "description": "Вторая лекция цикла «Ялта: Территория Божественных игр». Тёмная женственность, Набоков и «Весна в Фияльте».",
+    "date": "2026-04-22",
+    "date_label": "22 апреля · 19:00",
+    "format": "лекция",
+    "location": "Арт-пространство «Киммерия», ул. Игнатенко, 5",
+    "price": "1 000 ₽",
+    "image": "https://art-kimmeria.ru/photos/lecture-gekata.jpg",
+    "url": "https://art-kimmeria.ru/lecture-gekata/"
+  },
+  {
+    "id": "lecture-lilit",
+    "title": "«Осторожно, Лилит!»",
+    "description": "Третья лекция цикла «Ялта: Территория Божественных игр». Лилит — первая женщина, символ свободы и демон ночи.",
+    "date": "2026-04-29",
+    "date_label": "29 апреля · 19:00",
+    "format": "лекция",
+    "location": "Арт-пространство «Киммерия», ул. Игнатенко, 5",
+    "price": "1 000 ₽",
+    "image": "https://art-kimmeria.ru/photos/lecture-lilit.jpg",
+    "url": "https://art-kimmeria.ru/lecture-lilit/"
+  },
+  {
+    "id": "aivazovskogo",
+    "title": "«Дом для Айвазовского» — премьерный показ",
+    "description": "Премьера семейной драмы о важности слышать друг друга. Съёмки проходили в Крыму. Вход свободный, по регистрации.",
+    "date": "2026-04-15",
+    "date_label": "15 апреля 2026",
+    "format": "кинопоказ",
+    "location": "Симферополь, кинотеатр «Спартак», ул. Пушкина, 9А",
+    "price": "Свободный вход",
+    "image": "https://art-kimmeria.ru/photos/event-dom-aivazovskogo-cover.jpg",
+    "url": "https://art-kimmeria.ru/event-dom-aivazovskogo/"
+  }
+]
