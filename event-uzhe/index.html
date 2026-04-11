@@ -160,9 +160,31 @@
       .nav-back { display: none; }
       .nav-burger { display: none !important; }
     }
+  
+    /* FLOATING BACK BUTTON */
+    .fab-back {
+      position: fixed; top: 72px; right: 20px; z-index: 200;
+      display: none;
+      align-items: center; gap: 7px;
+      background: #ffffff; color: #111111;
+      font-family: inherit; font-size: 13px; font-weight: 600;
+      padding: 9px 16px 9px 12px;
+      border-radius: 100px; border: 1px solid #e8e8e8;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+      cursor: pointer; text-decoration: none;
+      transition: box-shadow 0.15s, transform 0.15s;
+    }
+    .fab-back:hover { box-shadow: 0 6px 22px rgba(0,0,0,0.14); transform: translateY(-1px); }
+    .fab-back svg { width: 16px; height: 16px; flex-shrink: 0; }
+    @media (max-width: 900px) { .fab-back { display: flex; } }
   </style>
 </head>
 <body>
+
+<button class="fab-back" id="fabBack" onclick="fabGoBack()" aria-label="Назад">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 5l-7 7 7 7"/></svg>
+  Назад
+</button>
 
 <nav>
   <a href="/" class="nav-logo">Киммерия-Арт</a>
@@ -284,6 +306,14 @@
 </div>
 
 <script>
+
+function fabGoBack() {
+  if (document.referrer && document.referrer !== window.location.href) {
+    history.back();
+  } else {
+    window.location.href = '/#events';
+  }
+}
 function openLightbox(src) {
   document.getElementById('lightboxImg').src = src;
   document.getElementById('lightbox').classList.add('open');
