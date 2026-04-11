@@ -458,6 +458,40 @@ footer {
 .footer-links a:hover { color: #111111; }
 .footer-copy { font-size: 12px; color: #bbbbbb; }
 
+/* ── PAST LIST MODE ── */
+.events-grid.past-list-mode {
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+.events-grid.past-list-mode .event-card {
+  flex-direction: row;
+  border-radius: 12px;
+  height: 88px;
+}
+.events-grid.past-list-mode .event-photo-wrap {
+  width: 88px;
+  min-width: 88px;
+  aspect-ratio: unset;
+  height: 88px;
+  border-radius: 10px 0 0 10px;
+  flex-shrink: 0;
+}
+.events-grid.past-list-mode .event-body {
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+  min-width: 0;
+}
+.events-grid.past-list-mode .event-date-line { margin-bottom: 2px; }
+.events-grid.past-list-mode .event-title { font-size: 14px; margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.events-grid.past-list-mode .event-desc { display: none; }
+.events-grid.past-list-mode .event-bottom { padding-top: 4px; border-top: none; margin-top: 0; }
+.events-grid.past-list-mode .event-badge { display: none; }
+.events-grid.past-list-mode .event-share-btn { display: none; }
+.events-grid.past-list-mode .event-card:hover { transform: none; box-shadow: 0 2px 12px rgba(0,0,0,0.07); }
+
 /* ── TABLET ── */
 @media (max-width: 900px) {
   nav { padding: 0 20px; }
@@ -624,8 +658,7 @@ footer {
         <div class="event-bottom">
           <span class="event-location">Галерея «Стикс», ул. Игнатенко, 10</span>
           <div>
-            <div class="event-price">По билетам</div>
-            <a href="https://afisha.payberry.ru/yzhe" class="event-buy-btn" onclick="event.stopPropagation()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9a1 1 0 0 1 0-2V5a1 1 0 0 1 1-1h18a1 1 0 0 1 1 1v2a1 1 0 0 1 0 2v2a1 1 0 0 1 0 2v2a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-2a1 1 0 0 1 0-2V9z"/><line x1="9" y1="4" x2="9" y2="20"/></svg>Купить</a>
+            <div class="event-price">800 ₽</div>
           </div>
         </div>
       </div>
@@ -648,7 +681,7 @@ footer {
         <div class="event-bottom">
           <span class="event-location">Галерея «Стикс», ул. Игнатенко, 10</span>
           <div>
-            <div class="event-price">По билетам</div>
+            <div class="event-price">800 ₽</div>
           </div>
         </div>
       </div>
@@ -671,7 +704,7 @@ footer {
         <div class="event-bottom">
           <span class="event-location">Арт-пространство «Киммерия», ул. Игнатенко, 5</span>
           <div>
-            <div class="event-price">По телефону</div>
+            <div class="event-price">1 000 ₽</div>
           </div>
         </div>
       </div>
@@ -694,7 +727,7 @@ footer {
         <div class="event-bottom">
           <span class="event-location">Арт-пространство «Киммерия», ул. Игнатенко, 5</span>
           <div>
-            <div class="event-price">По телефону</div>
+            <div class="event-price">1 000 ₽</div>
           </div>
         </div>
       </div>
@@ -717,7 +750,7 @@ footer {
         <div class="event-bottom">
           <span class="event-location">Арт-пространство «Киммерия», ул. Игнатенко, 5</span>
           <div>
-            <div class="event-price">По телефону</div>
+            <div class="event-price">1 000 ₽</div>
           </div>
         </div>
       </div>
@@ -725,7 +758,7 @@ footer {
 
 
     <!-- «Дом для Айвазовского» — премьерный показ -->
-    <div class="event-card past hidden" data-tab="past" data-format="кинопоказ" data-date="2026-04-15" onclick="location.href='/event-dom-aivazovskogo/'">
+    <div class="event-card" data-tab="upcoming" data-format="кинопоказ" data-date="2026-04-15" onclick="location.href='/event-dom-aivazovskogo/'">
       <div class="event-photo-wrap">
         <img src="photos/event-dom-aivazovskogo-cover.jpg" alt="«Дом для Айвазовского» — премьерный показ">
         <span class="event-badge">Кинопоказ</span>
@@ -741,8 +774,7 @@ footer {
         <div class="event-bottom">
           <span class="event-location">Симферополь, кинотеатр «Спартак», ул. Пушкина, 9А</span>
           <div>
-            <div class="event-price" style="opacity:0.5">Свободный вход / регистрация ₽</div>
-            <span class="event-past-tag">Завершено</span>
+            <div class="event-price">Свободный вход</div>
           </div>
         </div>
       </div>
@@ -1508,6 +1540,7 @@ footer {
     </div>
 
   </div>
+  <div id="upcomingSoonMsg" style="display:none; text-align:center; padding: 32px 0 8px; font-size:14px; color:#999999; letter-spacing:0.02em;">Скоро появятся новые мероприятия</div>
 </section>
 
 <!-- FOOTER -->
@@ -1578,12 +1611,20 @@ footer {
     }
 
     applyFilters();
+    const soonMsg = document.getElementById('upcomingSoonMsg');
+    if (soonMsg) soonMsg.style.display = 'block';
   }
 
   function switchTab(tab, btn) {
     currentTab = tab;
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
+    const grid = document.getElementById('eventsGrid');
+    if (tab === 'past') {
+      grid.classList.add('past-list-mode');
+    } else {
+      grid.classList.remove('past-list-mode');
+    }
     applyFilters();
   }
 
@@ -1617,6 +1658,8 @@ footer {
         card.classList.add('hidden');
       }
     });
+    const soonMsg = document.getElementById('upcomingSoonMsg');
+    if (soonMsg) soonMsg.style.display = currentTab === 'upcoming' ? 'block' : 'none';
   }
 
   document.addEventListener('DOMContentLoaded', initEvents);
