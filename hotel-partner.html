@@ -1,0 +1,1625 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Гранд Отель Ялта — мероприятия для гостей · Киммерия-Арт</title>
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --accent: #1a4a3a;
+  --accent-dark: #0f2e24;
+  --hotel: #8B6914;
+  --hotel-light: #f9f4ea;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Onest', Arial, sans-serif;
+  background: #ffffff;
+  color: #111111;
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+.page-wrap {
+  background: #ffffff;
+  max-width: 1440px;
+  margin: 0 auto;
+  box-shadow: 0 0 40px rgba(0,0,0,0.08);
+}
+
+/* ── PARTNER BADGE (fixed top) ── */
+.partner-banner {
+  position: fixed; top: 0; left: 50%; transform: translateX(-50%);
+  width: 100%; max-width: 1440px; z-index: 200;
+  background: var(--accent-dark);
+  display: flex; align-items: center; justify-content: center;
+  gap: 12px; padding: 9px 20px;
+  font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85);
+  letter-spacing: 0.04em;
+}
+.partner-banner strong { color: #ffffff; }
+.partner-banner-badge {
+  background: rgba(255,255,255,0.15);
+  font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  color: #ffffff; padding: 3px 10px; border-radius: 100px;
+}
+
+/* ── TOOLTIP ── */
+.tip-wrap { position: relative; display: inline-flex; vertical-align: middle; }
+.tip-icon {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 20px; height: 20px; border-radius: 50%;
+  background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.4);
+  font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.8);
+  cursor: pointer; user-select: none; flex-shrink: 0;
+  transition: background 0.15s;
+}
+.tip-icon.dark {
+  background: #f5f5f5; border-color: #e0e0e0;
+  color: #666666;
+}
+.tip-icon:hover { background: rgba(255,255,255,0.3); }
+.tip-icon.dark:hover { background: #ebebeb; }
+.tip-box {
+  position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%);
+  background: #111111; color: #ffffff;
+  font-size: 12px; font-weight: 400; line-height: 1.55;
+  padding: 10px 14px; border-radius: 10px;
+  width: 240px; pointer-events: none;
+  opacity: 0; transform: translateX(-50%) translateY(4px);
+  transition: opacity 0.18s, transform 0.18s;
+  z-index: 300;
+}
+.tip-box::after {
+  content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+  border: 5px solid transparent; border-top-color: #111111;
+}
+.tip-wrap:hover .tip-box { opacity: 1; transform: translateX(-50%) translateY(0); }
+.tip-hint {
+  background: #f9f9f9; border: 1px solid #e8e8e8; border-left: 3px solid var(--accent);
+  border-radius: 8px; padding: 10px 14px;
+  font-size: 12px; color: #555555; line-height: 1.55;
+  margin-top: 10px;
+}
+.tip-hint b { color: #111111; }
+
+/* ── HERO ── */
+.hotel-hero {
+  margin-top: 38px;
+  position: relative;
+  min-height: 480px;
+  display: flex; align-items: flex-end;
+  overflow: hidden;
+}
+.hotel-hero-bg {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, #0a2a3a 0%, #1a4a5a 40%, #2a6070 70%, #3a8090 100%);
+  z-index: 0;
+}
+.hotel-hero-bg::after {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 40% at 70% 60%, rgba(58,128,144,0.5) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 60% at 20% 80%, rgba(10,42,58,0.8) 0%, transparent 60%),
+    linear-gradient(to bottom, transparent 30%, rgba(0,0,0,0.65) 100%);
+}
+/* Decorative sea waves */
+.hotel-hero-waves {
+  position: absolute; bottom: 0; left: 0; right: 0; height: 120px;
+  background: linear-gradient(to top, rgba(0,0,0,0.4) 0%, transparent 100%);
+  z-index: 1;
+}
+.hotel-hero-waves::before {
+  content: '';
+  position: absolute; bottom: 30px; left: -10%; right: -10%;
+  height: 40px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 50%;
+  transform: scaleX(1.1);
+}
+.hotel-hero-waves::after {
+  content: '';
+  position: absolute; bottom: 50px; left: -5%; right: -5%;
+  height: 25px;
+  background: rgba(255,255,255,0.04);
+  border-radius: 50%;
+}
+.hotel-hero-content {
+  position: relative; z-index: 2;
+  padding: 48px 60px 56px;
+  width: 100%;
+  display: flex; align-items: flex-end; justify-content: space-between; gap: 40px;
+}
+.hotel-hero-left {}
+.hotel-logo-placeholder {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 10px; padding: 8px 16px; margin-bottom: 28px;
+  font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.7);
+  letter-spacing: 0.06em; text-transform: uppercase;
+}
+.hotel-logo-icon {
+  width: 28px; height: 28px; border-radius: 6px;
+  background: rgba(255,255,255,0.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px;
+}
+.hotel-hero-label {
+  font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(255,255,255,0.55); margin-bottom: 12px;
+}
+.hotel-hero-title {
+  font-size: 48px; font-weight: 700; color: #ffffff; line-height: 1.1;
+  letter-spacing: -0.02em; margin-bottom: 12px;
+}
+.hotel-hero-slogan {
+  font-size: 18px; color: rgba(255,255,255,0.75); line-height: 1.4; margin-bottom: 36px;
+}
+.hotel-hero-cta {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 14px; font-weight: 700; color: #ffffff;
+  background: var(--accent); border: none;
+  padding: 15px 28px; border-radius: 100px;
+  text-decoration: none; cursor: pointer;
+  letter-spacing: 0.03em;
+  transition: background 0.15s, transform 0.15s;
+}
+.hotel-hero-cta:hover { background: var(--accent-dark); transform: translateY(-2px); }
+.hotel-hero-cta svg { width: 16px; height: 16px; }
+.hotel-hero-tip {
+  align-self: flex-end;
+  background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 14px; padding: 16px 20px;
+  max-width: 300px;
+  display: flex; gap: 10px; align-items: flex-start;
+}
+.hotel-hero-tip-icon {
+  font-size: 18px; flex-shrink: 0; margin-top: 2px;
+}
+.hotel-hero-tip p {
+  font-size: 12px; color: rgba(255,255,255,0.8); line-height: 1.55;
+}
+
+/* ── SECTION ── */
+.section { padding: 72px 60px; }
+.section + .section { border-top: 1px solid #e8e8e8; }
+.section-label {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  color: #999999; margin-bottom: 8px;
+}
+.section-title {
+  font-size: 32px; font-weight: 700; color: #111111; line-height: 1.2;
+  letter-spacing: -0.01em; margin-bottom: 8px;
+}
+.section-sub {
+  font-size: 16px; color: #666666; line-height: 1.6;
+}
+
+/* ── PARTNER PANEL (B1) ── */
+.partner-panel {
+  background: var(--accent-dark);
+  border-radius: 20px;
+  padding: 32px 36px;
+  color: #ffffff;
+  margin-bottom: 40px;
+}
+.partner-panel-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 6px; gap: 12px;
+}
+.partner-panel-title {
+  font-size: 20px; font-weight: 700; color: #ffffff;
+  display: flex; align-items: center; gap: 8px;
+}
+.partner-badge-label {
+  font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.8);
+  padding: 3px 9px; border-radius: 100px;
+}
+.partner-panel-sub {
+  font-size: 13px; color: rgba(255,255,255,0.6); margin-bottom: 24px;
+}
+.panel-mode-switch {
+  display: flex; gap: 6px; margin-bottom: 24px;
+}
+.panel-mode-btn {
+  font-family: 'Onest', Arial, sans-serif;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 9px 18px; border-radius: 100px; border: 1px solid rgba(255,255,255,0.25);
+  background: transparent; color: rgba(255,255,255,0.6); cursor: pointer;
+  transition: all 0.15s;
+}
+.panel-mode-btn.active { background: #ffffff; color: var(--accent-dark); border-color: #ffffff; }
+.panel-mode-btn:not(.active):hover { border-color: rgba(255,255,255,0.5); color: #ffffff; }
+.panel-events-list {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+  margin-bottom: 20px;
+}
+.panel-event-item {
+  display: flex; align-items: center; gap: 10px;
+  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 10px; padding: 10px 14px; cursor: pointer;
+  transition: background 0.15s;
+}
+.panel-event-item:hover { background: rgba(255,255,255,0.12); }
+.panel-event-item input[type="checkbox"] {
+  width: 16px; height: 16px; accent-color: #4ade80; cursor: pointer; flex-shrink: 0;
+}
+.panel-event-name {
+  font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.85); line-height: 1.3;
+}
+.panel-event-format {
+  font-size: 10px; color: rgba(255,255,255,0.4); text-transform: uppercase;
+  letter-spacing: 0.06em; margin-top: 1px;
+}
+.panel-actions {
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+}
+.panel-save-btn {
+  font-family: 'Onest', Arial, sans-serif;
+  font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+  background: #4ade80; color: #0f2e24; border: none;
+  padding: 10px 22px; border-radius: 100px; cursor: pointer;
+  transition: opacity 0.15s;
+}
+.panel-save-btn:hover { opacity: 0.85; }
+.panel-preview-btn {
+  font-family: 'Onest', Arial, sans-serif;
+  font-size: 12px; font-weight: 600; letter-spacing: 0.06em;
+  color: rgba(255,255,255,0.7); background: transparent; border: none; cursor: pointer;
+  padding: 10px 0; display: flex; align-items: center; gap: 6px;
+  transition: color 0.15s;
+}
+.panel-preview-btn:hover { color: #ffffff; }
+.panel-preview-btn svg { width: 14px; height: 14px; }
+.panel-tip { margin-top: 16px; }
+.panel-tip p {
+  font-size: 12px; color: rgba(255,255,255,0.55); line-height: 1.55;
+  background: rgba(255,255,255,0.06); border-radius: 8px;
+  padding: 10px 14px; border-left: 2px solid rgba(255,255,255,0.2);
+}
+
+/* ── CATALOG SECTION ── */
+.catalog-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 28px; flex-wrap: wrap; gap: 16px;
+}
+.catalog-title { font-size: 24px; font-weight: 700; color: #111111; }
+.catalog-filters { display: flex; gap: 6px; flex-wrap: wrap; }
+.cat-filter {
+  font-family: 'Onest', Arial, sans-serif;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase;
+  padding: 6px 14px; border-radius: 100px;
+  border: 1px solid #e8e8e8; background: #ffffff; color: #666666;
+  cursor: pointer; transition: all 0.15s;
+}
+.cat-filter.active { background: var(--accent); color: #ffffff; border-color: var(--accent); }
+.cat-filter:not(.active):hover { border-color: var(--accent); color: var(--accent); }
+
+/* ── EVENTS GRID ── */
+.events-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.event-card {
+  background: #ffffff; border: 1px solid #e8e8e8; border-radius: 16px;
+  overflow: hidden; display: flex; flex-direction: column;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.event-card:hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(0,0,0,0.08); }
+.event-card.past { opacity: 0.72; }
+.event-photo-wrap {
+  position: relative; aspect-ratio: 3/2; overflow: hidden; flex-shrink: 0;
+}
+.event-photo-wrap img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform 0.3s ease;
+}
+.event-card:hover .event-photo-wrap img { transform: scale(1.04); }
+.event-badge {
+  position: absolute; top: 10px; left: 10px;
+  background: var(--accent); color: #ffffff;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 4px 10px; border-radius: 100px;
+}
+.event-badge.past-badge {
+  background: rgba(0,0,0,0.45);
+}
+.event-body { padding: 16px 18px 18px; display: flex; flex-direction: column; flex: 1; }
+.event-date-line { font-size: 12px; font-weight: 600; color: #111111; margin-bottom: 6px; }
+.event-title { font-size: 15px; font-weight: 700; color: #111111; line-height: 1.35; margin-bottom: 6px; }
+.event-desc { font-size: 12px; color: #666666; line-height: 1.6; margin-bottom: 14px; flex: 1; }
+.event-bottom {
+  display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  padding-top: 12px; border-top: 1px solid #e8e8e8; margin-top: auto; flex-wrap: wrap;
+}
+.event-price { font-size: 13px; font-weight: 600; color: #111111; }
+.event-buy-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 10px; font-weight: 700; color: #ffffff;
+  background: linear-gradient(135deg, #0f2e24, #1a4a3a);
+  padding: 7px 14px; border-radius: 100px; text-decoration: none;
+  letter-spacing: 0.07em; text-transform: uppercase;
+  transition: opacity 0.15s; white-space: nowrap; border: none; cursor: pointer;
+}
+.event-buy-btn:hover { opacity: 0.88; }
+.event-notify-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 10px; font-weight: 700; color: var(--accent);
+  background: #f0faf8; border: 1px solid #c8e8e0;
+  padding: 7px 14px; border-radius: 100px; text-decoration: none;
+  letter-spacing: 0.07em; text-transform: uppercase;
+  transition: opacity 0.15s; white-space: nowrap; cursor: pointer;
+}
+.event-notify-btn:hover { opacity: 0.8; }
+.catalog-tip {
+  margin-top: 20px;
+}
+/* ── STEPS (Block C) ── */
+.steps-section {
+  background: #f9f9f9;
+}
+.steps-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 2px; margin-top: 48px;
+}
+.step-item {
+  background: #ffffff; border: 1px solid #e8e8e8;
+  border-radius: 16px; padding: 28px 24px;
+  position: relative;
+}
+.step-num {
+  font-size: 48px; font-weight: 700; color: #e8e8e8;
+  line-height: 1; margin-bottom: 16px; letter-spacing: -0.02em;
+}
+.step-title { font-size: 16px; font-weight: 700; color: #111111; margin-bottom: 8px; }
+.step-desc { font-size: 13px; color: #666666; line-height: 1.55; }
+.step-arrow {
+  position: absolute; top: 36px; right: -14px;
+  width: 28px; height: 28px; border-radius: 50%;
+  background: var(--accent); color: #ffffff;
+  display: flex; align-items: center; justify-content: center;
+  z-index: 1; box-shadow: 0 2px 8px rgba(26,74,58,0.3);
+}
+.step-arrow svg { width: 12px; height: 12px; }
+
+/* ── STATS (Block D) ── */
+.stats-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 16px; margin-top: 48px;
+}
+.stat-card {
+  border: 1px solid #e8e8e8; border-radius: 16px; padding: 28px 24px;
+  position: relative;
+}
+.stat-num {
+  font-size: 44px; font-weight: 700; color: var(--accent);
+  line-height: 1; margin-bottom: 6px; letter-spacing: -0.02em;
+}
+.stat-label { font-size: 14px; color: #555555; line-height: 1.4; }
+.stat-tip-btn {
+  position: absolute; top: 16px; right: 16px;
+}
+
+/* ── FORMATS (Block E) ── */
+.formats-table {
+  width: 100%; border-collapse: collapse; margin-top: 40px;
+  border-radius: 16px; overflow: hidden; border: 1px solid #e8e8e8;
+}
+.formats-table th, .formats-table td {
+  padding: 16px 20px; text-align: left;
+  border-bottom: 1px solid #e8e8e8;
+  font-size: 14px;
+}
+.formats-table th {
+  background: #f5f5f5; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase; color: #666666;
+}
+.formats-table tr:last-child td { border-bottom: none; }
+.formats-table td:first-child { font-weight: 600; color: #111111; }
+.formats-table td { color: #444444; }
+.formats-table tr td:nth-child(2),
+.formats-table tr td:nth-child(3) { color: #555555; }
+.formats-check { color: var(--accent); font-weight: 700; }
+.formats-tip { margin-top: 16px; }
+
+/* ── OWN EVENTS (Block F) ── */
+.own-events-section {
+  background: var(--hotel-light);
+  border-top: 1px solid #e8ddc8;
+}
+.own-events-header {
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 40px;
+  margin-bottom: 40px; flex-wrap: wrap;
+}
+.own-event-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--hotel); color: #ffffff;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 4px 10px; border-radius: 100px; margin-bottom: 8px;
+}
+.own-events-note {
+  background: #ffffff; border: 1px solid #e8ddc8; border-radius: 10px;
+  padding: 14px 18px; font-size: 13px; color: #666666; line-height: 1.55;
+  max-width: 400px; align-self: flex-end;
+}
+
+/* ── CABINET (Block G) ── */
+.cabinet-section { background: #f9f9f9; }
+.cabinet-mockup {
+  margin-top: 40px;
+  background: #ffffff; border: 1px solid #e8e8e8; border-radius: 20px;
+  overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+}
+.cabinet-topbar {
+  background: var(--accent-dark); padding: 12px 24px;
+  display: flex; align-items: center; gap: 8px;
+}
+.cab-dot { width: 10px; height: 10px; border-radius: 50%; }
+.cab-dot.red { background: #ff5f57; }
+.cab-dot.yellow { background: #febc2e; }
+.cab-dot.green { background: #28c840; }
+.cabinet-topbar-title {
+  font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.6);
+  margin-left: 8px; letter-spacing: 0.06em;
+}
+.cabinet-nav {
+  display: flex; border-bottom: 1px solid #e8e8e8; background: #f9f9f9;
+}
+.cabinet-nav-item {
+  font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 14px 24px; cursor: pointer; border-bottom: 2px solid transparent;
+  color: #888888; transition: color 0.15s, border-color 0.15s;
+}
+.cabinet-nav-item.active { color: var(--accent); border-bottom-color: var(--accent); }
+.cabinet-body { padding: 32px; }
+.cabinet-stats-row {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 32px;
+}
+.cab-stat {
+  background: #f9f9f9; border: 1px solid #e8e8e8; border-radius: 12px;
+  padding: 18px 20px;
+}
+.cab-stat-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  color: #999999; margin-bottom: 6px;
+}
+.cab-stat-num {
+  font-size: 28px; font-weight: 700; color: #111111; line-height: 1;
+}
+.cab-stat-sub { font-size: 11px; color: #aaaaaa; margin-top: 3px; }
+.cab-stat-num.green { color: #16a34a; }
+.cabinet-chart {
+  background: #f9f9f9; border: 1px solid #e8e8e8; border-radius: 12px;
+  padding: 20px; height: 120px;
+  display: flex; align-items: flex-end; gap: 8px;
+  overflow: hidden;
+}
+.chart-bar {
+  flex: 1; border-radius: 4px 4px 0 0;
+  background: linear-gradient(to top, var(--accent-dark), var(--accent));
+  transition: opacity 0.2s;
+}
+.chart-bar:hover { opacity: 0.7; }
+.cab-tip { margin-top: 20px; }
+
+/* ── MATERIALS (Block H) ── */
+.materials-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;
+  margin-top: 40px;
+}
+.material-card {
+  border: 1px solid #e8e8e8; border-radius: 14px; padding: 22px 24px;
+  display: flex; gap: 16px; align-items: flex-start;
+}
+.material-icon {
+  width: 44px; height: 44px; border-radius: 10px;
+  background: #f0faf8; border: 1px solid #c8e8e0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; flex-shrink: 0;
+}
+.material-name { font-size: 15px; font-weight: 700; color: #111111; margin-bottom: 4px; }
+.material-desc { font-size: 13px; color: #666666; line-height: 1.5; }
+.material-tag {
+  display: inline-block; margin-top: 8px;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+  background: #f0faf8; color: var(--accent); border-radius: 100px; padding: 3px 10px;
+}
+.material-tag.paid {
+  background: #f9f4ea; color: var(--hotel);
+}
+.materials-paid-table {
+  margin-top: 24px; border: 1px solid #e8e8e8; border-radius: 14px; overflow: hidden;
+}
+.materials-paid-table table { width: 100%; border-collapse: collapse; }
+.materials-paid-table th {
+  padding: 12px 16px; text-align: left; background: #f5f5f5;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #999999;
+  border-bottom: 1px solid #e8e8e8;
+}
+.materials-paid-table td {
+  padding: 14px 16px; font-size: 13px; color: #444444;
+  border-bottom: 1px solid #f0f0f0;
+}
+.materials-paid-table tr:last-child td { border-bottom: none; }
+.materials-paid-table td:first-child { font-weight: 600; color: #111111; }
+
+/* ── CALCULATOR (Block I) ── */
+.calc-section { background: #f9f9f9; }
+.calc-wrap {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
+  margin-top: 48px; align-items: start;
+}
+.calc-sliders {}
+.calc-slider-group { margin-bottom: 28px; }
+.calc-slider-top {
+  display: flex; justify-content: space-between; align-items: baseline;
+  margin-bottom: 8px;
+}
+.calc-slider-label { font-size: 14px; font-weight: 600; color: #111111; }
+.calc-slider-val {
+  font-size: 18px; font-weight: 700; color: var(--accent);
+}
+.calc-slider-input {
+  width: 100%; height: 6px; border-radius: 3px;
+  -webkit-appearance: none; appearance: none;
+  background: #e8e8e8; outline: none; cursor: pointer;
+}
+.calc-slider-input::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none;
+  width: 20px; height: 20px; border-radius: 50%;
+  background: var(--accent); cursor: pointer;
+  box-shadow: 0 2px 8px rgba(26,74,58,0.35);
+  transition: transform 0.1s;
+}
+.calc-slider-input::-webkit-slider-thumb:hover { transform: scale(1.15); }
+.calc-slider-hint { font-size: 11px; color: #aaaaaa; margin-top: 5px; }
+
+.calc-results {}
+.calc-cards {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px;
+}
+.calc-card {
+  background: #ffffff; border: 1px solid #e8e8e8; border-radius: 14px;
+  padding: 20px; transition: box-shadow 0.2s;
+}
+.calc-card.main {
+  border-color: var(--accent); border-width: 2px;
+  background: linear-gradient(135deg, #f0faf8, #ffffff);
+}
+.calc-card-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  color: #999999; margin-bottom: 8px;
+}
+.calc-card.main .calc-card-label { color: var(--accent); }
+.calc-card-num {
+  font-size: 26px; font-weight: 700; color: #111111; line-height: 1;
+}
+.calc-card.main .calc-card-num { font-size: 32px; color: var(--accent); }
+
+.calc-formula {
+  background: #ffffff; border: 1px solid #e8e8e8; border-radius: 12px;
+  padding: 16px 20px; margin-bottom: 16px;
+}
+.calc-formula-title {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  color: #999999; margin-bottom: 10px; cursor: pointer;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.calc-formula-title svg { width: 14px; height: 14px; transition: transform 0.2s; }
+.calc-formula-title.open svg { transform: rotate(180deg); }
+.calc-formula-body {
+  font-size: 13px; color: #555555; line-height: 1.7;
+  display: none;
+}
+.calc-formula-body.open { display: block; }
+
+.calc-copy-block {
+  background: #ffffff; border: 1px solid #e8e8e8; border-radius: 12px;
+  padding: 16px 20px; margin-bottom: 16px;
+}
+.calc-copy-label {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  color: #999999; margin-bottom: 10px;
+}
+.calc-copy-text {
+  font-size: 13px; color: #444444; line-height: 1.6;
+  background: #f9f9f9; border-radius: 8px; padding: 12px 14px;
+  margin-bottom: 10px;
+}
+.calc-copy-btn {
+  font-family: 'Onest', Arial, sans-serif;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+  background: #f5f5f5; color: #444444; border: 1px solid #e8e8e8;
+  padding: 7px 16px; border-radius: 100px; cursor: pointer;
+  transition: background 0.15s;
+}
+.calc-copy-btn:hover { background: #ebebeb; }
+
+.calc-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.calc-network-btn {
+  font-family: 'Onest', Arial, sans-serif;
+  font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+  background: #ffffff; color: #111111; border: 1px solid #e8e8e8;
+  padding: 10px 20px; border-radius: 100px; cursor: pointer;
+  transition: background 0.15s;
+}
+.calc-network-btn:hover { background: #f5f5f5; }
+.calc-cta-btn {
+  font-family: 'Onest', Arial, sans-serif;
+  font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+  background: var(--accent); color: #ffffff; border: none;
+  padding: 10px 24px; border-radius: 100px; cursor: pointer;
+  transition: background 0.15s; text-decoration: none; display: inline-flex; align-items: center;
+}
+.calc-cta-btn:hover { background: var(--accent-dark); }
+
+/* ── FORM (Block J) ── */
+.form-section {
+  background: var(--accent-dark); color: #ffffff;
+}
+.form-section .section-label { color: rgba(255,255,255,0.4); }
+.form-section .section-title { color: #ffffff; }
+.form-section .section-sub { color: rgba(255,255,255,0.65); }
+.form-inner {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+  margin-top: 48px; align-items: start;
+}
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.form-field { display: flex; flex-direction: column; gap: 6px; }
+.form-field.full { grid-column: 1 / -1; }
+.form-label {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+}
+.form-input, .form-select {
+  font-family: 'Onest', Arial, sans-serif;
+  font-size: 14px; color: #ffffff;
+  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 10px; padding: 12px 16px; outline: none;
+  transition: border-color 0.15s, background 0.15s;
+}
+.form-input::placeholder { color: rgba(255,255,255,0.3); }
+.form-input:focus, .form-select:focus {
+  border-color: rgba(255,255,255,0.4); background: rgba(255,255,255,0.12);
+}
+.form-select option { background: #111111; }
+.form-submit-btn {
+  font-family: 'Onest', Arial, sans-serif;
+  font-size: 14px; font-weight: 700; letter-spacing: 0.03em;
+  background: #4ade80; color: #0f2e24; border: none;
+  padding: 15px 32px; border-radius: 100px; cursor: pointer;
+  transition: opacity 0.15s; margin-top: 6px; width: 100%;
+}
+.form-submit-btn:hover { opacity: 0.85; }
+.form-note {
+  font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 12px; line-height: 1.5;
+}
+.form-right {}
+.form-right-title {
+  font-size: 20px; font-weight: 700; color: #ffffff; margin-bottom: 16px;
+}
+.form-tg-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: #2aabee; color: #ffffff;
+  font-family: 'Onest', Arial, sans-serif;
+  font-size: 14px; font-weight: 700;
+  padding: 14px 24px; border-radius: 100px;
+  text-decoration: none; transition: opacity 0.15s; margin-bottom: 24px;
+}
+.form-tg-btn:hover { opacity: 0.85; }
+.form-tg-btn svg { width: 20px; height: 20px; }
+.form-max-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.8);
+  font-family: 'Onest', Arial, sans-serif;
+  font-size: 14px; font-weight: 700;
+  padding: 14px 24px; border-radius: 100px; border: 1px solid rgba(255,255,255,0.2);
+  text-decoration: none; transition: all 0.15s; margin-left: 10px;
+}
+.form-max-btn:hover { background: rgba(255,255,255,0.15); color: #ffffff; }
+.form-right-note {
+  font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.6;
+  margin-top: 16px;
+}
+.form-promise-list { list-style: none; margin-top: 24px; display: flex; flex-direction: column; gap: 10px; }
+.form-promise-item {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: 14px; color: rgba(255,255,255,0.75); line-height: 1.4;
+}
+.form-promise-check {
+  width: 20px; height: 20px; border-radius: 50%; background: #4ade80;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; margin-top: 1px;
+}
+.form-promise-check svg { width: 10px; height: 10px; color: #0f2e24; }
+
+/* ── FOOTER ── */
+.page-footer {
+  border-top: 1px solid #e8e8e8;
+  padding: 24px 60px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 20px; flex-wrap: wrap;
+}
+.footer-brand {
+  font-size: 14px; font-weight: 700; color: #111111; text-decoration: none;
+  letter-spacing: 0.06em; text-transform: uppercase;
+}
+.footer-note { font-size: 12px; color: #aaaaaa; }
+
+/* ── QR PLACEHOLDER ── */
+.qr-placeholder {
+  width: 100px; height: 100px; border: 2px dashed #c8e8e0;
+  border-radius: 12px; display: flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: 6px; color: #999999; font-size: 11px; text-align: center;
+  flex-shrink: 0;
+}
+.qr-placeholder svg { width: 36px; height: 36px; opacity: 0.35; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .section { padding: 56px 32px; }
+  .hotel-hero-content { padding: 36px 32px 44px; }
+  .hotel-hero-title { font-size: 36px; }
+  .events-grid { grid-template-columns: repeat(2, 1fr); }
+  .steps-grid { grid-template-columns: repeat(2, 1fr); }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .panel-events-list { grid-template-columns: repeat(2, 1fr); }
+  .calc-wrap { grid-template-columns: 1fr; }
+  .form-inner { grid-template-columns: 1fr; }
+  .cabinet-stats-row { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .section { padding: 40px 20px; }
+  .hotel-hero-content { padding: 28px 20px 36px; flex-direction: column; align-items: flex-start; }
+  .hotel-hero-title { font-size: 28px; }
+  .hotel-hero-tip { display: none; }
+  .events-grid { grid-template-columns: 1fr; }
+  .steps-grid { grid-template-columns: 1fr; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .calc-cards { grid-template-columns: 1fr 1fr; }
+  .form-grid { grid-template-columns: 1fr; }
+  .materials-grid { grid-template-columns: 1fr; }
+  .partner-banner { font-size: 11px; }
+  .page-footer { padding: 20px; }
+}
+</style>
+</head>
+<body>
+
+<div class="page-wrap">
+
+<!-- PARTNER BANNER -->
+<div class="partner-banner">
+  <span class="partner-banner-badge">Демо</span>
+  <span>Так выглядит ваша страница на портале Киммерия-Арт. <strong>Гости видят только карточки мероприятий.</strong> Все остальное — только для партнёра.</span>
+</div>
+
+<!-- ══════════════════════════════════════════ BLOCK A · HERO -->
+<section class="hotel-hero">
+  <div class="hotel-hero-bg"></div>
+  <div class="hotel-hero-waves"></div>
+  <div class="hotel-hero-content">
+    <div class="hotel-hero-left">
+      <div class="hotel-logo-placeholder">
+        <div class="hotel-logo-icon">🏨</div>
+        Логотип отеля
+      </div>
+      <div class="hotel-hero-label">Мероприятия для гостей</div>
+      <h1 class="hotel-hero-title">Гранд Отель Ялта</h1>
+      <p class="hotel-hero-slogan">Ваш отдых на берегу Чёрного моря</p>
+      <a href="#catalog" class="hotel-hero-cta">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        Смотреть мероприятия
+      </a>
+    </div>
+    <div class="hotel-hero-tip">
+      <div class="hotel-hero-tip-icon">💡</div>
+      <p>Это ваша страница на нашем портале. Гости, перешедшие по QR-коду из вашего холла или номера, попадают именно сюда — и сразу видят мероприятия.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ BLOCK B · CATALOG -->
+<section class="section" id="catalog">
+  <div class="section-label">Блок Б · Управление и каталог</div>
+
+  <!-- B1: PARTNER PANEL -->
+  <div class="partner-panel" id="partnerPanel">
+    <div class="partner-panel-header">
+      <div class="partner-panel-title">
+        Ваш каталог мероприятий
+        <span class="partner-badge-label">Только для партнёра</span>
+      </div>
+      <div class="tip-wrap">
+        <div class="tip-icon">?</div>
+        <div class="tip-box">Вы решаете, что видят ваши гости. Выберите только те мероприятия, которые подходят вашей аудитории, — и скройте остальное. Можно менять подборку в любой момент.</div>
+      </div>
+    </div>
+    <p class="partner-panel-sub">Выберите, какие события видят ваши гости. Можно показать все или только отобранные.</p>
+    <div class="panel-mode-switch">
+      <button class="panel-mode-btn active" onclick="setPanelMode('all', this)">Все мероприятия</button>
+      <button class="panel-mode-btn" onclick="setPanelMode('selected', this)">Только выбранные</button>
+    </div>
+    <div class="panel-events-list" id="panelEventsList">
+      <!-- filled by JS -->
+    </div>
+    <div class="panel-actions">
+      <button class="panel-save-btn" onclick="saveSelection()">Сохранить выбор</button>
+      <button class="panel-preview-btn" onclick="scrollToPublic()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        Посмотреть, как видит гость
+      </button>
+    </div>
+    <div class="panel-tip">
+      <p>Курортный отель может оставить только вечерние события и убрать то, что не подходит аудитории. Настройку можно менять сколько угодно раз.</p>
+    </div>
+  </div>
+
+  <!-- B2: PUBLIC CATALOG -->
+  <div id="publicCatalog">
+    <div class="catalog-header">
+      <div class="catalog-title">Мероприятия для гостей</div>
+      <div class="catalog-filters" id="catalogFilters">
+        <button class="cat-filter active" data-filter="all">Все</button>
+        <button class="cat-filter" data-filter="спектакль">Спектакли</button>
+        <button class="cat-filter" data-filter="лекция">Лекции</button>
+        <button class="cat-filter" data-filter="кинопоказ">Кино</button>
+      </div>
+    </div>
+    <div class="events-grid" id="eventsGrid">
+      <!-- filled by JS -->
+    </div>
+    <div class="tip-hint catalog-tip">
+      <b>Для партнёра:</b> когда гость покупает билет через эту страницу — система фиксирует, что продажа пришла от вашего отеля. Комиссия 20% начисляется автоматически и отображается в личном кабинете.
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ BLOCK C · HOW IT WORKS -->
+<section class="section steps-section">
+  <div class="section-label">Блок В · Как это работает</div>
+  <div class="section-title">Путь от QR до комиссии</div>
+  <p class="section-sub">Четыре шага — и ничего лишнего.</p>
+  <div class="steps-grid">
+    <div class="step-item">
+      <div class="step-num">01</div>
+      <div class="step-title">Гость сканирует QR</div>
+      <p class="step-desc">На стойке ресепшн, в номере или в буклете отеля. QR уникальный — со встроенной меткой вашего отеля.</p>
+      <div class="step-arrow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">02</div>
+      <div class="step-title">Попадает на вашу страницу</div>
+      <p class="step-desc">Видит мероприятия, которые вы выбрали под свою аудиторию. Никаких чужих отелей, только ваш каталог.</p>
+      <div class="step-arrow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">03</div>
+      <div class="step-title">Покупает билет онлайн</div>
+      <p class="step-desc">Оплата через защищённую форму, билет приходит на email. Администратор ничего не делает вручную.</p>
+      <div class="step-arrow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">04</div>
+      <div class="step-title">Отель получает комиссию</div>
+      <p class="step-desc">20% с каждой транзакции — автоматически. Сумма отображается в личном кабинете, вывод в любое время.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ BLOCK D · TRUST -->
+<section class="section">
+  <div class="section-label">Блок Г · Почему это работает</div>
+  <div class="section-title">Проверенная инфраструктура</div>
+  <p class="section-sub">Вы получаете не стартап, а площадку с историей и аудиторией.</p>
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-num">7+</div>
+      <div class="stat-label">лет проводим мероприятия в Крыму</div>
+      <div class="stat-tip-btn">
+        <div class="tip-wrap">
+          <div class="tip-icon dark">?</div>
+          <div class="tip-box">Мы проводим мероприятия в Крыму с 2018 года. За это время отработали сотни событий — от камерных лекций до больших фестивалей.</div>
+        </div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">50+</div>
+      <div class="stat-label">мероприятий в каталоге ежегодно</div>
+      <div class="stat-tip-btn">
+        <div class="tip-wrap">
+          <div class="tip-icon dark">?</div>
+          <div class="tip-box">Ваши гости всегда найдут что-то интересное: спектакли, лекции, кинопоказы, экскурсии. Каталог обновляется регулярно.</div>
+        </div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">20%</div>
+      <div class="stat-label">комиссия с каждой продажи</div>
+      <div class="stat-tip-btn">
+        <div class="tip-wrap">
+          <div class="tip-icon dark">?</div>
+          <div class="tip-box">Фиксированная ставка. Вы получаете 20% от стоимости каждого проданного билета — без потолка и без ручной работы.</div>
+        </div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">0</div>
+      <div class="stat-label">рисков — платите только за размещение</div>
+      <div class="stat-tip-btn">
+        <div class="tip-wrap">
+          <div class="tip-icon dark">?</div>
+          <div class="tip-box">Подключение бесплатное. Если продаж не было — вы ничего не должны. Комиссия только с реальных транзакций.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ BLOCK E · FORMATS -->
+<section class="section" style="background:#f9f9f9;">
+  <div class="section-label">Блок Д · Форматы подключения</div>
+  <div class="section-title">Два варианта — можно сразу оба</div>
+  <p class="section-sub">Выберите, что подходит вашему отелю.</p>
+  <table class="formats-table">
+    <thead>
+      <tr>
+        <th>Параметр</th>
+        <th>Виджет на вашем сайте</th>
+        <th>Страница на нашем портале</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Где размещается</td>
+        <td>На вашем сайте, встроен кодом</td>
+        <td>На портале Киммерия-Арт</td>
+      </tr>
+      <tr>
+        <td>QR и ссылки</td>
+        <td>Ведут на страницу вашего сайта</td>
+        <td>Ведут на страницу отеля на портале</td>
+      </tr>
+      <tr>
+        <td>Свои мероприятия</td>
+        <td>Можно добавить в виджет</td>
+        <td>Попадают в общий каталог портала</td>
+      </tr>
+      <tr>
+        <td>Кому подходит</td>
+        <td>Отелям с развитым сайтом</td>
+        <td><span class="formats-check">✓</span> Всем. Особенно без своего сайта</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="tip-hint formats-tip">
+    <b>Оба варианта можно включить одновременно.</b> Виджет — для гостей, заходящих на ваш сайт. Страница на портале — для всех, кто пришёл по QR или рекламной ссылке.
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ BLOCK F · OWN EVENTS -->
+<section class="section own-events-section">
+  <div class="section-label">Блок Е · Собственные мероприятия</div>
+  <div class="own-events-header">
+    <div>
+      <div class="own-event-badge">Опция для партнёра</div>
+      <div class="section-title">Мероприятия в нашем отеле</div>
+      <p class="section-sub" style="max-width:480px;">Если вы проводите собственные события — добавьте их на страницу. Ваши гости увидят их рядом с каталогом Киммерии.</p>
+    </div>
+    <div class="own-events-note">
+      Ваше мероприятие попадает в общий каталог портала — гости других отелей-партнёров увидят его тоже. Вы зарабатываете не только на проживании, но и на билетах.
+    </div>
+  </div>
+  <div class="events-grid">
+    <!-- Demo own event card -->
+    <div class="event-card">
+      <div class="event-photo-wrap" style="background: linear-gradient(135deg, #8B6914 0%, #c49a2a 100%); aspect-ratio: 3/2;">
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:48px;">🌅</div>
+        <span class="event-badge" style="background:var(--hotel);">Событие отеля</span>
+      </div>
+      <div class="event-body">
+        <div class="event-date-line">12 мая · 20:00</div>
+        <div class="event-title">Ужин на закрытой террасе с видом на море</div>
+        <div class="event-desc">Авторское меню от шеф-повара, живая музыка, панорамный вид на Ялтинскую бухту. 16+</div>
+        <div class="event-bottom">
+          <div class="event-price">4 500 ₽</div>
+          <button class="event-buy-btn">Купить билет</button>
+        </div>
+      </div>
+    </div>
+    <div class="event-card">
+      <div class="event-photo-wrap" style="background: linear-gradient(135deg, #2a5a8B 0%, #3a7aa0 100%); aspect-ratio: 3/2;">
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:48px;">🎨</div>
+        <span class="event-badge" style="background:var(--hotel);">Событие отеля</span>
+      </div>
+      <div class="event-body">
+        <div class="event-date-line">15 мая · 15:00</div>
+        <div class="event-title">Мастер-класс по акварельной живописи</div>
+        <div class="event-desc">Рисуем морской пейзаж с натуры. Все материалы включены. Подходит для начинающих. 12+</div>
+        <div class="event-bottom">
+          <div class="event-price">2 200 ₽</div>
+          <button class="event-buy-btn">Купить билет</button>
+        </div>
+      </div>
+    </div>
+    <div class="event-card" style="border:1px dashed #e8ddc8;background:#fdfaf4;display:flex;align-items:center;justify-content:center;min-height:220px;flex-direction:column;gap:12px;padding:32px;text-align:center;">
+      <div style="font-size:32px;">➕</div>
+      <div style="font-size:14px;font-weight:700;color:#888;">Добавить своё мероприятие</div>
+      <div style="font-size:12px;color:#aaa;">Через личный кабинет партнёра</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ BLOCK G · CABINET -->
+<section class="section cabinet-section">
+  <div class="section-label">Блок Ж · Личный кабинет</div>
+  <div class="section-title">Всё считается автоматически</div>
+  <p class="section-sub">Вы видите в реальном времени, сколько гостей перешло по вашим ссылкам и сколько купило билеты.</p>
+  <div class="cabinet-mockup">
+    <div class="cabinet-topbar">
+      <div class="cab-dot red"></div>
+      <div class="cab-dot yellow"></div>
+      <div class="cab-dot green"></div>
+      <span class="cabinet-topbar-title">Личный кабинет партнёра · Гранд Отель Ялта</span>
+    </div>
+    <div class="cabinet-nav">
+      <div class="cabinet-nav-item active">Статистика</div>
+      <div class="cabinet-nav-item">Каталог</div>
+      <div class="cabinet-nav-item">Финансы</div>
+    </div>
+    <div class="cabinet-body">
+      <div class="cabinet-stats-row">
+        <div class="cab-stat">
+          <div class="cab-stat-label">Переходов за месяц</div>
+          <div class="cab-stat-num">384</div>
+          <div class="cab-stat-sub">↑ +18% к прошлому месяцу</div>
+        </div>
+        <div class="cab-stat">
+          <div class="cab-stat-label">Покупок</div>
+          <div class="cab-stat-num">57</div>
+          <div class="cab-stat-sub">конверсия 14.8%</div>
+        </div>
+        <div class="cab-stat">
+          <div class="cab-stat-label">Комиссия за месяц</div>
+          <div class="cab-stat-num green">41 600 ₽</div>
+          <div class="cab-stat-sub">оборот 208 000 ₽</div>
+        </div>
+        <div class="cab-stat">
+          <div class="cab-stat-label">С начала сезона</div>
+          <div class="cab-stat-num green">187 400 ₽</div>
+          <div class="cab-stat-sub">апрель — апрель</div>
+        </div>
+      </div>
+      <div class="cabinet-chart" title="Переходы по дням">
+        <div class="chart-bar" style="height:40%"></div>
+        <div class="chart-bar" style="height:55%"></div>
+        <div class="chart-bar" style="height:35%"></div>
+        <div class="chart-bar" style="height:70%"></div>
+        <div class="chart-bar" style="height:60%"></div>
+        <div class="chart-bar" style="height:85%"></div>
+        <div class="chart-bar" style="height:75%"></div>
+        <div class="chart-bar" style="height:90%"></div>
+        <div class="chart-bar" style="height:65%"></div>
+        <div class="chart-bar" style="height:80%"></div>
+        <div class="chart-bar" style="height:100%"></div>
+        <div class="chart-bar" style="height:72%"></div>
+        <div class="chart-bar" style="height:88%"></div>
+        <div class="chart-bar" style="height:95%"></div>
+        <div class="chart-bar" style="height:82%"></div>
+        <div class="chart-bar" style="height:68%"></div>
+        <div class="chart-bar" style="height:91%"></div>
+        <div class="chart-bar" style="height:77%"></div>
+        <div class="chart-bar" style="height:85%"></div>
+        <div class="chart-bar" style="height:93%"></div>
+      </div>
+      <div class="tip-hint cab-tip">
+        <b>Никакой ручной отчётности.</b> Все переходы, покупки и начисления фиксируются автоматически. История доступна за любой период.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ BLOCK H · MATERIALS -->
+<section class="section">
+  <div class="section-label">Блок З · Рекламные материалы</div>
+  <div class="section-title">Базовый комплект — бесплатно</div>
+  <p class="section-sub">Всё необходимое для старта входит в подключение.</p>
+  <div class="materials-grid">
+    <div class="material-card">
+      <div class="material-icon">📱</div>
+      <div>
+        <div class="material-name">QR-код с меткой отеля</div>
+        <div class="material-desc">Уникальный QR, генерируется при подключении. Метка фиксирует все продажи с этого источника — система сама знает, что гость пришёл от вас.</div>
+        <div style="display:flex;align-items:center;gap:12px;margin-top:12px;">
+          <div class="qr-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM17 17h3v3h-3zM14 20h3"/><path d="M5 5h3v3H5zM16 5h3v3h-3zM5 16h3v3H5z" fill="currentColor" stroke="none"/></svg>
+            <span>sample</span>
+          </div>
+          <div style="font-size:12px;color:#aaa;">Реальный QR генерируется при подключении</div>
+        </div>
+        <span class="material-tag">Бесплатно</span>
+      </div>
+    </div>
+    <div class="material-card">
+      <div class="material-icon">🖨️</div>
+      <div>
+        <div class="material-name">Настольный QR-стенд</div>
+        <div class="material-desc">Готовый макет для самостоятельной печати, форматы A5 и A6. Ставится на стойку ресепшн, в ресторане, на пляже.</div>
+        <span class="material-tag">Бесплатно</span>
+      </div>
+    </div>
+    <div class="material-card">
+      <div class="material-icon">🃏</div>
+      <div>
+        <div class="material-name">Карточка в номер</div>
+        <div class="material-desc">Макет A5 с QR и анонсом ближайших событий. Гость видит предложение в удобный момент — в номере, без давления.</div>
+        <span class="material-tag">Бесплатно</span>
+      </div>
+    </div>
+    <div class="material-card">
+      <div class="material-icon">📲</div>
+      <div>
+        <div class="material-name">Цифровые баннеры + именная ссылка</div>
+        <div class="material-desc">Шаблоны Stories и постов для Telegram и ВКонтакте (1080×1920, 1080×1080). Короткая ссылка вида <code style="font-size:11px;background:#f5f5f5;padding:2px 5px;border-radius:4px;">kimm.art/hotel-name</code> для рассылок.</div>
+        <span class="material-tag">Бесплатно</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:32px;">
+    <div style="font-size:16px;font-weight:700;color:#111;margin-bottom:4px;">Дополнительное оформление</div>
+    <div style="font-size:14px;color:#888;margin-bottom:16px;">По запросу, под конкретный бюджет и задачу.</div>
+    <div class="materials-paid-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Материал</th>
+            <th>Что включает</th>
+            <th>Условие</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Дизайн в фирменном стиле</td>
+            <td>Адаптация всех шаблонов под брендбук отеля</td>
+            <td><span class="material-tag paid">По запросу</span></td>
+          </tr>
+          <tr>
+            <td>Печать и доставка</td>
+            <td>Стенды, карточки, таблички — готовые к использованию</td>
+            <td><span class="material-tag paid">По запросу</span></td>
+          </tr>
+          <tr>
+            <td>Telegram-бот или авторассылка</td>
+            <td>Бот для анонсов событий по базе гостей отеля</td>
+            <td><span class="material-tag paid">По запросу</span></td>
+          </tr>
+          <tr>
+            <td>Экран в холле</td>
+            <td>Динамичная витрина актуальных событий на экране отеля</td>
+            <td><span class="material-tag paid">По запросу</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="tip-hint" style="margin-top:16px;">
+      Стандартного комплекта достаточно, чтобы начать. Если хотите что-то под ваш стиль или формат — скажите, и мы сделаем под задачу и бюджет.
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ BLOCK I · CALCULATOR -->
+<section class="section calc-section" id="calculator">
+  <div class="section-label">Блок И · Калькулятор дохода</div>
+  <div class="section-title">Сколько вы заработаете</div>
+  <p class="section-sub">Подставьте реальные цифры вашего отеля — и увидите потенциал партнёрства. Расчёт основан на средних показателях действующих партнёров.</p>
+  <div class="calc-wrap">
+    <div class="calc-sliders">
+      <div class="calc-slider-group">
+        <div class="calc-slider-top">
+          <label class="calc-slider-label" for="sGuests">Гостей в месяц</label>
+          <span class="calc-slider-val" id="vGuests">500</span>
+        </div>
+        <input class="calc-slider-input" type="range" id="sGuests" min="100" max="2000" step="50" value="500">
+        <div class="calc-slider-hint">100 — 2 000 гостей</div>
+      </div>
+      <div class="calc-slider-group">
+        <div class="calc-slider-top">
+          <label class="calc-slider-label" for="sConv">Конверсия в покупку</label>
+          <span class="calc-slider-val" id="vConv">15%</span>
+        </div>
+        <input class="calc-slider-input" type="range" id="sConv" min="1" max="40" step="1" value="15">
+        <div class="calc-slider-hint">1% — 40%</div>
+      </div>
+      <div class="calc-slider-group">
+        <div class="calc-slider-top">
+          <label class="calc-slider-label" for="sPrice">Средняя стоимость мероприятия</label>
+          <span class="calc-slider-val" id="vPrice">3 250 ₽</span>
+        </div>
+        <input class="calc-slider-input" type="range" id="sPrice" min="500" max="8000" step="250" value="3250">
+        <div class="calc-slider-hint">500 — 8 000 ₽</div>
+      </div>
+      <div class="calc-slider-group">
+        <div class="calc-slider-top">
+          <label class="calc-slider-label" for="sComm">Комиссия отеля</label>
+          <span class="calc-slider-val" id="vComm">20%</span>
+        </div>
+        <input class="calc-slider-input" type="range" id="sComm" min="5" max="20" step="1" value="20">
+        <div class="calc-slider-hint">5% — 20% (максимум партнёра)</div>
+      </div>
+
+      <div class="calc-formula">
+        <div class="calc-formula-title" id="formulaToggle" onclick="toggleFormula()">
+          Формула расчёта
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="calc-formula-body" id="formulaBody">
+          <span id="formulaText"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="calc-results">
+      <div class="calc-cards">
+        <div class="calc-card main">
+          <div class="calc-card-label">Доход в месяц</div>
+          <div class="calc-card-num" id="rMonth">48 750 ₽</div>
+        </div>
+        <div class="calc-card">
+          <div class="calc-card-label">Доход за сезон (6 мес.)</div>
+          <div class="calc-card-num" id="rSeason">292 500 ₽</div>
+        </div>
+        <div class="calc-card">
+          <div class="calc-card-label">Доход за год</div>
+          <div class="calc-card-num" id="rYear">585 000 ₽</div>
+        </div>
+        <div class="calc-card">
+          <div class="calc-card-label">Оборот в месяц</div>
+          <div class="calc-card-num" id="rTurnover">243 750 ₽</div>
+        </div>
+      </div>
+
+      <div class="calc-copy-block">
+        <div class="calc-copy-label">Текст для копирования</div>
+        <div class="calc-copy-text" id="copyText"></div>
+        <button class="calc-copy-btn" onclick="copyCalcText()">Скопировать</button>
+      </div>
+
+      <div class="calc-actions">
+        <button class="calc-network-btn" onclick="calcNetwork()">Рассчитать для сети (×10 отелей)</button>
+        <a href="#form" class="calc-cta-btn">Оставить заявку</a>
+      </div>
+      <div style="font-size:12px;color:#aaa;margin-top:10px;" id="networkNote"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ BLOCK J · FORM -->
+<section class="section form-section" id="form">
+  <div class="section-label">Блок К · Заявка на подключение</div>
+  <div class="section-title">Хотите так же?</div>
+  <p class="section-sub">Оставьте заявку — расскажем, как подключить ваш отель за один день.</p>
+  <div class="form-inner">
+    <div>
+      <form class="form-grid" onsubmit="submitForm(event)">
+        <div class="form-field">
+          <label class="form-label" for="fName">Ваше имя</label>
+          <input class="form-input" type="text" id="fName" placeholder="Как к вам обращаться">
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="fHotel">Название отеля</label>
+          <input class="form-input" type="text" id="fHotel" placeholder="Гранд Отель Ялта">
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="fPhone">Телефон</label>
+          <input class="form-input" type="tel" id="fPhone" placeholder="+7 (___) ___-__-__">
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="fTime">Удобное время для звонка</label>
+          <select class="form-select" id="fTime">
+            <option value="">Выберите время</option>
+            <option>Утром (9:00–12:00)</option>
+            <option>Днём (12:00–16:00)</option>
+            <option>Вечером (16:00–19:00)</option>
+            <option>В любое время</option>
+          </select>
+        </div>
+        <div class="form-field full">
+          <button type="submit" class="form-submit-btn">Отправить заявку</button>
+        </div>
+      </form>
+      <p class="form-note">Подключение бесплатно. Комиссия — только с реальных продаж.</p>
+    </div>
+    <div class="form-right">
+      <div class="form-right-title">Или напишите напрямую</div>
+      <div>
+        <a href="https://t.me/kimmeria_art" class="form-tg-btn" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248-2.02 9.52c-.148.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.883.701z"/></svg>
+          Написать в Telegram
+        </a>
+        <a href="https://max.ru/kimmeria_art" class="form-max-btn" target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          Написать в Max
+        </a>
+      </div>
+      <ul class="form-promise-list">
+        <li class="form-promise-item">
+          <div class="form-promise-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          Подключение занимает один день
+        </li>
+        <li class="form-promise-item">
+          <div class="form-promise-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          Комиссия — только с реальных продаж
+        </li>
+        <li class="form-promise-item">
+          <div class="form-promise-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          QR-материалы и доступ к кабинету сразу после подключения
+        </li>
+        <li class="form-promise-item">
+          <div class="form-promise-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          Никаких скрытых платежей и обязательств
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="page-footer">
+  <span class="footer-brand">Киммерия-Арт</span>
+  <span class="footer-note">Портал мероприятий побережья Крыма · Демо-страница для партнёров · 2026</span>
+</footer>
+
+</div><!-- /.page-wrap -->
+
+<script>
+// ── EVENTS DATA ──
+const EVENTS = [
+  {
+    id: "uzhe", title: "«УЖЕ» — авторская постановка Мимлы Же",
+    desc: "Четыре стихотворные сказки о Мухе, Авоське, Русалке и Королевской чете. Бытовой символизм, философия и самоирония. 12+",
+    date: "2026-04-05", date_label: "5 апреля · 18:00", format: "спектакль",
+    price: "800 ₽", image: "https://art-kimmeria.ru/photos/photo_819@30-03-2026_09-17-02.jpg",
+    url: "https://art-kimmeria.ru/event-uzhe/", past: true
+  },
+  {
+    id: "ryba", title: "«Лучше я буду рыбой...»",
+    desc: "Спектакль-притча по мотивам Чингиза Айтматова «Белый пароход». Театр анимации, тотемы, живая этническая музыка. 12+",
+    date: "2026-04-20", date_label: "20 апреля · 18:30", format: "спектакль",
+    price: "2 000 ₽", image: "https://art-kimmeria.ru/photos/event-ryba.jpg",
+    url: "https://art-kimmeria.ru/event-ryba/", past: false
+  },
+  {
+    id: "lecture-afrodita", title: "«Пространство Афродиты»",
+    desc: "Первая лекция цикла «Ялта: Территория Божественных игр». Ялта как пространство богини любви — через Пушкина и Чехова.",
+    date: "2026-04-15", date_label: "15 апреля · 19:00", format: "лекция",
+    price: "1 000 ₽", image: "https://art-kimmeria.ru/photos/lecture-afrodita.jpg",
+    url: "https://art-kimmeria.ru/lecture-afrodita/", past: false
+  },
+  {
+    id: "lecture-gekata", title: "«Геката в Фияльте»",
+    desc: "Вторая лекция цикла. Тёмная женственность, Набоков и «Весна в Фияльте».",
+    date: "2026-04-22", date_label: "22 апреля · 19:00", format: "лекция",
+    price: "1 000 ₽", image: "https://art-kimmeria.ru/photos/lecture-gekata.jpg",
+    url: "https://art-kimmeria.ru/lecture-gekata/", past: false
+  },
+  {
+    id: "lecture-lilit", title: "«Осторожно, Лилит!»",
+    desc: "Третья лекция цикла. Лилит — первая женщина, символ свободы и демон ночи.",
+    date: "2026-04-29", date_label: "29 апреля · 19:00", format: "лекция",
+    price: "1 000 ₽", image: "https://art-kimmeria.ru/photos/lecture-lilit.jpg",
+    url: "https://art-kimmeria.ru/lecture-lilit/", past: false
+  },
+  {
+    id: "aivazovskogo", title: "«Дом для Айвазовского» — премьерный показ",
+    desc: "Премьера семейной драмы о важности слышать друг друга. Съёмки проходили в Крыму. Вход свободный, по регистрации.",
+    date: "2026-04-15", date_label: "15 апреля 2026", format: "кинопоказ",
+    price: "Свободный вход", image: "https://art-kimmeria.ru/photos/event-dom-aivazovskogo-cover.jpg",
+    url: "https://art-kimmeria.ru/event-dom-aivazovskogo/", past: false
+  }
+];
+
+let selectedEvents = new Set(EVENTS.map(e => e.id));
+let panelMode = 'all';
+let activeFilter = 'all';
+let isNetworkMode = false;
+
+// ── PANEL ──
+function buildPanelList() {
+  const container = document.getElementById('panelEventsList');
+  container.innerHTML = EVENTS.map(e => `
+    <label class="panel-event-item">
+      <input type="checkbox" ${selectedEvents.has(e.id) ? 'checked' : ''} onchange="toggleEvent('${e.id}', this.checked)">
+      <div>
+        <div class="panel-event-name">${e.title}</div>
+        <div class="panel-event-format">${e.format}</div>
+      </div>
+    </label>
+  `).join('');
+}
+
+function toggleEvent(id, checked) {
+  if (checked) selectedEvents.add(id); else selectedEvents.delete(id);
+  if (panelMode === 'selected') renderCatalog();
+}
+
+function setPanelMode(mode, btn) {
+  panelMode = mode;
+  document.querySelectorAll('.panel-mode-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderCatalog();
+}
+
+function saveSelection() {
+  renderCatalog();
+  const btn = document.querySelector('.panel-save-btn');
+  const orig = btn.textContent;
+  btn.textContent = 'Сохранено';
+  btn.style.background = '#86efac';
+  setTimeout(() => { btn.textContent = orig; btn.style.background = ''; }, 1800);
+}
+
+function scrollToPublic() {
+  document.getElementById('publicCatalog').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// ── CATALOG ──
+function renderCatalog() {
+  const grid = document.getElementById('eventsGrid');
+  const eventsToShow = EVENTS.filter(e => {
+    if (panelMode === 'selected' && !selectedEvents.has(e.id)) return false;
+    if (activeFilter !== 'all' && e.format !== activeFilter) return false;
+    return true;
+  });
+
+  if (eventsToShow.length === 0) {
+    grid.innerHTML = `<div style="grid-column:1/-1;padding:48px 0;text-align:center;color:#aaa;font-size:15px;">Скоро здесь появятся новые события</div>`;
+    return;
+  }
+
+  grid.innerHTML = eventsToShow.map(e => {
+    const isFree = e.price === 'Свободный вход';
+    return `
+    <div class="event-card ${e.past ? 'past' : ''}">
+      <div class="event-photo-wrap">
+        <img src="${e.image}" alt="${e.title}" loading="lazy"
+          onerror="this.style.display='none';this.parentNode.style.background='linear-gradient(135deg,#e8e8e8,#d0d0d0)'">
+        <span class="event-badge ${e.past ? 'past-badge' : ''}">${e.past ? 'Завершилось' : e.format}</span>
+      </div>
+      <div class="event-body">
+        <div class="event-date-line">${e.date_label}</div>
+        <div class="event-title">${e.title}</div>
+        <div class="event-desc">${e.desc}</div>
+        <div class="event-bottom">
+          <div class="event-price">${e.price}</div>
+          ${e.past
+            ? `<button class="event-notify-btn">Узнать о следующем</button>`
+            : `<a href="${e.url}" class="event-buy-btn" target="_blank" rel="noopener">${isFree ? 'Зарегистрироваться' : 'Купить билет'}</a>`
+          }
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ── FILTERS ──
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.cat-filter').forEach(btn => {
+    btn.addEventListener('click', () => {
+      activeFilter = btn.dataset.filter;
+      document.querySelectorAll('.cat-filter').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderCatalog();
+    });
+  });
+  buildPanelList();
+  renderCatalog();
+  calcUpdate();
+});
+
+// ── CALCULATOR ──
+function fmt(n) {
+  return Math.round(n).toLocaleString('ru-RU');
+}
+
+function calcUpdate() {
+  const guests = +document.getElementById('sGuests').value;
+  const conv   = +document.getElementById('sConv').value / 100;
+  const price  = +document.getElementById('sPrice').value;
+  const comm   = +document.getElementById('sComm').value / 100;
+
+  document.getElementById('vGuests').textContent = guests.toLocaleString('ru-RU');
+  document.getElementById('vConv').textContent   = Math.round(conv * 100) + '%';
+  document.getElementById('vPrice').textContent  = fmt(price) + ' ₽';
+  document.getElementById('vComm').textContent   = Math.round(comm * 100) + '%';
+
+  const buyers   = guests * conv;
+  const turnover = buyers * price;
+  const month    = turnover * comm;
+  const season   = month * 6;
+  const year     = month * 12;
+
+  const mult = isNetworkMode ? 10 : 1;
+
+  document.getElementById('rMonth').textContent    = fmt(month * mult) + ' ₽';
+  document.getElementById('rSeason').textContent   = fmt(season * mult) + ' ₽';
+  document.getElementById('rYear').textContent     = fmt(year * mult) + ' ₽';
+  document.getElementById('rTurnover').textContent = fmt(turnover * mult) + ' ₽';
+
+  const formulaText = `${guests.toLocaleString('ru-RU')} гостей × ${Math.round(conv*100)}% = ${fmt(buyers)} покупателей, `
+    + `${fmt(buyers)} × ${fmt(price)} ₽ = ${fmt(turnover)} ₽ оборот, `
+    + `× ${Math.round(comm*100)}% = <strong>${fmt(month)} ₽</strong> в месяц`;
+  document.getElementById('formulaBody').innerHTML = formulaText;
+
+  const copyStr = `При ${guests.toLocaleString('ru-RU')} гостях в месяц и конверсии ${Math.round(conv*100)}% `
+    + `отель зарабатывает около ${fmt(month)} ₽ в месяц, ${fmt(season)} ₽ за сезон `
+    + `и ${fmt(year)} ₽ в год — автоматически, без участия администратора. `
+    + `Партнёрство с Киммерия-Арт.`;
+  document.getElementById('copyText').textContent = copyStr;
+}
+
+function toggleFormula() {
+  const body = document.getElementById('formulaBody');
+  const title = document.getElementById('formulaToggle');
+  body.classList.toggle('open');
+  title.classList.toggle('open');
+}
+
+function calcNetwork() {
+  isNetworkMode = !isNetworkMode;
+  const btn = document.querySelector('.calc-network-btn');
+  const note = document.getElementById('networkNote');
+  if (isNetworkMode) {
+    btn.textContent = 'Вернуться к одному отелю';
+    btn.style.background = '#f0faf8';
+    btn.style.borderColor = '#c8e8e0';
+    note.textContent = 'Показаны цифры для сети из 10 отелей';
+  } else {
+    btn.textContent = 'Рассчитать для сети (×10 отелей)';
+    btn.style.background = '';
+    btn.style.borderColor = '';
+    note.textContent = '';
+  }
+  calcUpdate();
+}
+
+function copyCalcText() {
+  const text = document.getElementById('copyText').textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.querySelector('.calc-copy-btn');
+    const orig = btn.textContent;
+    btn.textContent = 'Скопировано';
+    setTimeout(() => btn.textContent = orig, 1800);
+  });
+}
+
+['sGuests','sConv','sPrice','sComm'].forEach(id => {
+  const el = document.getElementById(id);
+  if (el) el.addEventListener('input', calcUpdate);
+});
+
+// ── FORM ──
+function submitForm(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('.form-submit-btn');
+  btn.textContent = 'Заявка отправлена';
+  btn.style.background = '#86efac';
+  btn.disabled = true;
+}
+</script>
+</body>
+</html>
