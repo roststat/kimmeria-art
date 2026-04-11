@@ -509,8 +509,8 @@
   <div class="footer-copy">© 2026 Киммерия-Арт · Ялта</div>
 </footer>
 
-<div class="is-overlay" id="sheetOverlay" onclick="closeSheet()">
-  <div class="is-sheet" onclick="event.stopPropagation()">
+<div class="is-overlay" id="sheetOverlay" onclick="if(event.target===this)closeSheet()">
+  <div class="is-sheet">
     <div class="is-sheet-badge">Проект кинокомпании Киммерия</div>
     <div class="is-sheet-title">Киноклуб</div>
     <p class="is-sheet-text">Киноклуб — авторский проект кинокомпании «Киммерия», работающий на базе арт-пространства «Киммерия-Арт». Показы мирового кино с живым обсуждением: каннские лауреаты, арт-хаус, документальное кино.</p>

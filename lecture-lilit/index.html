@@ -293,8 +293,8 @@
   <div class="footer-copy">© 2025 Киммерия-Арт · Ялта</div>
 </footer>
 
-<div class="is-overlay" id="sheetOverlay" onclick="closeSheet()">
-  <div class="is-sheet" onclick="event.stopPropagation()">
+<div class="is-overlay" id="sheetOverlay" onclick="if(event.target===this)closeSheet()">
+  <div class="is-sheet">
     <div class="is-sheet-badge">Партнёрский клуб Киммерии-Арт</div>
     <div class="is-sheet-title">Идеальная среда</div>
     <p class="is-sheet-text">«Идеальная среда» — партнёрский клуб, работающий на базе арт-пространства «Киммерия-Арт». Место для общения с интересными людьми: лекции, дискуссии, творческие встречи каждую среду в 19:00.</p>
