@@ -592,7 +592,7 @@ footer {
       <svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M1 1l4 4 4-4"/></svg>
     </button>
     <div class="nav-dropdown-menu" id="navDropdownMenu">
-      <a href="/kinoklub/">Киноклуб<small>Авторские кинопоказы</small></a>
+      <a href="#" onclick="openKinoklub(event)">Киноклуб<small>Авторские кинопоказы</small></a>
       <a href="#" onclick="openIdealnayaSreda(event)">Идеальная среда<small>Лекции и встречи</small></a>
       <a href="/programmy/" style="border-top:1px solid #e8e8e8;margin-top:4px;padding-top:14px;">Все программы<small>Полный каталог</small></a>
     </div>
@@ -1708,6 +1708,23 @@ footer {
 
 </script>
 </div><!-- /page-wrap -->
+<!-- KINOKLUB MODAL -->
+<div class="is-overlay" id="kinoklubOverlay" onclick="closeKinoklub(event)">
+  <div class="is-sheet" onclick="event.stopPropagation()">
+    <div class="is-sheet-badge">Проект кинокомпании Киммерия</div>
+    <div class="is-sheet-title">Киноклуб</div>
+    <p class="is-sheet-text">Авторский киноклуб — проект кинокомпании «Киммерия», работающий на базе арт-пространства «Киммерия-Арт». Показы мирового кино с живым обсуждением: каннские лауреаты, арт-хаус, документальное кино.</p>
+    <div class="is-sheet-details">
+      <span class="is-sheet-detail"><strong>Формат</strong> · Кинопоказ + обсуждение</span>
+      <span class="is-sheet-detail"><strong>Где</strong> · г. Ялта</span>
+    </div>
+    <div class="is-sheet-actions">
+      <a href="/kinoklub/" class="is-btn-primary">Расписание и билеты</a>
+      <button class="is-btn-secondary" onclick="closeKinoklub()">Закрыть</button>
+    </div>
+  </div>
+</div>
+
 <!-- IDEALNAYA SREDA MODAL -->
 <div class="is-overlay" id="idealnayaSredaOverlay" onclick="closeIdealnayaSreda(event)">
   <div class="is-sheet" onclick="event.stopPropagation()">
@@ -1747,6 +1764,19 @@ function toggleDropdown() {
   btn.classList.toggle('open');
   menu.classList.toggle('open');
 }
+function openKinoklub(e) {
+  if (e) e.preventDefault();
+  var btn = document.getElementById('navDropdownBtn');
+  var menu = document.getElementById('navDropdownMenu');
+  if (btn) btn.classList.remove('open');
+  if (menu) menu.classList.remove('open');
+  document.getElementById('kinoklubOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeKinoklub() {
+  document.getElementById('kinoklubOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
 function openIdealnayaSreda(e) {
   if (e) e.preventDefault();
   var btn = document.getElementById('navDropdownBtn');
@@ -1763,6 +1793,7 @@ function closeIdealnayaSreda(e) {
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') {
     document.getElementById('idealnayaSredaOverlay').classList.remove('open');
+    document.getElementById('kinoklubOverlay').classList.remove('open');
     document.body.style.overflow = '';
   }
 });
