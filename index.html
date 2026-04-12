@@ -21,7 +21,14 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <style>
+/* ── TELEGRAM MINI APP ── */
+body.tg-app nav { display: none !important; }
+body.tg-app .page-wrap { padding-top: 0; }
+body.tg-app section:first-of-type,
+body.tg-app .hero-new { margin-top: 0 !important; }
+
 :root {
   --accent: #1a4a3a;
   --accent-dark: #0f2e24;
@@ -1798,6 +1805,27 @@ document.addEventListener('click', function(e) {
   }
 });
 
+
+// ── TELEGRAM MINI APP INIT ──
+(function() {
+  const tg = window.Telegram && window.Telegram.WebApp;
+  if (!tg) return;
+
+  tg.ready();
+  tg.expand();
+
+  // Класс на body для CSS-адаптации
+  document.body.classList.add('tg-app');
+
+  // Подстраиваем цвета под тему Telegram
+  tg.setHeaderColor('#ffffff');
+  tg.setBackgroundColor('#ffffff');
+
+  // Тёмная тема
+  if (tg.colorScheme === 'dark') {
+    document.body.classList.add('tg-dark');
+  }
+})();
 </script>
 </body>
 </html>

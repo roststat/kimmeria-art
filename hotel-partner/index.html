@@ -92,75 +92,24 @@ body {
 /* ── HERO ── */
 .hotel-hero {
   margin-top: 38px;
-  position: relative;
-  min-height: 480px;
-  display: flex; align-items: flex-end;
-  overflow: hidden;
-}
-.hotel-hero-bg {
-  position: absolute; inset: 0;
-  background: linear-gradient(135deg, #0a2a3a 0%, #1a4a5a 40%, #2a6070 70%, #3a8090 100%);
-  z-index: 0;
-}
-.hotel-hero-bg::after {
-  content: '';
-  position: absolute; inset: 0;
-  background:
-    radial-gradient(ellipse 60% 40% at 70% 60%, rgba(58,128,144,0.5) 0%, transparent 60%),
-    radial-gradient(ellipse 40% 60% at 20% 80%, rgba(10,42,58,0.8) 0%, transparent 60%),
-    linear-gradient(to bottom, transparent 30%, rgba(0,0,0,0.65) 100%);
-}
-/* Decorative sea waves */
-.hotel-hero-waves {
-  position: absolute; bottom: 0; left: 0; right: 0; height: 120px;
-  background: linear-gradient(to top, rgba(0,0,0,0.4) 0%, transparent 100%);
-  z-index: 1;
-}
-.hotel-hero-waves::before {
-  content: '';
-  position: absolute; bottom: 30px; left: -10%; right: -10%;
-  height: 40px;
-  background: rgba(255,255,255,0.06);
-  border-radius: 50%;
-  transform: scaleX(1.1);
-}
-.hotel-hero-waves::after {
-  content: '';
-  position: absolute; bottom: 50px; left: -5%; right: -5%;
-  height: 25px;
-  background: rgba(255,255,255,0.04);
-  border-radius: 50%;
+  padding: 80px 60px 72px;
+  background: #ffffff;
+  border-bottom: 1px solid #e8e8e8;
 }
 .hotel-hero-content {
-  position: relative; z-index: 2;
-  padding: 48px 60px 56px;
-  width: 100%;
   display: flex; align-items: flex-end; justify-content: space-between; gap: 40px;
 }
 .hotel-hero-left {}
-.hotel-logo-placeholder {
-  display: inline-flex; align-items: center; gap: 10px;
-  background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25);
-  border-radius: 10px; padding: 8px 16px; margin-bottom: 28px;
-  font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.7);
-  letter-spacing: 0.06em; text-transform: uppercase;
-}
-.hotel-logo-icon {
-  width: 28px; height: 28px; border-radius: 6px;
-  background: rgba(255,255,255,0.2);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 14px;
-}
 .hotel-hero-label {
-  font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
-  color: rgba(255,255,255,0.55); margin-bottom: 12px;
+  font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+  color: #999999; margin-bottom: 12px;
 }
 .hotel-hero-title {
-  font-size: 48px; font-weight: 700; color: #ffffff; line-height: 1.1;
+  font-size: 48px; font-weight: 700; color: #111111; line-height: 1.1;
   letter-spacing: -0.02em; margin-bottom: 12px;
 }
 .hotel-hero-slogan {
-  font-size: 18px; color: rgba(255,255,255,0.75); line-height: 1.4; margin-bottom: 36px;
+  font-size: 18px; color: #666666; line-height: 1.4; margin-bottom: 36px;
 }
 .hotel-hero-cta {
   display: inline-flex; align-items: center; gap: 8px;
@@ -175,7 +124,7 @@ body {
 .hotel-hero-cta svg { width: 16px; height: 16px; }
 .hotel-hero-tip {
   align-self: flex-end;
-  background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+  background: #f9f9f9; border: 1px solid #e8e8e8;
   border-radius: 14px; padding: 16px 20px;
   max-width: 300px;
   display: flex; gap: 10px; align-items: flex-start;
@@ -184,7 +133,7 @@ body {
   font-size: 18px; flex-shrink: 0; margin-top: 2px;
 }
 .hotel-hero-tip p {
-  font-size: 12px; color: rgba(255,255,255,0.8); line-height: 1.55;
+  font-size: 12px; color: #666666; line-height: 1.55;
 }
 
 /* ── SECTION ── */
@@ -804,14 +753,8 @@ body {
 
 <!-- ══════════════════════════════════════════ BLOCK A · HERO -->
 <section class="hotel-hero">
-  <div class="hotel-hero-bg"></div>
-  <div class="hotel-hero-waves"></div>
   <div class="hotel-hero-content">
     <div class="hotel-hero-left">
-      <div class="hotel-logo-placeholder">
-        <div class="hotel-logo-icon">🏨</div>
-        Логотип отеля
-      </div>
       <div class="hotel-hero-label">Мероприятия для гостей</div>
       <h1 class="hotel-hero-title">Гранд Отель Ялта</h1>
       <p class="hotel-hero-slogan">Ваш отдых на берегу Чёрного моря</p>
