@@ -1,7 +1,10 @@
 {
   "rewrites": [
     { "source": "/api/auth/callback", "destination": "/api/auth/callback" },
-    { "source": "/api/auth", "destination": "/api/auth/index" }
+    { "source": "/api/auth", "destination": "/api/auth/index" },
+    { "source": "/privacy", "destination": "/privacy/index.html" },
+    { "source": "/terms", "destination": "/terms/index.html" },
+    { "source": "/cookies", "destination": "/cookies/index.html" }
   ],
   "headers": [
     {

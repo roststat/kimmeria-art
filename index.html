@@ -450,6 +450,29 @@ select.form-input { cursor: pointer; }
 .form-submit:hover { background: var(--accent-dark); }
 .form-note { font-size: 12px; color: #666666; margin-top: 10px; text-align: center; }
 
+/* ── COOKIE BANNER ── */
+.cookie-banner {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999;
+  background: #1a1a1a; color: #ffffff;
+  padding: 16px 24px;
+  display: flex; align-items: center; justify-content: center; gap: 20px;
+  flex-wrap: wrap;
+  font-size: 13px; line-height: 1.5;
+  box-shadow: 0 -4px 24px rgba(0,0,0,0.2);
+}
+.cookie-banner.hidden { display: none; }
+.cookie-banner-text { color: rgba(255,255,255,0.8); }
+.cookie-banner-text a { color: #ffffff; }
+.cookie-banner-btn {
+  flex-shrink: 0;
+  background: #ffffff; color: #111111;
+  border: none; border-radius: 8px;
+  padding: 8px 20px; font-size: 13px; font-weight: 600;
+  cursor: pointer; font-family: inherit;
+  transition: background 0.15s;
+}
+.cookie-banner-btn:hover { background: #f0f0f0; }
+
 /* ── FOOTER ── */
 footer {
   background: #f5f5f5; border-top: 1px solid #e8e8e8; padding: 36px 40px;
@@ -1624,9 +1647,22 @@ footer {
   <div class="footer-links">
     <a href="https://vk.com/kimmeria_art" target="_blank">ВКонтакте</a>
     <a href="https://t.me/kimmeria_art" target="_blank">Telegram</a>
+    <a href="/privacy/">Политика конфиденциальности</a>
+    <a href="/terms/">Пользовательское соглашение</a>
+    <a href="/cookies/">Политика cookie</a>
   </div>
-  <div class="footer-copy">© 2026 Киммерия-Арт · Ялта</div>
+  <div class="footer-copy">© 2026 ИП Емельянов Филипп Андреевич · ИНН 772865046680 · Ялта</div>
 </footer>
+
+<!-- COOKIE BANNER -->
+<div class="cookie-banner" id="cookieBanner">
+  <span class="cookie-banner-text">
+    Мы используем файлы cookie для аналитики и улучшения сайта.
+    Продолжая использовать сайт, вы соглашаетесь с <a href="/cookies/">Политикой cookie</a>
+    и <a href="/privacy/">обработкой персональных данных</a>.
+  </span>
+  <button class="cookie-banner-btn" onclick="acceptCookies()">Принять</button>
+</div>
 
 <script>
   let currentTab = 'upcoming';
@@ -1805,6 +1841,18 @@ document.addEventListener('click', function(e) {
   }
 });
 
+
+// ── COOKIE BANNER ──
+function acceptCookies() {
+  localStorage.setItem('cookie_accepted', '1');
+  document.getElementById('cookieBanner').classList.add('hidden');
+}
+(function() {
+  if (localStorage.getItem('cookie_accepted')) {
+    var b = document.getElementById('cookieBanner');
+    if (b) b.classList.add('hidden');
+  }
+})();
 
 // ── TELEGRAM MINI APP INIT ──
 (function() {
