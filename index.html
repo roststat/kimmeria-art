@@ -28,6 +28,7 @@ body.tg-app nav { display: none !important; }
 body.tg-app .page-wrap { padding-top: 0; }
 body.tg-app section:first-of-type,
 body.tg-app .hero-new { margin-top: 0 !important; }
+/* Скрываем nav только когда реально открыто в TG — класс добавляется через JS */
 
 :root {
   --accent: #1a4a3a;
@@ -1857,12 +1858,13 @@ function acceptCookies() {
 // ── TELEGRAM MINI APP INIT ──
 (function() {
   const tg = window.Telegram && window.Telegram.WebApp;
-  if (!tg) return;
+  // initData непустой только когда реально открыто внутри Telegram
+  if (!tg || !tg.initData) return;
 
   tg.ready();
   tg.expand();
 
-  // Класс на body для CSS-адаптации
+  // Класс на body для CSS-адаптации (скрывает навбар)
   document.body.classList.add('tg-app');
 
   // Подстраиваем цвета под тему Telegram
