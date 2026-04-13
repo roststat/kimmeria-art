@@ -234,7 +234,7 @@ nav {
 
 /* ── EVENTS GRID ── */
 .events-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr);
+  display: grid; grid-template-columns: repeat(4, 1fr);
   gap: 16px;
 }
 
@@ -567,6 +567,11 @@ footer {
 .events-grid.past-list-mode .event-badge { display: none; }
 .events-grid.past-list-mode .event-share-btn { display: none; }
 .events-grid.past-list-mode .event-card:hover { transform: none; box-shadow: 0 2px 12px rgba(0,0,0,0.07); }
+
+/* ── WIDE TABLET ── */
+@media (max-width: 1200px) {
+  .events-grid { grid-template-columns: repeat(3, 1fr); }
+}
 
 /* ── TABLET ── */
 @media (max-width: 900px) {
