@@ -104,6 +104,23 @@
     .schedule-empty-text { font-size: 15px; color: #666666; line-height: 1.7; }
     .schedule-empty-text strong { color: #111111; display: block; font-size: 17px; margin-bottom: 6px; }
 
+    /* EVENT CARDS (как на главной) */
+    .schedule-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; max-width: 620px; }
+    .event-card { background: #ffffff; border: 1px solid #e8e8e8; border-radius: 16px; overflow: hidden; cursor: pointer; display: flex; flex-direction: column; transition: transform 0.2s, box-shadow 0.2s; text-decoration: none; color: inherit; }
+    .event-card:hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(0,0,0,0.08); }
+    .event-photo-wrap { position: relative; aspect-ratio: 3/4; overflow: hidden; flex-shrink: 0; }
+    .event-photo-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s ease; }
+    .event-card:hover .event-photo-wrap img { transform: scale(1.04); }
+    .event-badge { position: absolute; top: 10px; left: 10px; background: #1a4a3a; color: #ffffff; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 10px; border-radius: 100px; }
+    .event-body { padding: 16px 18px 18px; display: flex; flex-direction: column; flex: 1; }
+    .event-date-line { font-size: 12px; font-weight: 600; color: #111111; margin-bottom: 6px; }
+    .event-title { font-size: 16px; font-weight: 700; color: #111111; line-height: 1.35; margin-bottom: 6px; }
+    .event-desc { font-size: 12px; color: #666666; line-height: 1.6; margin-bottom: 14px; flex: 1; }
+    .event-bottom { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding-top: 12px; border-top: 1px solid #e8e8e8; margin-top: auto; flex-wrap: wrap; }
+    .event-location { font-size: 11px; color: #666666; display: flex; align-items: center; gap: 4px; }
+    .event-location::before { content: ''; width: 5px; height: 5px; background: #666666; border-radius: 50%; flex-shrink: 0; }
+    .event-price { font-size: 13px; font-weight: 600; color: #111111; }
+
     /* ARCHIVE */
     .archive-section { margin-bottom: 56px; }
     .archive-heading { font-size: 22px; font-weight: 700; color: #111111; margin-bottom: 6px; }
@@ -211,15 +228,24 @@
     <!-- РАСПИСАНИЕ -->
     <div class="schedule-section" id="schedule">
       <h2 class="schedule-heading">Ближайшие показы</h2>
-      <p class="schedule-subtitle">17 апреля 2026</p>
-      <a href="/event-jarmusch/" class="archive-item" style="text-decoration:none;color:#111111;display:flex;align-items:center;gap:16px;padding:16px 0;border-top:1px solid #e8e8e8;border-bottom:1px solid #e8e8e8;">
-        <div class="archive-thumb"><img src="/photos/event-jarmusch-cover.jpg" alt="«Отец Мать Сестра Брат» — Джим Джармуш" loading="lazy"></div>
-        <div class="archive-body">
-          <div class="archive-date">17 апреля 2026 · 19:00</div>
-          <div class="archive-title">«Отец Мать Сестра Брат» — Джим Джармуш, 2024</div>
-          <div class="archive-desc">Три новеллы о близости и сложностях общения. Ведёт Анастасия Иржаковская, психолог. 700 ₽.</div>
-        </div>
-      </a>
+      <p class="schedule-subtitle">Апрель 2026</p>
+      <div class="schedule-cards">
+        <a href="/event-jarmusch/" class="event-card">
+          <div class="event-photo-wrap">
+            <img src="/photos/event-jarmusch-cover.jpg" alt="«Отец Мать Сестра Брат» — Джим Джармуш">
+            <span class="event-badge">Кинопоказ</span>
+          </div>
+          <div class="event-body">
+            <div class="event-date-line">17 апреля · 19:00</div>
+            <div class="event-title">«Отец Мать Сестра Брат» — Джим Джармуш</div>
+            <div class="event-desc">Три новеллы о близости и сложностях общения между родителями и детьми. Ведёт Анастасия Иржаковская, психолог.</div>
+            <div class="event-bottom">
+              <span class="event-location">Ялта, ул. Игнатенко, 5, офис 2</span>
+              <span class="event-price">700 ₽</span>
+            </div>
+          </div>
+        </a>
+      </div>
     </div>
 
     <!-- АРХИВ -->
