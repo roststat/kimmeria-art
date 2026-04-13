@@ -504,15 +504,10 @@ footer {
   top: 80px;
 }
 .past-sidebar-banner {
-  border: 1px solid #e8e8e8;
   border-radius: 16px;
   overflow: hidden;
-  background: #0d0d0d;
-  min-height: 480px;
   display: block;
-  transition: opacity 0.2s;
 }
-.past-sidebar-banner:hover { opacity: 0.92; }
 .past-sidebar-banner-inner {
   text-align: center;
   padding: 32px 24px;
@@ -1649,23 +1644,15 @@ footer {
 
   </div><!-- /events-grid -->
   <div class="past-sidebar" id="pastSidebar" style="display:none;">
-    <a href="/event-ryba/" class="past-sidebar-banner" style="text-decoration:none;display:block;cursor:pointer;background:#0d0d0d;position:relative;overflow:hidden;">
-      <img src="/photos/event-ryba.jpg" alt="«Лучше я буду рыбой...»" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.45;transition:opacity 0.3s;">
-      <div style="position:relative;z-index:1;padding:28px 24px;display:flex;flex-direction:column;height:100%;min-height:480px;justify-content:flex-end;">
-        <div style="margin-bottom:auto;">
-          <div style="display:inline-block;background:#1a4a3a;color:#ffffff;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:4px 12px;border-radius:100px;margin-bottom:12px;">Рекомендуем</div>
-        </div>
-        <div>
-          <div style="font-size:11px;font-weight:600;color:rgba(255,255,255,0.6);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:8px;">Спектакль · 20 апреля</div>
-          <div style="font-size:22px;font-weight:700;color:#ffffff;line-height:1.2;margin-bottom:10px;">«Лучше я буду рыбой...»</div>
-          <div style="font-size:13px;color:rgba(255,255,255,0.75);line-height:1.6;margin-bottom:20px;">Спектакль-притча по Айтматову. Театр анимации, тотемы, живая этническая музыка.</div>
-          <div style="display:flex;align-items:center;justify-content:space-between;">
-            <div style="font-size:15px;font-weight:700;color:#ffffff;">2 000 ₽</div>
-            <div style="font-size:12px;font-weight:600;color:#ffffff;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);padding:7px 16px;border-radius:100px;backdrop-filter:blur(6px);">Подробнее →</div>
-          </div>
-        </div>
+    <div class="past-sidebar-banner">
+      <img src="/photos/event-ryba.jpg" alt="«Лучше я буду рыбой...»" style="width:100%;display:block;border-radius:16px 16px 0 0;">
+      <div style="padding:16px 20px 20px;background:#ffffff;border-radius:0 0 16px 16px;border:1px solid #e8e8e8;border-top:none;">
+        <div style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#1a4a3a;margin-bottom:8px;">Рекомендуем</div>
+        <div style="font-size:16px;font-weight:700;color:#111111;line-height:1.3;margin-bottom:4px;">«Лучше я буду рыбой...»</div>
+        <div style="font-size:12px;color:#666666;margin-bottom:14px;">Спектакль · 20 апреля · 2 000 ₽</div>
+        <a href="/event-ryba/" style="display:block;text-align:center;background:#111111;color:#ffffff;font-size:13px;font-weight:600;padding:11px 20px;border-radius:100px;text-decoration:none;transition:opacity 0.15s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">Подробнее</a>
       </div>
-    </a>
+    </div>
   </div>
   </div><!-- /past-layout -->
   <div id="upcomingSoonMsg" style="display:none; text-align:center; padding: 32px 0 8px; font-size:14px; color:#999999; letter-spacing:0.02em;">Скоро появятся новые мероприятия</div>
