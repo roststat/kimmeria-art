@@ -105,7 +105,7 @@
     .schedule-empty-text strong { color: #111111; display: block; font-size: 17px; margin-bottom: 6px; }
 
     /* EVENT CARDS (как на главной) */
-    .schedule-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; max-width: 620px; }
+    .schedule-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; max-width: 620px; }
     .event-card { background: #ffffff; border: 1px solid #e8e8e8; border-radius: 16px; overflow: hidden; cursor: pointer; display: flex; flex-direction: column; transition: transform 0.2s, box-shadow 0.2s; text-decoration: none; color: inherit; }
     .event-card:hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(0,0,0,0.08); }
     .event-photo-wrap { position: relative; aspect-ratio: 3/4; overflow: hidden; flex-shrink: 0; }
@@ -177,6 +177,7 @@
       .hero-title { font-size: 34px; }
       .page-main { grid-template-columns: 1fr; padding: 36px 20px; gap: 40px; }
       .sidebar { position: static; }
+      .schedule-cards { grid-template-columns: repeat(2, 1fr); max-width: 100%; }
       .archive-grid { grid-template-columns: repeat(2, 1fr); max-width: 100%; }
       footer { padding: 28px 20px; flex-direction: column; gap: 16px; text-align: center; }
       .footer-links { flex-wrap: wrap; justify-content: center; }
@@ -186,6 +187,7 @@
       nav { padding: 0 16px; }
       .hero-title { font-size: 26px; }
       .page-main { padding: 24px 16px; }
+      .schedule-cards { grid-template-columns: 1fr; max-width: 100%; }
       .archive-grid { grid-template-columns: 1fr; }
       .back-section { padding: 0 16px 32px; }
       footer { padding: 24px 16px; }
