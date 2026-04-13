@@ -114,47 +114,20 @@
       .event-main { padding: 24px 16px; } .event-sidebar { padding: 24px; }
       .event-back-section { padding: 0 16px 32px; } footer { padding: 24px 16px; }
     }
-  
-    .nav-back-mobile {
-      display: none; font-size: 13px; font-weight: 700; color: #ffffff;
-      background: #1a4a3a; text-decoration: none; padding: 8px 18px;
-      border-radius: 100px; transition: opacity 0.15s; white-space: nowrap;
-    }
-    .nav-back-mobile:hover { opacity: 0.85; }
-    @media (max-width: 900px) {
-      .nav-back-mobile { display: inline-block; }
-      .nav-back { display: none; }
-      .nav-burger { display: none !important; }
-    }
-  
-    /* FLOATING BACK BUTTON */
-    .fab-back {
-      position: fixed; top: 72px; right: 20px; z-index: 200;
-      display: flex;
-      align-items: center; gap: 7px;
-      background: #ffffff; color: #111111;
-      font-family: inherit; font-size: 13px; font-weight: 600;
-      padding: 9px 16px 9px 12px;
-      border-radius: 100px; border: 1px solid #e8e8e8;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.10);
-      cursor: pointer; text-decoration: none;
-      transition: box-shadow 0.15s, transform 0.15s;
-    }
-    .fab-back:hover { box-shadow: 0 6px 22px rgba(0,0,0,0.14); transform: translateY(-1px); }
-    .fab-back svg { width: 16px; height: 16px; flex-shrink: 0; }
   </style>
 </head>
 <body>
-
-<button class="fab-back" id="fabBack" onclick="fabGoBack()" aria-label="Назад">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 5l-7 7 7 7"/></svg>
-  Назад
-</button>
 <nav>
   <a href="/" class="nav-logo">Киммерия-Арт</a>
+  <button class="nav-burger" id="navBurger" onclick="toggleMenu()" aria-label="Меню">
+    <span></span><span></span><span></span>
+  </button>
   <a href="/#events" class="nav-back">← Все события</a>
-  <a href="/#events" class="nav-back-mobile">Все события</a>
 </nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="/" onclick="closeMenu()">Главная</a>
+  <a href="/kinoklub/" onclick="closeMenu()">Киноклуб</a>
+  <div class="mobile-menu-divider"></div>
   <a href="/#events" onclick="closeMenu()">← Все события</a>
 </div>
 <div class="event-hero">
@@ -235,14 +208,6 @@
   <img id="lightboxImg" src="" alt="" onclick="event.stopPropagation()">
 </div>
 <script>
-
-function fabGoBack() {
-  if (document.referrer && document.referrer !== window.location.href) {
-    history.back();
-  } else {
-    window.location.href = '/#events';
-  }
-}
 function openLightbox(src) { document.getElementById('lightboxImg').src = src; document.getElementById('lightbox').classList.add('open'); document.body.style.overflow = 'hidden'; }
 function closeLightbox() { document.getElementById('lightbox').classList.remove('open'); document.body.style.overflow = ''; }
 document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeLightbox(); });
