@@ -114,6 +114,9 @@
     .event-location { font-size: 11px; color: #666666; display: flex; align-items: center; gap: 4px; }
     .event-location::before { content: ''; width: 5px; height: 5px; background: #666666; border-radius: 50%; flex-shrink: 0; }
     .event-price { font-size: 13px; font-weight: 600; color: #111111; }
+    .event-speaker-row { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+    .event-speaker-avatar { width: 28px; height: 28px; border-radius: 50%; object-fit: cover; object-position: center top; flex-shrink: 0; border: 1.5px solid #e8e8e8; }
+    .event-speaker-name { font-size: 11px; font-weight: 600; color: #444444; }
 
     /* ARCHIVE */
     .archive-section { margin-bottom: 56px; }
@@ -231,7 +234,11 @@
           <div class="event-body">
             <div class="event-date-line">17 апреля · 19:00</div>
             <div class="event-title">«Отец Мать Сестра Брат» — Джим Джармуш</div>
-            <div class="event-desc">Три новеллы о близости и сложностях общения между родителями и детьми. Ведёт Анастасия Иржаковская, психолог.</div>
+            <div class="event-desc">Три новеллы о близости и сложностях общения между родителями и детьми.</div>
+            <div class="event-speaker-row">
+              <img class="event-speaker-avatar" src="/photos/event-jarmusch-speaker.jpg" alt="Анастасия Иржаковская">
+              <span class="event-speaker-name">Анастасия Иржаковская</span>
+            </div>
             <div class="event-bottom">
               <span class="event-location">Ялта, ул. Игнатенко, 5, офис 2</span>
               <span class="event-price">700 ₽</span>

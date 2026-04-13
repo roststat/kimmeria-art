@@ -81,7 +81,8 @@
     .btn-share svg { width: 15px; height: 15px; flex-shrink: 0; }
     .share-popup { position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%) translateY(4px); background: #111111; color: #ffffff; font-size: 12px; font-weight: 500; padding: 6px 14px; border-radius: 100px; white-space: nowrap; pointer-events: none; opacity: 0; transition: all 0.2s; }
     .share-popup.visible { opacity: 1; transform: translateX(-50%) translateY(0); }
-    .host-block { background: #f8f8f8; border-radius: 12px; padding: 20px 24px; margin-bottom: 32px; display: flex; gap: 16px; align-items: flex-start; }
+    .host-block { background: #f8f8f8; border-radius: 12px; padding: 20px 24px; margin-bottom: 32px; display: flex; gap: 16px; align-items: center; }
+    .host-avatar { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; object-position: center top; flex-shrink: 0; border: 2px solid #e8e8e8; }
     .host-info { }
     .host-name { font-size: 15px; font-weight: 700; color: #111; margin-bottom: 4px; }
     .host-role { font-size: 13px; color: #666; }
@@ -178,6 +179,7 @@
     </div>
 
     <div class="host-block">
+      <img class="host-avatar" src="/photos/event-jarmusch-speaker.jpg" alt="Анастасия Иржаковская">
       <div class="host-info">
         <div class="host-name">Анастасия Иржаковская</div>
         <div class="host-role">Ведущая киновечера · Аналитик, психолог</div>
