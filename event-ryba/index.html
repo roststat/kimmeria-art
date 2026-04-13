@@ -137,6 +137,12 @@
       .nav-burger { display: none !important; }
     }
   
+    /* ФОТО СПЕКТАКЛЯ */
+    .event-photos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 32px; max-width: 620px; }
+    .event-photos img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 8px; cursor: zoom-in; transition: opacity 0.15s, transform 0.15s; display: block; }
+    .event-photos img:hover { opacity: 0.88; transform: scale(1.02); }
+    @media (max-width: 600px) { .event-photos { grid-template-columns: repeat(2, 1fr); } }
+
     /* FLOATING BACK BUTTON */
     .fab-back {
       position: fixed; top: 72px; right: 20px; z-index: 200;
@@ -197,6 +203,13 @@
 
     <div style="margin-bottom: 32px;">
       <img src="/photos/event-ryba-2.jpg" alt="Спектакль «Лучше я буду рыбой»" onclick="openLightbox(this.src)" style="width: 100%; max-width: 620px; border-radius: 12px; display: block; cursor: zoom-in;">
+    </div>
+
+    <div class="event-photos">
+      <img src="/photos/event-ryba-photo-1.jpg" alt="Спектакль «Лучше я буду рыбой» — фото 1" onclick="openLightbox(this.src)">
+      <img src="/photos/event-ryba-photo-2.jpg" alt="Спектакль «Лучше я буду рыбой» — фото 2" onclick="openLightbox(this.src)">
+      <img src="/photos/event-ryba-photo-3.jpg" alt="Спектакль «Лучше я буду рыбой» — фото 3" onclick="openLightbox(this.src)">
+      <img src="/photos/event-ryba-photo-4.jpg" alt="Спектакль «Лучше я буду рыбой» — фото 4" onclick="openLightbox(this.src)">
     </div>
 
     <ul class="event-details-list">
