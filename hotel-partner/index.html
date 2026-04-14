@@ -59,6 +59,13 @@ body {
   padding: 72px 60px 64px;
   background: #fff;
   border-bottom: 1px solid #e8e8e8;
+  display: flex; align-items: center; justify-content: space-between; gap: 40px;
+}
+.hero-content { flex: 1; min-width: 0; }
+.hero-image { flex: none; width: 300px; display: flex; align-items: center; justify-content: center; }
+.hero-image img { width: 100%; height: auto; display: block; }
+@media (max-width: 768px) {
+  .hero-logo { top: 24px; right: 24px; font-size: 11px; }
 }
 .hero-label {
   font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
@@ -468,7 +475,8 @@ body {
 @media (max-width: 768px) {
   .top-bar { padding: 0 20px; height: 44px; }
   .top-bar-nav { display: none; }
-  .hero { padding: 40px 24px 44px; }
+  .hero { padding: 40px 24px 44px; flex-direction: column; }
+  .hero-image { display: none; }
   .hero-title { font-size: 30px; max-width: 100%; }
   .hero-sub { font-size: 15px; max-width: 100%; }
   .hero-actions { gap: 10px; }
@@ -530,17 +538,22 @@ body {
 
 <!-- ══ HERO ══ -->
 <section class="hero">
-  <div class="hero-label">Партнёрская программа · Киммерия-Арт</div>
-  <h1 class="hero-title">Зарабатывайте на&nbsp;<span>мероприятиях Крыма</span></h1>
-  <p class="hero-sub">Ваши гости покупают билеты на спектакли, лекции и кино прямо со страницы вашего отеля — вы получаете <strong>20% с каждой продажи</strong> без какой-либо ручной работы.</p>
-  <div class="hero-actions">
-    <a href="#calculator" class="btn-primary">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      Посчитать доход
-    </a>
-    <button class="btn-ghost" onclick="openCatalog()">Посмотреть каталог →</button>
+  <div class="hero-content">
+    <div class="hero-label">Партнёрская программа · Киммерия-Арт</div>
+    <h1 class="hero-title">Зарабатывайте на&nbsp;<span>мероприятиях Крыма</span></h1>
+    <p class="hero-sub">Ваши гости покупают билеты на спектакли, лекции и кино прямо со страницы вашего отеля — вы получаете <strong>20% с каждой продажи</strong> без какой-либо ручной работы.</p>
+    <div class="hero-actions">
+      <a href="#calculator" class="btn-primary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        Посчитать доход
+      </a>
+      <button class="btn-ghost" onclick="openCatalog()">Посмотреть каталог →</button>
+    </div>
+    <p class="hero-note">Подключение бесплатно · Комиссия только с реальных продаж</p>
   </div>
-  <p class="hero-note">Подключение бесплатно · Комиссия только с реальных продаж</p>
+  <div class="hero-image">
+    <img src="/photos/hero-archer.png" alt="Киммерия-Арт">
+  </div>
 </section>
 
 <!-- ══ КАЛЬКУЛЯТОР ══ -->
