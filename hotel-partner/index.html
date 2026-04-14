@@ -94,10 +94,30 @@ body {
 .btn-ghost {
   display: inline-flex; align-items: center; gap: 6px;
   font-family: 'Onest', Arial, sans-serif;
-  font-size: 14px; font-weight: 700; color: var(--accent);
-  background: transparent; border: none; padding: 15px 4px;
-  text-decoration: none; cursor: pointer;
+  font-size: 14px; font-weight: 700; color: #fff;
+  background: var(--accent);
+  border: none; padding: 15px 26px;
+  border-radius: 100px; cursor: pointer;
+  position: relative; overflow: hidden;
+  text-decoration: none;
+  transition: opacity 0.15s, transform 0.15s, box-shadow 0.15s;
+  box-shadow: 0 2px 12px rgba(26,74,58,0.25);
 }
+.btn-ghost::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -75%;
+  width: 50%; height: 100%;
+  background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.38) 50%, transparent 100%);
+  transform: skewX(-20deg);
+  animation: btn-shimmer 2.4s ease-in-out infinite;
+}
+@keyframes btn-shimmer {
+  0%   { left: -75%; }
+  55%  { left: 130%; }
+  100% { left: 130%; }
+}
+.btn-ghost:hover { opacity: 0.88; transform: translateY(-1px); box-shadow: 0 4px 18px rgba(26,74,58,0.35); }
 .hero-note { margin-top: 24px; font-size: 13px; color: #bbb; }
 
 /* ── СЕКЦИЯ ── */
@@ -568,8 +588,8 @@ body {
           <label class="calc-slider-label" for="sGuests">Гостей в месяц</label>
           <span class="calc-slider-val" id="vGuests">500</span>
         </div>
-        <input class="calc-slider-input" type="range" id="sGuests" min="100" max="2000" step="50" value="500" oninput="calcUpdate()">
-        <div class="calc-slider-hint">100 — 2 000 гостей</div>
+        <input class="calc-slider-input" type="range" id="sGuests" min="100" max="3000" step="50" value="500" oninput="calcUpdate()">
+        <div class="calc-slider-hint">100 — 3 000 гостей</div>
       </div>
       <div class="calc-slider-group">
         <div class="calc-slider-top">
@@ -577,7 +597,7 @@ body {
           <span class="calc-slider-val" id="vConv">15%</span>
         </div>
         <input class="calc-slider-input" type="range" id="sConv" min="1" max="40" step="1" value="15" oninput="calcUpdate()">
-        <div class="calc-slider-hint">Средний показатель партнёров — 12–18%</div>
+        <div class="calc-slider-hint">Средний показатель партнёров — 12–18%, с учётом повторных продаж этим клиентам</div>
       </div>
       <div class="calc-slider-group">
         <div class="calc-slider-top">
