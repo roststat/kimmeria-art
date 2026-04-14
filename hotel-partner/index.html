@@ -227,7 +227,7 @@ body {
 .format-code {
   background: #111; border-radius: 10px; padding: 13px 16px;
   font-family: 'Courier New', monospace; font-size: 12px; color: var(--green);
-  margin-bottom: 20px; overflow-x: auto; white-space: nowrap;
+  margin-bottom: 20px; white-space: pre-wrap; word-break: break-all;
   max-width: 100%; box-sizing: border-box; display: block;
 }
 .format-qr-mock {
@@ -650,7 +650,10 @@ body {
       <div class="format-icon">🖥️</div>
       <div class="format-title">Виджет на вашем сайте</div>
       <p class="format-desc">Добавьте одну строчку кода — и каталог мероприятий появится прямо на странице вашего отеля. Гость не уходит с вашего сайта.</p>
-      <div class="format-code">&lt;script src="https://art-kimmeria.ru/widget.js?hotel=your-id"&gt;&lt;/script&gt;</div>
+      <div class="format-code">&lt;script
+  src="https://art-kimmeria.ru/widget.js
+  ?hotel=your-id"&gt;
+&lt;/script&gt;</div>
       <button class="btn-preview" onclick="openCatalog()">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
         Посмотреть как видит гость
