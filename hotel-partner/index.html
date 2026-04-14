@@ -271,16 +271,26 @@ body {
 }
 .cta-promise-check svg { width: 9px; height: 9px; color: var(--accent-dark); }
 .cta-right { flex-shrink: 0; }
-.btn-tg {
-  display: inline-flex; align-items: center; gap: 10px;
-  font-family: 'Onest', Arial, sans-serif;
-  font-size: 15px; font-weight: 700; color: #fff;
-  background: #2aabee; border: none;
-  padding: 16px 28px; border-radius: 100px;
-  text-decoration: none; transition: opacity 0.15s; white-space: nowrap;
+.contact-card {
+  display: flex; align-items: center; gap: 18px;
 }
-.btn-tg:hover { opacity: 0.88; }
-.btn-tg svg { width: 20px; height: 20px; flex-shrink: 0; }
+.contact-avatar {
+  width: 72px; height: 72px; border-radius: 50%; object-fit: cover;
+  flex-shrink: 0; border: 3px solid rgba(255,255,255,0.2);
+}
+.contact-name {
+  font-size: 17px; font-weight: 700; color: #fff; margin-bottom: 2px;
+}
+.contact-role {
+  font-size: 12px; color: rgba(255,255,255,0.45); margin-bottom: 10px;
+  letter-spacing: 0.02em;
+}
+.contact-phone {
+  font-size: 22px; font-weight: 700; color: var(--green);
+  text-decoration: none; letter-spacing: 0.01em;
+  transition: opacity 0.15s;
+}
+.contact-phone:hover { opacity: 0.8; }
 
 /* ── ПОПАП КАТАЛОГА ── */
 .popup-overlay {
@@ -480,7 +490,8 @@ body {
   .cta-inner { flex-direction: column; gap: 28px; }
   .cta-title { font-size: 26px; }
   .cta-right { width: 100%; }
-  .btn-tg { width: 100%; justify-content: center; }
+  .contact-card { gap: 14px; }
+  .contact-phone { font-size: 19px; }
   .page-footer { padding: 18px 24px; flex-direction: column; align-items: flex-start; gap: 6px; }
   /* попап */
   .popup-box { border-radius: 16px; max-height: 92vh; }
@@ -702,10 +713,14 @@ body {
       </ul>
     </div>
     <div class="cta-right">
-      <a href="https://t.me/kimmeria_art" class="btn-tg" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248-2.02 9.52c-.148.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.883.701z"/></svg>
-        Написать в Telegram
-      </a>
+      <div class="contact-card">
+        <img class="contact-avatar" src="/photos/philip-emelyanov.jpg" alt="Филипп Емельянов">
+        <div>
+          <div class="contact-name">Филипп Емельянов</div>
+          <div class="contact-role">Продюсер · Киммерия-Арт</div>
+          <a class="contact-phone" href="tel:+79260662878">+7 926 066-28-78</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
