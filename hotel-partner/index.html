@@ -182,15 +182,6 @@ body {
   color: #999; margin-bottom: 5px;
 }
 .result-card-num { font-size: 20px; font-weight: 700; color: #111; }
-.calc-network-btn {
-  font-family: 'Onest', Arial, sans-serif;
-  font-size: 12px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
-  background: #fff; color: #555; border: 1px solid #e0e0e0;
-  padding: 10px 18px; border-radius: 100px; cursor: pointer; transition: background 0.15s;
-}
-.calc-network-btn:hover { background: #f0f0f0; }
-.network-note { font-size: 12px; color: #aaa; margin-top: 8px; }
-
 /* ── КАК РАБОТАЕТ ── */
 .steps-section { background: #fff; }
 .steps-grid {
@@ -624,8 +615,6 @@ body {
           <div class="result-card-num" id="rYear">360 000 ₽</div>
         </div>
       </div>
-      <button class="calc-network-btn" onclick="calcNetwork()">Рассчитать для сети (×10 отелей)</button>
-      <div class="network-note" id="networkNote"></div>
     </div>
   </div>
 </section>
@@ -951,18 +940,6 @@ function calcUpdate() {
   document.getElementById('networkNote').textContent = '';
 }
 
-function calcNetwork() {
-  const guests = +document.getElementById('sGuests').value;
-  const conv   = +document.getElementById('sConv').value;
-  const price  = +document.getElementById('sPrice').value;
-  const month  = Math.round(guests * conv / 100) * price * 0.20 * 10;
-
-  document.getElementById('rMonth').textContent   = fmtNum(month);
-  document.getElementById('rSeason').textContent  = fmtNum(month * 6);
-  document.getElementById('rYear').textContent    = fmtNum(month * 12);
-  document.getElementById('rMainSub').textContent = '×10 отелей · суммарный доход сети';
-  document.getElementById('networkNote').textContent = 'Режим сети — показан суммарный доход 10 отелей';
-}
 
 calcUpdate();
 </script>
