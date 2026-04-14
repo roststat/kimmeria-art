@@ -38,16 +38,32 @@ body {
   position: fixed; top: 0; left: 50%; transform: translateX(-50%);
   width: 100%; max-width: 1440px; z-index: 200;
   background: var(--accent-dark);
-  display: flex; align-items: center; justify-content: center;
-  gap: 12px; padding: 9px 20px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; padding: 0 24px;
+  height: 44px;
   font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85);
   letter-spacing: 0.04em;
 }
+.partner-banner-left { display: flex; align-items: center; gap: 10px; }
 .partner-banner strong { color: #ffffff; }
 .partner-banner-badge {
   background: rgba(255,255,255,0.15);
   font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
-  color: #ffffff; padding: 3px 10px; border-radius: 100px;
+  color: #ffffff; padding: 3px 10px; border-radius: 100px; white-space: nowrap;
+}
+.partner-banner-nav { display: flex; align-items: center; gap: 4px; }
+.partner-banner-nav a {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+  color: rgba(255,255,255,0.65); text-decoration: none;
+  padding: 5px 12px; border-radius: 100px; border: 1px solid rgba(255,255,255,0.15);
+  transition: all 0.15s; white-space: nowrap;
+}
+.partner-banner-nav a:hover { color: #ffffff; border-color: rgba(255,255,255,0.4); background: rgba(255,255,255,0.08); }
+.partner-banner-nav a.cta { background: #4ade80; color: #0f2e24; border-color: #4ade80; }
+.partner-banner-nav a.cta:hover { opacity: 0.88; background: #4ade80; }
+@media (max-width: 640px) {
+  .partner-banner { height: auto; padding: 8px 16px; flex-wrap: wrap; gap: 8px; }
+  .partner-banner-nav { display: none; }
 }
 
 /* ── TOOLTIP ── */
@@ -739,6 +755,10 @@ body {
   .partner-banner { font-size: 11px; }
   .page-footer { padding: 20px; }
 }
+@media (max-width: 760px) {
+  .formats-mockup-grid { grid-template-columns: 1fr !important; }
+  .formats-mockup-labels { grid-template-columns: 1fr !important; }
+}
 </style>
 </head>
 <body>
@@ -747,32 +767,44 @@ body {
 
 <!-- PARTNER BANNER -->
 <div class="partner-banner">
-  <span class="partner-banner-badge">Демо</span>
-  <span>Так выглядит ваша страница на портале Киммерия-Арт. <strong>Гости видят только карточки мероприятий.</strong> Все остальное — только для партнёра.</span>
+  <div class="partner-banner-left">
+    <span class="partner-banner-badge">Демо для партнёра</span>
+    <span>Так выглядит страница вашего отеля. Гости покупают билеты — <strong>вы получаете 20% с каждой продажи.</strong></span>
+  </div>
+  <nav class="partner-banner-nav">
+    <a href="#how-it-works">Как работает</a>
+    <a href="#calculator">Калькулятор</a>
+    <a href="#form" class="cta">Подключить отель</a>
+  </nav>
 </div>
 
 <!-- ══════════════════════════════════════════ BLOCK A · HERO -->
 <section class="hotel-hero">
   <div class="hotel-hero-content">
     <div class="hotel-hero-left">
-      <div class="hotel-hero-label">Мероприятия для гостей</div>
+      <div class="hotel-hero-label">Демо-страница партнёра · Киммерия-Арт</div>
       <h1 class="hotel-hero-title">Гранд Отель Ялта</h1>
-      <p class="hotel-hero-slogan">Ваш отдых на берегу Чёрного моря</p>
-      <a href="#catalog" class="hotel-hero-cta">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        Смотреть мероприятия
-      </a>
+      <p class="hotel-hero-slogan">Ваши гости покупают билеты на мероприятия — <br>вы получаете <strong style="color:var(--accent);">20% с каждой продажи.</strong></p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <a href="#catalog" class="hotel-hero-cta">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          Посмотреть как видит гость
+        </a>
+        <a href="#how-it-works" style="display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:700;color:var(--accent);text-decoration:none;padding:15px 4px;letter-spacing:0.03em;">
+          Как это работает →
+        </a>
+      </div>
     </div>
     <div class="hotel-hero-tip">
-      <div class="hotel-hero-tip-icon">💡</div>
-      <p>Это ваша страница на нашем портале. Гости, перешедшие по QR-коду из вашего холла или номера, попадают именно сюда — и сразу видят мероприятия.</p>
+      <div class="hotel-hero-tip-icon">📍</div>
+      <p><strong>Это ваша страница на портале Киммерия-Арт.</strong> Гость сканирует QR в холле или номере, попадает сюда, выбирает мероприятие и оплачивает онлайн. Вы ничего не делаете вручную — система всё считает сама.</p>
     </div>
   </div>
 </section>
 
 <!-- ══════════════════════════════════════════ BLOCK B · CATALOG -->
 <section class="section" id="catalog">
-  <div class="section-label">Блок Б · Управление и каталог</div>
+  <div class="section-label">Управление и каталог</div>
 
   <!-- B1: PARTNER PANEL -->
   <div class="partner-panel" id="partnerPanel">
@@ -827,8 +859,8 @@ body {
 </section>
 
 <!-- ══════════════════════════════════════════ BLOCK C · HOW IT WORKS -->
-<section class="section steps-section">
-  <div class="section-label">Блок В · Как это работает</div>
+<section class="section steps-section" id="how-it-works">
+  <div class="section-label">Как это работает</div>
   <div class="section-title">Путь от QR до комиссии</div>
   <p class="section-sub">Четыре шага — и ничего лишнего.</p>
   <div class="steps-grid">
@@ -866,7 +898,7 @@ body {
 
 <!-- ══════════════════════════════════════════ BLOCK D · TRUST -->
 <section class="section">
-  <div class="section-label">Блок Г · Почему это работает</div>
+  <div class="section-label">Почему это работает</div>
   <div class="section-title">Проверенная инфраструктура</div>
   <p class="section-sub">Вы получаете не стартап, а площадку с историей и аудиторией.</p>
   <div class="stats-grid">
@@ -915,9 +947,114 @@ body {
 
 <!-- ══════════════════════════════════════════ BLOCK E · FORMATS -->
 <section class="section" style="background:#f9f9f9;">
-  <div class="section-label">Блок Д · Форматы подключения</div>
+  <div class="section-label">Форматы подключения</div>
   <div class="section-title">Два варианта — можно сразу оба</div>
   <p class="section-sub">Выберите, что подходит вашему отелю.</p>
+
+  <!-- Mockup: два варианта наглядно -->
+  <div class="formats-mockup-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:40px 0;">
+
+    <!-- Вариант 1: Виджет на сайте отеля -->
+    <div style="border:1px solid #e8e8e8;border-radius:16px;overflow:hidden;background:#ffffff;">
+      <div style="background:#2a2a2a;padding:10px 16px;display:flex;align-items:center;gap:6px;">
+        <div style="width:10px;height:10px;border-radius:50%;background:#ff5f57;"></div>
+        <div style="width:10px;height:10px;border-radius:50%;background:#febc2e;"></div>
+        <div style="width:10px;height:10px;border-radius:50%;background:#28c840;"></div>
+        <div style="flex:1;background:#3a3a3a;border-radius:4px;height:22px;margin-left:10px;display:flex;align-items:center;padding:0 10px;">
+          <span style="font-size:11px;color:rgba(255,255,255,0.45);">grand-hotel-yalta.ru</span>
+        </div>
+      </div>
+      <!-- Шапка сайта отеля -->
+      <div style="background:#8B6914;padding:10px 20px;display:flex;justify-content:space-between;align-items:center;">
+        <span style="font-size:13px;font-weight:700;color:#fff;letter-spacing:0.06em;text-transform:uppercase;">Гранд Отель Ялта</span>
+        <span style="font-size:10px;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:0.06em;">Номера · Ресторан · Мероприятия</span>
+      </div>
+      <!-- Виджет Киммерии встроен -->
+      <div style="padding:16px;">
+        <div style="border:2px dashed #c8e8e0;border-radius:12px;padding:14px;background:#f0faf8;">
+          <div style="font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;display:flex;align-items:center;gap:6px;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="var(--accent)"><circle cx="12" cy="12" r="10"/></svg>
+            Виджет Киммерия-Арт
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+            <div style="border:1px solid #e8e8e8;border-radius:8px;overflow:hidden;background:#fff;">
+              <div style="height:48px;background:linear-gradient(135deg,#1a4a3a,#2d7a5e);"></div>
+              <div style="padding:8px;">
+                <div style="font-size:10px;font-weight:700;color:#111;margin-bottom:2px;">Спектакль · 20 апр</div>
+                <div style="font-size:9px;color:#888;margin-bottom:6px;">«Лучше я буду рыбой»</div>
+                <div style="font-size:9px;font-weight:700;color:#fff;background:var(--accent);padding:3px 8px;border-radius:100px;display:inline-block;">2 000 ₽</div>
+              </div>
+            </div>
+            <div style="border:1px solid #e8e8e8;border-radius:8px;overflow:hidden;background:#fff;">
+              <div style="height:48px;background:linear-gradient(135deg,#2a5a8B,#3a7aa0);"></div>
+              <div style="padding:8px;">
+                <div style="font-size:10px;font-weight:700;color:#111;margin-bottom:2px;">Лекция · 22 апр</div>
+                <div style="font-size:9px;color:#888;margin-bottom:6px;">«Геката в Фияльте»</div>
+                <div style="font-size:9px;font-weight:700;color:#fff;background:var(--accent);padding:3px 8px;border-radius:100px;display:inline-block;">1 000 ₽</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Вариант 2: Страница на портале по QR -->
+    <div style="border:1px solid #e8e8e8;border-radius:16px;overflow:hidden;background:#ffffff;">
+      <div style="background:#2a2a2a;padding:10px 16px;display:flex;align-items:center;gap:6px;">
+        <div style="width:10px;height:10px;border-radius:50%;background:#ff5f57;"></div>
+        <div style="width:10px;height:10px;border-radius:50%;background:#febc2e;"></div>
+        <div style="width:10px;height:10px;border-radius:50%;background:#28c840;"></div>
+        <div style="flex:1;background:#3a3a3a;border-radius:4px;height:22px;margin-left:10px;display:flex;align-items:center;padding:0 10px;">
+          <span style="font-size:11px;color:rgba(255,255,255,0.45);">art-kimmeria.ru/<strong style="color:rgba(255,255,255,0.75);">grand-hotel</strong></span>
+        </div>
+      </div>
+      <!-- Шапка портала -->
+      <div style="background:#0f2e24;padding:10px 20px;display:flex;justify-content:space-between;align-items:center;">
+        <span style="font-size:13px;font-weight:700;color:#fff;letter-spacing:0.06em;text-transform:uppercase;">Киммерия-Арт</span>
+        <span style="font-size:10px;color:rgba(255,255,255,0.5);">Афиша Ялты</span>
+      </div>
+      <!-- Страница отеля -->
+      <div style="padding:16px;">
+        <div style="font-size:12px;color:#888;margin-bottom:4px;text-transform:uppercase;letter-spacing:0.06em;font-weight:600;">Мероприятия для гостей</div>
+        <div style="font-size:16px;font-weight:700;color:#111;margin-bottom:12px;">Гранд Отель Ялта</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+          <div style="border:1px solid #e8e8e8;border-radius:8px;overflow:hidden;background:#fff;">
+            <div style="height:48px;background:linear-gradient(135deg,#1a4a3a,#2d7a5e);"></div>
+            <div style="padding:8px;">
+              <div style="font-size:10px;font-weight:700;color:#111;margin-bottom:2px;">Спектакль · 20 апр</div>
+              <div style="font-size:9px;color:#888;margin-bottom:6px;">«Лучше я буду рыбой»</div>
+              <div style="font-size:9px;font-weight:700;color:#fff;background:var(--accent);padding:3px 8px;border-radius:100px;display:inline-block;">2 000 ₽</div>
+            </div>
+          </div>
+          <div style="border:1px solid #e8e8e8;border-radius:8px;overflow:hidden;background:#fff;">
+            <div style="height:48px;background:linear-gradient(135deg,#2a5a8B,#3a7aa0);"></div>
+            <div style="padding:8px;">
+              <div style="font-size:10px;font-weight:700;color:#111;margin-bottom:2px;">Лекция · 22 апр</div>
+              <div style="font-size:9px;color:#888;margin-bottom:6px;">«Геката в Фияльте»</div>
+              <div style="font-size:9px;font-weight:700;color:#fff;background:var(--accent);padding:3px 8px;border-radius:100px;display:inline-block;">1 000 ₽</div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:10px;display:flex;align-items:center;gap:8px;">
+          <div style="width:60px;height:60px;border:2px dashed #c8e8e0;border-radius:8px;display:flex;align-items:center;justify-content:center;">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="1.5"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM17 17h3v3h-3z"/><path d="M5 5h3v3H5zM16 5h3v3h-3zM5 16h3v3H5z" fill="#ddd" stroke="none"/></svg>
+          </div>
+          <div style="font-size:10px;color:#888;line-height:1.4;">QR-код с уникальной меткой<br>вашего отеля</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="formats-mockup-labels" style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:24px;">
+    <div style="text-align:center;font-size:12px;font-weight:700;color:#555;padding:0 8px;">
+      📌 Встраивается на ваш сайт одной строкой кода
+    </div>
+    <div style="text-align:center;font-size:12px;font-weight:700;color:#555;padding:0 8px;">
+      📌 Гость сканирует QR и попадает прямо сюда
+    </div>
+  </div>
+
   <table class="formats-table">
     <thead>
       <tr>
@@ -956,7 +1093,7 @@ body {
 
 <!-- ══════════════════════════════════════════ BLOCK F · OWN EVENTS -->
 <section class="section own-events-section">
-  <div class="section-label">Блок Е · Собственные мероприятия</div>
+  <div class="section-label">Собственные мероприятия</div>
   <div class="own-events-header">
     <div>
       <div class="own-event-badge">Опция для партнёра</div>
@@ -1009,7 +1146,7 @@ body {
 
 <!-- ══════════════════════════════════════════ BLOCK G · CABINET -->
 <section class="section cabinet-section">
-  <div class="section-label">Блок Ж · Личный кабинет</div>
+  <div class="section-label">Личный кабинет</div>
   <div class="section-title">Всё считается автоматически</div>
   <p class="section-sub">Вы видите в реальном времени, сколько гостей перешло по вашим ссылкам и сколько купило билеты.</p>
   <div class="cabinet-mockup">
@@ -1078,7 +1215,7 @@ body {
 
 <!-- ══════════════════════════════════════════ BLOCK H · MATERIALS -->
 <section class="section">
-  <div class="section-label">Блок З · Рекламные материалы</div>
+  <div class="section-label">Рекламные материалы</div>
   <div class="section-title">Базовый комплект — бесплатно</div>
   <p class="section-sub">Всё необходимое для старта входит в подключение.</p>
   <div class="materials-grid">
@@ -1167,7 +1304,7 @@ body {
 
 <!-- ══════════════════════════════════════════ BLOCK I · CALCULATOR -->
 <section class="section calc-section" id="calculator">
-  <div class="section-label">Блок И · Калькулятор дохода</div>
+  <div class="section-label">Калькулятор дохода</div>
   <div class="section-title">Сколько вы заработаете</div>
   <p class="section-sub">Подставьте реальные цифры вашего отеля — и увидите потенциал партнёрства. Расчёт основан на средних показателях действующих партнёров.</p>
   <div class="calc-wrap">
@@ -1244,16 +1381,26 @@ body {
 
       <div class="calc-actions">
         <button class="calc-network-btn" onclick="calcNetwork()">Рассчитать для сети (×10 отелей)</button>
-        <a href="#form" class="calc-cta-btn">Оставить заявку</a>
       </div>
       <div style="font-size:12px;color:#aaa;margin-top:10px;" id="networkNote"></div>
+
+      <div style="margin-top:24px;background:linear-gradient(135deg,#0f2e24,#1a4a3a);border-radius:16px;padding:24px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;">
+        <div>
+          <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-bottom:4px;">Следующий шаг</div>
+          <div style="font-size:18px;font-weight:700;color:#ffffff;line-height:1.3;">Хотите столько же?<br><span style="color:#4ade80;">Подключим ваш отель за один день.</span></div>
+        </div>
+        <a href="#form" style="display:inline-flex;align-items:center;gap:8px;background:#4ade80;color:#0f2e24;font-family:'Onest',Arial,sans-serif;font-size:14px;font-weight:700;padding:15px 28px;border-radius:100px;text-decoration:none;white-space:nowrap;flex-shrink:0;transition:opacity 0.15s;" onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">
+          Подключить отель
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ══════════════════════════════════════════ BLOCK J · FORM -->
 <section class="section form-section" id="form">
-  <div class="section-label">Блок К · Заявка на подключение</div>
+  <div class="section-label">Заявка на подключение</div>
   <div class="section-title">Хотите так же?</div>
   <p class="section-sub">Оставьте заявку — расскажем, как подключить ваш отель за один день.</p>
   <div class="form-inner">
