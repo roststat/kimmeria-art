@@ -480,14 +480,7 @@ footer {
   display: flex; justify-content: space-between; align-items: center;
   gap: 24px; flex-wrap: wrap;
 }
-.footer-logo { font-size: 16px; font-weight: 700; color: #111111; }
-.footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
-.footer-links a {
-  font-size: 12px; color: #888888; text-decoration: none;
-  transition: color 0.15s;
-}
-.footer-links a:hover { color: #111111; }
-.footer-copy { font-size: 12px; color: #bbbbbb; }
+/* footer styles moved to /footer.js */
 
 /* ── PAST LAYOUT (grid + sidebar) ── */
 .past-layout {
@@ -600,8 +593,7 @@ footer {
   .join-section { grid-template-columns: 1fr; }
   .join-left { padding: 48px 24px; }
   .join-right { padding: 48px 24px; }
-  footer { padding: 28px 20px; flex-direction: column; text-align: center; }
-  .footer-links { justify-content: center; }
+  /* footer responsive — in /footer.js */
 }
 
 /* ── MOBILE ── */
@@ -1678,17 +1670,7 @@ footer {
 </section>
 
 <!-- FOOTER -->
-<footer>
-  <div class="footer-logo">Киммерия-Арт</div>
-  <div class="footer-links">
-    <a href="https://vk.com/kimmeria_art" target="_blank">ВКонтакте</a>
-    <a href="https://t.me/kimmeria_art" target="_blank">Telegram</a>
-    <a href="/privacy/">Политика конфиденциальности</a>
-    <a href="/terms/">Пользовательское соглашение</a>
-    <a href="/cookies/">Политика cookie</a>
-  </div>
-  <div class="footer-copy">© 2026 ИП Емельянов Филипп Андреевич · ИНН 772865046680 · Ялта</div>
-</footer>
+<div id="site-footer"></div>
 
 <!-- COOKIE BANNER -->
 <div class="cookie-banner" id="cookieBanner">
@@ -1912,5 +1894,6 @@ function acceptCookies() {
   }
 })();
 </script>
+<script src="/footer.js"></script>
 </body>
 </html>

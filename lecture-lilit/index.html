@@ -303,17 +303,7 @@
   <a href="/idealnaya-sreda/" class="back-link">← Идеальная среда</a>
 </div>
 
-<footer>
-  <div class="footer-logo">Киммерия-Арт</div>
-  <div class="footer-links">
-    <a href="https://vk.com/kimmeria_art" target="_blank">ВКонтакте</a>
-    <a href="https://t.me/kimmeria_art" target="_blank">Telegram</a>
-    <a href="/privacy/">Политика конфиденциальности</a>
-    <a href="/terms/">Пользовательское соглашение</a>
-    <a href="/cookies/">Политика cookie</a>
-  </div>
-  <div class="footer-copy">© 2026 ИП Емельянов Филипп Андреевич · ИНН 772865046680 · Ялта</div>
-</footer>
+<div id="site-footer"></div>
 
 <div class="is-overlay" id="sheetOverlay" onclick="if(event.target===this)closeSheet()">
   <div class="is-sheet">
@@ -372,5 +362,6 @@ document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') { closeLightbox(); closeSheet(); }
 });
 </script>
+<script src="/footer.js"></script>
 </body>
 </html>

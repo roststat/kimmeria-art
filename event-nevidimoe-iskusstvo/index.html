@@ -173,17 +173,7 @@
 <div class="event-back-section">
   <a href="/kinoklub/" class="event-back-link">← Киноклуб</a>
 </div>
-<footer>
-  <div class="footer-logo">Киммерия-Арт</div>
-  <div class="footer-links">
-    <a href="https://vk.com/kimmeria_art" target="_blank">ВКонтакте</a>
-    <a href="https://t.me/kimmeria_art" target="_blank">Telegram</a>
-    <a href="/privacy/">Политика конфиденциальности</a>
-    <a href="/terms/">Пользовательское соглашение</a>
-    <a href="/cookies/">Политика cookie</a>
-  </div>
-  <div class="footer-copy">© 2026 ИП Емельянов Филипп Андреевич · ИНН 772865046680 · Ялта</div>
-</footer>
+<div id="site-footer"></div>
 <script>
 
 function fabGoBack() {
@@ -203,5 +193,6 @@ function shareEvent(btn) {
   function fallback() { var ta = document.createElement('textarea'); ta.value = url; ta.style.cssText = 'position:fixed;opacity:0'; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); }
 }
 </script>
+<script src="/footer.js"></script>
 </body>
 </html>
