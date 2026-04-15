@@ -1,2 +1,5 @@
 .vercel
 _archive_v1/
+node_modules/
+.env
+package-lock.json
