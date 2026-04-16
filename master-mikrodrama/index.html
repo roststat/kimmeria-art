@@ -16,7 +16,8 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { font-family: 'Inter', sans-serif; background: #ffffff; color: #111111; font-size: 16px; line-height: 1.6; overflow-x: hidden; }
+    body { font-family: 'Inter', sans-serif; background: #ffffff; color: #111111; font-size: 16px; line-height: 1.6; overflow-x: hidden; max-width: 100vw; }
+    img { max-width: 100%; height: auto; }
 
     /* ── NAV ── */
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 60px; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid #e8e8e8; }
@@ -68,21 +69,20 @@
 
     /* логотип-представление */
     .presenter-block {
-      display: flex; align-items: center; gap: 20px;
-      margin-bottom: 36px;
-      padding-bottom: 36px;
+      display: inline-flex; flex-direction: column; align-items: flex-start; gap: 8px;
+      margin-bottom: 28px;
+      padding-bottom: 28px;
       border-bottom: 1px solid #f0f0f0;
     }
     .presenter-logo {
-      flex-shrink: 0;
-      width: 240px;
+      width: 220px;
     }
     .presenter-logo img {
       display: block; width: 100%; height: auto;
       filter: contrast(1.15) saturate(1.1);
     }
     .presenter-label {
-      font-size: 13px; font-weight: 700; letter-spacing: 0.12em;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.13em;
       text-transform: uppercase; color: #1a4a3a;
     }
 
@@ -145,13 +145,16 @@
     }
     @media (max-width: 600px) {
       nav { padding: 0 16px; }
+      .event-hero { overflow: hidden; }
       .event-hero-inner { padding: 28px 16px 36px; }
       .event-hero-title { font-size: 26px; }
-      .event-hero-poster { max-width: 180px; }
-      .event-main { padding: 32px 16px; }
+      .event-hero-poster { max-width: 160px; }
+      .event-main { padding: 32px 16px; overflow: hidden; }
+      .sidebar-card { padding: 20px; }
       .cta-h2 { font-size: 28px; }
       .cta-inner { padding: 48px 16px; }
       footer { padding: 24px 16px; }
+      .presenter-logo { width: 180px; }
     }
   </style>
 </head>
@@ -200,7 +203,7 @@
       <div class="presenter-logo">
         <img src="/photos/logo-kimmeria.jpg" alt="Кинокомпания Киммерия">
       </div>
-      <div class="presenter-label">Кинокомпания «Киммерия»<br>представляет</div>
+      <div class="presenter-label">Кинокомпания Киммерия представляет</div>
     </div>
 
     <p class="section-label">О мастер-классе</p>
