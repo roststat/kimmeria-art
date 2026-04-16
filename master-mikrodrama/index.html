@@ -46,17 +46,16 @@
     .fab-back:hover { box-shadow: 0 6px 22px rgba(0,0,0,0.14); transform: translateY(-1px); }
     .fab-back svg { width: 16px; height: 16px; flex-shrink: 0; }
 
-    /* ── HERO (как на страницах событий) ── */
+    /* ── HERO ── */
     .event-hero { padding-top: 60px; position: relative; overflow: hidden; background: #0d0d0d; }
     .event-hero-bg { position: absolute; inset: -40px; background-size: cover; background-position: center; filter: blur(28px); opacity: 0.45; transform: scale(1.08); }
     .event-hero-inner { position: relative; z-index: 1; display: grid; grid-template-columns: auto 1fr; gap: 56px; align-items: center; max-width: 1200px; margin: 0 auto; padding: 56px 48px; }
     .event-hero-poster { flex-shrink: 0; max-height: 500px; max-width: 360px; display: flex; align-items: center; }
     .event-hero-poster img { display: block; width: 100%; height: auto; object-fit: contain; border-radius: 12px; box-shadow: 0 24px 64px rgba(0,0,0,0.7); }
-    .event-hero-poster-placeholder { width: 300px; height: 420px; background: rgba(255,255,255,0.06); border: 1px dashed rgba(255,255,255,0.15); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.25); font-size: 13px; text-align: center; padding: 20px; box-shadow: 0 24px 64px rgba(0,0,0,0.4); }
     .event-hero-text { color: #ffffff; }
-    .event-hero-tag { display: inline-block; background: rgba(255,255,255,0.12); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.2); color: #ffffff; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 14px; border-radius: 100px; margin-bottom: 18px; }
-    .event-hero-title { font-size: 48px; font-weight: 700; color: #ffffff; line-height: 1.1; margin-bottom: 16px; letter-spacing: -0.01em; }
-    .event-hero-sub { font-size: 18px; color: rgba(255,255,255,0.65); line-height: 1.75; margin-bottom: 32px; max-width: 560px; }
+    .event-hero-tag { display: inline-block; background: rgba(255,255,255,0.12); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.2); color: #ffffff; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 14px; border-radius: 100px; margin-bottom: 14px; }
+    .event-hero-title { font-size: 42px; font-weight: 700; color: #ffffff; line-height: 1.1; margin-bottom: 16px; letter-spacing: -0.01em; }
+    .event-hero-sub { font-size: 17px; color: rgba(255,255,255,0.65); line-height: 1.75; margin-bottom: 28px; max-width: 520px; }
     .btn-hero { display: inline-block; padding: 16px 36px; background: #ffffff; color: #111111; font-family: inherit; font-size: 15px; font-weight: 700; text-decoration: none; border-radius: 100px; transition: transform 0.15s, box-shadow 0.15s; box-shadow: 0 4px 24px rgba(0,0,0,0.35); }
     .btn-hero:hover { transform: translateY(-2px); box-shadow: 0 8px 36px rgba(0,0,0,0.4); }
 
@@ -182,12 +181,20 @@
 
 
     /* ── RESPONSIVE ── */
+    @media (max-width: 1100px) {
+      .event-hero-inner { gap: 36px; padding: 48px 32px; }
+      .event-hero-poster { max-width: 280px; }
+      .event-hero-title { font-size: 36px; }
+    }
     @media (max-width: 900px) {
-      .event-hero-inner { grid-template-columns: 1fr; gap: 28px; padding: 36px 24px 44px; }
-      .event-hero-poster { max-width: 240px; max-height: 340px; margin: 0 auto; }
-      .event-hero-poster-placeholder { width: 200px; height: 280px; }
+      .event-hero-inner { grid-template-columns: 1fr; gap: 24px; padding: 40px 24px 48px; }
+      .event-hero-poster { max-width: 220px; max-height: 300px; margin: 0 auto; }
       .event-hero-text { text-align: center; }
-      .event-hero-title { font-size: 32px; }
+      .event-hero-tag { display: inline-block; }
+      .hero-free-badge { display: inline-block; }
+      .event-hero-sub { margin-left: auto; margin-right: auto; }
+      .btn-hero { display: block; text-align: center; }
+      .event-hero-title { font-size: 30px; }
       .event-hero-sub { font-size: 16px; }
       .event-main { grid-template-columns: 1fr; padding: 40px 24px; gap: 40px; }
       .event-sidebar { position: static; }
@@ -198,15 +205,17 @@
     @media (max-width: 600px) {
       nav { padding: 0 16px; }
       .event-hero { overflow: hidden; }
-      .event-hero-inner { padding: 28px 16px 36px; }
-      .event-hero-title { font-size: 26px; }
+      .event-hero-inner { padding: 28px 16px 36px; gap: 20px; }
       .event-hero-poster { max-width: 160px; }
+      .event-hero-title { font-size: 24px; }
+      .event-hero-sub { font-size: 15px; max-width: 100%; }
+      .btn-hero { width: 100%; box-sizing: border-box; }
       .event-main { padding: 32px 16px; overflow: hidden; }
       .sidebar-card { padding: 20px; }
-      .cta-h2 { font-size: 28px; }
+      .cta-h2 { font-size: 26px; }
       .cta-inner { padding: 48px 16px; }
       footer { padding: 24px 16px; }
-      .presenter-logo { width: 180px; }
+      .presenter-logo { width: 160px; }
     }
   </style>
 </head>
