@@ -136,6 +136,11 @@
     .form-success-icon { font-size: 36px; margin-bottom: 10px; }
     .form-success-text { font-size: 15px; font-weight: 600; color: #1a4a3a; }
     .form-success-sub { font-size: 13px; color: #888888; margin-top: 6px; }
+    .form-consent { display: flex; align-items: flex-start; gap: 10px; cursor: pointer; margin-top: 2px; }
+    .form-consent input[type="checkbox"] { flex-shrink: 0; width: 16px; height: 16px; margin-top: 2px; accent-color: #1a4a3a; cursor: pointer; }
+    .form-consent span { font-size: 12px; color: #888888; line-height: 1.55; }
+    .form-consent a { color: #1a4a3a; text-decoration: underline; }
+    .form-consent a:hover { color: #0f2e24; }
     .form-error { font-size: 13px; color: #cc3333; margin-top: 6px; display: none; }
 
     .btn-secondary { display: block; width: 100%; padding: 14px 24px; text-align: center; background: #ffffff; color: #111111; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; text-decoration: none; border: 1px solid #e8e8e8; border-radius: 100px; transition: background 0.15s; margin-top: 10px; }
@@ -270,6 +275,10 @@
       <form class="reg-form" id="regForm" onsubmit="submitForm(event)">
         <input type="text" name="name" placeholder="Имя и фамилия" required maxlength="80">
         <input type="tel" name="phone" placeholder="Номер телефона" required maxlength="20">
+        <label class="form-consent">
+          <input type="checkbox" name="consent" required>
+          <span>Я даю согласие на <a href="/privacy/" target="_blank">обработку персональных данных</a> в соответствии с Федеральным законом № 152-ФЗ</span>
+        </label>
         <button type="submit" class="btn-submit" id="submitBtn">Записаться →</button>
         <div class="form-error" id="formError">Ошибка отправки. Попробуйте ещё раз.</div>
       </form>
