@@ -222,15 +222,17 @@
     @media (max-width: 900px) {
       .event-hero-inner { grid-template-columns: 1fr; gap: 24px; padding: 40px 24px 48px; }
       .event-hero-poster { max-width: 220px; max-height: 300px; margin: 0 auto; }
-      .event-hero-text { text-align: center; }
-      .event-hero-tag { display: inline-block; }
-      .hero-free-badge { display: inline-block; }
-      .event-hero-sub { margin-left: auto; margin-right: auto; }
-      .btn-hero { display: block; text-align: center; }
-      .event-hero-title { font-size: 30px; }
-      .event-hero-sub { font-size: 16px; }
+      .event-hero-text { text-align: center; display: flex; flex-direction: column; align-items: center; }
+      .event-hero-tag { text-align: center; }
+      .event-hero-title { font-size: 30px; text-align: center; }
+      .event-hero-sub { font-size: 16px; max-width: 100%; text-align: center; }
+      .hero-hashtags { display: block; text-align: center; }
+      .hero-footnote { text-align: center; max-width: 100%; }
+      .hero-free-badge { display: block; text-align: center; }
       .event-main { grid-template-columns: 1fr; padding: 40px 24px; gap: 40px; }
       .event-sidebar { position: static; }
+      .presenter-block { display: flex; align-items: center; width: 100%; }
+      .cta-inline { font-size: 17px; }
       .cta-inner { flex-direction: column; text-align: center; padding: 56px 24px; gap: 28px; }
       footer { padding: 28px 20px; flex-direction: column; gap: 16px; text-align: center; }
       .footer-links { flex-wrap: wrap; justify-content: center; }
@@ -239,16 +241,16 @@
       nav { padding: 0 16px; }
       .event-hero { overflow: hidden; }
       .event-hero-inner { padding: 28px 16px 36px; gap: 20px; }
-      .event-hero-poster { max-width: 160px; }
+      .event-hero-poster { max-width: 150px; }
       .event-hero-title { font-size: 24px; }
-      .event-hero-sub { font-size: 15px; max-width: 100%; }
-      .btn-hero { width: 100%; box-sizing: border-box; }
+      .event-hero-sub { font-size: 15px; }
       .event-main { padding: 32px 16px; overflow: hidden; }
       .sidebar-card { padding: 20px; }
       .cta-h2 { font-size: 26px; }
       .cta-inner { padding: 48px 16px; }
       footer { padding: 24px 16px; }
       .presenter-logo { width: 160px; }
+      .master-header { flex-direction: column; align-items: flex-start; }
     }
   </style>
 </head>
