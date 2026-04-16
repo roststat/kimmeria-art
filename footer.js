@@ -30,6 +30,8 @@ footer {
   <div class="footer-links">
     <a href="https://vk.com/kimmeria_art" target="_blank">ВКонтакте</a>
     <a href="https://t.me/kimmeria_art" target="_blank">Telegram</a>
+    <a href="/oferta/">Оферта</a>
+    <a href="/oferta/#vozvrat">Возврат билетов</a>
     <a href="/privacy/">Политика конфиденциальности</a>
     <a href="/terms/">Пользовательское соглашение</a>
     <a href="/cookies/">Политика cookie</a>
