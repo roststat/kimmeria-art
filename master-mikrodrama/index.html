@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Мастер-класс по микродрамам — Кинокомпания «Киммерия»</title>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Киммерия-Арт">
+  <meta property="og:title" content="Мастер-класс по микродрамам — Кинокомпания «Киммерия»">
+  <meta property="og:description" content="Хочешь развиваться в Reels, Shorts, TikTok? Начни с микродрамы. Живой мастер-класс от сценариста Сергея Веденьё.">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Onest', Arial, sans-serif;
+      background: #ffffff;
+      color: #111111;
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    :root {
+      --accent: #1a4a3a;
+      --accent-dark: #0f2e24;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: 60px; display: flex; align-items: center; justify-content: space-between;
+      padding: 0 40px;
+      background: rgba(255,255,255,0.95); backdrop-filter: blur(20px);
+      border-bottom: 1px solid #e8e8e8;
+    }
+    .nav-logo { font-size: 17px; font-weight: 700; color: #111111; text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; }
+    .nav-back { font-size: 13px; font-weight: 600; color: #111111; text-decoration: none; padding: 8px 16px; border-radius: 100px; border: 1px solid #e8e8e8; transition: background 0.15s; }
+    .nav-back:hover { background: #f5f5f5; }
+    .nav-burger {
+      display: none; flex-direction: column; justify-content: center; gap: 5px;
+      width: 40px; height: 40px; background: none; border: none; cursor: pointer;
+      padding: 8px; border-radius: 8px; transition: background 0.15s;
+    }
+    .nav-burger:hover { background: #f5f5f5; }
+    .nav-burger span { display: block; width: 22px; height: 2px; background: #111111; border-radius: 2px; transition: all 0.25s; }
+    .nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-burger.open span:nth-child(2) { opacity: 0; }
+    .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu {
+      display: none; position: fixed; top: 60px; left: 0; right: 0; bottom: 0;
+      background: #ffffff; z-index: 99; padding: 24px 20px;
+      flex-direction: column; gap: 4px; overflow-y: auto;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { font-size: 20px; font-weight: 600; color: #111111; text-decoration: none; padding: 14px 16px; border-radius: 12px; transition: background 0.15s; }
+    .mobile-menu a:hover { background: #f5f5f5; }
+    .mobile-menu-divider { height: 1px; background: #e8e8e8; margin: 8px 0; }
+
+    /* ── FAB ── */
+    .fab-back {
+      position: fixed; top: 72px; right: 20px; z-index: 200;
+      display: flex; align-items: center; gap: 7px;
+      background: #ffffff; color: #111111;
+      font-family: inherit; font-size: 13px; font-weight: 600;
+      padding: 9px 16px 9px 12px;
+      border-radius: 100px; border: 1px solid #e8e8e8;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+      cursor: pointer; text-decoration: none;
+      transition: box-shadow 0.15s, transform 0.15s;
+    }
+    .fab-back:hover { box-shadow: 0 6px 22px rgba(0,0,0,0.14); transform: translateY(-1px); }
+    .fab-back svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+    /* ── HERO ── */
+    .lp-hero {
+      padding-top: 60px;
+      background: #0d0d0d;
+      position: relative;
+      overflow: hidden;
+    }
+    .lp-hero-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 80px 48px 88px;
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+    .lp-hero-label {
+      display: inline-block;
+      font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 20px;
+    }
+    .lp-hero-title {
+      font-size: 52px; font-weight: 700; color: #ffffff;
+      line-height: 1.1; margin-bottom: 28px;
+      text-wrap: balance;
+    }
+    .lp-hero-title em {
+      font-style: normal;
+      color: #6ee7b7;
+    }
+    .lp-hero-sub {
+      font-size: 18px; color: rgba(255,255,255,0.7);
+      line-height: 1.8; margin-bottom: 40px;
+    }
+    .lp-hero-sub p + p { margin-top: 4px; }
+    .btn-hero {
+      display: inline-block;
+      padding: 18px 40px;
+      background: #ffffff; color: #111111;
+      font-family: inherit; font-size: 16px; font-weight: 700;
+      text-decoration: none; border-radius: 100px;
+      transition: transform 0.15s, box-shadow 0.15s;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+    }
+    .btn-hero:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.35); }
+
+    /* ── SECTION BASE ── */
+    .lp-section {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 72px 48px;
+    }
+    .lp-section + .lp-section { padding-top: 0; }
+    .lp-section-alt {
+      background: #f8f8f8;
+    }
+    .lp-section-alt .lp-section {
+      max-width: 860px; margin: 0 auto; padding: 72px 48px;
+    }
+    .lp-section-dark {
+      background: var(--accent);
+    }
+    .lp-section-dark .lp-section {
+      max-width: 860px; margin: 0 auto; padding: 72px 48px;
+    }
+    .lp-h2 {
+      font-size: 34px; font-weight: 700; color: #111111;
+      line-height: 1.2; margin-bottom: 24px;
+    }
+    .lp-text {
+      font-size: 17px; color: #444444;
+      line-height: 1.85; margin-bottom: 20px;
+      max-width: 680px;
+    }
+    .lp-text:last-child { margin-bottom: 0; }
+
+    /* ── ACCENT QUOTE ── */
+    .lp-accent {
+      font-size: 20px; font-weight: 600; color: var(--accent);
+      border-left: 3px solid var(--accent);
+      padding: 12px 20px;
+      background: #f0f7f5;
+      border-radius: 0 10px 10px 0;
+      margin: 28px 0 0;
+      line-height: 1.5;
+      max-width: 680px;
+    }
+
+    /* ── LIST ── */
+    .lp-list {
+      list-style: none;
+      margin-top: 8px;
+      display: flex; flex-direction: column; gap: 0;
+    }
+    .lp-list li {
+      font-size: 16px; color: #333333;
+      padding: 16px 0;
+      border-bottom: 1px solid #e8e8e8;
+      display: flex; gap: 16px; align-items: baseline;
+      line-height: 1.6;
+    }
+    .lp-list li:first-child { border-top: 1px solid #e8e8e8; }
+    .lp-list-num {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.06em;
+      color: #999999; min-width: 28px; flex-shrink: 0;
+      text-transform: uppercase;
+    }
+
+    /* ── MASTER ── */
+    .lp-master {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+    .lp-master-photo {
+      width: 100%; aspect-ratio: 3/4;
+      background: #e8e8e8;
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .lp-master-photo img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    .lp-master-photo-placeholder {
+      font-size: 13px; color: #aaaaaa; text-align: center; padding: 20px;
+    }
+    .lp-master-name {
+      font-size: 36px; font-weight: 700; color: #111111;
+      line-height: 1.1; margin-bottom: 6px;
+    }
+    .lp-master-role {
+      font-size: 14px; color: #888888; font-weight: 500;
+      letter-spacing: 0.04em; margin-bottom: 24px;
+    }
+    .lp-master-tags {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      margin-top: 24px;
+    }
+    .lp-tag {
+      font-size: 12px; font-weight: 600; letter-spacing: 0.06em;
+      color: #555555; background: #f0f0f0;
+      padding: 5px 12px; border-radius: 100px;
+    }
+
+    /* ── CTA BLOCK ── */
+    .lp-cta-inner {
+      max-width: 860px; margin: 0 auto; padding: 80px 48px;
+      text-align: center;
+    }
+    .lp-cta-h2 {
+      font-size: 40px; font-weight: 700; color: #ffffff;
+      line-height: 1.1; margin-bottom: 16px;
+    }
+    .lp-cta-sub {
+      font-size: 18px; color: rgba(255,255,255,0.75);
+      margin-bottom: 40px; line-height: 1.6;
+    }
+    .btn-cta {
+      display: inline-block;
+      padding: 20px 48px;
+      background: #ffffff; color: var(--accent);
+      font-family: inherit; font-size: 17px; font-weight: 700;
+      text-decoration: none; border-radius: 100px;
+      transition: transform 0.15s, box-shadow 0.15s;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.25);
+    }
+    .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.3); }
+    .lp-cta-note {
+      font-size: 13px; color: rgba(255,255,255,0.5);
+      margin-top: 16px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #111111; padding: 40px 48px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .footer-logo { font-size: 17px; font-weight: 700; color: #ffffff; letter-spacing: -0.01em; }
+    .footer-links { display: flex; gap: 20px; }
+    .footer-links a { font-size: 13px; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.15s; }
+    .footer-links a:hover { color: #ffffff; }
+    .footer-copy { font-size: 12px; color: rgba(255,255,255,0.3); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 0 20px; }
+      .nav-back { display: none; }
+      .nav-burger { display: flex; }
+      .lp-hero-inner { padding: 64px 24px 72px; }
+      .lp-hero-title { font-size: 36px; }
+      .lp-section, .lp-section-alt .lp-section, .lp-section-dark .lp-section { padding: 56px 24px; }
+      .lp-master { grid-template-columns: 160px 1fr; gap: 28px; }
+      .lp-master-name { font-size: 28px; }
+      footer { padding: 28px 20px; flex-direction: column; gap: 16px; text-align: center; }
+      .footer-links { flex-wrap: wrap; justify-content: center; }
+    }
+    @media (max-width: 600px) {
+      nav { padding: 0 16px; }
+      .lp-hero-inner { padding: 48px 16px 60px; }
+      .lp-hero-title { font-size: 28px; }
+      .lp-hero-sub { font-size: 16px; }
+      .btn-hero { padding: 16px 28px; font-size: 15px; }
+      .lp-section, .lp-section-alt .lp-section, .lp-section-dark .lp-section { padding: 48px 16px; }
+      .lp-h2 { font-size: 26px; }
+      .lp-master { grid-template-columns: 1fr; gap: 24px; }
+      .lp-master-photo { max-width: 180px; aspect-ratio: 1/1; border-radius: 50%; }
+      .lp-cta-inner { padding: 60px 16px; }
+      .lp-cta-h2 { font-size: 28px; }
+      .btn-cta { padding: 18px 32px; font-size: 15px; }
+      footer { padding: 24px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<a class="fab-back" href="/" aria-label="На главную">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+  Назад
+</a>
+
+<nav>
+  <a href="/" class="nav-logo">Киммерия-Арт</a>
+  <a href="/" class="nav-back">← На главную</a>
+  <button class="nav-burger" id="navBurger" onclick="toggleMenu()" aria-label="Меню">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="/" onclick="closeMenu()">← На главную</a>
+  <div class="mobile-menu-divider"></div>
+  <a href="#register" onclick="closeMenu()">Записаться</a>
+</div>
+
+<!-- ── БЛОК 1: HERO ── -->
+<section class="lp-hero">
+  <div class="lp-hero-inner">
+    <div class="lp-hero-label">Кинокомпания «Киммерия» приглашает на мастер-класс</div>
+    <h1 class="lp-hero-title">
+      Хочешь развиваться в Reels, Shorts, TikTok?<br>
+      <em>НАЧНИ С МИКРОДРАМЫ!</em>
+    </h1>
+    <div class="lp-hero-sub">
+      <p>Платформы ищут авторов.</p>
+      <p>Кинокомпании ищут авторов.</p>
+      <p>Мы — кинокомпания «Киммерия» — ищем авторов.</p>
+    </div>
+    <a href="#register" class="btn-hero">Хочу попасть на мастер-класс →</a>
+  </div>
+</section>
+
+<!-- ── БЛОК 2: ПОЧЕМУ СЕЙЧАС ── -->
+<section>
+  <div class="lp-section">
+    <h2 class="lp-h2">Мыло больше не работает.</h2>
+    <p class="lp-text">Скорость восприятия выросла. Люди пролистывают всё, что не цепляет с первой секунды. Побеждает тот, кто бьёт сразу — точно, коротко, так чтобы зацепило.</p>
+    <p class="lp-text">Микродрама — это искусство говорить коротко, но так, чтобы зритель не смог остановиться. Одна серия заканчивается — и рука сама тянется к следующей. Это не случайность. Это система.</p>
+  </div>
+</section>
+
+<!-- ── БЛОК 3: ТРЕНД ── -->
+<div class="lp-section-alt">
+  <div class="lp-section">
+    <h2 class="lp-h2">В России бум только начинается.<br>Ты можешь зайти первым.</h2>
+    <p class="lp-text">Короткие вертикальные сериалы захватили сотни миллионов зрителей по всему миру. Каждая серия — 1–2 минуты. От пяти серий. Смотрят один за одним — без остановки.</p>
+    <p class="lp-text">Этот формат уже работает в Reels, Shorts, TikTok, YouTube и на крупных платформах. Авторов микродрам ищут прямо сейчас. И этот навык нужен всем — блогерам, сценаристам, авторам игровых роликов.</p>
+    <div class="lp-accent">Те, кто зайдут сейчас — окажутся первыми.</div>
+  </div>
+</div>
+
+<!-- ── БЛОК 4: ПРОГРАММА ── -->
+<section>
+  <div class="lp-section">
+    <h2 class="lp-h2">Что ты узнаешь на мастер-классе</h2>
+    <ol class="lp-list">
+      <li><span class="lp-list-num">01</span>Как устроена микродрама изнутри — структура, крючки, клиффхэнгеры</li>
+      <li><span class="lp-list-num">02</span>Почему зритель не может остановиться — и как это создаётся специально</li>
+      <li><span class="lp-list-num">03</span>Как удерживать внимание серия за серией</li>
+      <li><span class="lp-list-num">04</span>Как снимать самому — с телефона, без команды и студии</li>
+      <li><span class="lp-list-num">05</span>Как быстро наращивать аудиторию на этом формате</li>
+      <li><span class="lp-list-num">06</span>Куда выкладывать и как попасть на платформы</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ── БЛОК 5: МАСТЕР ── -->
+<div class="lp-section-alt">
+  <div class="lp-section">
+    <h2 class="lp-h2">Кто проведёт мастер-класс</h2>
+    <div class="lp-master">
+      <div class="lp-master-photo">
+        <img src="" alt="Сергей Веденьё">
+      </div>
+      <div>
+        <div class="lp-master-name">Сергей Веденьё</div>
+        <div class="lp-master-role">Сценарист · Писатель · Мастер афоризма</div>
+        <p class="lp-text">Российский писатель, член Союза писателей, сценарист и автор тысяч афоризмов, ставших вирусными в социальных сетях.</p>
+        <p class="lp-text">Окончил сценарный факультет и аспирантуру ВГИКа. Писал и редактировал сценарии для ОРТ, НТВ, «России» и других крупнейших телеканалов страны. Преподавал теорию драматургии и сторителлинга.</p>
+        <p class="lp-text">Человек, который знает как работает история — от большого кино до двухминутной серии, которую невозможно остановить.</p>
+        <div class="lp-master-tags">
+          <span class="lp-tag">ВГИК</span>
+          <span class="lp-tag">Союз писателей</span>
+          <span class="lp-tag">ОРТ</span>
+          <span class="lp-tag">НТВ</span>
+          <span class="lp-tag">Россия</span>
+          <span class="lp-tag">Драматургия</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── БЛОК 6: ДЛЯ КОГО ── -->
+<section>
+  <div class="lp-section">
+    <h2 class="lp-h2">Этот мастер-класс для тебя, если...</h2>
+    <ol class="lp-list">
+      <li><span class="lp-list-num">01</span>Хочешь развиваться в Reels, Shorts, TikTok и YouTube</li>
+      <li><span class="lp-list-num">02</span>Снимаешь или хочешь снимать игровые ролики и сериалы</li>
+      <li><span class="lp-list-num">03</span>Ищешь формат, который реально качает аудиторию прямо сейчас</li>
+      <li><span class="lp-list-num">04</span>Давно хотел снимать своё кино — но не знал с чего начать</li>
+      <li><span class="lp-list-num">05</span>Хочешь попасть в тренд раньше других</li>
+      <li><span class="lp-list-num">06</span>Хотя бы раз думал: «Я бы тоже мог снять что-то такое»</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ── БЛОК 7: О КОМПАНИИ ── -->
+<div class="lp-section-alt">
+  <div class="lp-section">
+    <h2 class="lp-h2">Почему мы говорим об этом</h2>
+    <p class="lp-text">Мы — кинокомпания «Киммерия». Съёмка — это всегда система. Даже две минуты работают по своим законам. Мы знаем эти законы — и готовы поделиться ими с теми, кто хочет снимать.</p>
+    <p class="lp-text">И мы честно говорим: мы ищем авторов. Тех, кто освоит этот формат и будет создавать настоящее кино для нового времени.</p>
+  </div>
+</div>
+
+<!-- ── БЛОК 8: CTA ── -->
+<div class="lp-section-dark" id="register">
+  <div class="lp-cta-inner">
+    <h2 class="lp-cta-h2">Это твой вход в профессию.</h2>
+    <p class="lp-cta-sub">Живой мастер-класс. Ограниченное количество мест.</p>
+    <a href="#register" class="btn-cta">Записаться на мастер-класс →</a>
+    <p class="lp-cta-note">Мест мало.</p>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">Киммерия-Арт</div>
+  <div class="footer-links">
+    <a href="/">На главную</a>
+    <a href="/privacy/">Конфиденциальность</a>
+  </div>
+  <div class="footer-copy">© 2026 Кинокомпания «Киммерия»</div>
+</footer>
+
+<script>
+function toggleMenu() {
+  var burger = document.getElementById('navBurger');
+  var menu = document.getElementById('mobileMenu');
+  burger.classList.toggle('open');
+  menu.classList.toggle('open');
+  document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+}
+function closeMenu() {
+  document.getElementById('navBurger').classList.remove('open');
+  document.getElementById('mobileMenu').classList.remove('open');
+  document.body.style.overflow = '';
+}
+</script>
+</body>
+</html>
