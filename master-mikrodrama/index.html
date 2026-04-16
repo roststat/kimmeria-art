@@ -12,7 +12,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -27,6 +27,8 @@
     :root {
       --accent: #1a4a3a;
       --accent-dark: #0f2e24;
+      --accent-light: #f0f7f5;
+      --accent-mid: #6ee7b7;
     }
 
     /* ── NAV ── */
@@ -75,178 +77,368 @@
     .fab-back:hover { box-shadow: 0 6px 22px rgba(0,0,0,0.14); transform: translateY(-1px); }
     .fab-back svg { width: 16px; height: 16px; flex-shrink: 0; }
 
-    /* ── HERO ── */
+    /* ═══════════════════════════════════════
+       БЛОК 1 — HERO
+    ═══════════════════════════════════════ */
     .lp-hero {
       padding-top: 60px;
-      background: #0d0d0d;
+      background: #0a0a0a;
       position: relative;
       overflow: hidden;
+      min-height: 92vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    /* зернистая текстура через SVG-фильтр */
+    .lp-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      opacity: 0.4;
+      pointer-events: none;
+    }
+    /* мягкое свечение акцента */
+    .lp-hero::after {
+      content: '';
+      position: absolute;
+      width: 700px; height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(26,74,58,0.35) 0%, transparent 70%);
+      top: -200px; right: -200px;
+      pointer-events: none;
     }
     .lp-hero-inner {
-      max-width: 860px;
+      max-width: 900px;
       margin: 0 auto;
-      padding: 80px 48px 88px;
+      padding: 100px 48px 110px;
       position: relative;
       z-index: 1;
       text-align: center;
     }
-    .lp-hero-label {
-      display: inline-block;
-      font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
-      color: rgba(255,255,255,0.6);
-      margin-bottom: 20px;
+    .lp-hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--accent-mid);
+      background: rgba(110,231,183,0.1);
+      border: 1px solid rgba(110,231,183,0.25);
+      padding: 6px 16px; border-radius: 100px;
+      margin-bottom: 32px;
+    }
+    .lp-hero-badge-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--accent-mid);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
     }
     .lp-hero-title {
-      font-size: 52px; font-weight: 700; color: #ffffff;
-      line-height: 1.1; margin-bottom: 28px;
-      text-wrap: balance;
+      font-size: 60px; font-weight: 900; color: #ffffff;
+      line-height: 1.05; margin-bottom: 12px;
+      letter-spacing: -0.02em;
     }
-    .lp-hero-title em {
-      font-style: normal;
-      color: #6ee7b7;
+    .lp-hero-title-line2 {
+      font-size: 60px; font-weight: 900;
+      line-height: 1.05; margin-bottom: 36px;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, var(--accent-mid) 0%, #34d399 50%, #6ee7b7 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: block;
     }
     .lp-hero-sub {
-      font-size: 18px; color: rgba(255,255,255,0.7);
-      line-height: 1.8; margin-bottom: 40px;
+      font-size: 19px; color: rgba(255,255,255,0.55);
+      line-height: 1.9; margin-bottom: 52px;
     }
-    .lp-hero-sub p + p { margin-top: 4px; }
+    .lp-hero-sub strong {
+      color: rgba(255,255,255,0.85);
+      font-weight: 600;
+    }
     .btn-hero {
-      display: inline-block;
-      padding: 18px 40px;
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 20px 44px;
       background: #ffffff; color: #111111;
       font-family: inherit; font-size: 16px; font-weight: 700;
       text-decoration: none; border-radius: 100px;
-      transition: transform 0.15s, box-shadow 0.15s;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 2px 8px rgba(0,0,0,0.2);
     }
-    .btn-hero:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.35); }
+    .btn-hero:hover { transform: translateY(-3px); box-shadow: 0 16px 48px rgba(0,0,0,0.45); }
+    .btn-hero-arrow { font-size: 20px; line-height: 1; }
+    .lp-hero-scroll {
+      margin-top: 64px;
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      color: rgba(255,255,255,0.25); font-size: 11px; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+    }
+    .lp-hero-scroll svg { width: 20px; height: 20px; animation: bounce 1.8s ease-in-out infinite; }
+    @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
 
-    /* ── SECTION BASE ── */
-    .lp-section {
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 72px 48px;
+    /* ═══════════════════════════════════════
+       SHARED SECTION
+    ═══════════════════════════════════════ */
+    .lp-wrap { max-width: 880px; margin: 0 auto; padding: 88px 48px; }
+    .lp-wrap-wide { max-width: 1040px; margin: 0 auto; padding: 88px 48px; }
+    .lp-section-alt { background: #f7f7f7; }
+    .lp-section-dark-green { background: var(--accent); }
+    .lp-section-black { background: #0a0a0a; }
+
+    .section-eyebrow {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 14px;
     }
-    .lp-section + .lp-section { padding-top: 0; }
-    .lp-section-alt {
-      background: #f8f8f8;
-    }
-    .lp-section-alt .lp-section {
-      max-width: 860px; margin: 0 auto; padding: 72px 48px;
-    }
-    .lp-section-dark {
-      background: var(--accent);
-    }
-    .lp-section-dark .lp-section {
-      max-width: 860px; margin: 0 auto; padding: 72px 48px;
+    .section-eyebrow-light {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      color: rgba(255,255,255,0.45); margin-bottom: 14px;
     }
     .lp-h2 {
-      font-size: 34px; font-weight: 700; color: #111111;
-      line-height: 1.2; margin-bottom: 24px;
+      font-size: 38px; font-weight: 800; color: #111111;
+      line-height: 1.15; margin-bottom: 28px;
+      letter-spacing: -0.01em;
+    }
+    .lp-h2-light {
+      font-size: 38px; font-weight: 800; color: #ffffff;
+      line-height: 1.15; margin-bottom: 28px;
+      letter-spacing: -0.01em;
     }
     .lp-text {
-      font-size: 17px; color: #444444;
-      line-height: 1.85; margin-bottom: 20px;
-      max-width: 680px;
+      font-size: 17px; color: #555555;
+      line-height: 1.9; margin-bottom: 20px;
     }
     .lp-text:last-child { margin-bottom: 0; }
+    .lp-divider { border: none; border-top: 1px solid #e8e8e8; margin: 48px 0; }
 
-    /* ── ACCENT QUOTE ── */
-    .lp-accent {
-      font-size: 20px; font-weight: 600; color: var(--accent);
-      border-left: 3px solid var(--accent);
-      padding: 12px 20px;
-      background: #f0f7f5;
-      border-radius: 0 10px 10px 0;
-      margin: 28px 0 0;
-      line-height: 1.5;
-      max-width: 680px;
+    /* ═══════════════════════════════════════
+       БЛОК 2 — ПОЧЕМУ СЕЙЧАС (большая цитата)
+    ═══════════════════════════════════════ */
+    .why-pull-quote {
+      font-size: 48px; font-weight: 800; color: #111111;
+      line-height: 1.1; letter-spacing: -0.02em;
+      margin-bottom: 40px;
+      position: relative;
+    }
+    .why-pull-quote::before {
+      content: '"';
+      position: absolute; top: -24px; left: -12px;
+      font-size: 120px; font-weight: 900; color: #f0f0f0;
+      line-height: 1; z-index: 0; pointer-events: none;
+      font-family: Georgia, serif;
+    }
+    .why-pull-quote span { position: relative; z-index: 1; }
+    .why-body { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 48px; }
+    .why-card {
+      background: #f7f7f7; border-radius: 16px; padding: 28px 28px 32px;
+      border: 1px solid #eeeeee;
+    }
+    .why-card-icon { font-size: 28px; margin-bottom: 14px; }
+    .why-card-title { font-size: 17px; font-weight: 700; color: #111111; margin-bottom: 8px; }
+    .why-card-text { font-size: 15px; color: #666666; line-height: 1.75; }
+
+    /* ═══════════════════════════════════════
+       БЛОК 3 — ТРЕНД (большие числа)
+    ═══════════════════════════════════════ */
+    .trend-stats {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 2px; margin-bottom: 56px;
+      border-radius: 20px; overflow: hidden;
+    }
+    .trend-stat {
+      background: rgba(255,255,255,0.06);
+      padding: 36px 28px;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .trend-stat-num {
+      font-size: 52px; font-weight: 900; color: var(--accent-mid);
+      line-height: 1; letter-spacing: -0.03em; display: block; margin-bottom: 8px;
+    }
+    .trend-stat-label {
+      font-size: 13px; color: rgba(255,255,255,0.5); font-weight: 500; line-height: 1.5;
+    }
+    .trend-text { font-size: 17px; color: rgba(255,255,255,0.7); line-height: 1.9; margin-bottom: 20px; }
+    .trend-accent {
+      display: inline-block;
+      font-size: 19px; font-weight: 700; color: #ffffff;
+      border-left: 3px solid var(--accent-mid);
+      padding: 14px 24px;
+      background: rgba(110,231,183,0.08);
+      border-radius: 0 12px 12px 0;
+      margin-top: 12px; line-height: 1.5;
     }
 
-    /* ── LIST ── */
-    .lp-list {
-      list-style: none;
-      margin-top: 8px;
-      display: flex; flex-direction: column; gap: 0;
-    }
-    .lp-list li {
-      font-size: 16px; color: #333333;
-      padding: 16px 0;
-      border-bottom: 1px solid #e8e8e8;
-      display: flex; gap: 16px; align-items: baseline;
-      line-height: 1.6;
-    }
-    .lp-list li:first-child { border-top: 1px solid #e8e8e8; }
-    .lp-list-num {
-      font-size: 11px; font-weight: 700; letter-spacing: 0.06em;
-      color: #999999; min-width: 28px; flex-shrink: 0;
-      text-transform: uppercase;
-    }
-
-    /* ── MASTER ── */
-    .lp-master {
+    /* ═══════════════════════════════════════
+       БЛОК 4 — ПРОГРАММА (карточки 2×3)
+    ═══════════════════════════════════════ */
+    .program-grid {
       display: grid;
-      grid-template-columns: 220px 1fr;
-      gap: 48px;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 8px;
+    }
+    .program-card {
+      background: #ffffff;
+      border: 1px solid #e8e8e8;
+      border-radius: 16px;
+      padding: 24px 24px 28px;
+      display: flex; flex-direction: column; gap: 10px;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .program-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 4px 20px rgba(26,74,58,0.08);
+    }
+    .program-card-num {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--accent);
+      background: var(--accent-light);
+      display: inline-block; padding: 4px 10px; border-radius: 100px;
+      align-self: flex-start;
+    }
+    .program-card-text {
+      font-size: 15px; color: #333333; line-height: 1.65; font-weight: 500;
+    }
+
+    /* ═══════════════════════════════════════
+       БЛОК 5 — МАСТЕР
+    ═══════════════════════════════════════ */
+    .master-layout {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 56px;
       align-items: start;
     }
-    .lp-master-photo {
+    .master-photo-wrap {
+      position: relative;
+    }
+    .master-photo {
       width: 100%; aspect-ratio: 3/4;
-      background: #e8e8e8;
-      border-radius: 14px;
+      background: #e0e0e0;
+      border-radius: 20px;
       overflow: hidden;
       display: flex; align-items: center; justify-content: center;
     }
-    .lp-master-photo img {
-      width: 100%; height: 100%; object-fit: cover; display: block;
+    .master-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .master-photo-placeholder {
+      display: flex; flex-direction: column; align-items: center; gap: 10px;
+      color: #b0b0b0;
     }
-    .lp-master-photo-placeholder {
-      font-size: 13px; color: #aaaaaa; text-align: center; padding: 20px;
+    .master-photo-placeholder svg { width: 40px; height: 40px; opacity: 0.5; }
+    .master-photo-placeholder span { font-size: 12px; }
+    .master-name {
+      font-size: 40px; font-weight: 900; color: #111111;
+      line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 8px;
     }
-    .lp-master-name {
-      font-size: 36px; font-weight: 700; color: #111111;
-      line-height: 1.1; margin-bottom: 6px;
+    .master-role {
+      font-size: 14px; color: #999999; font-weight: 500;
+      letter-spacing: 0.04em; margin-bottom: 28px;
     }
-    .lp-master-role {
-      font-size: 14px; color: #888888; font-weight: 500;
-      letter-spacing: 0.04em; margin-bottom: 24px;
+    .master-creds {
+      display: flex; flex-direction: column; gap: 0;
+      margin-bottom: 28px;
     }
-    .lp-master-tags {
+    .master-cred {
+      display: flex; align-items: center; gap: 12px;
+      padding: 12px 0; border-bottom: 1px solid #f0f0f0;
+      font-size: 14px; color: #444444; line-height: 1.5;
+    }
+    .master-cred:first-child { border-top: 1px solid #f0f0f0; }
+    .master-cred-icon { width: 32px; height: 32px; border-radius: 8px; background: var(--accent-light); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 15px; }
+    .master-tags {
       display: flex; flex-wrap: wrap; gap: 8px;
-      margin-top: 24px;
     }
-    .lp-tag {
-      font-size: 12px; font-weight: 600; letter-spacing: 0.06em;
-      color: #555555; background: #f0f0f0;
-      padding: 5px 12px; border-radius: 100px;
+    .master-tag {
+      font-size: 12px; font-weight: 600; letter-spacing: 0.05em;
+      color: var(--accent); background: var(--accent-light);
+      padding: 5px 13px; border-radius: 100px;
     }
 
-    /* ── CTA BLOCK ── */
-    .lp-cta-inner {
-      max-width: 860px; margin: 0 auto; padding: 80px 48px;
+    /* ═══════════════════════════════════════
+       БЛОК 6 — ДЛЯ КОГО (чекбокс-карточки)
+    ═══════════════════════════════════════ */
+    .for-whom-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 8px;
+    }
+    .for-whom-card {
+      display: flex; align-items: flex-start; gap: 14px;
+      background: #ffffff; border: 1px solid #e8e8e8;
+      border-radius: 14px; padding: 20px 20px;
+    }
+    .for-whom-check {
+      width: 22px; height: 22px; border-radius: 50%;
+      background: var(--accent); flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center; margin-top: 1px;
+    }
+    .for-whom-check svg { width: 12px; height: 12px; }
+    .for-whom-text { font-size: 15px; color: #333333; line-height: 1.6; font-weight: 500; }
+
+    /* ═══════════════════════════════════════
+       БЛОК 7 — О КОМПАНИИ
+    ═══════════════════════════════════════ */
+    .about-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: center;
+    }
+    .about-big-text {
+      font-size: 28px; font-weight: 700; color: #111111;
+      line-height: 1.35; letter-spacing: -0.01em;
+    }
+    .about-big-text em {
+      font-style: normal;
+      color: var(--accent);
+    }
+
+    /* ═══════════════════════════════════════
+       БЛОК 8 — CTA
+    ═══════════════════════════════════════ */
+    .cta-inner {
+      max-width: 680px; margin: 0 auto; padding: 100px 48px;
       text-align: center;
     }
-    .lp-cta-h2 {
-      font-size: 40px; font-weight: 700; color: #ffffff;
-      line-height: 1.1; margin-bottom: 16px;
+    .cta-label {
+      display: inline-block;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      color: rgba(255,255,255,0.4); margin-bottom: 20px;
     }
-    .lp-cta-sub {
-      font-size: 18px; color: rgba(255,255,255,0.75);
-      margin-bottom: 40px; line-height: 1.6;
+    .cta-h2 {
+      font-size: 48px; font-weight: 900; color: #ffffff;
+      line-height: 1.1; letter-spacing: -0.02em;
+      margin-bottom: 18px;
+    }
+    .cta-sub {
+      font-size: 18px; color: rgba(255,255,255,0.6);
+      margin-bottom: 48px; line-height: 1.65;
     }
     .btn-cta {
-      display: inline-block;
-      padding: 20px 48px;
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 22px 52px;
       background: #ffffff; color: var(--accent);
       font-family: inherit; font-size: 17px; font-weight: 700;
       text-decoration: none; border-radius: 100px;
-      transition: transform 0.15s, box-shadow 0.15s;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.25);
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.3);
     }
-    .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.3); }
-    .lp-cta-note {
-      font-size: 13px; color: rgba(255,255,255,0.5);
-      margin-top: 16px;
+    .btn-cta:hover { transform: translateY(-3px); box-shadow: 0 16px 56px rgba(0,0,0,0.35); }
+    .cta-note {
+      font-size: 13px; color: rgba(255,255,255,0.3);
+      margin-top: 20px; letter-spacing: 0.04em;
+    }
+    .cta-urgency {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 32px;
+    }
+    .cta-urgency-dot {
+      width: 7px; height: 7px; border-radius: 50%; background: #ef4444;
+      animation: pulse 1.5s ease-in-out infinite;
     }
 
     /* ── FOOTER ── */
@@ -256,35 +448,47 @@
     }
     .footer-logo { font-size: 17px; font-weight: 700; color: #ffffff; letter-spacing: -0.01em; }
     .footer-links { display: flex; gap: 20px; }
-    .footer-links a { font-size: 13px; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.15s; }
+    .footer-links a { font-size: 13px; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.15s; }
     .footer-links a:hover { color: #ffffff; }
-    .footer-copy { font-size: 12px; color: rgba(255,255,255,0.3); }
+    .footer-copy { font-size: 12px; color: rgba(255,255,255,0.25); }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
       nav { padding: 0 20px; }
       .nav-back { display: none; }
       .nav-burger { display: flex; }
-      .lp-hero-inner { padding: 64px 24px 72px; }
-      .lp-hero-title { font-size: 36px; }
-      .lp-section, .lp-section-alt .lp-section, .lp-section-dark .lp-section { padding: 56px 24px; }
-      .lp-master { grid-template-columns: 160px 1fr; gap: 28px; }
-      .lp-master-name { font-size: 28px; }
+      .lp-hero-inner { padding: 72px 24px 80px; }
+      .lp-hero-title, .lp-hero-title-line2 { font-size: 40px; }
+      .lp-wrap, .lp-wrap-wide { padding: 64px 24px; }
+      .why-body { grid-template-columns: 1fr; }
+      .trend-stats { grid-template-columns: 1fr 1fr; }
+      .trend-stats .trend-stat:last-child { grid-column: 1 / -1; }
+      .program-grid { grid-template-columns: 1fr; }
+      .master-layout { grid-template-columns: 180px 1fr; gap: 32px; }
+      .master-name { font-size: 30px; }
+      .for-whom-grid { grid-template-columns: 1fr; }
+      .about-layout { grid-template-columns: 1fr; gap: 32px; }
+      .cta-h2 { font-size: 36px; }
       footer { padding: 28px 20px; flex-direction: column; gap: 16px; text-align: center; }
       .footer-links { flex-wrap: wrap; justify-content: center; }
     }
     @media (max-width: 600px) {
       nav { padding: 0 16px; }
-      .lp-hero-inner { padding: 48px 16px 60px; }
-      .lp-hero-title { font-size: 28px; }
+      .lp-hero-inner { padding: 56px 16px 64px; }
+      .lp-hero-title, .lp-hero-title-line2 { font-size: 32px; }
       .lp-hero-sub { font-size: 16px; }
-      .btn-hero { padding: 16px 28px; font-size: 15px; }
-      .lp-section, .lp-section-alt .lp-section, .lp-section-dark .lp-section { padding: 48px 16px; }
-      .lp-h2 { font-size: 26px; }
-      .lp-master { grid-template-columns: 1fr; gap: 24px; }
-      .lp-master-photo { max-width: 180px; aspect-ratio: 1/1; border-radius: 50%; }
-      .lp-cta-inner { padding: 60px 16px; }
-      .lp-cta-h2 { font-size: 28px; }
+      .btn-hero { padding: 17px 28px; font-size: 15px; }
+      .lp-wrap, .lp-wrap-wide { padding: 48px 16px; }
+      .lp-h2, .lp-h2-light { font-size: 28px; }
+      .why-pull-quote { font-size: 32px; }
+      .why-pull-quote::before { font-size: 80px; }
+      .trend-stats { grid-template-columns: 1fr; }
+      .trend-stats .trend-stat:last-child { grid-column: auto; }
+      .trend-stat-num { font-size: 40px; }
+      .master-layout { grid-template-columns: 1fr; }
+      .master-photo { max-width: 160px; aspect-ratio: 1/1; border-radius: 50%; }
+      .cta-inner { padding: 64px 16px; }
+      .cta-h2 { font-size: 28px; }
       .btn-cta { padding: 18px 32px; font-size: 15px; }
       footer { padding: 24px 16px; }
     }
@@ -311,115 +515,249 @@
   <a href="#register" onclick="closeMenu()">Записаться</a>
 </div>
 
-<!-- ── БЛОК 1: HERO ── -->
+<!-- ═══════════════════════════════════════
+     БЛОК 1 — HERO
+════════════════════════════════════════ -->
 <section class="lp-hero">
   <div class="lp-hero-inner">
-    <div class="lp-hero-label">Кинокомпания «Киммерия» приглашает на мастер-класс</div>
-    <h1 class="lp-hero-title">
-      Хочешь развиваться в Reels, Shorts, TikTok?<br>
-      <em>НАЧНИ С МИКРОДРАМЫ!</em>
+    <div class="lp-hero-badge">
+      <span class="lp-hero-badge-dot"></span>
+      Кинокомпания «Киммерия» · Мастер-класс
+    </div>
+    <h1>
+      <div class="lp-hero-title">Хочешь развиваться<br>в Reels, Shorts, TikTok?</div>
+      <span class="lp-hero-title-line2">НАЧНИ С МИКРОДРАМЫ!</span>
     </h1>
     <div class="lp-hero-sub">
-      <p>Платформы ищут авторов.</p>
-      <p>Кинокомпании ищут авторов.</p>
-      <p>Мы — кинокомпания «Киммерия» — ищем авторов.</p>
+      <p>Платформы ищут авторов. Кинокомпании ищут авторов.</p>
+      <p><strong>Мы — кинокомпания «Киммерия» — ищем авторов.</strong></p>
     </div>
-    <a href="#register" class="btn-hero">Хочу попасть на мастер-класс →</a>
+    <a href="#register" class="btn-hero">
+      Хочу попасть на мастер-класс
+      <span class="btn-hero-arrow">→</span>
+    </a>
+    <div class="lp-hero-scroll">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+      Узнать подробнее
+    </div>
   </div>
 </section>
 
-<!-- ── БЛОК 2: ПОЧЕМУ СЕЙЧАС ── -->
+<!-- ═══════════════════════════════════════
+     БЛОК 2 — ПОЧЕМУ СЕЙЧАС
+════════════════════════════════════════ -->
 <section>
-  <div class="lp-section">
-    <h2 class="lp-h2">Мыло больше не работает.</h2>
-    <p class="lp-text">Скорость восприятия выросла. Люди пролистывают всё, что не цепляет с первой секунды. Побеждает тот, кто бьёт сразу — точно, коротко, так чтобы зацепило.</p>
-    <p class="lp-text">Микродрама — это искусство говорить коротко, но так, чтобы зритель не смог остановиться. Одна серия заканчивается — и рука сама тянется к следующей. Это не случайность. Это система.</p>
+  <div class="lp-wrap">
+    <div class="section-eyebrow">Почему сейчас</div>
+    <div class="why-pull-quote">
+      <span>Мыло больше<br>не работает.</span>
+    </div>
+    <div class="why-body">
+      <div class="why-card">
+        <div class="why-card-icon">⚡</div>
+        <div class="why-card-title">Скорость восприятия выросла</div>
+        <div class="why-card-text">Люди пролистывают всё, что не цепляет с первой секунды. Побеждает тот, кто бьёт сразу — точно, коротко, так чтобы зацепило.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-card-icon">🎣</div>
+        <div class="why-card-title">Это не случайность — это система</div>
+        <div class="why-card-text">Одна серия заканчивается — и рука сама тянется к следующей. Микродрама — это искусство говорить коротко, но так, чтобы зритель не смог остановиться.</div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- ── БЛОК 3: ТРЕНД ── -->
-<div class="lp-section-alt">
-  <div class="lp-section">
-    <h2 class="lp-h2">В России бум только начинается.<br>Ты можешь зайти первым.</h2>
-    <p class="lp-text">Короткие вертикальные сериалы захватили сотни миллионов зрителей по всему миру. Каждая серия — 1–2 минуты. От пяти серий. Смотрят один за одним — без остановки.</p>
-    <p class="lp-text">Этот формат уже работает в Reels, Shorts, TikTok, YouTube и на крупных платформах. Авторов микродрам ищут прямо сейчас. И этот навык нужен всем — блогерам, сценаристам, авторам игровых роликов.</p>
-    <div class="lp-accent">Те, кто зайдут сейчас — окажутся первыми.</div>
+<!-- ═══════════════════════════════════════
+     БЛОК 3 — ТРЕНД
+════════════════════════════════════════ -->
+<div class="lp-section-black">
+  <div class="lp-wrap">
+    <div class="section-eyebrow-light">Мировой тренд</div>
+    <h2 class="lp-h2-light">В России бум только начинается.<br>Ты можешь зайти первым.</h2>
+    <div class="trend-stats">
+      <div class="trend-stat">
+        <span class="trend-stat-num">1–2</span>
+        <div class="trend-stat-label">минуты<br>одна серия</div>
+      </div>
+      <div class="trend-stat">
+        <span class="trend-stat-num">5+</span>
+        <div class="trend-stat-label">серий<br>в проекте</div>
+      </div>
+      <div class="trend-stat">
+        <span class="trend-stat-num">100М+</span>
+        <div class="trend-stat-label">зрителей<br>по всему миру</div>
+      </div>
+    </div>
+    <p class="trend-text">Короткие вертикальные сериалы работают в Reels, Shorts, TikTok, YouTube и на крупных платформах. Авторов ищут прямо сейчас. Этот навык нужен всем — блогерам, сценаристам, авторам игровых роликов.</p>
+    <div class="trend-accent">Те, кто зайдут сейчас — окажутся первыми.</div>
   </div>
 </div>
 
-<!-- ── БЛОК 4: ПРОГРАММА ── -->
-<section>
-  <div class="lp-section">
-    <h2 class="lp-h2">Что ты узнаешь на мастер-классе</h2>
-    <ol class="lp-list">
-      <li><span class="lp-list-num">01</span>Как устроена микродрама изнутри — структура, крючки, клиффхэнгеры</li>
-      <li><span class="lp-list-num">02</span>Почему зритель не может остановиться — и как это создаётся специально</li>
-      <li><span class="lp-list-num">03</span>Как удерживать внимание серия за серией</li>
-      <li><span class="lp-list-num">04</span>Как снимать самому — с телефона, без команды и студии</li>
-      <li><span class="lp-list-num">05</span>Как быстро наращивать аудиторию на этом формате</li>
-      <li><span class="lp-list-num">06</span>Куда выкладывать и как попасть на платформы</li>
-    </ol>
+<!-- ═══════════════════════════════════════
+     БЛОК 4 — ПРОГРАММА
+════════════════════════════════════════ -->
+<section class="lp-section-alt">
+  <div class="lp-wrap-wide">
+    <div class="section-eyebrow">Программа</div>
+    <h2 class="lp-h2">Что ты узнаешь<br>на мастер-классе</h2>
+    <div class="program-grid">
+      <div class="program-card">
+        <span class="program-card-num">01</span>
+        <div class="program-card-text">Как устроена микродрама изнутри — структура, крючки, клиффхэнгеры</div>
+      </div>
+      <div class="program-card">
+        <span class="program-card-num">02</span>
+        <div class="program-card-text">Почему зритель не может остановиться — и как это создаётся специально</div>
+      </div>
+      <div class="program-card">
+        <span class="program-card-num">03</span>
+        <div class="program-card-text">Как удерживать внимание серия за серией</div>
+      </div>
+      <div class="program-card">
+        <span class="program-card-num">04</span>
+        <div class="program-card-text">Как снимать самому — с телефона, без команды и студии</div>
+      </div>
+      <div class="program-card">
+        <span class="program-card-num">05</span>
+        <div class="program-card-text">Как быстро наращивать аудиторию на этом формате</div>
+      </div>
+      <div class="program-card">
+        <span class="program-card-num">06</span>
+        <div class="program-card-text">Куда выкладывать и как попасть на платформы</div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- ── БЛОК 5: МАСТЕР ── -->
-<div class="lp-section-alt">
-  <div class="lp-section">
+<!-- ═══════════════════════════════════════
+     БЛОК 5 — МАСТЕР
+════════════════════════════════════════ -->
+<section>
+  <div class="lp-wrap-wide">
+    <div class="section-eyebrow">Ведущий мастер-класса</div>
     <h2 class="lp-h2">Кто проведёт мастер-класс</h2>
-    <div class="lp-master">
-      <div class="lp-master-photo">
-        <img src="" alt="Сергей Веденьё">
+    <div class="master-layout">
+      <div class="master-photo-wrap">
+        <div class="master-photo">
+          <img src="" alt="Сергей Веденьё">
+        </div>
       </div>
       <div>
-        <div class="lp-master-name">Сергей Веденьё</div>
-        <div class="lp-master-role">Сценарист · Писатель · Мастер афоризма</div>
-        <p class="lp-text">Российский писатель, член Союза писателей, сценарист и автор тысяч афоризмов, ставших вирусными в социальных сетях.</p>
-        <p class="lp-text">Окончил сценарный факультет и аспирантуру ВГИКа. Писал и редактировал сценарии для ОРТ, НТВ, «России» и других крупнейших телеканалов страны. Преподавал теорию драматургии и сторителлинга.</p>
+        <div class="master-name">Сергей Веденьё</div>
+        <div class="master-role">Сценарист · Писатель · Мастер афоризма</div>
+        <div class="master-creds">
+          <div class="master-cred">
+            <div class="master-cred-icon">🎓</div>
+            Сценарный факультет и аспирантура ВГИКа
+          </div>
+          <div class="master-cred">
+            <div class="master-cred-icon">✍️</div>
+            Сценарии для ОРТ, НТВ, «России» и других федеральных каналов
+          </div>
+          <div class="master-cred">
+            <div class="master-cred-icon">📚</div>
+            Член Союза писателей, автор тысяч вирусных афоризмов
+          </div>
+          <div class="master-cred">
+            <div class="master-cred-icon">🎬</div>
+            Преподаватель теории драматургии и сторителлинга
+          </div>
+        </div>
         <p class="lp-text">Человек, который знает как работает история — от большого кино до двухминутной серии, которую невозможно остановить.</p>
-        <div class="lp-master-tags">
-          <span class="lp-tag">ВГИК</span>
-          <span class="lp-tag">Союз писателей</span>
-          <span class="lp-tag">ОРТ</span>
-          <span class="lp-tag">НТВ</span>
-          <span class="lp-tag">Россия</span>
-          <span class="lp-tag">Драматургия</span>
+        <div class="master-tags">
+          <span class="master-tag">ВГИК</span>
+          <span class="master-tag">Союз писателей</span>
+          <span class="master-tag">ОРТ</span>
+          <span class="master-tag">НТВ</span>
+          <span class="master-tag">Россия</span>
+          <span class="master-tag">Драматургия</span>
         </div>
       </div>
     </div>
   </div>
-</div>
+</section>
 
-<!-- ── БЛОК 6: ДЛЯ КОГО ── -->
-<section>
-  <div class="lp-section">
-    <h2 class="lp-h2">Этот мастер-класс для тебя, если...</h2>
-    <ol class="lp-list">
-      <li><span class="lp-list-num">01</span>Хочешь развиваться в Reels, Shorts, TikTok и YouTube</li>
-      <li><span class="lp-list-num">02</span>Снимаешь или хочешь снимать игровые ролики и сериалы</li>
-      <li><span class="lp-list-num">03</span>Ищешь формат, который реально качает аудиторию прямо сейчас</li>
-      <li><span class="lp-list-num">04</span>Давно хотел снимать своё кино — но не знал с чего начать</li>
-      <li><span class="lp-list-num">05</span>Хочешь попасть в тренд раньше других</li>
-      <li><span class="lp-list-num">06</span>Хотя бы раз думал: «Я бы тоже мог снять что-то такое»</li>
-    </ol>
+<!-- ═══════════════════════════════════════
+     БЛОК 6 — ДЛЯ КОГО
+════════════════════════════════════════ -->
+<section class="lp-section-alt">
+  <div class="lp-wrap-wide">
+    <div class="section-eyebrow">Для кого</div>
+    <h2 class="lp-h2">Этот мастер-класс<br>для тебя, если...</h2>
+    <div class="for-whom-grid">
+      <div class="for-whom-card">
+        <div class="for-whom-check">
+          <svg viewBox="0 0 12 12" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 6 5 9 10 3"/></svg>
+        </div>
+        <div class="for-whom-text">Хочешь развиваться в Reels, Shorts, TikTok и YouTube</div>
+      </div>
+      <div class="for-whom-card">
+        <div class="for-whom-check">
+          <svg viewBox="0 0 12 12" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 6 5 9 10 3"/></svg>
+        </div>
+        <div class="for-whom-text">Снимаешь или хочешь снимать игровые ролики и сериалы</div>
+      </div>
+      <div class="for-whom-card">
+        <div class="for-whom-check">
+          <svg viewBox="0 0 12 12" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 6 5 9 10 3"/></svg>
+        </div>
+        <div class="for-whom-text">Ищешь формат, который реально качает аудиторию прямо сейчас</div>
+      </div>
+      <div class="for-whom-card">
+        <div class="for-whom-check">
+          <svg viewBox="0 0 12 12" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 6 5 9 10 3"/></svg>
+        </div>
+        <div class="for-whom-text">Давно хотел снимать своё кино — но не знал с чего начать</div>
+      </div>
+      <div class="for-whom-card">
+        <div class="for-whom-check">
+          <svg viewBox="0 0 12 12" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 6 5 9 10 3"/></svg>
+        </div>
+        <div class="for-whom-text">Хочешь попасть в тренд раньше других</div>
+      </div>
+      <div class="for-whom-card">
+        <div class="for-whom-check">
+          <svg viewBox="0 0 12 12" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 6 5 9 10 3"/></svg>
+        </div>
+        <div class="for-whom-text">Хотя бы раз думал: «Я бы тоже мог снять что-то такое»</div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- ── БЛОК 7: О КОМПАНИИ ── -->
-<div class="lp-section-alt">
-  <div class="lp-section">
-    <h2 class="lp-h2">Почему мы говорим об этом</h2>
-    <p class="lp-text">Мы — кинокомпания «Киммерия». Съёмка — это всегда система. Даже две минуты работают по своим законам. Мы знаем эти законы — и готовы поделиться ими с теми, кто хочет снимать.</p>
-    <p class="lp-text">И мы честно говорим: мы ищем авторов. Тех, кто освоит этот формат и будет создавать настоящее кино для нового времени.</p>
+<!-- ═══════════════════════════════════════
+     БЛОК 7 — О КОМПАНИИ
+════════════════════════════════════════ -->
+<section>
+  <div class="lp-wrap">
+    <div class="about-layout">
+      <div>
+        <div class="section-eyebrow">О нас</div>
+        <div class="about-big-text">Мы — кинокомпания <em>«Киммерия».</em><br>Съёмка — это всегда система.</div>
+      </div>
+      <div>
+        <p class="lp-text">Даже две минуты работают по своим законам. Мы знаем эти законы — и готовы поделиться ими с теми, кто хочет снимать.</p>
+        <p class="lp-text">И мы честно говорим: мы ищем авторов. Тех, кто освоит этот формат и будет создавать настоящее кино для нового времени.</p>
+      </div>
+    </div>
   </div>
-</div>
+</section>
 
-<!-- ── БЛОК 8: CTA ── -->
-<div class="lp-section-dark" id="register">
-  <div class="lp-cta-inner">
-    <h2 class="lp-cta-h2">Это твой вход в профессию.</h2>
-    <p class="lp-cta-sub">Живой мастер-класс. Ограниченное количество мест.</p>
-    <a href="#register" class="btn-cta">Записаться на мастер-класс →</a>
-    <p class="lp-cta-note">Мест мало.</p>
+<!-- ═══════════════════════════════════════
+     БЛОК 8 — CTA
+════════════════════════════════════════ -->
+<div class="lp-section-dark-green" id="register">
+  <div class="cta-inner">
+    <div class="cta-urgency">
+      <span class="cta-urgency-dot"></span>
+      Ограниченное количество мест
+    </div>
+    <h2 class="cta-h2">Это твой вход<br>в профессию.</h2>
+    <p class="cta-sub">Живой мастер-класс. Ограниченное количество мест.</p>
+    <a href="#register" class="btn-cta">
+      Записаться на мастер-класс →
+    </a>
+    <p class="cta-note">Мест мало.</p>
   </div>
 </div>
 
