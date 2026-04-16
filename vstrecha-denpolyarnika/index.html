@@ -193,7 +193,16 @@
 <div class="event-back-section">
   <a href="/#events" class="event-back-link">← Все события</a>
 </div>
-<div id="site-footer"></div>
+<footer>
+  <div class="footer-logo">Киммерия-Арт</div>
+  <div class="footer-links">
+    <a href="https://vk.com/kimmeria_art" target="_blank">ВКонтакте</a>
+    <a href="https://t.me/kimmeria_art" target="_blank">Telegram</a>
+    <a href="/kinoklub/">Киноклуб</a>
+    <a href="/#join">О клубе</a>
+  </div>
+  <div class="footer-copy">© 2025 Киммерия-Арт · Ялта</div>
+</footer>
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
   <button class="lightbox-close" onclick="closeLightbox()">&#x2715;</button>
   <img id="lightboxImg" src="" alt="" onclick="event.stopPropagation()">
@@ -213,6 +222,5 @@ function shareEvent(btn) {
 function toggleMenu() { var b = document.getElementById('navBurger'), m = document.getElementById('mobileMenu'); b.classList.toggle('open'); m.classList.toggle('open'); document.body.style.overflow = m.classList.contains('open') ? 'hidden' : ''; }
 function closeMenu() { document.getElementById('navBurger').classList.remove('open'); document.getElementById('mobileMenu').classList.remove('open'); document.body.style.overflow = ''; }
 </script>
-<script src="/footer.js"></script>
 </body>
 </html>
