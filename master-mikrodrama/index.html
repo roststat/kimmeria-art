@@ -114,7 +114,20 @@
 
     /* мастер */
     .master-block { background: #f8f8f8; border-radius: 16px; padding: 28px 28px 32px; margin-bottom: 0; }
-    .master-block-label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #999999; font-weight: 600; margin-bottom: 16px; }
+    .master-header { display: flex; align-items: center; gap: 18px; margin-bottom: 16px; }
+    .master-avatar {
+      flex-shrink: 0; width: 72px; height: 72px; border-radius: 50%;
+      background: #e0e0e0; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+      border: 3px solid #ffffff; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .master-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .master-avatar-placeholder {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      background: #d0d0d0;
+    }
+    .master-avatar-placeholder svg { width: 32px; height: 32px; color: #999; }
     .master-name { font-size: 22px; font-weight: 700; color: #111111; margin-bottom: 4px; }
     .master-role { font-size: 13px; color: #888888; font-weight: 500; letter-spacing: 0.03em; margin-bottom: 14px; }
     .master-bio { font-size: 14px; color: #555555; line-height: 1.75; }
@@ -317,8 +330,15 @@
     <p class="section-label">Спикеры</p>
 
     <div class="master-block">
-      <div class="master-name">Наталья Лебедева</div>
-      <div class="master-role">Режиссёр · Продюсер · Основатель кинокомпании «Киммерия»</div>
+      <div class="master-header">
+        <div class="master-avatar">
+          <img src="/photos/speaker-lebedeva.jpg" alt="Наталья Лебедева" onerror="this.parentNode.innerHTML='<div class=\'master-avatar-placeholder\'><svg viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'1.5\'><circle cx=\'12\' cy=\'8\' r=\'4\'/><path d=\'M4 20c0-4 3.6-7 8-7s8 3 8 7\'/></svg></div>'">
+        </div>
+        <div>
+          <div class="master-name">Наталья Лебедева</div>
+          <div class="master-role">Режиссёр · Продюсер · Основатель кинокомпании «Киммерия»</div>
+        </div>
+      </div>
       <div class="master-bio">С 2016 года работает в киноиндустрии как режиссёр и продюсер. Снимает короткометражные и полнометражные фильмы — «Жди меня», «Изольда», «Артистка», «Феодосийская сказка», — получившие признание на фестивалях и вышедшие в широкий прокат. Создала кинокомпанию «Киммерия». Руководит культурно-исследовательскими и образовательными проектами.</div>
       <div class="master-tags">
         <span class="master-tag">Режиссёр</span>
@@ -328,8 +348,15 @@
     </div>
 
     <div class="master-block" style="margin-top: 16px;">
-      <div class="master-name">Сергей Веденьё</div>
-      <div class="master-role">Сценарист · Писатель · Выпускник ВГИКа</div>
+      <div class="master-header">
+        <div class="master-avatar">
+          <img src="/photos/speaker-vedene.jpg" alt="Сергей Веденьё" onerror="this.parentNode.innerHTML='<div class=\'master-avatar-placeholder\'><svg viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'1.5\'><circle cx=\'12\' cy=\'8\' r=\'4\'/><path d=\'M4 20c0-4 3.6-7 8-7s8 3 8 7\'/></svg></div>'">
+        </div>
+        <div>
+          <div class="master-name">Сергей Веденьё</div>
+          <div class="master-role">Сценарист · Писатель · Выпускник ВГИКа</div>
+        </div>
+      </div>
       <div class="master-bio">Член Союза писателей. Писал для ОРТ, НТВ, «России». Автор тысяч вирусных афоризмов в соцсетях. Преподавал теорию драматургии и сторителлинга.</div>
       <div class="master-tags">
         <span class="master-tag">ВГИК</span>
