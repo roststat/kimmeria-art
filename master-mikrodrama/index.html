@@ -103,17 +103,41 @@
     .master-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 16px; }
     .master-tag { font-size: 11px; font-weight: 600; letter-spacing: 0.05em; color: #1a4a3a; background: #e8f4f0; padding: 4px 11px; border-radius: 100px; }
 
-    /* sidebar */
+    /* sidebar / форма */
     .event-sidebar { position: sticky; top: 80px; }
     .sidebar-card { background: #ffffff; border: 1px solid #e8e8e8; border-radius: 16px; padding: 28px 28px 32px; margin-bottom: 12px; }
-    .sidebar-badge { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #ffffff; background: #1a4a3a; padding: 4px 12px; border-radius: 100px; margin-bottom: 16px; }
-    .sidebar-title { font-size: 24px; font-weight: 700; color: #111111; line-height: 1.2; margin-bottom: 8px; }
-    .sidebar-note { font-size: 14px; color: #666666; line-height: 1.6; }
+    .sidebar-note { font-size: 14px; color: #666666; line-height: 1.6; margin-bottom: 20px; }
     .sidebar-divider { border: none; border-top: 1px solid #f0f0f0; margin: 20px 0; }
     .sidebar-label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #999999; font-weight: 600; margin-bottom: 6px; }
     .sidebar-value { font-size: 15px; color: #111111; font-weight: 600; line-height: 1.5; }
-    .btn-primary { display: block; width: 100%; padding: 16px 24px; text-align: center; background: #1a4a3a; color: #ffffff; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 700; text-decoration: none; border-radius: 100px; transition: opacity 0.15s; }
-    .btn-primary:hover { opacity: 0.88; }
+    .sidebar-form-title { font-size: 18px; font-weight: 700; color: #111111; margin-bottom: 16px; }
+
+    .reg-form { display: flex; flex-direction: column; gap: 10px; }
+    .reg-form input {
+      width: 100%; padding: 13px 16px;
+      font-family: 'Inter', sans-serif; font-size: 15px; color: #111111;
+      background: #f7f7f7; border: 1px solid #e8e8e8; border-radius: 10px;
+      outline: none; transition: border-color 0.15s, background 0.15s;
+    }
+    .reg-form input:focus { border-color: #1a4a3a; background: #ffffff; }
+    .reg-form input::placeholder { color: #aaaaaa; }
+    .btn-submit {
+      width: 100%; padding: 16px 24px;
+      background: #1a4a3a; color: #ffffff;
+      font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 700;
+      border: none; border-radius: 100px; cursor: pointer;
+      transition: opacity 0.15s; margin-top: 4px;
+    }
+    .btn-submit:hover { opacity: 0.88; }
+    .btn-submit:disabled { opacity: 0.5; cursor: default; }
+    .form-success {
+      display: none; text-align: center; padding: 20px 0;
+    }
+    .form-success-icon { font-size: 36px; margin-bottom: 10px; }
+    .form-success-text { font-size: 15px; font-weight: 600; color: #1a4a3a; }
+    .form-success-sub { font-size: 13px; color: #888888; margin-top: 6px; }
+    .form-error { font-size: 13px; color: #cc3333; margin-top: 6px; display: none; }
+
     .btn-secondary { display: block; width: 100%; padding: 14px 24px; text-align: center; background: #ffffff; color: #111111; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; text-decoration: none; border: 1px solid #e8e8e8; border-radius: 100px; transition: background 0.15s; margin-top: 10px; }
     .btn-secondary:hover { background: #f5f5f5; }
 
@@ -237,18 +261,25 @@
 
   </div>
 
-  <!-- ── SIDEBAR ── -->
+  <!-- ── SIDEBAR / ФОРМА ── -->
   <aside class="event-sidebar" id="register">
     <div class="sidebar-card">
+      <div class="sidebar-form-title">Записаться на мастер-класс</div>
       <div class="sidebar-note">Живой мастер-класс. Ограниченное количество участников.</div>
-      <hr class="sidebar-divider">
-      <div class="sidebar-label">Формат</div>
-      <div class="sidebar-value">Живое мероприятие</div>
-      <hr class="sidebar-divider">
-      <div class="sidebar-label">Организатор</div>
-      <div class="sidebar-value">Кинокомпания «Киммерия»</div>
+
+      <form class="reg-form" id="regForm" onsubmit="submitForm(event)">
+        <input type="text" name="name" placeholder="Имя и фамилия" required maxlength="80">
+        <input type="tel" name="phone" placeholder="Номер телефона" required maxlength="20">
+        <button type="submit" class="btn-submit" id="submitBtn">Записаться →</button>
+        <div class="form-error" id="formError">Ошибка отправки. Попробуйте ещё раз.</div>
+      </form>
+
+      <div class="form-success" id="formSuccess">
+        <div class="form-success-icon">✅</div>
+        <div class="form-success-text">Заявка отправлена!</div>
+        <div class="form-success-sub">Мы свяжемся с вами в ближайшее время.</div>
+      </div>
     </div>
-    <a href="#register" class="btn-primary">Записаться на мастер-класс →</a>
     <a href="/" class="btn-secondary">← На главную</a>
   </aside>
 </div>
@@ -257,12 +288,12 @@
 <div class="cta-section">
   <div class="cta-inner">
     <div class="cta-text">
-      <div class="cta-h2">Записаться на мастер-класс.</div>
-      <div class="cta-sub">Запишись сейчас — узнай формат, который меняет индустрию.</div>
+      <div class="cta-h2">Заполни форму —<br>мы свяжемся с тобой.</div>
+      <div class="cta-sub">Живой мастер-класс. Кинокомпания «Киммерия».</div>
     </div>
     <div class="cta-action">
       <a href="#register" class="btn-cta">Записаться →</a>
-      <div class="cta-note">Кинокомпания «Киммерия»</div>
+      <div class="cta-note">Форма справа на странице</div>
     </div>
   </div>
 </div>
@@ -270,6 +301,46 @@
 <div id="site-footer"></div>
 
 <script>
+var TG_TOKEN = '8555296982:AAE2LCN_eeCy33jGJfyWh7guxS2ia2yq68A';
+var TG_CHAT  = '214662526';
+
+function submitForm(e) {
+  e.preventDefault();
+  var form  = document.getElementById('regForm');
+  var btn   = document.getElementById('submitBtn');
+  var err   = document.getElementById('formError');
+  var name  = form.name.value.trim();
+  var phone = form.phone.value.trim();
+
+  btn.disabled = true;
+  btn.textContent = 'Отправляем…';
+  err.style.display = 'none';
+
+  var text = '🎬 Новая заявка на мастер-класс по микродрамам\n\n'
+           + '👤 Имя: ' + name + '\n'
+           + '📞 Телефон: ' + phone;
+
+  fetch('https://api.telegram.org/bot' + TG_TOKEN + '/sendMessage', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ chat_id: TG_CHAT, text: text })
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    if (data.ok) {
+      form.style.display = 'none';
+      document.getElementById('formSuccess').style.display = 'block';
+    } else {
+      throw new Error('tg error');
+    }
+  })
+  .catch(function() {
+    err.style.display = 'block';
+    btn.disabled = false;
+    btn.textContent = 'Записаться →';
+  });
+}
+
 function toggleMenu() {
   var burger = document.getElementById('navBurger');
   var menu = document.getElementById('mobileMenu');
