@@ -1723,7 +1723,7 @@ footer {
       const bFuture = db >= today;
       if (aFuture && bFuture) return da - db;
       if (!aFuture && !bFuture) return db - da;
-      return 0;
+      return aFuture ? -1 : 1;
     });
 
     // Переставляем карточки в DOM
