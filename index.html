@@ -1751,9 +1751,7 @@ footer {
     });
 
     // Переставляем карточки в DOM
-    const empty = document.getElementById('eventsEmpty');
-    const adBanner = document.getElementById('gridAdBanner');
-    sorted.forEach(card => grid.insertBefore(card, adBanner));
+    sorted.forEach(card => grid.appendChild(card));
 
     // Подсвечиваем ближайшее предстоящее
     const nextUp = sorted.find(c => new Date(c.dataset.date) >= today);
