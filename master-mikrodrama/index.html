@@ -497,6 +497,17 @@ function submitForm(e) {
   });
 }
 
+// скрывать sticky CTA когда виден блок спикеров
+(function() {
+  var bar = document.querySelector('.sticky-cta');
+  var speakers = document.querySelector('.master-block');
+  if (!bar || !speakers || window.innerWidth > 900) return;
+  var obs = new IntersectionObserver(function(entries) {
+    bar.style.display = entries[0].isIntersecting ? 'none' : '';
+  }, { threshold: 0.1 });
+  obs.observe(speakers);
+})();
+
 // показать кнопку Назад только если пришли с нашего сайта
 (function() {
   var ref = document.referrer;
