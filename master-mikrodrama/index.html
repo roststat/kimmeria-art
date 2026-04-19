@@ -227,6 +227,56 @@
     .form-consent a:hover { color: #0f2e24; }
     .form-error { font-size: 13px; color: #cc3333; margin-top: 6px; display: none; }
 
+    /* ── THANK YOU POPUP ── */
+    .popup-overlay {
+      display: none; position: fixed; inset: 0; z-index: 9000;
+      background: rgba(0,0,0,0.55); backdrop-filter: blur(4px);
+      align-items: center; justify-content: center; padding: 20px;
+    }
+    .popup-overlay.open { display: flex; }
+    .popup-box {
+      background: #ffffff; border-radius: 20px;
+      max-width: 440px; width: 100%;
+      padding: 40px 36px 36px;
+      text-align: center;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.3);
+      animation: popupIn 0.3s cubic-bezier(0.34,1.56,0.64,1);
+      position: relative;
+    }
+    @keyframes popupIn {
+      from { opacity: 0; transform: scale(0.85) translateY(20px); }
+      to   { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    .popup-close {
+      position: absolute; top: 16px; right: 20px;
+      background: none; border: none; font-size: 24px;
+      color: #aaaaaa; cursor: pointer; line-height: 1;
+    }
+    .popup-close:hover { color: #111111; }
+    .popup-icon { font-size: 52px; margin-bottom: 16px; }
+    .popup-title { font-size: 22px; font-weight: 800; color: #111111; margin-bottom: 8px; line-height: 1.2; }
+    .popup-sub { font-size: 15px; color: #555555; margin-bottom: 28px; line-height: 1.6; }
+    .popup-card {
+      background: #f0f7f5; border-radius: 14px;
+      padding: 20px 24px; text-align: left; margin-bottom: 24px;
+    }
+    .popup-card-row { display: flex; gap: 12px; align-items: baseline; padding: 9px 0; border-bottom: 1px solid #ddeee9; }
+    .popup-card-row:last-child { border-bottom: none; }
+    .popup-card-key { font-size: 11px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: #1a4a3a; min-width: 72px; flex-shrink: 0; }
+    .popup-card-val { font-size: 14px; color: #111111; font-weight: 600; line-height: 1.4; }
+    .popup-ticket {
+      font-size: 12px; color: #888888; margin-bottom: 20px; line-height: 1.5;
+    }
+    .popup-ticket strong { color: #1a4a3a; }
+    .popup-btn {
+      display: block; width: 100%; padding: 15px 24px;
+      background: #1a4a3a; color: #ffffff;
+      font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 700;
+      border: none; border-radius: 100px; cursor: pointer;
+      transition: opacity 0.15s;
+    }
+    .popup-btn:hover { opacity: 0.88; }
+
     .btn-secondary { display: block; width: 100%; padding: 14px 24px; text-align: center; background: #ffffff; color: #111111; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; text-decoration: none; border: 1px solid #e8e8e8; border-radius: 100px; transition: background 0.15s; margin-top: 10px; }
     .btn-secondary:hover { background: #f5f5f5; }
 
@@ -484,8 +534,8 @@ function submitForm(e) {
   .then(function(r) { return r.json(); })
   .then(function(data) {
     if (data.ok) {
-      form.style.display = 'none';
-      document.getElementById('formSuccess').style.display = 'block';
+      document.getElementById('thankPopup').classList.add('open');
+      document.body.style.overflow = 'hidden';
     } else {
       throw new Error('tg error');
     }
@@ -516,6 +566,14 @@ function submitForm(e) {
   }
 })();
 
+function closeThankPopup() {
+  document.getElementById('thankPopup').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closePopup(e) {
+  if (e.target === document.getElementById('thankPopup')) closeThankPopup();
+}
+
 function toggleMenu() {
   var burger = document.getElementById('navBurger');
   var menu = document.getElementById('mobileMenu');
@@ -529,6 +587,32 @@ function closeMenu() {
   document.body.style.overflow = '';
 }
 </script>
+<!-- ── THANK YOU POPUP ── -->
+<div class="popup-overlay" id="thankPopup" onclick="closePopup(event)">
+  <div class="popup-box">
+    <button class="popup-close" onclick="closeThankPopup()" aria-label="Закрыть">×</button>
+    <div class="popup-icon">🎬</div>
+    <div class="popup-title">Вы записаны на мастер-класс!</div>
+    <div class="popup-sub">Ждём вас. Приходите — это бесплатно и полезно.</div>
+    <div class="popup-card">
+      <div class="popup-card-row">
+        <span class="popup-card-key">Дата</span>
+        <span class="popup-card-val">25 апреля 2026, суббота</span>
+      </div>
+      <div class="popup-card-row">
+        <span class="popup-card-key">Время</span>
+        <span class="popup-card-val">18:00</span>
+      </div>
+      <div class="popup-card-row">
+        <span class="popup-card-key">Адрес</span>
+        <span class="popup-card-val">г. Ялта, ул. Игнатенко, 5, офис 2</span>
+      </div>
+    </div>
+    <div class="popup-ticket">🎟 <strong>Билет не требуется</strong> — просто приходите в указанное время</div>
+    <button class="popup-btn" onclick="closeThankPopup()">Отлично, буду!</button>
+  </div>
+</div>
+
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
   <button class="lightbox-close" onclick="closeLightbox()" aria-label="Закрыть">×</button>
   <img id="lightboxImg" src="" alt="" onclick="event.stopPropagation()">
