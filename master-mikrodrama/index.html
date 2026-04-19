@@ -500,7 +500,7 @@
 <script>
 var TG_TOKEN = '8555296982:AAE2LCN_eeCy33jGJfyWh7guxS2ia2yq68A';
 var TG_CHAT  = '214662526';
-var GS_URL   = 'https://script.google.com/macros/s/AKfycbwTAJkKpUE52OfR0tEHc4kB69x7doqYyx0rx1dYd3jXKCYyCuhDmESBNF9n_-vymU3K/exec';
+var GS_URL   = 'https://script.google.com/macros/s/AKfycbyczEsIbkKi5lcDTBbN_FW-FQ4DWH6Lwaig2wq-2KanbLXmdFfUYwhP1xC9SF9FvpS8/exec';
 
 function submitForm(e) {
   e.preventDefault();
@@ -527,19 +527,18 @@ function submitForm(e) {
            + '📞 Телефон: ' + phone
            + (utmLines ? '\n\n📊 Источник:' + utmLines : '');
 
-  var gsData = {
+  var gsParams = new URLSearchParams({
     name: name,
     phone: phone,
     utm_source: params.get('utm_source') || '',
     utm_medium: params.get('utm_medium') || '',
     utm_campaign: params.get('utm_campaign') || '',
     referrer: document.referrer || ''
-  };
+  });
 
-  fetch(GS_URL, {
-    method: 'POST',
-    mode: 'no-cors',
-    body: JSON.stringify(gsData)
+  fetch(GS_URL + '?' + gsParams.toString(), {
+    method: 'GET',
+    mode: 'no-cors'
   }).catch(function() {});
 
   fetch('https://api.telegram.org/bot' + TG_TOKEN + '/sendMessage', {
