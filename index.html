@@ -724,7 +724,7 @@ footer {
   </div>
 
   <div class="past-layout" id="pastLayout">
-  <div class="events-grid" id="eventsGrid">
+  <div class="events-grid" id="eventsGrid" style="visibility:hidden">
 
     <!-- УЖЕ -->
     <div class="event-card" data-tab="upcoming" data-format="спектакль" data-date="2026-04-05" onclick="location.href='/event-uzhe/'">
@@ -1776,6 +1776,7 @@ footer {
     }
 
     applyFilters();
+    grid.style.visibility = '';
     const soonMsg = document.getElementById('upcomingSoonMsg');
     if (soonMsg) soonMsg.style.display = 'block';
   }
