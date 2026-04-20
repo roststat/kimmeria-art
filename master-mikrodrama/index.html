@@ -550,21 +550,10 @@ function submitForm(e) {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ chat_id: TG_CHAT, text: text })
-  })
-  .then(function(r) { return r.json(); })
-  .then(function(data) {
-    if (data.ok) {
-      document.getElementById('thankPopup').classList.add('open');
-      document.body.style.overflow = 'hidden';
-    } else {
-      throw new Error('tg error');
-    }
-  })
-  .catch(function() {
-    err.style.display = 'block';
-    btn.disabled = false;
-    btn.textContent = 'Записаться →';
-  });
+  }).catch(function() {});
+
+  document.getElementById('thankPopup').classList.add('open');
+  document.body.style.overflow = 'hidden';
 }
 
 // скрывать sticky CTA когда виден блок спикеров
