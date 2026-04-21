@@ -227,7 +227,7 @@
       <h2 class="schedule-heading">Ближайшие показы</h2>
       <p class="schedule-subtitle">Апрель 2026</p>
       <div class="schedule-cards">
-        <a href="/event-jarmusch/" class="event-card">
+        <a href="/event-jarmusch/" class="event-card" data-date="2026-04-17">
           <div class="event-photo-wrap">
             <img src="/photos/event-jarmusch-cover.jpg" alt="«Отец Мать Сестра Брат» — Джим Джармуш">
             <span class="event-badge">Кинопоказ</span>
@@ -565,6 +565,64 @@ function sharePage(btn) {
   else { fallback(); showPopup(); }
   function fallback() { var ta = document.createElement('textarea'); ta.value = url; ta.style.cssText = 'position:fixed;opacity:0'; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); }
 }
+
+// ── Auto-archive past events ──────────────────────────────────────────────────
+(function() {
+  var today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  var scheduleCards = document.querySelector('.schedule-cards');
+  var archiveList   = document.querySelector('.archive-list');
+  var cards = Array.from(document.querySelectorAll('.event-card[data-date]'));
+
+  cards.forEach(function(card) {
+    var eventDate = new Date(card.dataset.date);
+    eventDate.setHours(0, 0, 0, 0);
+    if (eventDate >= today) return; // ещё не прошёл — оставляем
+
+    // Собираем данные из карточки
+    var href  = card.getAttribute('href');
+    var img   = card.querySelector('.event-photo-wrap img');
+    var title = card.querySelector('.event-title');
+    var date  = card.querySelector('.event-date-line');
+
+    // Форматируем дату для архива
+    var months = ['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
+    var d = new Date(card.dataset.date);
+    var dateStr = d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear();
+
+    // Создаём archive-item
+    var li = document.createElement('li');
+    li.innerHTML = '<a href="' + href + '" class="archive-item">'
+      + (img ? '<div class="archive-thumb"><img src="' + img.src + '" alt="' + (img.alt || '') + '" loading="lazy"></div>' : '')
+      + '<div class="archive-body">'
+      + '<div class="archive-date">' + dateStr + '</div>'
+      + '<div class="archive-title">' + (title ? title.textContent : '') + '</div>'
+      + '</div>'
+      + '</a>';
+
+    // Вставляем первым в архив
+    if (archiveList) {
+      archiveList.insertBefore(li, archiveList.firstChild);
+    }
+
+    // Убираем из расписания
+    card.remove();
+  });
+
+  // Если в расписании не осталось карточек — показываем заглушку
+  if (scheduleCards) {
+    var remaining = scheduleCards.querySelectorAll('.event-card');
+    if (remaining.length === 0) {
+      scheduleCards.innerHTML = '<div class="schedule-empty">'
+        + '<div class="schedule-empty-icon">🎬</div>'
+        + '<div class="schedule-empty-text">'
+        + '<strong>Скоро объявим новые даты</strong>'
+        + 'Следите за расписанием — мы регулярно добавляем новые показы.'
+        + '</div></div>';
+    }
+  }
+})();
 </script>
 <script src="/footer.js"></script>
 </body>
