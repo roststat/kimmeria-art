@@ -1693,15 +1693,20 @@ footer {
 
   </div><!-- /events-grid -->
   <div class="past-sidebar" id="pastSidebar" style="display:none;">
-    <div class="past-sidebar-banner">
-      <img src="/photos/event-ryba.jpg" alt="«Лучше я буду рыбой...»" style="width:100%;display:block;border-radius:16px 16px 0 0;">
-      <div style="padding:16px 20px 20px;background:#ffffff;border-radius:0 0 16px 16px;border:1px solid #e8e8e8;border-top:none;">
-        <div style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#1a4a3a;margin-bottom:8px;">Рекомендуем</div>
-        <div style="font-size:16px;font-weight:700;color:#111111;line-height:1.3;margin-bottom:4px;">«Лучше я буду рыбой...»</div>
-        <div style="font-size:12px;color:#666666;margin-bottom:14px;">Спектакль · 20 апреля · 2 000 ₽</div>
-        <a href="/event-ryba/" style="display:block;text-align:center;background:#111111;color:#ffffff;font-size:13px;font-weight:600;padding:11px 20px;border-radius:100px;text-decoration:none;transition:opacity 0.15s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">Подробнее</a>
+    <a class="past-sidebar-banner" id="bannerLink" href="#">
+      <div style="position:relative;overflow:hidden;border-radius:16px 16px 0 0;aspect-ratio:4/3;background:#111;">
+        <img id="bannerImg" src="" alt="" style="width:100%;height:100%;object-fit:cover;display:block;transition:opacity 0.4s;">
+        <span id="bannerBadge" style="position:absolute;top:10px;left:10px;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#fff;background:#1a4a3a;padding:4px 10px;border-radius:100px;"></span>
+        <!-- dots -->
+        <div id="bannerDots" style="position:absolute;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:5px;"></div>
       </div>
-    </div>
+      <div style="padding:16px 20px 20px;background:#ffffff;border-radius:0 0 16px 16px;border:1px solid #e8e8e8;border-top:none;">
+        <div style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#1a4a3a;margin-bottom:8px;">Ближайшее</div>
+        <div id="bannerTitle" style="font-size:16px;font-weight:700;color:#111111;line-height:1.3;margin-bottom:4px;"></div>
+        <div id="bannerMeta" style="font-size:12px;color:#666666;margin-bottom:14px;"></div>
+        <span style="display:block;text-align:center;background:#111111;color:#ffffff;font-size:13px;font-weight:600;padding:11px 20px;border-radius:100px;">Подробнее →</span>
+      </div>
+    </a>
   </div>
   </div><!-- /past-layout -->
   <div id="upcomingSoonMsg" style="display:none; text-align:center; padding: 32px 0 8px; font-size:14px; color:#999999; letter-spacing:0.02em;">Скоро появятся новые мероприятия</div>
@@ -1835,6 +1840,108 @@ footer {
   }
 
   document.addEventListener('DOMContentLoaded', initEvents);
+
+  // ── Auto-rotating sidebar banner ─────────────────────────────────────────
+  (function() {
+    var bannerInterval = null;
+    var bannerIndex = 0;
+    var bannerItems = [];
+
+    function buildBannerItems() {
+      var today = new Date(); today.setHours(0,0,0,0);
+      var cards = Array.from(document.querySelectorAll('.event-card[data-tab="upcoming"][data-date]'));
+      // фильтруем только будущие, сортируем по дате
+      bannerItems = cards
+        .filter(function(c) {
+          var d = new Date(c.dataset.date); d.setHours(0,0,0,0);
+          return d >= today;
+        })
+        .sort(function(a, b) { return new Date(a.dataset.date) - new Date(b.dataset.date); })
+        .map(function(card) {
+          var img   = card.querySelector('.event-photo-wrap img');
+          var title = card.querySelector('.event-title');
+          var badge = card.querySelector('.event-badge');
+          var date  = card.querySelector('.event-date-line');
+          var price = card.querySelector('.event-price');
+          var match = (card.getAttribute('onclick') || '').match(/location\.href='([^']+)'/);
+          return {
+            href:  match ? match[1] : '#',
+            src:   img   ? img.src   : '',
+            alt:   img   ? img.alt   : '',
+            title: title ? title.textContent.trim() : '',
+            badge: badge ? badge.textContent.trim() : '',
+            date:  date  ? date.textContent.trim()  : '',
+            price: price ? price.textContent.trim()  : '',
+          };
+        });
+    }
+
+    function renderBanner(idx) {
+      if (!bannerItems.length) return;
+      var item = bannerItems[idx];
+      var link  = document.getElementById('bannerLink');
+      var img   = document.getElementById('bannerImg');
+      var bdg   = document.getElementById('bannerBadge');
+      var ttl   = document.getElementById('bannerTitle');
+      var meta  = document.getElementById('bannerMeta');
+      var dots  = document.getElementById('bannerDots');
+
+      if (!link) return;
+      link.href = item.href;
+      img.style.opacity = '0';
+      setTimeout(function() {
+        img.src = item.src; img.alt = item.alt;
+        img.style.opacity = '1';
+      }, 150);
+      bdg.textContent  = item.badge;
+      ttl.textContent  = item.title;
+      meta.textContent = item.date + (item.price ? ' · ' + item.price : '');
+
+      // dots
+      dots.innerHTML = '';
+      bannerItems.forEach(function(_, i) {
+        var dot = document.createElement('span');
+        dot.style.cssText = 'width:6px;height:6px;border-radius:50%;background:' + (i === idx ? '#fff' : 'rgba(255,255,255,0.4)') + ';display:inline-block;transition:background 0.3s;cursor:pointer;';
+        dot.addEventListener('click', function(e) { e.preventDefault(); goTo(i); });
+        dots.appendChild(dot);
+      });
+    }
+
+    function goTo(idx) {
+      bannerIndex = (idx + bannerItems.length) % bannerItems.length;
+      renderBanner(bannerIndex);
+      clearInterval(bannerInterval);
+      bannerInterval = setInterval(nextBanner, 4000);
+    }
+
+    function nextBanner() { goTo(bannerIndex + 1); }
+
+    function initBanner() {
+      buildBannerItems();
+      if (!bannerItems.length) return;
+      renderBanner(0);
+      bannerInterval = setInterval(nextBanner, 4000);
+    }
+
+    document.addEventListener('DOMContentLoaded', initBanner);
+  })();
+
+  // ── Hide prices for past events ──────────────────────────────────────────
+  (function() {
+    function hidePastPrices() {
+      var today = new Date(); today.setHours(0,0,0,0);
+      document.querySelectorAll('.event-card[data-date]').forEach(function(card) {
+        var d = new Date(card.dataset.date); d.setHours(0,0,0,0);
+        var isPast = d < today;
+        var isKino = (card.dataset.format || '').toLowerCase() === 'кинопоказ';
+        if (isPast || isKino) {
+          var price = card.querySelector('.event-price');
+          if (price) price.style.display = 'none';
+        }
+      });
+    }
+    document.addEventListener('DOMContentLoaded', hidePastPrices);
+  })();
 
   function shareCard(e, btn) {
     e.stopPropagation();

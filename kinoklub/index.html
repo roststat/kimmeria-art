@@ -566,6 +566,23 @@ function sharePage(btn) {
   function fallback() { var ta = document.createElement('textarea'); ta.value = url; ta.style.cssText = 'position:fixed;opacity:0'; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); }
 }
 
+// ── Hide prices for past events and all kinoklub events ─────────────────────
+(function() {
+  function hidePrices() {
+    var today = new Date(); today.setHours(0,0,0,0);
+    document.querySelectorAll('.event-card[data-date], .event-card').forEach(function(card) {
+      var d = card.dataset.date ? new Date(card.dataset.date) : null;
+      if (d) d.setHours(0,0,0,0);
+      var isPast = d && d < today;
+      if (isPast) {
+        var price = card.querySelector('.event-price');
+        if (price) price.style.display = 'none';
+      }
+    });
+  }
+  document.addEventListener('DOMContentLoaded', hidePrices);
+})();
+
 // ── Auto-archive past events ──────────────────────────────────────────────────
 (function() {
   var today = new Date();
