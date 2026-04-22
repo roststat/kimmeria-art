@@ -1975,8 +1975,7 @@ footer {
       document.querySelectorAll('.event-card[data-date]').forEach(function(card) {
         var d = new Date(card.dataset.date); d.setHours(0,0,0,0);
         var isPast = d < today;
-        var isKino = (card.dataset.format || '').toLowerCase() === 'кинопоказ';
-        if (isPast || isKino) {
+        if (isPast) {
           var price = card.querySelector('.event-price');
           if (price) price.style.display = 'none';
         }
