@@ -54,3 +54,57 @@ footer {
     if (existing) existing.outerHTML = html;
   }
 })();
+
+// Автоскрытие стоимости на страницах прошедших мероприятий
+(function () {
+  var MONTHS = {
+    'января':1,'февраля':2,'марта':3,'апреля':4,'мая':5,'июня':6,
+    'июля':7,'августа':8,'сентября':9,'октября':10,'ноября':11,'декабря':12
+  };
+
+  function parseEventDate(text) {
+    // Формат: "20 апреля 2026" (возможно с <br> и днём недели после)
+    var m = text.match(/(\d{1,2})\s+(января|февраля|марта|апреля|мая|июня|июля|августа|сентября|октября|ноября|декабря)\s+(\d{4})/);
+    if (!m) return null;
+    return new Date(+m[3], MONTHS[m[2]] - 1, +m[1]);
+  }
+
+  function getEventDate() {
+    // Ищем в sidebar-date или sidebar-value рядом с меткой "Когда"
+    var candidates = document.querySelectorAll('.sidebar-date, .sidebar-value');
+    for (var i = 0; i < candidates.length; i++) {
+      var d = parseEventDate(candidates[i].textContent);
+      if (d) return d;
+    }
+    return null;
+  }
+
+  var eventDate = getEventDate();
+  if (!eventDate) return;
+
+  var today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  // Мероприятие прошло — скрываем блоки стоимости
+  if (eventDate < today) {
+    var priceBlocks = document.querySelectorAll('.sidebar-price-block');
+    priceBlocks.forEach(function (el) { el.style.display = 'none'; });
+
+    // Нестандартные блоки стоимости (sidebar-label + sidebar-value/sidebar-price-main)
+    var labels = document.querySelectorAll('.sidebar-label, .sidebar-price-label');
+    labels.forEach(function (el) {
+      if (/стоимость|билеты|энергообмен/i.test(el.textContent)) {
+        // Скрываем сам лейбл и следующий элемент с ценой
+        el.style.display = 'none';
+        var next = el.nextElementSibling;
+        while (next && !next.classList.contains('sidebar-label') && !next.classList.contains('btn-past') && !next.classList.contains('btn-primary') && !next.classList.contains('btn-register') && !next.classList.contains('sidebar-divider')) {
+          next.style.display = 'none';
+          next = next.nextElementSibling;
+        }
+        if (next && next.classList.contains('sidebar-divider')) {
+          next.style.display = 'none';
+        }
+      }
+    });
+  }
+})();
