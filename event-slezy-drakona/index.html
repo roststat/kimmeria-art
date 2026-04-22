@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>«Слёзы дракона» — кинопоказ — Киммерия Арт</title>
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Киммерия-Арт">
+  <meta property="og:url" content="https://art-kimmeria.ru/event-slezy-drakona/">
+  <meta property="og:title" content="«Слёзы дракона» · 24 апреля 2026">
+  <meta property="og:description" content="Показ художественного фильма по мотивам бурятских народных сказок. Кинотеатр «Сатурн», Ялта. Вход свободный, по пригласительным.">
+  <meta property="og:image" content="https://art-kimmeria.ru/photos/event-slezy-drakona.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="«Слёзы дракона» · 24 апреля 2026">
+  <meta name="twitter:description" content="Показ художественного фильма по мотивам бурятских народных сказок. Кинотеатр «Сатурн», Ялта. Вход свободный, по пригласительным.">
+  <meta name="twitter:image" content="https://art-kimmeria.ru/photos/event-slezy-drakona.jpg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: #ffffff; color: #111111; font-size: 16px; line-height: 1.6; overflow-x: hidden; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 60px; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid #e8e8e8; }
+    .nav-logo { font-size: 17px; font-weight: 700; color: #111111; text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; }
+    .nav-links { display: flex; gap: 4px; list-style: none; }
+    .nav-links a { font-size: 13px; font-weight: 500; color: #111111; text-decoration: none; padding: 6px 12px; border-radius: 100px; transition: background 0.15s; }
+    .nav-links a:hover { background: #f5f5f5; }
+    .nav-back { font-size: 13px; font-weight: 600; color: #111111; text-decoration: none; padding: 8px 16px; border-radius: 100px; border: 1px solid #e8e8e8; transition: background 0.15s; }
+    .nav-back:hover { background: #f5f5f5; }
+    /* HERO */
+    .event-hero { padding-top: 60px; position: relative; overflow: hidden; background: #0d0d0d; }
+    .event-hero-bg { position: absolute; inset: -40px; background-size: cover; background-position: center; filter: blur(28px); opacity: 0.55; transform: scale(1.08); }
+    .event-hero-inner { position: relative; z-index: 1; display: grid; grid-template-columns: auto 1fr; gap: 48px; align-items: center; max-width: 1200px; margin: 0 auto; padding: 48px; }
+    .event-hero-poster { flex-shrink: 0; max-height: 480px; max-width: 340px; display: flex; align-items: center; }
+    .event-hero-poster img { display: block; width: 100%; height: auto; object-fit: contain; border-radius: 8px; box-shadow: 0 24px 64px rgba(0,0,0,0.6); cursor: zoom-in; }
+    .event-hero-text { color: #ffffff; }
+    .event-hero-tag { display: inline-block; background: rgba(255,255,255,0.15); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.25); color: #ffffff; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 12px; border-radius: 100px; margin-bottom: 14px; }
+    .event-hero-title { font-size: 44px; font-weight: 700; color: #ffffff; line-height: 1.1; margin-bottom: 12px; }
+    .event-hero-date { font-size: 15px; font-weight: 500; color: rgba(255,255,255,0.75); }
+    /* ЛАЙТБОКС */
+    .lightbox { display: none; position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,0.92); align-items: center; justify-content: center; cursor: zoom-out; }
+    .lightbox.open { display: flex; }
+    .lightbox img { max-width: 92vw; max-height: 92vh; object-fit: contain; border-radius: 4px; box-shadow: 0 32px 80px rgba(0,0,0,0.6); cursor: default; }
+    .lightbox-close { position: absolute; top: 20px; right: 24px; font-size: 32px; color: #ffffff; cursor: pointer; line-height: 1; opacity: 0.7; transition: opacity 0.15s; background: none; border: none; padding: 0; }
+    .lightbox-close:hover { opacity: 1; }
+    .event-main { display: grid; grid-template-columns: 1fr 360px; gap: 48px; max-width: 1200px; margin: 0 auto; padding: 60px 48px; align-items: start; }
+    .event-section-label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #666666; font-weight: 600; margin-bottom: 12px; }
+    .event-description { font-size: 20px; font-weight: 500; line-height: 1.6; color: #111111; margin-bottom: 32px; max-width: 620px; }
+    .event-body-text { font-size: 15px; color: #444444; line-height: 1.8; max-width: 580px; margin-bottom: 40px; }
+    .event-body-text p { margin-bottom: 16px; }
+    .event-details-list { list-style: none; margin-bottom: 40px; }
+    .event-details-list li { font-size: 16px; color: #666666; padding: 12px 0; border-bottom: 1px solid #e8e8e8; display: flex; gap: 16px; align-items: baseline; }
+    .event-details-list li strong { color: #111111; font-weight: 600; min-width: 90px; font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; }
+    .event-crew { margin-bottom: 40px; }
+    .event-crew-title { font-size: 20px; font-weight: 600; color: #111111; margin-bottom: 16px; }
+    .event-crew-list { list-style: none; }
+    .event-crew-list li { font-size: 16px; color: #666666; padding: 10px 0; border-bottom: 1px solid #e8e8e8; display: flex; gap: 16px; }
+    .event-crew-list li strong { color: #111111; font-weight: 600; min-width: 200px; }
+    .event-sidebar { position: sticky; top: 80px; background: #ffffff; border: 1px solid #e8e8e8; border-radius: 16px; padding: 32px; }
+    .sidebar-date-block { margin-bottom: 24px; border-bottom: 1px solid #e8e8e8; padding-bottom: 24px; }
+    .sidebar-date-label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #666666; font-weight: 600; margin-bottom: 6px; }
+    .sidebar-date { font-size: 24px; font-weight: 700; line-height: 1.3; color: #111111; }
+    .sidebar-time { font-size: 16px; color: #666666; margin-top: 6px; }
+    .sidebar-place-label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #666666; font-weight: 600; margin-bottom: 4px; margin-top: 20px; }
+    .sidebar-place { font-size: 16px; color: #111111; line-height: 1.5; }
+    .sidebar-price-block { margin-top: 24px; border-top: 1px solid #e8e8e8; padding-top: 24px; margin-bottom: 24px; }
+    .sidebar-price-label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #666666; font-weight: 600; margin-bottom: 12px; }
+    .sidebar-price-main { font-size: 28px; font-weight: 700; color: #111111; line-height: 1; }
+    .btn-register { display: block; width: 100%; padding: 14px 24px; text-align: center; background: #111111; color: #ffffff; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; text-decoration: none; border-radius: 100px; transition: opacity 0.15s; }
+    .btn-register:hover { opacity: 0.85; }
+    .btn-past { display: block; width: 100%; padding: 14px 24px; text-align: center; background: #f5f5f5; color: #666666; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; border: 1px solid #e8e8e8; border-radius: 100px; cursor: default; }
+    .btn-secondary { display: block; width: 100%; padding: 14px 24px; text-align: center; background: #ffffff; color: #111111; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; text-decoration: none; border: 1px solid #e8e8e8; border-radius: 100px; transition: background 0.15s; margin-top: 10px; }
+    .btn-secondary:hover { background: #f5f5f5; }
+    .btn-share { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 14px 24px; background: #ffffff; color: #111111; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; border: 1px solid #e8e8e8; border-radius: 100px; cursor: pointer; transition: background 0.15s; margin-top: 10px; position: relative; }
+    .btn-share:hover { background: #f5f5f5; }
+    .btn-share svg { width: 15px; height: 15px; flex-shrink: 0; }
+    .share-popup { position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%) translateY(4px); background: #111111; color: #ffffff; font-size: 12px; font-weight: 500; padding: 6px 14px; border-radius: 100px; white-space: nowrap; pointer-events: none; opacity: 0; transition: all 0.2s; }
+    .share-popup.visible { opacity: 1; transform: translateX(-50%) translateY(0); }
+    .event-back-section { padding: 0 48px 60px; }
+    .event-back-link { font-size: 13px; font-weight: 600; color: #111111; text-decoration: none; padding: 8px 16px; border-radius: 100px; border: 1px solid #e8e8e8; display: inline-block; transition: background 0.15s; }
+    .event-back-link:hover { background: #f5f5f5; }
+    .fab-back { position: fixed; top: 72px; right: 20px; z-index: 200; display: flex; align-items: center; gap: 7px; background: #ffffff; color: #111111; font-family: inherit; font-size: 13px; font-weight: 600; padding: 9px 16px 9px 12px; border-radius: 100px; border: 1px solid #e8e8e8; box-shadow: 0 4px 16px rgba(0,0,0,0.10); cursor: pointer; text-decoration: none; transition: box-shadow 0.15s, transform 0.15s; }
+    .fab-back:hover { box-shadow: 0 6px 22px rgba(0,0,0,0.14); transform: translateY(-1px); }
+    .fab-back svg { width: 16px; height: 16px; flex-shrink: 0; }
+    .nav-back-mobile { display: none; font-size: 13px; font-weight: 700; color: #ffffff; background: #1a4a3a; text-decoration: none; padding: 8px 18px; border-radius: 100px; transition: opacity 0.15s; white-space: nowrap; }
+    .nav-back-mobile:hover { opacity: 0.85; }
+    .nav-burger { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 40px; height: 40px; background: none; border: none; cursor: pointer; padding: 8px; border-radius: 8px; transition: background 0.15s; }
+    .nav-burger:hover { background: #f5f5f5; }
+    .nav-burger span { display: block; width: 22px; height: 2px; background: #111111; border-radius: 2px; transition: all 0.25s; }
+    .mobile-menu { display: none; position: fixed; top: 60px; left: 0; right: 0; bottom: 0; background: #ffffff; z-index: 99; padding: 24px 20px; flex-direction: column; gap: 4px; overflow-y: auto; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { font-size: 20px; font-weight: 600; color: #111111; text-decoration: none; padding: 14px 16px; border-radius: 12px; transition: background 0.15s; }
+    .mobile-menu a:hover { background: #f5f5f5; }
+    @media (max-width: 900px) {
+      nav { padding: 0 20px; } .nav-links { display: none; } .nav-back { display: none; }
+      .nav-back-mobile { display: inline-block; }
+      .event-hero-inner { grid-template-columns: 1fr; gap: 24px; padding: 32px 20px; }
+      .event-hero-poster { max-width: 220px; max-height: 300px; margin: 0 auto; }
+      .event-hero-text { text-align: center; }
+      .event-hero-title { font-size: 28px; }
+      .event-main { grid-template-columns: 1fr; padding: 36px 20px; gap: 32px; }
+      .event-sidebar { position: static; }
+      .event-back-section { padding: 0 20px 40px; }
+    }
+    @media (max-width: 600px) {
+      .event-hero-poster { max-width: 160px; }
+      .event-hero-title { font-size: 22px; }
+      .event-hero-inner { padding: 24px 16px; }
+      .event-main { padding: 24px 16px; } .event-sidebar { padding: 24px; }
+      .event-back-section { padding: 0 16px 32px; }
+    }
+  </style>
+</head>
+<body>
+
+<button class="fab-back" onclick="fabGoBack()" aria-label="Назад">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 5l-7 7 7 7"/></svg>
+  Назад
+</button>
+
+<nav>
+  <a href="/" class="nav-logo">Киммерия-Арт</a>
+  <ul class="nav-links"></ul>
+  <a href="/#events" class="nav-back">← Все события</a>
+  <a href="/#events" class="nav-back-mobile">Все события</a>
+</nav>
+
+<div class="event-hero">
+  <div class="event-hero-bg" style="background-image: url('/photos/event-slezy-drakona.jpg');"></div>
+  <div class="event-hero-inner">
+    <div class="event-hero-poster">
+      <img src="/photos/event-slezy-drakona.jpg" alt="«Слёзы дракона»" onclick="openLightbox(this.src)">
+    </div>
+    <div class="event-hero-text">
+      <div class="event-hero-tag">Кинопоказ</div>
+      <h1 class="event-hero-title">«Слёзы дракона»</h1>
+      <div class="event-hero-date">24 апреля 2026 · Пятница · 10:00</div>
+    </div>
+  </div>
+</div>
+
+<div class="event-main">
+  <div class="event-content">
+    <p class="event-section-label">О фильме</p>
+    <p class="event-description">Красочная и увлекательная история по мотивам бурятских народных сказок, преданий и легенд — о том, как появились самое глубокое озеро и самое глубокое чувство в мире: Байкал и Любовь.</p>
+
+    <div class="event-body-text">
+      <p>Те, кто знаком с миром бурятской сказки, узнают в фильме любимые с детства произведения «Мудрая дочь», «Меткая стрела», «Злая шаманка» и другие. А те, кто не знает ни одной бурятской легенды, будут приятно удивлены национальным колоритом и характерными элементами, которые являются едиными для всех народов.</p>
+      <p>Фильм представит режиссёр Татьяна Мирошник.</p>
+      <p>Показ проводится в рамках Года Единства народов России.</p>
+    </div>
+
+    <ul class="event-details-list">
+      <li><strong>Дата</strong> 24 апреля 2026, пятница</li>
+      <li><strong>Время</strong> 10:00</li>
+      <li><strong>Место</strong> Кинотеатр «Сатурн», г. Ялта</li>
+      <li><strong>Вход</strong> Свободный, по пригласительным</li>
+      <li><strong>Информация</strong> +7-978-060-29-86</li>
+    </ul>
+
+    <div class="event-crew">
+      <h2 class="event-crew-title">Съёмочная группа</h2>
+      <ul class="event-crew-list">
+        <li><strong>Режиссёр</strong> Татьяна Мирошник</li>
+        <li><strong>Год</strong> 2025</li>
+      </ul>
+    </div>
+  </div>
+
+  <aside class="event-sidebar">
+    <div class="sidebar-date-block">
+      <div class="sidebar-date-label">Когда</div>
+      <div class="sidebar-date">24 апреля 2026<br>Пятница</div>
+      <div class="sidebar-time">Начало в 10:00</div>
+      <div class="sidebar-place-label">Где</div>
+      <div class="sidebar-place">Кинотеатр «Сатурн»<br>г. Ялта</div>
+    </div>
+    <div class="sidebar-price-block">
+      <div class="sidebar-price-label">Вход</div>
+      <div class="sidebar-price-main">Свободный</div>
+    </div>
+    <a href="tel:+79780602986" class="btn-register">Узнать подробности</a>
+    <a href="/#events" class="btn-secondary">← Все события</a>
+    <button class="btn-share" onclick="shareEvent(this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+      Поделиться
+      <span class="share-popup">Ссылка скопирована!</span>
+    </button>
+  </aside>
+</div>
+
+<div class="event-back-section">
+  <a href="/#events" class="event-back-link">← Все события</a>
+</div>
+
+<div id="site-footer"></div>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">&#x2715;</button>
+  <img id="lightboxImg" src="" alt="" onclick="event.stopPropagation()">
+</div>
+
+<script>
+function fabGoBack() {
+  if (document.referrer && document.referrer !== window.location.href) {
+    history.back();
+  } else {
+    window.location.href = '/#events';
+  }
+}
+function openLightbox(src) {
+  document.getElementById('lightboxImg').src = src;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeLightbox(); });
+function shareEvent(btn) {
+  var url = window.location.href;
+  var titleEl = document.querySelector('.event-hero-title');
+  var title = (titleEl ? titleEl.textContent.trim() : document.title) + ' — Киммерия-Арт';
+  var popup = btn.querySelector('.share-popup');
+  if (navigator.share) { navigator.share({ title: title, url: url }).catch(function(){}); return; }
+  function showPopup() { popup.classList.add('visible'); setTimeout(function() { popup.classList.remove('visible'); }, 2000); }
+  function fallback() {
+    var ta = document.createElement('textarea');
+    ta.value = url; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+    showPopup();
+  }
+  if (navigator.clipboard) { navigator.clipboard.writeText(url).then(showPopup).catch(fallback); }
+  else { fallback(); }
+}
+</script>
+<script src="/footer.js"></script>
+</body>
+</html>
