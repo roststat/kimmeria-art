@@ -516,8 +516,8 @@ function savePDF() {
 
   // Загружаем только regular (bold грузим отдельным начертанием того же файла как medium)
   Promise.all([
-    fetch('https://fonts.gstatic.com/s/notosans/v36/o-0IIpQlx3QUlC5A4PNr4ARPQ_m87utt.ttf').then(function(r){ return r.arrayBuffer(); }),
-    fetch('https://fonts.gstatic.com/s/notosans/v36/o-0TIpQlx3QUlC5A4PNjXhFVZNyB1vk.ttf').then(function(r){ return r.arrayBuffer(); }),
+    fetch('/fonts/NotoSans-Regular.ttf').then(function(r){ return r.arrayBuffer(); }),
+    fetch('/fonts/NotoSans-Bold.ttf').then(function(r){ return r.arrayBuffer(); }),
     fetch('/photos/event-ryba.jpg').then(function(r){ return r.blob(); }).then(blobToBase64)
   ])
   .then(function(results) {
