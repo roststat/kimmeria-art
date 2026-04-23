@@ -15,6 +15,8 @@
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <style>
 
 :root { --accent: #1a4a3a; --accent-dark: #0f2e24; }
@@ -279,7 +281,7 @@ nav {
       <div class="spec-row"><span class="spec-label">Аудитория</span><span class="spec-value">Ценители медитативного, визуально изысканного театра. Любители Айтматова и этнической эстетики</span></div>
 
       <div class="actions">
-        <button class="btn-primary" onclick="savePDF()">
+        <button class="btn-primary btn-pdf-main" onclick="savePDF()">
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 2h7l3 3v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z"/><path d="M10 2v3h3"/><line x1="5" y1="8" x2="11" y2="8"/><line x1="5" y1="11" x2="8" y2="11"/></svg>
           Сохранить PDF
         </button>
@@ -396,6 +398,69 @@ nav {
 
 </div><!-- /page-wrap -->
 
+<!-- PDF-контент для html2canvas (скрыт, рендерится по клику) -->
+<div id="pdf-content" style="display:none; position:fixed; left:-9999px; top:0; width:780px; background:#fff; padding:40px; font-family:Arial,sans-serif; font-size:13px; color:#111; line-height:1.6;">
+  <div style="border-bottom:3px solid #1a4a3a; padding-bottom:16px; margin-bottom:24px;">
+    <div style="font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#aaa; margin-bottom:6px;">Спектакль-притча · 12+ · 60 минут</div>
+    <div style="font-size:28px; font-weight:700; color:#111; margin-bottom:4px;">«Лучше я буду рыбой…»</div>
+    <div style="font-size:14px; color:#666;">По мотивам Чингиза Айтматова «Белый пароход» · Киммерия-Арт</div>
+  </div>
+
+  <div style="display:flex; gap:28px; margin-bottom:24px;">
+    <div style="flex-shrink:0;">
+      <div style="font-size:9px; font-weight:700; letter-spacing:0.09em; text-transform:uppercase; color:#aaa; margin-bottom:6px;">Пример рекламного баннера</div>
+      <img src="/photos/event-ryba.jpg" style="width:200px; height:267px; object-fit:cover; border-radius:8px; display:block;">
+    </div>
+    <div style="flex:1;">
+      <div style="font-size:10px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:#aaa; margin-bottom:10px;">Характеристики</div>
+      <table style="width:100%; border-collapse:collapse; font-size:13px;">
+        <tr><td style="padding:7px 0; border-bottom:1px solid #eee; font-weight:700; width:130px; vertical-align:top;">Жанр</td><td style="padding:7px 0 7px 12px; border-bottom:1px solid #eee; color:#444;">Спектакль-притча, театр анимации</td></tr>
+        <tr><td style="padding:7px 0; border-bottom:1px solid #eee; font-weight:700; vertical-align:top;">Хронометраж</td><td style="padding:7px 0 7px 12px; border-bottom:1px solid #eee; color:#444;">60 минут</td></tr>
+        <tr><td style="padding:7px 0; border-bottom:1px solid #eee; font-weight:700; vertical-align:top;">Возраст</td><td style="padding:7px 0 7px 12px; border-bottom:1px solid #eee; color:#444;">12+</td></tr>
+        <tr><td style="padding:7px 0; border-bottom:1px solid #eee; font-weight:700; vertical-align:top;">Состав</td><td style="padding:7px 0 7px 12px; border-bottom:1px solid #eee; color:#444;">4 актрисы + технический персонал</td></tr>
+        <tr><td style="padding:7px 0; border-bottom:1px solid #eee; font-weight:700; vertical-align:top;">Площадка</td><td style="padding:7px 0 7px 12px; border-bottom:1px solid #eee; color:#444;">Не требует стационарной сцены — конференц-зал, лаундж, открытое пространство</td></tr>
+        <tr><td style="padding:7px 0; font-weight:700; vertical-align:top;">Техника</td><td style="padding:7px 0 7px 12px; color:#444;">Полное техническое сопровождение силами команды</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div style="margin-bottom:20px;">
+    <div style="font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#aaa; margin-bottom:10px;">О спектакле</div>
+    <p style="margin-bottom:10px;">Спектакль по мотивам философской повести Чингиза Айтматова «Белый пароход» (1970) — одного из самых пронзительных произведений советской литературы, удостоенного Государственной премии СССР 1977 года. Четыре актрисы («4 стороны света») проводят зрителя через мозаику воспоминаний, используя элементы театра анимации, тотемы ручной работы, киргизские национальные мотивы в музыке и сценографии.</p>
+    <p>Постановка отмечена наградами. Это не классический театр, а синтез драмы, театра анимации, живой этнической музыки и визуальной поэзии. Жанр — глубокий, медитативный, визуально изысканный.</p>
+  </div>
+
+  <div style="border-top:1px solid #e8e8e8; padding-top:16px; margin-bottom:20px;">
+    <div style="font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#aaa; margin-bottom:10px;">Об оригинальном произведении</div>
+    <p style="margin-bottom:10px;">«Белый пароход» — повесть о семилетнем мальчике и его добром деде Момуне, о Рогатой матери-оленихе и Белом пароходе. О том, как мальчик обернулся рыбой и уплыл, не желая примириться с обманом и злом. Повесть включена в список 100 книг, рекомендованных Министерством образования РФ.</p>
+  </div>
+
+  <div style="border-top:1px solid #e8e8e8; padding-top:16px; margin-bottom:20px;">
+    <div style="font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#aaa; margin-bottom:10px;">Команда</div>
+    <table style="width:100%; border-collapse:collapse; font-size:12px;">
+      <tr>
+        <td style="padding:4px 0; width:50%; vertical-align:top;"><span style="font-size:9px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:#aaa;display:block;">Режиссёры</span>Усанина С., Акс Е.</td>
+        <td style="padding:4px 0; vertical-align:top;"><span style="font-size:9px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:#aaa;display:block;">Художник</span>Свежевская Е.</td>
+      </tr>
+      <tr>
+        <td style="padding:4px 0; vertical-align:top;"><span style="font-size:9px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:#aaa;display:block;">Создатель тотемов</span>Браилов А.</td>
+        <td style="padding:4px 0; vertical-align:top;"><span style="font-size:9px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:#aaa;display:block;">Музыка</span>Кокуев А.</td>
+      </tr>
+      <tr>
+        <td style="padding:4px 0; vertical-align:top;"><span style="font-size:9px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:#aaa;display:block;">Костюмы</span>Ким И.</td>
+        <td style="padding:4px 0; vertical-align:top;"><span style="font-size:9px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:#aaa;display:block;">Свет и звук</span>Акс Е., Мезеря Ю.</td>
+      </tr>
+      <tr>
+        <td colspan="2" style="padding:4px 0; vertical-align:top;"><span style="font-size:9px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:#aaa;display:block;">Актрисы</span>Усанина С., Коко К., Розстальная А., Таранова В. (засл. актриса РК)</td>
+      </tr>
+    </table>
+  </div>
+
+  <div style="border-top:1px solid #e8e8e8; padding-top:10px; margin-top:8px;">
+    <div style="font-size:10px; color:#aaa;">art-kimmeria.ru/programmy/ryba/</div>
+  </div>
+</div>
+
 <!-- КП-блок только при печати -->
 <div class="kp-print-block" id="kpPrintBlock" style="display:none; max-width:760px; margin:0 auto; padding:0 20px 40px;">
   <div style="border-top:2px solid #1a4a3a; padding-top:20px;">
@@ -493,20 +558,60 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function savePDF() {
-  var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-  if (isMobile) {
-    var isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
-    var hint = document.getElementById('shareHint');
-    hint.textContent = isIOS
-      ? 'Нажмите «Поделиться» → «Напечатать» → зажмите превью → «Сохранить в Файлы»'
-      : 'Нажмите меню браузера → «Печать» → «Сохранить как PDF»';
-    hint.classList.add('copied');
-    hint.style.color = '#555';
-    hint.style.whiteSpace = 'normal';
-    hint.style.lineHeight = '1.5';
-  } else {
+  var btn = document.querySelector('.btn-pdf-main');
+  var originalText = btn.innerHTML;
+  btn.innerHTML = 'Формируется…';
+  btn.disabled = true;
+
+  var el = document.getElementById('pdf-content');
+  el.style.display = 'block';
+
+  html2canvas(el, {
+    scale: 2,
+    useCORS: true,
+    allowTaint: true,
+    backgroundColor: '#ffffff',
+    logging: false
+  }).then(function(canvas) {
+    var imgData = canvas.toDataURL('image/jpeg', 0.92);
+    var pdf = new window.jspdf.jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+    var pageW = 210;
+    var pageH = 297;
+    var margin = 14;
+    var imgW = pageW - margin * 2;
+    var imgH = (canvas.height * imgW) / canvas.width;
+    var y = margin;
+
+    if (imgH <= pageH - margin * 2) {
+      pdf.addImage(imgData, 'JPEG', margin, y, imgW, imgH);
+    } else {
+      var remaining = imgH;
+      var srcY = 0;
+      var sliceH = pageH - margin * 2;
+      while (remaining > 0) {
+        var drawH = Math.min(remaining, sliceH);
+        var sliceCanvas = document.createElement('canvas');
+        sliceCanvas.width = canvas.width;
+        sliceCanvas.height = Math.round((drawH / imgH) * canvas.height);
+        var ctx = sliceCanvas.getContext('2d');
+        ctx.drawImage(canvas, 0, Math.round((srcY / imgH) * canvas.height), canvas.width, sliceCanvas.height, 0, 0, canvas.width, sliceCanvas.height);
+        pdf.addImage(sliceCanvas.toDataURL('image/jpeg', 0.92), 'JPEG', margin, margin, imgW, drawH);
+        remaining -= sliceH;
+        srcY += sliceH;
+        if (remaining > 0) pdf.addPage();
+      }
+    }
+
+    pdf.save('ryba-kimmeria-art.pdf');
+    el.style.display = 'none';
+    btn.innerHTML = originalText;
+    btn.disabled = false;
+  }).catch(function() {
+    el.style.display = 'none';
+    btn.innerHTML = originalText;
+    btn.disabled = false;
     window.print();
-  }
+  });
 }
 
 function saveKPPDF() {
