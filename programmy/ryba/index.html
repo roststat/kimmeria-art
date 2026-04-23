@@ -575,8 +575,9 @@ function savePDF() {
       setN(8); rgb(80,80,80);
       var ll = pdf.splitTextToSize(s[1], cw - 32);
       pdf.text(ll, cx + 32, cy);
-      cy += ll.length * 4.5 + 2;
-      hline(cx, cy-1, cx+cw, cy-1);
+      cy += ll.length * 5.5 + 3;
+      hline(cx, cy, cx+cw, cy);
+      cy += 3;
     });
     y += pH + 8;
 
