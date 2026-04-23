@@ -492,7 +492,22 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
-function savePDF() { window.print(); }
+function savePDF() {
+  var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+  if (isMobile) {
+    var isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+    var hint = document.getElementById('shareHint');
+    hint.textContent = isIOS
+      ? 'Нажмите «Поделиться» → «Напечатать» → зажмите превью → «Сохранить в Файлы»'
+      : 'Нажмите меню браузера → «Печать» → «Сохранить как PDF»';
+    hint.classList.add('copied');
+    hint.style.color = '#555';
+    hint.style.whiteSpace = 'normal';
+    hint.style.lineHeight = '1.5';
+  } else {
+    window.print();
+  }
+}
 
 function saveKPPDF() {
   saveKPToStorage();
