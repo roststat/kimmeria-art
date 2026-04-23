@@ -640,7 +640,11 @@ function saveKPPDF() {
   document.getElementById('print-contact').textContent = data.contact || '—';
   document.getElementById('print-extra').textContent = data.extra || '—';
   document.getElementById('kpPrintBlock').style.display = 'block';
+  var footer = document.querySelector('footer');
+  if (footer) footer.style.display = 'none';
   window.print();
+  if (footer) footer.style.display = '';
+  document.getElementById('kpPrintBlock').style.display = 'none';
 }
 
 function shareLink() {
