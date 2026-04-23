@@ -514,26 +514,27 @@ function savePDF() {
   btn.innerHTML = 'Формируется…';
   btn.disabled = true;
 
+  // Загружаем только regular (bold грузим отдельным начертанием того же файла как medium)
   Promise.all([
-    fetch('https://fonts.gstatic.com/s/roboto/v30/KFOmCnqEu92Fr1Me5WZLCzYlKw.ttf').then(function(r){ return r.arrayBuffer(); }),
-    fetch('https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmWUlfBBc9.ttf').then(function(r){ return r.arrayBuffer(); }),
+    fetch('https://fonts.gstatic.com/s/notosans/v36/o-0IIpQlx3QUlC5A4PNr4ARPQ_m87utt.ttf').then(function(r){ return r.arrayBuffer(); }),
+    fetch('https://fonts.gstatic.com/s/notosans/v36/o-0TIpQlx3QUlC5A4PNjXhFVZNyB1vk.ttf').then(function(r){ return r.arrayBuffer(); }),
     fetch('/photos/event-ryba.jpg').then(function(r){ return r.blob(); }).then(blobToBase64)
   ])
   .then(function(results) {
     var pdf = new window.jspdf.jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
 
-    pdf.addFileToVFS('Roboto-Regular.ttf', _arrayBufferToBase64(results[0]));
-    pdf.addFileToVFS('Roboto-Bold.ttf', _arrayBufferToBase64(results[1]));
-    pdf.addFont('Roboto-Regular.ttf', 'Roboto', 'normal');
-    pdf.addFont('Roboto-Bold.ttf', 'Roboto', 'bold');
+    pdf.addFileToVFS('NotoSans-Regular.ttf', _arrayBufferToBase64(results[0]));
+    pdf.addFileToVFS('NotoSans-Bold.ttf', _arrayBufferToBase64(results[1]));
+    pdf.addFont('NotoSans-Regular.ttf', 'NotoSans', 'normal');
+    pdf.addFont('NotoSans-Bold.ttf', 'NotoSans', 'bold');
 
     var imgData = results[2];
     var m = 16, pw = 210 - m * 2, y = m;
 
-    function setN(size) { pdf.setFont('Roboto','normal'); pdf.setFontSize(size); }
-    function setB(size) { pdf.setFont('Roboto','bold'); pdf.setFontSize(size); }
+    function setN(size) { pdf.setFont('NotoSans','normal'); pdf.setFontSize(size); }
+    function setB(size) { pdf.setFont('NotoSans','bold'); pdf.setFontSize(size); }
     function rgb(r,g,b) { pdf.setTextColor(r,g,b); }
-    function line(x1,y1,x2,y2,r,g,b,w) {
+    function hline(x1,y1,x2,y2,r,g,b,w) {
       pdf.setDrawColor(r||200,g||200,b||200);
       pdf.setLineWidth(w||0.2);
       pdf.line(x1,y1,x2,y2);
@@ -541,15 +542,15 @@ function savePDF() {
 
     // Шапка
     setN(9); rgb(170,170,170);
-    pdf.text('СПЕКТАКЛЬ-ПРИТЧА · 12+ · 60 МИНУТ', m, y + 4);
-    line(m, y+8, 210-m, y+8, 26,74,58, 0.8);
+    pdf.text('СПЕКТАКЛЬ-ПРИТЧА  12+  60 МИНУТ', m, y + 4);
+    hline(m, y+8, 210-m, y+8, 26,74,58, 0.8);
     y += 15;
 
-    setB(22); rgb(17,17,17);
-    pdf.text('«Лучше я буду рыбой…»', m, y);
+    setB(20); rgb(17,17,17);
+    pdf.text('"Лучше я буду рыбой..."', m, y);
     y += 7;
     setN(11); rgb(100,100,100);
-    pdf.text('По мотивам Чингиза Айтматова «Белый пароход» · Киммерия-Арт', m, y);
+    pdf.text('По мотивам Чингиза Айтматова "Белый пароход"  Киммерия-Арт', m, y);
     y += 10;
 
     // Афиша + характеристики
@@ -557,62 +558,63 @@ function savePDF() {
     pdf.addImage(imgData, 'JPEG', m, y, pW, pH);
 
     var cx = m + pW + 8, cw = pw - pW - 8, cy = y;
-    setB(8); rgb(170,170,170);
+    setB(7); rgb(150,150,150);
     pdf.text('ХАРАКТЕРИСТИКИ', cx, cy);
     cy += 5;
 
     var specs = [
-      ['Жанр', 'Спектакль-притча, театр анимации'],
-      ['Хронометраж', '60 минут'],
-      ['Возраст', '12+'],
-      ['Состав', '4 актрисы + технический персонал'],
-      ['Площадка', 'Не требует сцены — конференц-зал, лаундж, открытое пространство'],
-      ['Техника', 'Полное тех. сопровождение силами команды'],
+      ['Жанр',         'Спектакль-притча, театр анимации'],
+      ['Хронометраж',  '60 минут'],
+      ['Возраст',      '12+'],
+      ['Состав',       '4 актрисы + технический персонал'],
+      ['Площадка',     'Не требует сцены - конференц-зал, лаундж, открытое пространство'],
+      ['Техника',      'Полное тех. сопровождение силами команды'],
     ];
     specs.forEach(function(s) {
       setB(8); rgb(17,17,17); pdf.text(s[0], cx, cy);
       setN(8); rgb(80,80,80);
-      var ll = pdf.splitTextToSize(s[1], cw - 30);
-      pdf.text(ll, cx + 30, cy);
+      var ll = pdf.splitTextToSize(s[1], cw - 32);
+      pdf.text(ll, cx + 32, cy);
       cy += ll.length * 4.5 + 2;
-      line(cx, cy-1, cx+cw, cy-1);
+      hline(cx, cy-1, cx+cw, cy-1);
     });
     y += pH + 8;
 
     // О спектакле
-    line(m, y, 210-m, y); y += 7;
-    setB(8); rgb(170,170,170); pdf.text('О СПЕКТАКЛЕ', m, y); y += 5;
+    hline(m, y, 210-m, y); y += 7;
+    setB(7); rgb(150,150,150); pdf.text('О СПЕКТАКЛЕ', m, y); y += 5;
     setN(10); rgb(50,50,50);
-    var t1 = pdf.splitTextToSize('Спектакль по мотивам философской повести Чингиза Айтматова «Белый пароход» (1970). Четыре актрисы («4 стороны света») проводят зрителя через мозаику воспоминаний, используя элементы театра анимации, тотемы ручной работы, киргизские национальные мотивы в музыке и сценографии.', pw);
-    pdf.text(t1, m, y); y += t1.length * 5 + 3;
-    var t2 = pdf.splitTextToSize('Постановка отмечена наградами. Синтез драмы, театра анимации, живой этнической музыки и визуальной поэзии. Жанр — глубокий, медитативный, визуально изысканный.', pw);
+    var t1 = pdf.splitTextToSize('Спектакль по мотивам философской повести Чингиза Айтматова "Белый пароход" (1970). Четыре актрисы ("4 стороны света") проводят зрителя через мозаику воспоминаний, используя элементы театра анимации, тотемы ручной работы, киргизские национальные мотивы в музыке и сценографии. Постановка отмечена наградами.', pw);
+    pdf.text(t1, m, y); y += t1.length * 5 + 4;
+
+    var t2 = pdf.splitTextToSize('Об оригинале: "Белый пароход" - повесть о семилетнем мальчике и его добром деде Момуне. О том, как мальчик обернулся рыбой и уплыл, не желая примириться с обманом и злом. О непобедимости добра, мечты и красоты. Повесть включена в список 100 книг, рекомендованных Министерством образования РФ.', pw);
     pdf.text(t2, m, y); y += t2.length * 5 + 6;
 
     // Команда
-    line(m, y, 210-m, y); y += 7;
-    setB(8); rgb(170,170,170); pdf.text('КОМАНДА', m, y); y += 5;
+    hline(m, y, 210-m, y); y += 7;
+    setB(7); rgb(150,150,150); pdf.text('КОМАНДА', m, y); y += 5;
     var team = [
-      ['Режиссёры','Усанина С., Акс Е.'],
-      ['Художник','Свежевская Е.'],
-      ['Тотемы','Браилов А.'],
-      ['Музыка','Кокуев А.'],
-      ['Костюмы','Ким И.'],
-      ['Свет и звук','Акс Е., Мезеря Ю.'],
-      ['Актрисы','Усанина С., Коко К., Розстальная А., Таранова В. (засл. актриса РК)'],
+      ['Режиссеры',   'Усанина С., Акс Е.'],
+      ['Художник',    'Свежевская Е.'],
+      ['Тотемы',      'Браилов А.'],
+      ['Музыка',      'Кокуев А.'],
+      ['Костюмы',     'Ким И.'],
+      ['Свет и звук', 'Акс Е., Мезеря Ю.'],
+      ['Актрисы',     'Усанина С., Коко К., Розстальная А., Таранова В. (засл. актриса РК)'],
     ];
     var col = Math.ceil(team.length / 2);
     team.forEach(function(t, i) {
       var tx = i < col ? m : m + pw/2;
-      var ty = y + (i % col) * 9;
-      setB(7); rgb(170,170,170); pdf.text(t[0].toUpperCase(), tx, ty);
+      var ty = y + (i % col) * 10;
+      setB(7); rgb(150,150,150); pdf.text(t[0].toUpperCase(), tx, ty);
       setN(9); rgb(50,50,50);
-      var tl = pdf.splitTextToSize(t[1], pw/2 - 4);
-      pdf.text(tl, tx, ty + 4);
+      var tl = pdf.splitTextToSize(t[1], pw/2 - 6);
+      pdf.text(tl, tx, ty + 4.5);
     });
-    y += col * 9 + 6;
+    y += col * 10 + 6;
 
     // Футер
-    line(m, y, 210-m, y, 26,74,58, 0.4); y += 5;
+    hline(m, y, 210-m, y, 26,74,58, 0.4); y += 5;
     setN(8); rgb(170,170,170);
     pdf.text('art-kimmeria.ru/programmy/ryba/', m, y);
 
