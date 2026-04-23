@@ -409,7 +409,7 @@ nav {
   <div style="display:flex; gap:28px; margin-bottom:24px;">
     <div style="flex-shrink:0;">
       <div style="font-size:9px; font-weight:700; letter-spacing:0.09em; text-transform:uppercase; color:#aaa; margin-bottom:6px;">Пример рекламного баннера</div>
-      <img src="/photos/event-ryba.jpg" style="width:200px; height:267px; object-fit:cover; border-radius:8px; display:block;">
+      <img id="pdf-poster" src="/photos/event-ryba.jpg" style="width:200px; height:267px; object-fit:cover; border-radius:8px; display:block;">
     </div>
     <div style="flex:1;">
       <div style="font-size:10px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:#aaa; margin-bottom:10px;">Характеристики</div>
@@ -563,55 +563,75 @@ function savePDF() {
   btn.innerHTML = 'Формируется…';
   btn.disabled = true;
 
-  var el = document.getElementById('pdf-content');
-  el.style.display = 'block';
+  // Загружаем афишу как base64 чтобы обойти CORS
+  fetch('/photos/event-ryba.jpg')
+    .then(function(r) { return r.blob(); })
+    .then(function(blob) {
+      return new Promise(function(resolve) {
+        var reader = new FileReader();
+        reader.onload = function() { resolve(reader.result); };
+        reader.readAsDataURL(blob);
+      });
+    })
+    .then(function(base64img) {
+      var img = document.getElementById('pdf-poster');
+      img.src = base64img;
+      return new Promise(function(resolve) {
+        img.onload = resolve;
+        img.complete && resolve();
+      });
+    })
+    .then(function() {
+      var el = document.getElementById('pdf-content');
+      el.style.display = 'block';
+      return html2canvas(el, {
+        scale: 2,
+        useCORS: false,
+        allowTaint: false,
+        backgroundColor: '#ffffff',
+        logging: false
+      });
+    })
+    .then(function(canvas) {
+      var el = document.getElementById('pdf-content');
+      el.style.display = 'none';
 
-  html2canvas(el, {
-    scale: 2,
-    useCORS: true,
-    allowTaint: true,
-    backgroundColor: '#ffffff',
-    logging: false
-  }).then(function(canvas) {
-    var imgData = canvas.toDataURL('image/jpeg', 0.92);
-    var pdf = new window.jspdf.jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
-    var pageW = 210;
-    var pageH = 297;
-    var margin = 14;
-    var imgW = pageW - margin * 2;
-    var imgH = (canvas.height * imgW) / canvas.width;
-    var y = margin;
+      var pdf = new window.jspdf.jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+      var margin = 14;
+      var pageW = 210;
+      var pageH = 297;
+      var imgW = pageW - margin * 2;
+      var imgH = (canvas.height * imgW) / canvas.width;
 
-    if (imgH <= pageH - margin * 2) {
-      pdf.addImage(imgData, 'JPEG', margin, y, imgW, imgH);
-    } else {
-      var remaining = imgH;
-      var srcY = 0;
-      var sliceH = pageH - margin * 2;
-      while (remaining > 0) {
-        var drawH = Math.min(remaining, sliceH);
-        var sliceCanvas = document.createElement('canvas');
-        sliceCanvas.width = canvas.width;
-        sliceCanvas.height = Math.round((drawH / imgH) * canvas.height);
-        var ctx = sliceCanvas.getContext('2d');
-        ctx.drawImage(canvas, 0, Math.round((srcY / imgH) * canvas.height), canvas.width, sliceCanvas.height, 0, 0, canvas.width, sliceCanvas.height);
-        pdf.addImage(sliceCanvas.toDataURL('image/jpeg', 0.92), 'JPEG', margin, margin, imgW, drawH);
-        remaining -= sliceH;
-        srcY += sliceH;
-        if (remaining > 0) pdf.addPage();
+      if (imgH <= pageH - margin * 2) {
+        pdf.addImage(canvas.toDataURL('image/jpeg', 0.92), 'JPEG', margin, margin, imgW, imgH);
+      } else {
+        var sliceH = pageH - margin * 2;
+        var srcYpx = 0;
+        while (srcYpx < canvas.height) {
+          var drawHmm = Math.min(sliceH, imgH - (srcYpx / canvas.height) * imgH);
+          var drawHpx = Math.round((drawHmm / imgH) * canvas.height);
+          var slice = document.createElement('canvas');
+          slice.width = canvas.width;
+          slice.height = drawHpx;
+          slice.getContext('2d').drawImage(canvas, 0, srcYpx, canvas.width, drawHpx, 0, 0, canvas.width, drawHpx);
+          pdf.addImage(slice.toDataURL('image/jpeg', 0.92), 'JPEG', margin, margin, imgW, drawHmm);
+          srcYpx += drawHpx;
+          if (srcYpx < canvas.height) pdf.addPage();
+        }
       }
-    }
 
-    pdf.save('ryba-kimmeria-art.pdf');
-    el.style.display = 'none';
-    btn.innerHTML = originalText;
-    btn.disabled = false;
-  }).catch(function() {
-    el.style.display = 'none';
-    btn.innerHTML = originalText;
-    btn.disabled = false;
-    window.print();
-  });
+      pdf.save('ryba-kimmeria-art.pdf');
+      btn.innerHTML = originalText;
+      btn.disabled = false;
+    })
+    .catch(function(err) {
+      console.error(err);
+      document.getElementById('pdf-content').style.display = 'none';
+      btn.innerHTML = originalText;
+      btn.disabled = false;
+      window.print();
+    });
 }
 
 function saveKPPDF() {
