@@ -493,176 +493,139 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
+function _arrayBufferToBase64(buf) {
+  var b = '', u = new Uint8Array(buf);
+  for (var i = 0; i < u.byteLength; i++) b += String.fromCharCode(u[i]);
+  return btoa(b);
+}
+
+function blobToBase64(blob) {
+  return new Promise(function(resolve, reject) {
+    var reader = new FileReader();
+    reader.onload = function() { resolve(reader.result); };
+    reader.onerror = reject;
+    reader.readAsDataURL(blob);
+  });
+}
+
 function savePDF() {
   var btn = document.querySelector('.btn-pdf-main');
   var originalText = btn.innerHTML;
   btn.innerHTML = 'Формируется…';
   btn.disabled = true;
 
-  fetch('/photos/event-ryba.jpg')
-    .then(function(r) { return r.blob(); })
-    .then(function(blob) {
-      return new Promise(function(resolve, reject) {
-        var reader = new FileReader();
-        reader.onload = function() { resolve(reader.result); };
-        reader.onerror = reject;
-        reader.readAsDataURL(blob);
-      });
-    })
-    .then(function(imgData) {
-      var pdf = new window.jspdf.jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
-      var m = 16; // margin
-      var pw = 210 - m * 2; // print width
-      var y = m;
+  Promise.all([
+    fetch('https://fonts.gstatic.com/s/roboto/v30/KFOmCnqEu92Fr1Me5WZLCzYlKw.ttf').then(function(r){ return r.arrayBuffer(); }),
+    fetch('https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmWUlfBBc9.ttf').then(function(r){ return r.arrayBuffer(); }),
+    fetch('/photos/event-ryba.jpg').then(function(r){ return r.blob(); }).then(blobToBase64)
+  ])
+  .then(function(results) {
+    var pdf = new window.jspdf.jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
 
-      // Шапка
-      pdf.setDrawColor(26, 74, 58);
-      pdf.setLineWidth(0.8);
-      pdf.line(m, y + 8, 210 - m, y + 8);
+    pdf.addFileToVFS('Roboto-Regular.ttf', _arrayBufferToBase64(results[0]));
+    pdf.addFileToVFS('Roboto-Bold.ttf', _arrayBufferToBase64(results[1]));
+    pdf.addFont('Roboto-Regular.ttf', 'Roboto', 'normal');
+    pdf.addFont('Roboto-Bold.ttf', 'Roboto', 'bold');
 
-      pdf.setFontSize(9);
-      pdf.setTextColor(170, 170, 170);
-      pdf.text('СПЕКТАКЛЬ-ПРИТЧА · 12+ · 60 МИНУТ', m, y + 4);
+    var imgData = results[2];
+    var m = 16, pw = 210 - m * 2, y = m;
 
-      y += 14;
-      pdf.setFontSize(22);
-      pdf.setTextColor(17, 17, 17);
-      pdf.setFont('helvetica', 'bold');
-      pdf.text('«Лучше я буду рыбой…»', m, y);
+    function setN(size) { pdf.setFont('Roboto','normal'); pdf.setFontSize(size); }
+    function setB(size) { pdf.setFont('Roboto','bold'); pdf.setFontSize(size); }
+    function rgb(r,g,b) { pdf.setTextColor(r,g,b); }
+    function line(x1,y1,x2,y2,r,g,b,w) {
+      pdf.setDrawColor(r||200,g||200,b||200);
+      pdf.setLineWidth(w||0.2);
+      pdf.line(x1,y1,x2,y2);
+    }
 
-      y += 7;
-      pdf.setFontSize(12);
-      pdf.setFont('helvetica', 'normal');
-      pdf.setTextColor(100, 100, 100);
-      pdf.text('По мотивам Чингиза Айтматова «Белый пароход» · Киммерия-Арт', m, y);
+    // Шапка
+    setN(9); rgb(170,170,170);
+    pdf.text('СПЕКТАКЛЬ-ПРИТЧА · 12+ · 60 МИНУТ', m, y + 4);
+    line(m, y+8, 210-m, y+8, 26,74,58, 0.8);
+    y += 15;
 
-      y += 10;
+    setB(22); rgb(17,17,17);
+    pdf.text('«Лучше я буду рыбой…»', m, y);
+    y += 7;
+    setN(11); rgb(100,100,100);
+    pdf.text('По мотивам Чингиза Айтматова «Белый пароход» · Киммерия-Арт', m, y);
+    y += 10;
 
-      // Афиша слева
-      var posterW = 55;
-      var posterH = 73; // 3:4
-      pdf.addImage(imgData, 'JPEG', m, y, posterW, posterH);
+    // Афиша + характеристики
+    var pW = 55, pH = 73;
+    pdf.addImage(imgData, 'JPEG', m, y, pW, pH);
 
-      // Характеристики справа
-      var cx = m + posterW + 8;
-      var cw = pw - posterW - 8;
-      var cy = y;
+    var cx = m + pW + 8, cw = pw - pW - 8, cy = y;
+    setB(8); rgb(170,170,170);
+    pdf.text('ХАРАКТЕРИСТИКИ', cx, cy);
+    cy += 5;
 
-      pdf.setFontSize(8);
-      pdf.setFont('helvetica', 'bold');
-      pdf.setTextColor(170, 170, 170);
-      pdf.text('ХАРАКТЕРИСТИКИ', cx, cy);
-      cy += 5;
-
-      var specs = [
-        ['Жанр', 'Спектакль-притча, театр анимации'],
-        ['Хронометраж', '60 минут'],
-        ['Возраст', '12+'],
-        ['Состав', '4 актрисы + технический персонал'],
-        ['Площадка', 'Не требует сцены — конференц-зал,\nлаундж, открытое пространство'],
-        ['Техника', 'Полное тех. сопровождение силами команды'],
-      ];
-
-      specs.forEach(function(s) {
-        pdf.setFontSize(8);
-        pdf.setFont('helvetica', 'bold');
-        pdf.setTextColor(17, 17, 17);
-        pdf.text(s[0], cx, cy);
-        pdf.setFont('helvetica', 'normal');
-        pdf.setTextColor(80, 80, 80);
-        var lines = pdf.splitTextToSize(s[1], cw - 28);
-        pdf.text(lines, cx + 28, cy);
-        cy += lines.length * 4.5 + 2;
-        pdf.setDrawColor(230, 230, 230);
-        pdf.setLineWidth(0.2);
-        pdf.line(cx, cy - 1, cx + cw, cy - 1);
-      });
-
-      y += posterH + 8;
-
-      // О спектакле
-      pdf.setDrawColor(230, 230, 230);
-      pdf.setLineWidth(0.2);
-      pdf.line(m, y, 210 - m, y);
-      y += 7;
-
-      pdf.setFontSize(8);
-      pdf.setFont('helvetica', 'bold');
-      pdf.setTextColor(170, 170, 170);
-      pdf.text('О СПЕКТАКЛЕ', m, y);
-      y += 5;
-
-      pdf.setFontSize(10);
-      pdf.setFont('helvetica', 'normal');
-      pdf.setTextColor(50, 50, 50);
-      var desc1 = 'Спектакль по мотивам философской повести Чингиза Айтматова «Белый пароход» (1970). Четыре актрисы («4 стороны света») проводят зрителя через мозаику воспоминаний, используя элементы театра анимации, тотемы ручной работы, киргизские национальные мотивы в музыке и сценографии.';
-      var desc1lines = pdf.splitTextToSize(desc1, pw);
-      pdf.text(desc1lines, m, y);
-      y += desc1lines.length * 5 + 3;
-
-      var desc2 = 'Постановка отмечена наградами. Синтез драмы, театра анимации, живой этнической музыки и визуальной поэзии. Жанр — глубокий, медитативный, визуально изысканный.';
-      var desc2lines = pdf.splitTextToSize(desc2, pw);
-      pdf.text(desc2lines, m, y);
-      y += desc2lines.length * 5 + 6;
-
-      // Команда
-      pdf.setDrawColor(230, 230, 230);
-      pdf.line(m, y, 210 - m, y);
-      y += 7;
-
-      pdf.setFontSize(8);
-      pdf.setFont('helvetica', 'bold');
-      pdf.setTextColor(170, 170, 170);
-      pdf.text('КОМАНДА', m, y);
-      y += 5;
-
-      var team = [
-        ['Режиссёры', 'Усанина С., Акс Е.'],
-        ['Художник', 'Свежевская Е.'],
-        ['Тотемы', 'Браилов А.'],
-        ['Музыка', 'Кокуев А.'],
-        ['Костюмы', 'Ким И.'],
-        ['Свет и звук', 'Акс Е., Мезеря Ю.'],
-        ['Актрисы', 'Усанина С., Коко К., Розстальная А., Таранова В. (засл. актриса РК)'],
-      ];
-
-      var col = Math.ceil(team.length / 2);
-      team.forEach(function(t, i) {
-        var tx = i < col ? m : m + pw / 2;
-        var ty = y + (i % col) * 9;
-        pdf.setFontSize(7);
-        pdf.setFont('helvetica', 'bold');
-        pdf.setTextColor(170, 170, 170);
-        pdf.text(t[0].toUpperCase(), tx, ty);
-        pdf.setFont('helvetica', 'normal');
-        pdf.setTextColor(50, 50, 50);
-        pdf.setFontSize(9);
-        var tlines = pdf.splitTextToSize(t[1], pw / 2 - 4);
-        pdf.text(tlines, tx, ty + 4);
-      });
-
-      y += col * 9 + 6;
-
-      // Футер
-      pdf.setDrawColor(26, 74, 58);
-      pdf.setLineWidth(0.4);
-      pdf.line(m, y, 210 - m, y);
-      y += 5;
-      pdf.setFontSize(8);
-      pdf.setFont('helvetica', 'normal');
-      pdf.setTextColor(170, 170, 170);
-      pdf.text('art-kimmeria.ru/programmy/ryba/', m, y);
-
-      pdf.save('ryba-kimmeria-art.pdf');
-      btn.innerHTML = originalText;
-      btn.disabled = false;
-    })
-    .catch(function(err) {
-      console.error('PDF error:', err);
-      btn.innerHTML = originalText;
-      btn.disabled = false;
-      alert('Не удалось создать PDF. Попробуйте ещё раз.');
+    var specs = [
+      ['Жанр', 'Спектакль-притча, театр анимации'],
+      ['Хронометраж', '60 минут'],
+      ['Возраст', '12+'],
+      ['Состав', '4 актрисы + технический персонал'],
+      ['Площадка', 'Не требует сцены — конференц-зал, лаундж, открытое пространство'],
+      ['Техника', 'Полное тех. сопровождение силами команды'],
+    ];
+    specs.forEach(function(s) {
+      setB(8); rgb(17,17,17); pdf.text(s[0], cx, cy);
+      setN(8); rgb(80,80,80);
+      var ll = pdf.splitTextToSize(s[1], cw - 30);
+      pdf.text(ll, cx + 30, cy);
+      cy += ll.length * 4.5 + 2;
+      line(cx, cy-1, cx+cw, cy-1);
     });
+    y += pH + 8;
+
+    // О спектакле
+    line(m, y, 210-m, y); y += 7;
+    setB(8); rgb(170,170,170); pdf.text('О СПЕКТАКЛЕ', m, y); y += 5;
+    setN(10); rgb(50,50,50);
+    var t1 = pdf.splitTextToSize('Спектакль по мотивам философской повести Чингиза Айтматова «Белый пароход» (1970). Четыре актрисы («4 стороны света») проводят зрителя через мозаику воспоминаний, используя элементы театра анимации, тотемы ручной работы, киргизские национальные мотивы в музыке и сценографии.', pw);
+    pdf.text(t1, m, y); y += t1.length * 5 + 3;
+    var t2 = pdf.splitTextToSize('Постановка отмечена наградами. Синтез драмы, театра анимации, живой этнической музыки и визуальной поэзии. Жанр — глубокий, медитативный, визуально изысканный.', pw);
+    pdf.text(t2, m, y); y += t2.length * 5 + 6;
+
+    // Команда
+    line(m, y, 210-m, y); y += 7;
+    setB(8); rgb(170,170,170); pdf.text('КОМАНДА', m, y); y += 5;
+    var team = [
+      ['Режиссёры','Усанина С., Акс Е.'],
+      ['Художник','Свежевская Е.'],
+      ['Тотемы','Браилов А.'],
+      ['Музыка','Кокуев А.'],
+      ['Костюмы','Ким И.'],
+      ['Свет и звук','Акс Е., Мезеря Ю.'],
+      ['Актрисы','Усанина С., Коко К., Розстальная А., Таранова В. (засл. актриса РК)'],
+    ];
+    var col = Math.ceil(team.length / 2);
+    team.forEach(function(t, i) {
+      var tx = i < col ? m : m + pw/2;
+      var ty = y + (i % col) * 9;
+      setB(7); rgb(170,170,170); pdf.text(t[0].toUpperCase(), tx, ty);
+      setN(9); rgb(50,50,50);
+      var tl = pdf.splitTextToSize(t[1], pw/2 - 4);
+      pdf.text(tl, tx, ty + 4);
+    });
+    y += col * 9 + 6;
+
+    // Футер
+    line(m, y, 210-m, y, 26,74,58, 0.4); y += 5;
+    setN(8); rgb(170,170,170);
+    pdf.text('art-kimmeria.ru/programmy/ryba/', m, y);
+
+    pdf.save('ryba-kimmeria-art.pdf');
+    btn.innerHTML = originalText;
+    btn.disabled = false;
+  })
+  .catch(function(err) {
+    console.error('PDF error:', err);
+    btn.innerHTML = originalText;
+    btn.disabled = false;
+    alert('Не удалось создать PDF. Попробуйте ещё раз.');
+  });
 }
 
 function saveKPPDF() {
