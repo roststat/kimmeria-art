@@ -17,17 +17,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 
-:root {
-  --accent: #1a4a3a;
-  --accent-dark: #0f2e24;
-}
+:root { --accent: #1a4a3a; --accent-dark: #0f2e24; }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body {
   font-family: 'Onest', Arial, sans-serif;
-  background: #f7f7f5;
-  color: #111111;
+  background: #f5f5f3;
+  color: #111;
   font-size: 16px;
   line-height: 1.6;
   overflow-x: hidden;
@@ -45,119 +42,108 @@ nav {
 .nav-back { font-size: 13px; font-weight: 600; color: #111; text-decoration: none; padding: 7px 16px; border-radius: 100px; border: 1px solid #e8e8e8; transition: background 0.15s; }
 .nav-back:hover { background: #f5f5f5; }
 
-/* ── HERO ── */
-.hero {
-  margin-top: 60px;
-  position: relative; height: 55vh; min-height: 380px;
-  background: var(--accent-dark); overflow: hidden;
+/* ── PAGE WRAP ── */
+.page-wrap { max-width: 1060px; margin: 0 auto; padding: 80px 40px 80px; }
+
+/* ── HEADER ── */
+.page-header { margin-bottom: 40px; padding-top: 20px; }
+.page-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #aaa; margin-bottom: 10px; }
+.page-title { font-size: 42px; font-weight: 700; color: #111; line-height: 1.1; margin-bottom: 8px; }
+.page-subtitle { font-size: 17px; color: #666; font-weight: 400; }
+
+/* ── TOP GRID: афиша + характеристики ── */
+.top-grid {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 32px;
+  align-items: start;
+  margin-bottom: 32px;
 }
-.hero img {
-  width: 100%; height: 100%; object-fit: cover; display: block;
-  opacity: 0.75;
+
+/* Афиша */
+.poster-wrap { position: relative; }
+.poster-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase;
+  color: #aaa; margin-bottom: 8px;
 }
-.hero-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.1) 60%, transparent 100%);
-  display: flex; align-items: flex-end; padding: 48px;
+.poster-img {
+  width: 100%; aspect-ratio: 3/4; object-fit: cover;
+  border-radius: 12px; display: block;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
 }
-.hero-content { max-width: 760px; }
-.hero-badge {
-  display: inline-block; background: rgba(255,255,255,0.15); backdrop-filter: blur(8px);
-  border: 1px solid rgba(255,255,255,0.25); color: #fff;
-  font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
-  padding: 5px 14px; border-radius: 100px; margin-bottom: 14px;
+
+/* Характеристики */
+.specs-wrap { display: flex; flex-direction: column; gap: 0; }
+.specs-title { font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #aaa; margin-bottom: 14px; }
+.spec-row {
+  display: flex; gap: 0;
+  padding: 12px 0; border-bottom: 1px solid #e8e8e8; font-size: 14px;
 }
-.hero-title {
-  font-size: 46px; font-weight: 700; color: #fff; line-height: 1.1; margin-bottom: 10px;
-}
-.hero-sub { font-size: 16px; color: rgba(255,255,255,0.7); font-weight: 500; }
+.spec-row:first-of-type { border-top: 1px solid #e8e8e8; }
+.spec-label { font-weight: 700; color: #111; width: 150px; flex-shrink: 0; }
+.spec-value { color: #444; line-height: 1.55; }
 
-/* ── LAYOUT ── */
-.page-wrap { max-width: 1100px; margin: 0 auto; padding: 56px 40px 80px; }
-.two-col { display: grid; grid-template-columns: 1fr 340px; gap: 48px; align-items: start; }
-
-/* ── MAIN CONTENT ── */
-.content-block { background: #fff; border-radius: 16px; padding: 36px; margin-bottom: 24px; }
-
-.section-eyebrow {
-  font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
-  color: #aaa; margin-bottom: 10px;
-}
-.section-title { font-size: 22px; font-weight: 700; color: #111; margin-bottom: 18px; line-height: 1.25; }
-
-.body-text { font-size: 15px; color: #333; line-height: 1.8; }
-.body-text + .body-text { margin-top: 14px; }
-
-.info-row {
-  display: flex; align-items: baseline; gap: 12px;
-  padding: 11px 0; border-bottom: 1px solid #f0f0f0; font-size: 14px;
-}
-.info-row:first-child { border-top: 1px solid #f0f0f0; }
-.info-label { font-weight: 700; color: #111; min-width: 140px; flex-shrink: 0; }
-.info-value { color: #444; line-height: 1.55; }
-
-/* Команда */
-.team-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 24px; margin-top: 4px; }
-.team-item { font-size: 14px; color: #333; line-height: 1.55; }
-.team-role { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #aaa; display: block; margin-bottom: 2px; }
-
-/* ── BANNER BLOCK ── */
-.banner-block { background: #fff; border-radius: 16px; overflow: hidden; margin-bottom: 24px; }
-.banner-label {
-  padding: 14px 20px 12px;
-  font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
-  color: #aaa; border-bottom: 1px solid #f0f0f0;
-  display: flex; align-items: center; gap: 8px;
-}
-.banner-label svg { width: 14px; height: 14px; flex-shrink: 0; }
-.banner-img { width: 100%; display: block; }
-
-/* ── GALLERY ── */
-.gallery-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 4px;
-}
-.gallery-item {
-  aspect-ratio: 4/3; overflow: hidden; border-radius: 8px; cursor: pointer;
-  background: #e8e8e8;
-}
-.gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s; }
-.gallery-item:hover img { transform: scale(1.05); }
-
-/* ── SIDEBAR ── */
-.sidebar { position: sticky; top: 80px; }
-
-.sidebar-card { background: #fff; border-radius: 16px; padding: 28px; margin-bottom: 16px; }
-
-.sidebar-title { font-size: 13px; font-weight: 700; color: #111; margin-bottom: 18px; text-transform: uppercase; letter-spacing: 0.05em; }
-
+/* Кнопки действий */
+.actions { display: flex; flex-direction: column; gap: 10px; margin-top: 24px; }
 .btn-primary {
-  display: block; width: 100%; padding: 14px 20px;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  width: 100%; padding: 14px 20px;
   background: var(--accent); color: #fff;
   font-family: 'Onest', sans-serif; font-size: 14px; font-weight: 600;
-  border: none; border-radius: 100px; cursor: pointer; text-align: center;
-  text-decoration: none; transition: background 0.15s; margin-bottom: 10px;
+  border: none; border-radius: 100px; cursor: pointer;
+  text-decoration: none; transition: background 0.15s;
 }
 .btn-primary:hover { background: var(--accent-dark); }
-
+.btn-primary svg { width: 15px; height: 15px; flex-shrink: 0; }
 .btn-secondary {
-  display: block; width: 100%; padding: 13px 20px;
-  background: transparent; color: #111;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  width: 100%; padding: 13px 20px;
+  background: #fff; color: #111;
   font-family: 'Onest', sans-serif; font-size: 14px; font-weight: 600;
-  border: 1.5px solid #e0e0e0; border-radius: 100px; cursor: pointer; text-align: center;
-  text-decoration: none; transition: all 0.15s; margin-bottom: 10px;
+  border: 1.5px solid #e0e0e0; border-radius: 100px; cursor: pointer;
+  text-decoration: none; transition: border-color 0.15s;
 }
 .btn-secondary:hover { border-color: #111; }
-.btn-secondary svg { width: 15px; height: 15px; vertical-align: -2px; margin-right: 6px; }
-
-.share-hint {
-  font-size: 12px; color: #bbb; text-align: center; margin-top: 4px;
-  min-height: 18px; transition: color 0.3s;
-}
+.btn-secondary svg { width: 15px; height: 15px; flex-shrink: 0; }
+.share-hint { font-size: 12px; color: #bbb; text-align: center; min-height: 16px; transition: color 0.3s; }
 .share-hint.copied { color: var(--accent); }
 
-/* ── CONTACT FORM ── */
-.form-label { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #aaa; margin-bottom: 10px; display: block; }
-.form-group { margin-bottom: 10px; }
+/* ── CONTENT BLOCK ── */
+.content-block { background: #fff; border-radius: 14px; padding: 32px; margin-bottom: 20px; }
+.block-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #aaa; margin-bottom: 14px; }
+.body-text { font-size: 15px; color: #333; line-height: 1.85; }
+.body-text + .body-text { margin-top: 14px; }
+.block-divider { border: none; border-top: 1px solid #f0f0f0; margin: 20px 0; }
+.block-sub-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #bbb; margin-bottom: 10px; margin-top: 4px; }
+
+/* Команда */
+.team-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 32px; }
+.team-item { font-size: 14px; color: #333; }
+.team-role { font-size: 10px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: #aaa; display: block; margin-bottom: 2px; }
+
+/* ── GALLERY ── */
+.gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 4px; }
+.gallery-item { aspect-ratio: 3/4; overflow: hidden; border-radius: 8px; cursor: pointer; background: #e8e8e8; }
+.gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s; }
+.gallery-item:hover img { transform: scale(1.06); }
+
+/* ── ADMIN ENTRY ── */
+.admin-entry { margin-top: 12px; text-align: center; }
+.admin-entry-btn {
+  background: none; border: none; padding: 0; cursor: pointer;
+  font-size: 11px; color: #ccc; font-family: 'Onest', sans-serif;
+  display: inline-flex; align-items: center; gap: 5px; transition: color 0.15s;
+}
+.admin-entry-btn:hover { color: #888; }
+.admin-entry-btn svg { width: 11px; height: 11px; }
+
+/* ── ADMIN PANEL ── */
+.admin-panel { display: none; margin-top: 16px; }
+.admin-panel.open { display: block; }
+
+.admin-auth { background: #fff; border-radius: 14px; padding: 22px; }
+.admin-auth-title { font-size: 13px; font-weight: 700; color: #111; margin-bottom: 12px; }
+.admin-auth-row { display: flex; gap: 8px; }
 .form-input {
   width: 100%; padding: 11px 14px; border: 1.5px solid #e8e8e8; border-radius: 10px;
   background: #fff; font-family: 'Onest', sans-serif; font-size: 14px; color: #111;
@@ -165,34 +151,10 @@ nav {
 }
 .form-input:focus { border-color: #111; }
 .form-input::placeholder { color: #ccc; }
-.form-success {
-  display: none; background: #f0faf8; border: 1px solid #c6e8df;
-  border-radius: 10px; padding: 14px 16px; font-size: 14px; color: var(--accent); line-height: 1.55;
-}
-.form-success.visible { display: block; }
-
-/* ── ADMIN BLOCK ── */
-.admin-entry { margin-top: 8px; }
-.admin-entry-btn {
-  background: none; border: none; padding: 0; cursor: pointer;
-  font-size: 12px; color: #ccc; font-family: 'Onest', sans-serif;
-  display: flex; align-items: center; gap: 5px; transition: color 0.15s;
-}
-.admin-entry-btn:hover { color: #888; }
-.admin-entry-btn svg { width: 12px; height: 12px; }
-
-.admin-panel { display: none; margin-top: 24px; }
-.admin-panel.open { display: block; }
-
-.admin-auth { background: #fff; border-radius: 16px; padding: 24px; }
-.admin-auth-title { font-size: 14px; font-weight: 700; color: #111; margin-bottom: 14px; }
-.admin-auth-row { display: flex; gap: 8px; }
-.admin-auth-row .form-input { margin: 0; }
 .admin-auth-btn {
   flex-shrink: 0; padding: 11px 18px; background: #111; color: #fff;
   font-family: 'Onest', sans-serif; font-size: 13px; font-weight: 600;
-  border: none; border-radius: 10px; cursor: pointer; white-space: nowrap;
-  transition: opacity 0.15s;
+  border: none; border-radius: 10px; cursor: pointer; white-space: nowrap; transition: opacity 0.15s;
 }
 .admin-auth-btn:hover { opacity: 0.8; }
 .admin-auth-error { font-size: 12px; color: #c0392b; margin-top: 8px; display: none; }
@@ -202,102 +164,76 @@ nav {
 .admin-workspace.open { display: block; }
 
 .admin-section {
-  background: #fff; border-radius: 16px; padding: 28px; margin-bottom: 16px;
-  border: 2px solid #e8f4f0;
+  background: #fff; border-radius: 14px; padding: 24px; margin-bottom: 12px;
+  border: 2px solid #dff0ea;
 }
-.admin-section-header {
-  display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px;
-}
-.admin-section-title { font-size: 13px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em; }
-.admin-badge {
-  font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
-  background: #e8f4f0; color: var(--accent); padding: 3px 10px; border-radius: 100px;
-}
+.admin-section-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+.admin-section-title { font-size: 12px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.06em; }
+.admin-badge { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; background: #e8f4f0; color: var(--accent); padding: 3px 10px; border-radius: 100px; }
 
+.field-label { font-size: 10px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: #aaa; margin-bottom: 5px; display: block; }
 .editable-field {
   width: 100%; padding: 10px 12px; border: 1.5px solid #e8e8e8; border-radius: 8px;
   font-family: 'Onest', sans-serif; font-size: 14px; color: #111; line-height: 1.6;
-  outline: none; transition: border-color 0.2s; resize: vertical; min-height: 80px;
-  background: #fafafa;
+  outline: none; transition: border-color 0.2s; resize: vertical; min-height: 72px; background: #fafafa;
 }
 .editable-field:focus { border-color: var(--accent); background: #fff; }
 .editable-field::placeholder { color: #ccc; }
-
-.field-label { font-size: 11px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: #aaa; margin-bottom: 6px; display: block; }
-
-.admin-field-group { margin-bottom: 16px; }
+.admin-field-group { margin-bottom: 14px; }
 .admin-field-group:last-child { margin-bottom: 0; }
 
-.admin-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; padding-top: 20px; border-top: 1px solid #e8f4f0; }
+.admin-actions { margin-top: 16px; padding-top: 16px; border-top: 1px solid #dff0ea; }
 .admin-btn-pdf {
-  flex: 1; padding: 12px 16px; background: var(--accent); color: #fff;
+  width: 100%; padding: 12px 16px; background: var(--accent); color: #fff;
   font-family: 'Onest', sans-serif; font-size: 13px; font-weight: 600;
-  border: none; border-radius: 100px; cursor: pointer; text-align: center;
+  border: none; border-radius: 100px; cursor: pointer;
   transition: background 0.15s; display: flex; align-items: center; justify-content: center; gap: 6px;
 }
 .admin-btn-pdf:hover { background: var(--accent-dark); }
-.admin-btn-pdf svg { width: 15px; height: 15px; }
+.admin-btn-pdf svg { width: 14px; height: 14px; }
 
-.admin-logout {
-  background: none; border: none; padding: 0; cursor: pointer;
-  font-size: 12px; color: #ccc; font-family: 'Onest', sans-serif;
-  transition: color 0.15s; margin-top: 8px;
-}
+.admin-logout { background: none; border: none; padding: 0; cursor: pointer; font-size: 11px; color: #ccc; font-family: 'Onest', sans-serif; transition: color 0.15s; margin-top: 10px; display: block; text-align: center; width: 100%; }
 .admin-logout:hover { color: #888; }
 
 /* ── LIGHTBOX ── */
-.lightbox {
-  position: fixed; inset: 0; z-index: 1000;
-  background: rgba(0,0,0,0.92); display: none;
-  align-items: center; justify-content: center; padding: 20px;
-}
+.lightbox { position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,0.92); display: none; align-items: center; justify-content: center; padding: 20px; }
 .lightbox.open { display: flex; }
 .lightbox img { max-width: 100%; max-height: 90vh; border-radius: 8px; object-fit: contain; }
-.lightbox-close {
-  position: absolute; top: 20px; right: 24px;
-  background: rgba(255,255,255,0.1); border: none; border-radius: 50%;
-  width: 40px; height: 40px; cursor: pointer; color: #fff;
-  display: flex; align-items: center; justify-content: center; font-size: 20px;
-}
+.lightbox-close { position: absolute; top: 20px; right: 24px; background: rgba(255,255,255,0.1); border: none; border-radius: 50%; width: 40px; height: 40px; cursor: pointer; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 22px; line-height: 1; }
 .lightbox-close:hover { background: rgba(255,255,255,0.2); }
 
-/* ── PRINT STYLES ── */
+/* ── PRINT ── */
 @media print {
-  nav, .sidebar, .gallery-grid, .lightbox, .admin-panel, .btn-primary, .btn-secondary, .share-hint { display: none !important; }
-  body { background: #fff; font-size: 13px; }
-  .page-wrap { padding: 0; max-width: 100%; }
-  .two-col { display: block; }
-  .content-block { border-radius: 0; padding: 16px 0; box-shadow: none; margin-bottom: 8px; }
-  .hero { height: 200px; margin-top: 0; }
-  .hero-title { font-size: 28px; }
-  .print-header { display: block !important; padding: 16px 0; border-bottom: 2px solid #1a4a3a; margin-bottom: 16px; }
-  .admin-section { border: 1px solid #ccc; break-inside: avoid; }
+  nav, .actions, .admin-entry, .admin-panel, .lightbox, .share-hint { display: none !important; }
+  body { background: #fff; font-size: 13px; color: #000; }
+  .page-wrap { padding: 0 20px; max-width: 100%; }
+  .page-header { padding-top: 0; margin-bottom: 24px; }
+  .page-title { font-size: 26px; }
+  .top-grid { grid-template-columns: 200px 1fr; gap: 24px; margin-bottom: 20px; }
+  .poster-img { border-radius: 6px; box-shadow: none; }
+  .content-block { border-radius: 0; padding: 16px 0; background: transparent; margin-bottom: 12px; }
+  .gallery-grid { grid-template-columns: repeat(4, 1fr); }
+  .kp-print-block { display: block !important; }
   .admin-workspace { display: block !important; }
-  .admin-section-header .admin-badge { display: none; }
-  .editable-field { border: none; padding: 0; background: transparent; resize: none; }
 }
 
-.print-header { display: none; }
-
 /* ── RESPONSIVE ── */
-@media (max-width: 900px) {
+@media (max-width: 860px) {
   nav { padding: 0 20px; }
-  .page-wrap { padding: 40px 20px 60px; }
-  .two-col { grid-template-columns: 1fr; gap: 0; }
-  .sidebar { position: static; margin-top: 24px; }
-  .hero-title { font-size: 32px; }
-  .hero-overlay { padding: 28px 24px; }
-  .content-block { padding: 24px; }
+  .page-wrap { padding: 76px 20px 60px; }
+  .page-title { font-size: 30px; }
+  .top-grid { grid-template-columns: 220px 1fr; gap: 24px; }
+  .gallery-grid { grid-template-columns: repeat(3, 1fr); }
 }
 @media (max-width: 600px) {
   nav { padding: 0 16px; }
-  .page-wrap { padding: 28px 16px 48px; }
-  .hero { height: 46vh; min-height: 280px; }
-  .hero-title { font-size: 24px; }
+  .page-wrap { padding: 72px 16px 48px; }
+  .page-title { font-size: 24px; }
+  .top-grid { grid-template-columns: 1fr; }
+  .poster-img { aspect-ratio: 3/4; max-width: 280px; }
   .team-grid { grid-template-columns: 1fr; }
   .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-  .content-block { padding: 18px; }
-  .sidebar-card { padding: 20px; }
+  .content-block { padding: 20px; }
 }
 
 </style>
@@ -310,108 +246,38 @@ nav {
   <a href="/programmy/" class="nav-back">← Все программы</a>
 </nav>
 
-<!-- HERO -->
-<div class="hero">
-  <img src="/photos/event-ryba.jpg" alt="«Лучше я буду рыбой…»">
-  <div class="hero-overlay">
-    <div class="hero-content">
-      <div class="hero-badge">Спектакль-притча · 12+ · 60 минут</div>
-      <h1 class="hero-title">«Лучше я буду рыбой…»</h1>
-      <div class="hero-sub">По мотивам Чингиза Айтматова «Белый пароход»</div>
-    </div>
-  </div>
-</div>
-
-<!-- PRINT HEADER (только при печати) -->
-<div class="print-header">
-  <strong style="font-size:18px;">«Лучше я буду рыбой…» — спектакль-притча</strong><br>
-  <span style="color:#555;font-size:13px;">Киммерия-Арт · art-kimmeria.ru/programmy/ryba/</span>
-</div>
-
-<!-- MAIN -->
 <div class="page-wrap">
-  <div class="two-col">
 
-    <!-- LEFT COLUMN -->
-    <div class="left-col">
+  <!-- ЗАГОЛОВОК -->
+  <div class="page-header">
+    <div class="page-eyebrow">Спектакль-притча · 12+ · 60 минут</div>
+    <h1 class="page-title">«Лучше я буду рыбой…»</h1>
+    <div class="page-subtitle">По мотивам Чингиза Айтматова «Белый пароход»</div>
+  </div>
 
-      <!-- О спектакле -->
-      <div class="content-block">
-        <div class="section-eyebrow">О спектакле</div>
-        <p class="body-text">Спектакль по мотивам философской повести Чингиза Айтматова «Белый пароход» (1970) — одного из самых пронзительных произведений советской литературы, удостоенного Государственной премии СССР 1977 года. Четыре актрисы («4 стороны света») проводят зрителя через мозаику воспоминаний, используя элементы театра анимации, тотемы ручной работы, киргизские национальные мотивы в музыке и сценографии.</p>
-        <p class="body-text" style="margin-top:14px;">Постановка отмечена наградами. Это не классический театр, а синтез драмы, театра анимации, живой этнической музыки и визуальной поэзии. Жанр — глубокий, медитативный, визуально изысканный.</p>
-      </div>
+  <!-- АФИША + ХАРАКТЕРИСТИКИ -->
+  <div class="top-grid">
 
-      <!-- Об оригинальном произведении -->
-      <div class="content-block">
-        <div class="section-eyebrow">Об оригинальном произведении</div>
-        <p class="body-text">«Белый пароход» — повесть о семилетнем мальчике и его добром деде Момуне, о Рогатой матери-оленихе и Белом пароходе. О том, как мальчик обернулся рыбой и уплыл, не желая примириться с обманом и злом. О равнодушии, которое лишает человека человечности, о приспособленчестве и себялюбии. И о непобедимости добра, мечты и красоты.</p>
-        <p class="body-text" style="margin-top:14px;">Название спектакля — финальные слова главного героя, его выбор в пользу чистоты и свободы над компромиссом с жестокостью мира. Повесть включена в список 100 книг, рекомендованных Министерством образования РФ для самостоятельного чтения.</p>
-      </div>
+    <!-- Афиша -->
+    <div class="poster-wrap">
+      <div class="poster-label">Пример рекламного баннера мероприятия</div>
+      <img class="poster-img" src="/photos/event-ryba.jpg" alt="Афиша спектакля «Лучше я буду рыбой…»">
+    </div>
 
-      <!-- Характеристики -->
-      <div class="content-block">
-        <div class="section-eyebrow">Характеристики</div>
-        <div class="info-row"><span class="info-label">Жанр</span><span class="info-value">Спектакль-притча, театр анимации</span></div>
-        <div class="info-row"><span class="info-label">Хронометраж</span><span class="info-value">60 минут</span></div>
-        <div class="info-row"><span class="info-label">Возраст</span><span class="info-value">12+</span></div>
-        <div class="info-row"><span class="info-label">Состав</span><span class="info-value">4 актрисы + технический персонал</span></div>
-        <div class="info-row"><span class="info-label">Целевая аудитория</span><span class="info-value">Ценители глубокого, медитативного, визуально изысканного театра. Любители литературы Айтматова и этнической эстетики</span></div>
-        <div class="info-row"><span class="info-label">Формат площадки</span><span class="info-value">Камерный спектакль. Не требует стационарной сцены — может быть адаптирован под конференц-зал, лаундж-зону с панорамным видом или открытое пространство</span></div>
-        <div class="info-row" style="border-bottom:none;"><span class="info-label">Техническое обеспечение</span><span class="info-value">Полное техническое сопровождение (свет, звук, реквизит, декорации) обеспечивается командой</span></div>
-      </div>
+    <!-- Характеристики + кнопки -->
+    <div class="specs-wrap">
+      <div class="specs-title">Характеристики</div>
+      <div class="spec-row"><span class="spec-label">Жанр</span><span class="spec-value">Спектакль-притча, театр анимации</span></div>
+      <div class="spec-row"><span class="spec-label">Хронометраж</span><span class="spec-value">60 минут</span></div>
+      <div class="spec-row"><span class="spec-label">Возраст</span><span class="spec-value">12+</span></div>
+      <div class="spec-row"><span class="spec-label">Состав</span><span class="spec-value">4 актрисы + технический персонал</span></div>
+      <div class="spec-row"><span class="spec-label">Площадка</span><span class="spec-value">Не требует стационарной сцены — конференц-зал, лаундж, открытое пространство</span></div>
+      <div class="spec-row"><span class="spec-label">Техника</span><span class="spec-value">Полное техническое сопровождение (свет, звук, реквизит, декорации) — силами команды</span></div>
+      <div class="spec-row"><span class="spec-label">Аудитория</span><span class="spec-value">Ценители медитативного, визуально изысканного театра. Любители Айтматова и этнической эстетики</span></div>
 
-      <!-- Команда -->
-      <div class="content-block">
-        <div class="section-eyebrow">Команда</div>
-        <div class="team-grid">
-          <div class="team-item"><span class="team-role">Режиссёры</span>Усанина С., Акс Е.</div>
-          <div class="team-item"><span class="team-role">Художник</span>Свежевская Е.</div>
-          <div class="team-item"><span class="team-role">Создатель тотемов</span>Браилов А.</div>
-          <div class="team-item"><span class="team-role">Музыка</span>Кокуев А.</div>
-          <div class="team-item"><span class="team-role">Костюмы</span>Ким И.</div>
-          <div class="team-item"><span class="team-role">Свет и звук</span>Акс Е., Мезеря Ю.</div>
-          <div class="team-item" style="grid-column:1/-1;"><span class="team-role">Актрисы</span>Усанина С., Коко К., Розстальная А., Таранова В. (засл. актриса РК)</div>
-        </div>
-      </div>
-
-      <!-- Пример рекламного баннера -->
-      <div class="banner-block">
-        <div class="banner-label">
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="14" height="10" rx="1.5"/><path d="M5 8h6M8 5v6"/></svg>
-          Пример рекламного баннера мероприятия
-        </div>
-        <img class="banner-img" src="/photos/event-ryba-2.jpg" alt="Рекламный баннер спектакля «Лучше я буду рыбой…»">
-      </div>
-
-      <!-- Фотографии -->
-      <div class="content-block">
-        <div class="section-eyebrow">Фотографии с мероприятия</div>
-        <div class="gallery-grid">
-          <div class="gallery-item" onclick="openLightbox('/photos/event-ryba-photo-1.jpg')">
-            <img src="/photos/event-ryba-photo-1.jpg" alt="Фото спектакля 1">
-          </div>
-          <div class="gallery-item" onclick="openLightbox('/photos/event-ryba-photo-2.jpg')">
-            <img src="/photos/event-ryba-photo-2.jpg" alt="Фото спектакля 2">
-          </div>
-          <div class="gallery-item" onclick="openLightbox('/photos/event-ryba-photo-3.jpg')">
-            <img src="/photos/event-ryba-photo-3.jpg" alt="Фото спектакля 3">
-          </div>
-          <div class="gallery-item" onclick="openLightbox('/photos/event-ryba-photo-4.jpg')">
-            <img src="/photos/event-ryba-photo-4.jpg" alt="Фото спектакля 4">
-          </div>
-        </div>
-      </div>
-
-    </div><!-- /left-col -->
-
-    <!-- RIGHT COLUMN (sidebar) -->
-    <div class="sidebar">
-
-      <!-- Действия -->
-      <div class="sidebar-card">
-        <div class="sidebar-title">Получить информацию</div>
+      <div class="actions">
         <button class="btn-primary" onclick="savePDF()">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 2h7l3 3v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z"/><path d="M10 2v3h3"/><line x1="5" y1="8" x2="11" y2="8"/><line x1="5" y1="11" x2="8" y2="11"/></svg>
           Сохранить PDF
         </button>
         <button class="btn-secondary" onclick="shareLink()">
@@ -419,101 +285,127 @@ nav {
           Поделиться
         </button>
         <div class="share-hint" id="shareHint"></div>
-      </div>
 
-      <!-- Форма заявки -->
-      <div class="sidebar-card">
-        <span class="form-label">Заказать на вашу площадку</span>
-        <form id="contactForm" onsubmit="submitForm(event)">
-          <div class="form-group">
-            <input class="form-input" type="text" name="name" placeholder="Ваше имя" required>
-          </div>
-          <div class="form-group">
-            <input class="form-input" type="text" name="venue" placeholder="Название площадки / отеля" required>
-          </div>
-          <div class="form-group">
-            <input class="form-input" type="tel" name="phone" placeholder="Телефон или Telegram" required>
-          </div>
-          <button type="submit" class="btn-primary" style="margin-bottom:0;">Отправить заявку</button>
-        </form>
-        <div class="form-success" id="formSuccess">
-          Заявка отправлена!<br>Мы свяжемся с вами в ближайшее время.
-        </div>
-      </div>
-
-      <!-- Вход для администратора -->
-      <div class="admin-entry">
-        <button class="admin-entry-btn" onclick="toggleAdminPanel()">
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="6" r="2.5"/><path d="M3 13c0-2.76 2.24-5 5-5s5 2.24 5 5"/><rect x="10" y="9" width="5" height="4" rx="1"/><line x1="12.5" y1="11" x2="12.5" y2="11"/></svg>
-          Режим редактирования
-        </button>
-      </div>
-
-      <!-- Панель администратора -->
-      <div class="admin-panel" id="adminPanel">
-
-        <!-- Форма ввода пароля -->
-        <div class="admin-auth" id="adminAuth">
-          <div class="admin-auth-title">Пароль администратора</div>
-          <div class="admin-auth-row">
-            <input class="form-input" type="password" id="adminPasswordInput" placeholder="Введите пароль" onkeydown="if(event.key==='Enter')checkAdminPassword()">
-            <button class="admin-auth-btn" onclick="checkAdminPassword()">Войти</button>
-          </div>
-          <div class="admin-auth-error" id="adminAuthError">Неверный пароль</div>
+        <div class="admin-entry">
+          <button class="admin-entry-btn" onclick="toggleAdminPanel()">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="5.5" r="2.5"/><path d="M2.5 13c0-3.04 2.46-5.5 5.5-5.5s5.5 2.46 5.5 5.5"/></svg>
+            Режим редактирования
+          </button>
         </div>
 
-        <!-- Рабочая область администратора -->
-        <div class="admin-workspace" id="adminWorkspace">
-
-          <div class="admin-section">
-            <div class="admin-section-header">
-              <div class="admin-section-title">Коммерческое предложение</div>
-              <div class="admin-badge">Только для КП</div>
+        <!-- Панель администратора -->
+        <div class="admin-panel" id="adminPanel">
+          <div class="admin-auth" id="adminAuth">
+            <div class="admin-auth-title">Пароль администратора</div>
+            <div class="admin-auth-row">
+              <input class="form-input" type="password" id="adminPasswordInput" placeholder="Введите пароль" onkeydown="if(event.key==='Enter')checkAdminPassword()">
+              <button class="admin-auth-btn" onclick="checkAdminPassword()">Войти</button>
             </div>
-
-            <div class="admin-field-group">
-              <label class="field-label">Стоимость</label>
-              <textarea class="editable-field" id="kp-price" placeholder="Например: от 45 000 ₽ (зависит от площадки и условий)"></textarea>
-            </div>
-
-            <div class="admin-field-group">
-              <label class="field-label">Технический райдер</label>
-              <textarea class="editable-field" id="kp-rider" placeholder="Требования к площадке, оборудованию, электропитанию..."></textarea>
-            </div>
-
-            <div class="admin-field-group">
-              <label class="field-label">Условия сотрудничества</label>
-              <textarea class="editable-field" id="kp-terms" placeholder="Предоплата, сроки согласования, логистика..."></textarea>
-            </div>
-
-            <div class="admin-field-group">
-              <label class="field-label">Контакт для договора</label>
-              <textarea class="editable-field" id="kp-contact" rows="2" placeholder="ФИО, телефон, email..." style="min-height:56px;"></textarea>
-            </div>
-
-            <div class="admin-field-group">
-              <label class="field-label">Дополнительно</label>
-              <textarea class="editable-field" id="kp-extra" placeholder="Любая дополнительная информация для КП..."></textarea>
-            </div>
-
-            <div class="admin-actions">
-              <button class="admin-btn-pdf" onclick="saveKPPDF()">
-                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 2h7l3 3v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z"/><path d="M10 2v3h3"/><line x1="5" y1="8" x2="11" y2="8"/><line x1="5" y1="11" x2="9" y2="11"/></svg>
-                Скачать КП (PDF)
-              </button>
-            </div>
-
+            <div class="admin-auth-error" id="adminAuthError">Неверный пароль</div>
           </div>
 
-          <button class="admin-logout" onclick="adminLogout()">Выйти из режима редактирования</button>
+          <div class="admin-workspace" id="adminWorkspace">
+            <div class="admin-section">
+              <div class="admin-section-top">
+                <div class="admin-section-title">Коммерческое предложение</div>
+                <div class="admin-badge">Только для КП</div>
+              </div>
 
-        </div><!-- /admin-workspace -->
-      </div><!-- /admin-panel -->
+              <div class="admin-field-group">
+                <label class="field-label">Стоимость</label>
+                <textarea class="editable-field" id="kp-price" placeholder="Например: от 45 000 ₽"></textarea>
+              </div>
+              <div class="admin-field-group">
+                <label class="field-label">Технический райдер</label>
+                <textarea class="editable-field" id="kp-rider" placeholder="Требования к площадке, оборудованию..."></textarea>
+              </div>
+              <div class="admin-field-group">
+                <label class="field-label">Условия сотрудничества</label>
+                <textarea class="editable-field" id="kp-terms" placeholder="Предоплата, сроки согласования, логистика..."></textarea>
+              </div>
+              <div class="admin-field-group">
+                <label class="field-label">Контакт для договора</label>
+                <textarea class="editable-field" id="kp-contact" style="min-height:56px;" placeholder="ФИО, телефон, email..."></textarea>
+              </div>
+              <div class="admin-field-group">
+                <label class="field-label">Дополнительно</label>
+                <textarea class="editable-field" id="kp-extra" placeholder="Любая дополнительная информация..."></textarea>
+              </div>
 
-    </div><!-- /sidebar -->
+              <div class="admin-actions">
+                <button class="admin-btn-pdf" onclick="saveKPPDF()">
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 2h7l3 3v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z"/><path d="M10 2v3h3"/><line x1="5" y1="8" x2="11" y2="8"/><line x1="5" y1="11" x2="9" y2="11"/></svg>
+                  Скачать КП (PDF)
+                </button>
+              </div>
+            </div>
 
-  </div><!-- /two-col -->
+            <button class="admin-logout" onclick="adminLogout()">Выйти из режима редактирования</button>
+          </div>
+        </div>
+
+      </div><!-- /actions -->
+    </div><!-- /specs-wrap -->
+  </div><!-- /top-grid -->
+
+  <!-- О СПЕКТАКЛЕ + ОБ ОРИГИНАЛЕ + КОМАНДА -->
+  <div class="content-block">
+    <div class="block-eyebrow">О спектакле</div>
+    <p class="body-text">Спектакль по мотивам философской повести Чингиза Айтматова «Белый пароход» (1970) — одного из самых пронзительных произведений советской литературы, удостоенного Государственной премии СССР 1977 года. Четыре актрисы («4 стороны света») проводят зрителя через мозаику воспоминаний, используя элементы театра анимации, тотемы ручной работы, киргизские национальные мотивы в музыке и сценографии.</p>
+    <p class="body-text">Постановка отмечена наградами. Это не классический театр, а синтез драмы, театра анимации, живой этнической музыки и визуальной поэзии. Жанр — глубокий, медитативный, визуально изысканный.</p>
+
+    <hr class="block-divider">
+    <div class="block-sub-eyebrow">Об оригинальном произведении</div>
+    <p class="body-text">«Белый пароход» — повесть о семилетнем мальчике и его добром деде Момуне, о Рогатой матери-оленихе и Белом пароходе. О том, как мальчик обернулся рыбой и уплыл, не желая примириться с обманом и злом. О равнодушии, которое лишает человека человечности, о приспособленчестве и себялюбии. И о непобедимости добра, мечты и красоты.</p>
+    <p class="body-text">Название спектакля — финальные слова главного героя, его выбор в пользу чистоты и свободы над компромиссом с жестокостью мира. Повесть включена в список 100 книг, рекомендованных Министерством образования РФ для самостоятельного чтения.</p>
+
+    <hr class="block-divider">
+    <div class="block-sub-eyebrow">Команда</div>
+    <div class="team-grid">
+      <div class="team-item"><span class="team-role">Режиссёры</span>Усанина С., Акс Е.</div>
+      <div class="team-item"><span class="team-role">Художник</span>Свежевская Е.</div>
+      <div class="team-item"><span class="team-role">Создатель тотемов</span>Браилов А.</div>
+      <div class="team-item"><span class="team-role">Музыка</span>Кокуев А.</div>
+      <div class="team-item"><span class="team-role">Костюмы</span>Ким И.</div>
+      <div class="team-item"><span class="team-role">Свет и звук</span>Акс Е., Мезеря Ю.</div>
+      <div class="team-item" style="grid-column:1/-1;"><span class="team-role">Актрисы</span>Усанина С., Коко К., Розстальная А., Таранова В. (засл. актриса РК)</div>
+    </div>
+  </div>
+
+  <!-- ФОТОГРАФИИ -->
+  <div class="content-block">
+    <div class="block-eyebrow">Фотографии с мероприятия</div>
+    <div class="gallery-grid">
+      <div class="gallery-item" onclick="openLightbox('/photos/event-ryba-photo-1.jpg')">
+        <img src="/photos/event-ryba-photo-1.jpg" alt="">
+      </div>
+      <div class="gallery-item" onclick="openLightbox('/photos/event-ryba-photo-2.jpg')">
+        <img src="/photos/event-ryba-photo-2.jpg" alt="">
+      </div>
+      <div class="gallery-item" onclick="openLightbox('/photos/event-ryba-photo-3.jpg')">
+        <img src="/photos/event-ryba-photo-3.jpg" alt="">
+      </div>
+      <div class="gallery-item" onclick="openLightbox('/photos/event-ryba-photo-4.jpg')">
+        <img src="/photos/event-ryba-photo-4.jpg" alt="">
+      </div>
+    </div>
+  </div>
+
 </div><!-- /page-wrap -->
+
+<!-- КП-блок только при печати -->
+<div class="kp-print-block" id="kpPrintBlock" style="display:none; max-width:760px; margin:0 auto; padding:0 20px 40px;">
+  <div style="border-top:2px solid #1a4a3a; padding-top:20px;">
+    <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#aaa;margin-bottom:16px;">Коммерческое предложение</div>
+    <table style="width:100%;border-collapse:collapse;font-size:14px;line-height:1.6;">
+      <tr><td style="padding:10px 0;border-bottom:1px solid #eee;font-weight:700;width:170px;vertical-align:top;">Стоимость</td><td style="padding:10px 0 10px 16px;border-bottom:1px solid #eee;" id="print-price"></td></tr>
+      <tr><td style="padding:10px 0;border-bottom:1px solid #eee;font-weight:700;vertical-align:top;">Технический райдер</td><td style="padding:10px 0 10px 16px;border-bottom:1px solid #eee;" id="print-rider"></td></tr>
+      <tr><td style="padding:10px 0;border-bottom:1px solid #eee;font-weight:700;vertical-align:top;">Условия</td><td style="padding:10px 0 10px 16px;border-bottom:1px solid #eee;" id="print-terms"></td></tr>
+      <tr><td style="padding:10px 0;border-bottom:1px solid #eee;font-weight:700;vertical-align:top;">Контакт</td><td style="padding:10px 0 10px 16px;border-bottom:1px solid #eee;" id="print-contact"></td></tr>
+      <tr><td style="padding:10px 0;font-weight:700;vertical-align:top;">Дополнительно</td><td style="padding:10px 0 10px 16px;" id="print-extra"></td></tr>
+    </table>
+  </div>
+</div>
 
 <div id="site-footer"></div>
 
@@ -524,9 +416,9 @@ nav {
 </div>
 
 <script>
-// ── ADMIN PASSWORD ──
 var ADMIN_PASSWORD = 'kimmeria';
 var SESSION_KEY = 'kimmeria_admin';
+var KP_STORAGE_KEY = 'kp_ryba';
 
 function toggleAdminPanel() {
   var panel = document.getElementById('adminPanel');
@@ -562,14 +454,9 @@ function adminLogout() {
   document.getElementById('adminPasswordInput').value = '';
 }
 
-// ── KP DATA (localStorage) ──
-var KP_STORAGE_KEY = 'kp_ryba';
-
 function loadKPData() {
-  var saved = localStorage.getItem(KP_STORAGE_KEY);
-  if (!saved) return;
   try {
-    var data = JSON.parse(saved);
+    var data = JSON.parse(localStorage.getItem(KP_STORAGE_KEY) || '{}');
     ['price','rider','terms','contact','extra'].forEach(function(k) {
       var el = document.getElementById('kp-' + k);
       if (el && data[k]) el.value = data[k];
@@ -590,13 +477,11 @@ function saveKPToStorage() {
   localStorage.setItem(KP_STORAGE_KEY, JSON.stringify(getKPData()));
 }
 
-// Автосохранение при изменении полей
 document.addEventListener('DOMContentLoaded', function() {
   ['price','rider','terms','contact','extra'].forEach(function(k) {
     var el = document.getElementById('kp-' + k);
     if (el) el.addEventListener('input', saveKPToStorage);
   });
-  // Если уже залогинен
   if (sessionStorage.getItem(SESSION_KEY) === '1') {
     showAdminWorkspace();
     loadKPData();
@@ -604,49 +489,29 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
-// ── PDF (публичная часть) ──
-function savePDF() {
-  window.print();
-}
+function savePDF() { window.print(); }
 
-// ── PDF КП (с закрытой частью) ──
 function saveKPPDF() {
   saveKPToStorage();
-  // Временно показываем КП-блок для печати
-  document.body.classList.add('print-kp');
+  var data = getKPData();
+  document.getElementById('print-price').textContent = data.price || '—';
+  document.getElementById('print-rider').textContent = data.rider || '—';
+  document.getElementById('print-terms').textContent = data.terms || '—';
+  document.getElementById('print-contact').textContent = data.contact || '—';
+  document.getElementById('print-extra').textContent = data.extra || '—';
+  document.getElementById('kpPrintBlock').style.display = 'block';
   window.print();
-  document.body.classList.remove('print-kp');
 }
 
-// ── SHARE ──
 function shareLink() {
-  var url = window.location.href;
-  navigator.clipboard.writeText(url).then(function() {
+  navigator.clipboard.writeText(window.location.href).then(function() {
     var hint = document.getElementById('shareHint');
     hint.textContent = 'Ссылка скопирована!';
     hint.classList.add('copied');
-    setTimeout(function() {
-      hint.textContent = '';
-      hint.classList.remove('copied');
-    }, 2500);
-  }).catch(function() {
-    prompt('Скопируйте ссылку:', url);
-  });
+    setTimeout(function() { hint.textContent = ''; hint.classList.remove('copied'); }, 2500);
+  }).catch(function() { prompt('Скопируйте ссылку:', window.location.href); });
 }
 
-// ── CONTACT FORM ──
-function submitForm(e) {
-  e.preventDefault();
-  var form = document.getElementById('contactForm');
-  var data = new FormData(form);
-  var body = 'Программа: Лучше я буду рыбой\nИмя: ' + data.get('name') + '\nПлощадка: ' + data.get('venue') + '\nТелефон: ' + data.get('phone');
-  var mailto = 'mailto:info@art-kimmeria.ru?subject=' + encodeURIComponent('Заявка: Лучше я буду рыбой') + '&body=' + encodeURIComponent(body);
-  window.location.href = mailto;
-  form.style.display = 'none';
-  document.getElementById('formSuccess').classList.add('visible');
-}
-
-// ── LIGHTBOX ──
 function openLightbox(src) {
   document.getElementById('lightboxImg').src = src;
   document.getElementById('lightbox').classList.add('open');
@@ -656,48 +521,8 @@ function closeLightbox() {
   document.getElementById('lightbox').classList.remove('open');
   document.body.style.overflow = '';
 }
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') closeLightbox();
-});
-</script>
+document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeLightbox(); });
 
-<style>
-/* КП-блок в печати */
-@media print {
-  .kp-print-block { display: block !important; }
-}
-.kp-print-block { display: none; }
-</style>
-
-<!-- КП-блок (только для печати) -->
-<div class="kp-print-block" id="kpPrintBlock" style="max-width:760px;margin:0 auto;padding:24px 0;">
-  <div style="border-top:2px solid #1a4a3a;padding-top:20px;margin-top:8px;">
-    <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#aaa;margin-bottom:8px;">Коммерческое предложение</div>
-    <table style="width:100%;border-collapse:collapse;font-size:14px;">
-      <tr><td style="padding:8px 0 8px;border-bottom:1px solid #eee;font-weight:700;width:160px;vertical-align:top;">Стоимость</td><td style="padding:8px 0 8px 12px;border-bottom:1px solid #eee;" id="print-price"></td></tr>
-      <tr><td style="padding:8px 0 8px;border-bottom:1px solid #eee;font-weight:700;vertical-align:top;">Технический райдер</td><td style="padding:8px 0 8px 12px;border-bottom:1px solid #eee;" id="print-rider"></td></tr>
-      <tr><td style="padding:8px 0 8px;border-bottom:1px solid #eee;font-weight:700;vertical-align:top;">Условия</td><td style="padding:8px 0 8px 12px;border-bottom:1px solid #eee;" id="print-terms"></td></tr>
-      <tr><td style="padding:8px 0 8px;border-bottom:1px solid #eee;font-weight:700;vertical-align:top;">Контакт</td><td style="padding:8px 0 8px 12px;border-bottom:1px solid #eee;" id="print-contact"></td></tr>
-      <tr><td style="padding:8px 0;font-weight:700;vertical-align:top;">Дополнительно</td><td style="padding:8px 0 8px 12px;" id="print-extra"></td></tr>
-    </table>
-  </div>
-</div>
-
-<script>
-// Заполняем КП-блок перед печатью
-window.addEventListener('beforeprint', function() {
-  if (sessionStorage.getItem(SESSION_KEY) === '1') {
-    var data = getKPData();
-    document.getElementById('print-price').textContent = data.price || '—';
-    document.getElementById('print-rider').textContent = data.rider || '—';
-    document.getElementById('print-terms').textContent = data.terms || '—';
-    document.getElementById('print-contact').textContent = data.contact || '—';
-    document.getElementById('print-extra').textContent = data.extra || '—';
-    document.getElementById('kpPrintBlock').style.display = 'block';
-  } else {
-    document.getElementById('kpPrintBlock').style.display = 'none';
-  }
-});
 window.addEventListener('afterprint', function() {
   document.getElementById('kpPrintBlock').style.display = 'none';
 });
