@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>А что у нас на сладкое? — Идеальная среда · 6 мая 2026</title>
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Киммерия-Арт">
+  <meta property="og:url" content="https://art-kimmeria.ru/vstrecha-sladkoe/">
+  <meta property="og:title" content="А что у нас на сладкое? — Идеальная среда · 6 мая 2026">
+  <meta property="og:description" content="Вечер десертных вин с Валентином Митяевым. Жидкое золото в бокале — изысканное наслаждение без компромиссов.">
+  <meta property="og:image" content="https://art-kimmeria.ru/photos/idealnaya-sreda-sladkoe.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://art-kimmeria.ru/photos/idealnaya-sreda-sladkoe.jpg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Onest', Arial, sans-serif; background: #ffffff; color: #111111; font-size: 16px; line-height: 1.6; overflow-x: hidden; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 60px; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid #e8e8e8; }
+    .nav-logo { font-size: 15px; font-weight: 700; color: #111111; text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; }
+    .nav-back { font-size: 13px; font-weight: 600; color: #111111; text-decoration: none; padding: 8px 16px; border-radius: 100px; border: 1px solid #e8e8e8; transition: background 0.15s; }
+    .nav-back:hover { background: #f5f5f5; }
+
+    .event-hero { padding-top: 60px; position: relative; overflow: hidden; background: #0a0a0f; }
+    .event-hero-bg { position: absolute; inset: -40px; background-size: cover; background-position: center; filter: blur(28px); opacity: 0.45; transform: scale(1.08); }
+    .event-hero-inner { position: relative; z-index: 1; display: grid; grid-template-columns: auto 1fr; gap: 48px; align-items: center; max-width: 1200px; margin: 0 auto; padding: 48px; }
+    .event-hero-poster { flex-shrink: 0; max-height: 480px; max-width: 320px; display: flex; align-items: center; }
+    .event-hero-poster img { display: block; width: 100%; height: auto; object-fit: contain; border-radius: 10px; box-shadow: 0 24px 64px rgba(0,0,0,0.6); cursor: zoom-in; }
+    .event-hero-text { color: #ffffff; }
+    .event-hero-tag { display: inline-block; background: rgba(255,255,255,0.15); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.25); color: #ffffff; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 12px; border-radius: 100px; margin-bottom: 14px; }
+    .event-hero-title { font-size: 42px; font-weight: 700; color: #ffffff; line-height: 1.1; margin-bottom: 12px; }
+    .event-hero-date { font-size: 15px; font-weight: 500; color: rgba(255,255,255,0.7); }
+
+    .event-main { display: grid; grid-template-columns: 1fr 340px; gap: 48px; max-width: 1200px; margin: 0 auto; padding: 56px 48px 80px; align-items: start; }
+
+    .section-label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #999; font-weight: 600; margin-bottom: 12px; }
+    .event-lead { font-size: 19px; font-weight: 500; line-height: 1.65; color: #111; margin-bottom: 28px; }
+    .event-text { font-size: 15px; color: #444; line-height: 1.85; margin-bottom: 16px; }
+    .event-quote { border-left: 3px solid #1a4a3a; padding: 14px 20px; margin: 28px 0; background: #f8f8f6; border-radius: 0 8px 8px 0; }
+    .event-quote p { font-size: 16px; font-style: italic; color: #333; line-height: 1.7; margin: 0; }
+    .event-quote cite { display: block; font-size: 12px; color: #999; margin-top: 8px; font-style: normal; }
+
+    .speaker-block { margin-top: 36px; padding-top: 28px; border-top: 1px solid #e8e8e8; }
+    .speaker-label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #999; font-weight: 600; margin-bottom: 14px; }
+    .speaker-row { display: flex; align-items: center; gap: 16px; }
+    .speaker-avatar { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; background: #e8e8e8; flex-shrink: 0; }
+    .speaker-name { font-size: 17px; font-weight: 700; color: #111; }
+    .speaker-role { font-size: 13px; color: #888; margin-top: 2px; }
+
+    .sidebar-card { background: #fff; border: 1px solid #e8e8e8; border-radius: 16px; padding: 28px; position: sticky; top: 80px; }
+    .sidebar-label { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #aaa; margin-bottom: 6px; }
+    .sidebar-value { font-size: 22px; font-weight: 700; color: #111; line-height: 1.2; margin-bottom: 4px; }
+    .sidebar-note { font-size: 13px; color: #888; margin-bottom: 16px; }
+    .sidebar-divider { border: none; border-top: 1px solid #e8e8e8; margin: 16px 0; }
+    .sidebar-price { font-size: 32px; font-weight: 700; color: #111; }
+    .sidebar-place { font-size: 14px; color: #444; font-weight: 500; line-height: 1.4; }
+    .sidebar-place small { display: block; font-size: 12px; color: #999; font-weight: 400; margin-top: 3px; }
+
+    .btn-primary { display: block; width: 100%; padding: 15px 20px; background: #1a4a3a; color: #fff; font-family: 'Onest', sans-serif; font-size: 15px; font-weight: 600; border: none; border-radius: 100px; cursor: pointer; text-align: center; text-decoration: none; transition: background 0.15s; margin-top: 16px; }
+    .btn-primary:hover { background: #0f2e24; }
+    .btn-secondary { display: block; width: 100%; padding: 13px 20px; background: transparent; color: #111; font-family: 'Onest', sans-serif; font-size: 14px; font-weight: 600; border: 1.5px solid #e0e0e0; border-radius: 100px; cursor: pointer; text-align: center; text-decoration: none; transition: border-color 0.15s; margin-top: 10px; }
+    .btn-secondary:hover { border-color: #111; }
+
+    .back-section { max-width: 1200px; margin: 0 auto; padding: 0 48px 60px; }
+    .back-link { font-size: 13px; font-weight: 600; color: #111; text-decoration: none; padding: 8px 16px; border-radius: 100px; border: 1px solid #e8e8e8; display: inline-block; transition: background 0.15s; }
+    .back-link:hover { background: #f5f5f5; }
+
+    .lightbox { display: none; position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,0.92); align-items: center; justify-content: center; cursor: zoom-out; }
+    .lightbox.open { display: flex; }
+    .lightbox img { max-width: 92vw; max-height: 92vh; object-fit: contain; border-radius: 4px; cursor: default; }
+    .lightbox-close { position: absolute; top: 20px; right: 24px; font-size: 32px; color: #fff; cursor: pointer; background: none; border: none; opacity: 0.7; line-height: 1; }
+    .lightbox-close:hover { opacity: 1; }
+
+    @media (max-width: 900px) {
+      nav { padding: 0 20px; }
+      .event-hero-inner { grid-template-columns: 1fr; gap: 24px; padding: 32px 20px; }
+      .event-hero-poster { max-width: 240px; }
+      .event-hero-title { font-size: 30px; }
+      .event-main { grid-template-columns: 1fr; gap: 32px; padding: 40px 20px 60px; }
+      .sidebar-card { position: static; }
+      .back-section { padding: 0 20px 40px; }
+    }
+    @media (max-width: 600px) {
+      nav { padding: 0 16px; }
+      .event-hero-title { font-size: 24px; }
+      .event-lead { font-size: 17px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">Киммерия-Арт</a>
+  <a href="/idealnaya-sreda/" class="nav-back">← Идеальная среда</a>
+</nav>
+
+<div class="event-hero">
+  <div class="event-hero-bg" style="background-image: url('/photos/idealnaya-sreda-sladkoe.jpg');"></div>
+  <div class="event-hero-inner">
+    <div class="event-hero-poster">
+      <img src="/photos/idealnaya-sreda-sladkoe.jpg" alt="А что у нас на сладкое?" onclick="openLightbox(this.src)">
+    </div>
+    <div class="event-hero-text">
+      <div class="event-hero-tag">Идеальная среда · Клуб любителей вина</div>
+      <h1 class="event-hero-title">А что у нас на сладкое?</h1>
+      <div class="event-hero-date">6 мая 2026 · Среда · 19:00</div>
+    </div>
+  </div>
+</div>
+
+<div class="event-main">
+  <div class="event-content">
+    <p class="section-label">О вечере</p>
+
+    <div class="event-quote">
+      <p>«Я не такая, я — вся иная. Хочу вина я, хочу Токая»</p>
+      <cite>— Вера Инбер</cite>
+    </div>
+
+    <p class="event-lead">Мы вслед за поэтессой тоже хотим сладкого! Десертные вина не сдают позиций перед напором моды на столовые сухие.</p>
+
+    <p class="event-text">Сладкие вина похожи на «жидкое золото» — они вносят в наши будни привкус роскоши и ценности жизни. Приглашаем на деле погрузиться в метафору изысканного наслаждения.</p>
+
+    <p class="event-text">Давайте получать удовольствие, несовместимое с простотой. Давайте побалуем себя десертными винами!</p>
+
+    <div class="speaker-block">
+      <div class="speaker-label">Ведущий вечера</div>
+      <div class="speaker-row">
+        <div class="speaker-avatar" style="background: linear-gradient(135deg, #1a4a3a, #0f2e24); display:flex; align-items:center; justify-content:center;">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.58-7 8-7s8 3 8 7"/></svg>
+        </div>
+        <div>
+          <div class="speaker-name">Валентин Митяев</div>
+          <div class="speaker-role">Бессменный кормчий по морю вин</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <aside>
+    <div class="sidebar-card">
+      <div class="sidebar-label">Когда</div>
+      <div class="sidebar-value">6 мая 2026</div>
+      <div class="sidebar-note">Среда · начало в 19:00</div>
+      <hr class="sidebar-divider">
+      <div class="sidebar-label">Где</div>
+      <div class="sidebar-place">Арт-пространство «Киммерия»<small>г. Ялта, ул. Игнатенко, 5, оф. 2</small></div>
+      <hr class="sidebar-divider">
+      <div class="sidebar-label">Стоимость</div>
+      <div class="sidebar-price">1 000 ₽</div>
+      <div class="sidebar-note" style="margin-top:4px;">включая дегустацию</div>
+      <hr class="sidebar-divider">
+      <div class="sidebar-label">Запись</div>
+      <div class="sidebar-note">По телефону:<br><strong>+7-978-060-29-86</strong></div>
+      <a href="tel:+79780602986" class="btn-primary">Записаться</a>
+      <a href="https://t.me/kimmeria_art" target="_blank" class="btn-secondary">Написать в Telegram</a>
+    </div>
+  </aside>
+</div>
+
+<div class="back-section">
+  <a href="/idealnaya-sreda/" class="back-link">← Все встречи Идеальной среды</a>
+</div>
+
+<div id="site-footer"></div>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">×</button>
+  <img id="lightboxImg" src="" alt="">
+</div>
+
+<script>
+function openLightbox(src) {
+  document.getElementById('lightboxImg').src = src;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeLightbox(); });
+</script>
+<script src="/footer.js"></script>
+</body>
+</html>
