@@ -207,10 +207,13 @@ nav {
   nav, .actions, .admin-entry, .admin-panel, .lightbox, .share-hint { display: none !important; }
   body { background: #fff; font-size: 13px; color: #000; }
   .page-wrap { padding: 0 20px; max-width: 100%; }
-  .page-header { padding-top: 0; margin-bottom: 24px; }
+  .page-header { padding-top: 0; margin-bottom: 20px; }
   .page-title { font-size: 26px; }
-  .top-grid { grid-template-columns: 200px 1fr; gap: 24px; margin-bottom: 20px; }
-  .poster-img { border-radius: 6px; box-shadow: none; }
+  .top-grid { display: block; margin-bottom: 16px; }
+  .poster-wrap { margin-bottom: 20px; }
+  .poster-img { border-radius: 6px; box-shadow: none; width: 100%; aspect-ratio: auto; max-height: 420px; object-fit: contain; object-position: left; }
+  .specs-wrap { display: block; }
+  .spec-row { padding: 8px 0; }
   .content-block { border-radius: 0; padding: 16px 0; background: transparent; margin-bottom: 12px; }
   .gallery-grid { grid-template-columns: repeat(4, 1fr); }
   .kp-print-block { display: block !important; }
