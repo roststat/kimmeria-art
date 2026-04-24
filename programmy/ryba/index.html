@@ -16,6 +16,7 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <style>
 
 :root { --accent: #1a4a3a; --accent-dark: #0f2e24; }
@@ -195,6 +196,35 @@ nav {
 
 .admin-logout { background: none; border: none; padding: 0; cursor: pointer; font-size: 11px; color: #ccc; font-family: 'Onest', sans-serif; transition: color 0.15s; margin-top: 10px; display: block; text-align: center; width: 100%; }
 .admin-logout:hover { color: #888; }
+
+/* ── VIDEO BLOCK ── */
+.video-wrap { position: relative; width: 100%; aspect-ratio: 16/9; border-radius: 12px; overflow: hidden; background: #000; }
+.video-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+/* ── MOBILE PDF POPUP ── */
+.mobile-pdf-overlay {
+  position: fixed; inset: 0; z-index: 600;
+  background: rgba(0,0,0,0.55); backdrop-filter: blur(6px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px; opacity: 0; pointer-events: none; transition: opacity 0.2s;
+}
+.mobile-pdf-overlay.open { opacity: 1; pointer-events: all; }
+.mobile-pdf-box {
+  background: #fff; border-radius: 20px; max-width: 340px; width: 100%;
+  padding: 32px 28px; text-align: center;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.2);
+  transform: translateY(12px); transition: transform 0.2s;
+}
+.mobile-pdf-overlay.open .mobile-pdf-box { transform: translateY(0); }
+.mobile-pdf-icon { font-size: 40px; margin-bottom: 14px; }
+.mobile-pdf-title { font-size: 17px; font-weight: 700; color: #111; margin-bottom: 10px; line-height: 1.3; }
+.mobile-pdf-text { font-size: 14px; color: #666; line-height: 1.6; margin-bottom: 22px; }
+.mobile-pdf-close {
+  width: 100%; padding: 13px; background: #111; color: #fff;
+  font-family: 'Onest', sans-serif; font-size: 14px; font-weight: 600;
+  border: none; border-radius: 100px; cursor: pointer; transition: opacity 0.15s;
+}
+.mobile-pdf-close:hover { opacity: 0.85; }
 
 /* ── LIGHTBOX ── */
 .lightbox { position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,0.92); display: none; align-items: center; justify-content: center; padding: 20px; }
@@ -395,7 +425,25 @@ nav {
     </div>
   </div>
 
+  <!-- ВИДЕО -->
+  <div class="content-block">
+    <div class="block-eyebrow">Видео со спектакля</div>
+    <div class="video-wrap">
+      <iframe src="https://vkvideo.ru/video_ext.php?oid=-180622237&id=456239731&hd=2" allow="autoplay; encrypted-media; fullscreen; picture-in-picture;" allowfullscreen></iframe>
+    </div>
+  </div>
+
 </div><!-- /page-wrap -->
+
+<!-- ПОПАП ДЛЯ МОБИЛЬНЫХ: PDF только на десктопе -->
+<div class="mobile-pdf-overlay" id="mobilePdfOverlay" onclick="closeMobilePdfPopup(event)">
+  <div class="mobile-pdf-box">
+    <div class="mobile-pdf-icon">🖥️</div>
+    <div class="mobile-pdf-title">PDF доступен только на компьютере</div>
+    <div class="mobile-pdf-text">Откройте эту страницу на ноутбуке или компьютере, чтобы скачать PDF-презентацию программы.</div>
+    <button class="mobile-pdf-close" onclick="document.getElementById('mobilePdfOverlay').classList.remove('open')">Понятно</button>
+  </div>
+</div>
 
 <!-- КП-блок только при печати -->
 <div class="kp-print-block" id="kpPrintBlock" style="display:none; max-width:760px; margin:0 auto; padding:0 20px 40px;">
@@ -508,17 +556,51 @@ function blobToBase64(blob) {
   });
 }
 
+function isMobile() {
+  return window.innerWidth < 1024 || /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+}
+
+function closeMobilePdfPopup(e) {
+  if (e.target === document.getElementById('mobilePdfOverlay')) {
+    document.getElementById('mobilePdfOverlay').classList.remove('open');
+  }
+}
+
+function makeQR(url, size) {
+  return new Promise(function(resolve) {
+    var div = document.createElement('div');
+    div.style.cssText = 'position:absolute;left:-9999px;top:-9999px;';
+    document.body.appendChild(div);
+    var qr = new QRCode(div, { text: url, width: size, height: size, correctLevel: QRCode.CorrectLevel.M });
+    setTimeout(function() {
+      var canvas = div.querySelector('canvas');
+      var dataUrl = canvas ? canvas.toDataURL('image/png') : null;
+      document.body.removeChild(div);
+      resolve(dataUrl);
+    }, 200);
+  });
+}
+
 function savePDF() {
+  if (isMobile()) {
+    document.getElementById('mobilePdfOverlay').classList.add('open');
+    return;
+  }
+
   var btn = document.querySelector('.btn-pdf-main');
   var originalText = btn.innerHTML;
   btn.innerHTML = 'Формируется…';
   btn.disabled = true;
 
-  // Загружаем только regular (bold грузим отдельным начертанием того же файла как medium)
+  var PAGE_URL  = 'https://art-kimmeria.ru/programmy/ryba/';
+  var VIDEO_URL = 'https://vkvideo.ru/video-180622237_456239731';
+
   Promise.all([
     fetch('/fonts/NotoSans-Regular.ttf').then(function(r){ return r.arrayBuffer(); }),
     fetch('/fonts/NotoSans-Bold.ttf').then(function(r){ return r.arrayBuffer(); }),
-    fetch('/photos/event-ryba.jpg').then(function(r){ return r.blob(); }).then(blobToBase64)
+    fetch('/photos/event-ryba.jpg').then(function(r){ return r.blob(); }).then(blobToBase64),
+    makeQR(PAGE_URL, 200),
+    makeQR(VIDEO_URL, 200)
   ])
   .then(function(results) {
     var pdf = new window.jspdf.jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
@@ -528,7 +610,9 @@ function savePDF() {
     pdf.addFont('NotoSans-Regular.ttf', 'NotoSans', 'normal');
     pdf.addFont('NotoSans-Bold.ttf', 'NotoSans', 'bold');
 
-    var imgData = results[2];
+    var imgData  = results[2];
+    var qrPage   = results[3];
+    var qrVideo  = results[4];
     var m = 16, pw = 210 - m * 2, y = m;
 
     function setN(size) { pdf.setFont('NotoSans','normal'); pdf.setFontSize(size); }
@@ -612,12 +696,30 @@ function savePDF() {
       var tl = pdf.splitTextToSize(t[1], pw/2 - 6);
       pdf.text(tl, tx, ty + 4.5);
     });
-    y += col * 10 + 6;
+    y += col * 10 + 10;
 
-    // Футер
-    hline(m, y, 210-m, y, 26,74,58, 0.4); y += 5;
-    setN(8); rgb(170,170,170);
-    pdf.text('art-kimmeria.ru/programmy/ryba/', m, y);
+    // QR-коды
+    hline(m, y, 210-m, y, 26,74,58, 0.4); y += 6;
+    var qrSize = 28;
+    var qrGap  = 10;
+    var qrLabelH = 8;
+
+    if (qrPage) {
+      pdf.addImage(qrPage, 'PNG', m, y, qrSize, qrSize);
+      setN(7); rgb(150,150,150);
+      pdf.text('Страница программы', m, y + qrSize + 4);
+      setN(7); rgb(190,190,190);
+      pdf.text('art-kimmeria.ru/programmy/ryba/', m, y + qrSize + 8);
+    }
+
+    if (qrVideo) {
+      var qvx = m + qrSize + qrGap;
+      pdf.addImage(qrVideo, 'PNG', qvx, y, qrSize, qrSize);
+      setN(7); rgb(150,150,150);
+      pdf.text('Видео со спектакля', qvx, y + qrSize + 4);
+      setN(7); rgb(190,190,190);
+      pdf.text('vkvideo.ru', qvx, y + qrSize + 8);
+    }
 
     pdf.save('ryba-kimmeria-art.pdf');
     btn.innerHTML = originalText;
