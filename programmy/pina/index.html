@@ -188,6 +188,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:60px;display:flex;ali
   </div>
 </div>
 <div id="site-footer"></div>
+<div class="lightbox" id="lightbox" onclick="closeLightbox()"><button class="lightbox-close" onclick="closeLightbox()">×</button><img id="lightboxImg" src="" alt=""></div>
 <script>
 var ADMIN_PASSWORD='kimmeria',SESSION_KEY='kimmeria_admin',KP_STORAGE_KEY='kp_pina',PAGE_URL='https://art-kimmeria.ru/programmy/pina/';
 function isMobile(){return window.innerWidth<1024||/Android|iPhone|iPad|iPod/i.test(navigator.userAgent);}
@@ -235,6 +236,10 @@ function saveKPPDF(){
   var el=document.getElementById('kp-qr-page');el.innerHTML='';new QRCode(el,{text:PAGE_URL,width:80,height:80,correctLevel:QRCode.CorrectLevel.M});
   setTimeout(function(){document.getElementById('kpPrintBlock').style.display='block';var f=document.querySelector('footer');if(f)f.style.display='none';window.print();if(f)f.style.display='';document.getElementById('kpPrintBlock').style.display='none';},300);
 }
+
+function openLightbox(src){document.getElementById('lightboxImg').src=src;document.getElementById('lightbox').classList.add('open');document.body.style.overflow='hidden';}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('open');document.body.style.overflow='';}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbox();});
 function shareLink(){navigator.clipboard.writeText(window.location.href).then(function(){var h=document.getElementById('shareHint');h.textContent='Ссылка скопирована!';h.classList.add('copied');setTimeout(function(){h.textContent='';h.classList.remove('copied');},2500);}).catch(function(){prompt('Скопируйте ссылку:',window.location.href);});}
 window.addEventListener('afterprint',function(){document.getElementById('kpPrintBlock').style.display='none';});
 </script>
