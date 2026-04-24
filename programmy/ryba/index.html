@@ -456,6 +456,16 @@ nav {
       <tr><td style="padding:10px 0;border-bottom:1px solid #eee;font-weight:700;vertical-align:top;">Контакт</td><td style="padding:10px 0 10px 16px;border-bottom:1px solid #eee;" id="print-contact"></td></tr>
       <tr><td style="padding:10px 0;font-weight:700;vertical-align:top;">Дополнительно</td><td style="padding:10px 0 10px 16px;" id="print-extra"></td></tr>
     </table>
+    <div style="margin-top:24px;padding-top:18px;border-top:1px solid #eee;display:flex;gap:32px;align-items:flex-start;">
+      <div style="text-align:center;">
+        <div id="kp-qr-page" style="width:80px;height:80px;"></div>
+        <div style="font-size:10px;color:#aaa;margin-top:6px;letter-spacing:0.05em;text-transform:uppercase;">Страница программы</div>
+      </div>
+      <div style="text-align:center;">
+        <div id="kp-qr-video" style="width:80px;height:80px;"></div>
+        <div style="font-size:10px;color:#aaa;margin-top:6px;letter-spacing:0.05em;text-transform:uppercase;">Видео со спектакля</div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -741,12 +751,27 @@ function saveKPPDF() {
   document.getElementById('print-terms').textContent = data.terms || '—';
   document.getElementById('print-contact').textContent = data.contact || '—';
   document.getElementById('print-extra').textContent = data.extra || '—';
-  document.getElementById('kpPrintBlock').style.display = 'block';
-  var footer = document.querySelector('footer');
-  if (footer) footer.style.display = 'none';
-  window.print();
-  if (footer) footer.style.display = '';
-  document.getElementById('kpPrintBlock').style.display = 'none';
+
+  var PAGE_URL  = 'https://art-kimmeria.ru/programmy/ryba/';
+  var VIDEO_URL = 'https://vkvideo.ru/video-180622237_456239731';
+
+  function renderQRInto(containerId, url) {
+    var el = document.getElementById(containerId);
+    el.innerHTML = '';
+    new QRCode(el, { text: url, width: 80, height: 80, correctLevel: QRCode.CorrectLevel.M });
+  }
+
+  renderQRInto('kp-qr-page',  PAGE_URL);
+  renderQRInto('kp-qr-video', VIDEO_URL);
+
+  setTimeout(function() {
+    document.getElementById('kpPrintBlock').style.display = 'block';
+    var footer = document.querySelector('footer');
+    if (footer) footer.style.display = 'none';
+    window.print();
+    if (footer) footer.style.display = '';
+    document.getElementById('kpPrintBlock').style.display = 'none';
+  }, 300);
 }
 
 function shareLink() {
