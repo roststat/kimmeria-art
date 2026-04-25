@@ -253,25 +253,47 @@ function savePDF() {
     pdf.text(subLines, m, y);
     y += subLines.length * 6 + 6;
 
-    // Poster + specs side by side
+    // Poster layout: portrait/square → side by side with specs; landscape → full width, specs below
     if (imgData) {
-      var pW = 55;
       var naturalW = posterImg.naturalWidth || posterImg.width || 1;
       var naturalH = posterImg.naturalHeight || posterImg.height || 1;
-      var pH = Math.round(pW * naturalH / naturalW);
-      pdf.addImage(imgData, 'JPEG', m, y, pW, pH);
-      var cx = m + pW + 8, cw = pw - pW - 8, cy = y;
-      setB(7); rgb(150, 150, 150);
-      pdf.text('ХАРАКТЕРИСТИКИ', cx, cy); cy += 5;
-      specs.forEach(function(s) {
-        setB(8); rgb(17, 17, 17); pdf.text(s[0], cx, cy);
-        setN(8); rgb(80, 80, 80);
-        var ll = pdf.splitTextToSize(s[1], cw - 32);
-        pdf.text(ll, cx + 32, cy);
-        cy += ll.length * 5.5 + 3;
-        hline(cx, cy, cx + cw, cy); cy += 3;
-      });
-      y += pH + 8;
+      var isLandscape = (naturalW / naturalH) > 1.2;
+
+      if (isLandscape) {
+        // Full-width photo, specs below
+        var iW = pw, iH = Math.round(iW * naturalH / naturalW);
+        pdf.addImage(imgData, 'JPEG', m, y, iW, iH);
+        y += iH + 8;
+        hline(m, y, 210 - m, y); y += 7;
+        setB(7); rgb(150, 150, 150);
+        pdf.text('ХАРАКТЕРИСТИКИ', m, y); y += 5;
+        specs.forEach(function(s, idx) {
+          setB(8); rgb(17, 17, 17); pdf.text(s[0], m, y);
+          setN(8); rgb(80, 80, 80);
+          var ll = pdf.splitTextToSize(s[1], pw - 36);
+          pdf.text(ll, m + 36, y);
+          y += ll.length * 5.5 + 3;
+          if (idx < specs.length - 1) { hline(m, y, 210 - m, y); y += 3; }
+        });
+        y += 7;
+      } else {
+        // Portrait/square — side by side with specs
+        var pW = 55;
+        var pH = Math.round(pW * naturalH / naturalW);
+        pdf.addImage(imgData, 'JPEG', m, y, pW, pH);
+        var cx = m + pW + 8, cw = pw - pW - 8, cy = y;
+        setB(7); rgb(150, 150, 150);
+        pdf.text('ХАРАКТЕРИСТИКИ', cx, cy); cy += 5;
+        specs.forEach(function(s) {
+          setB(8); rgb(17, 17, 17); pdf.text(s[0], cx, cy);
+          setN(8); rgb(80, 80, 80);
+          var ll = pdf.splitTextToSize(s[1], cw - 32);
+          pdf.text(ll, cx + 32, cy);
+          cy += ll.length * 5.5 + 3;
+          hline(cx, cy, cx + cw, cy); cy += 3;
+        });
+        y += Math.max(pH, cy - y) + 8;
+      }
     } else {
       // No poster — specs full width
       hline(m, y, 210 - m, y); y += 7;
