@@ -432,15 +432,15 @@ function savePDF() {
       hline(m, y, 210 - m, y); y += 7;
       setB(7); rgb(150, 150, 150);
       pdf.text('ХАРАКТЕРИСТИКИ', m, y); y += 5;
-      specs.forEach(function(s) {
+      specs.forEach(function(s, idx) {
         setB(8); rgb(17, 17, 17); pdf.text(s[0], m, y);
         setN(8); rgb(80, 80, 80);
         var ll = pdf.splitTextToSize(s[1], pw - 36);
         pdf.text(ll, m + 36, y);
         y += ll.length * 5.5 + 3;
-        hline(m, y, 210 - m, y); y += 3;
+        if (idx < specs.length - 1) { hline(m, y, 210 - m, y); y += 3; }
       });
-      y += 4;
+      y += 7;
     }
 
     // Description
