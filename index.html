@@ -142,15 +142,18 @@ nav {
 .hero-new-text { flex: 1; min-width: 0; }
 .hero-new-image {
   flex: none;
-  width: 340px;
+  width: 300px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .hero-new-image img {
   width: 100%;
-  height: auto;
+  aspect-ratio: 3/4;
+  object-fit: cover;
   display: block;
+  border-radius: 16px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.12);
 }
 .hero-new-label {
   font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
