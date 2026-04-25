@@ -102,6 +102,16 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: 60px; di
 .mobile-pdf-text { font-size: 14px; color: #666; line-height: 1.6; margin-bottom: 22px; }
 .mobile-pdf-close { width: 100%; padding: 13px; background: #111; color: #fff; font-family: 'Onest', sans-serif; font-size: 14px; font-weight: 600; border: none; border-radius: 100px; cursor: pointer; transition: opacity 0.15s; }
 .mobile-pdf-close:hover { opacity: 0.85; }
+.gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.gallery-grid img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 8px; cursor: zoom-in; transition: opacity 0.15s; display: block; }
+.gallery-grid img:hover { opacity: 0.85; }
+.lightbox { display: none; position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,0.92); align-items: center; justify-content: center; cursor: zoom-out; }
+.lightbox.open { display: flex; }
+.lightbox img { max-width: 92vw; max-height: 92vh; object-fit: contain; border-radius: 4px; cursor: default; }
+.lightbox-close { position: absolute; top: 20px; right: 24px; font-size: 32px; color: #fff; cursor: pointer; background: none; border: none; opacity: 0.7; transition: opacity 0.15s; }
+.lightbox-close:hover { opacity: 1; }
+@media (max-width: 860px) { .gallery-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 500px) { .gallery-grid { grid-template-columns: repeat(2, 1fr); } }
 @media print {
   nav, .actions, .admin-entry, .admin-panel, .share-hint { display: none !important; }
   body { background: #fff; font-size: 13px; color: #000; }
@@ -190,6 +200,30 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: 60px; di
     <div class="block-sub-eyebrow">Аудитория</div>
     <p class="body-text">Взрослая, вдумчивая аудитория, ценители современного искусства и психологического театра. 18+</p>
   </div>
+  <div class="content-block">
+    <div class="block-eyebrow">Фотографии с программы</div>
+    <div class="gallery-grid">
+      <img src="/photos/tri-a-1.jpg" alt="«Три А» — фото 1" onclick="openLightbox(this.src)">
+      <img src="/photos/tri-a-2.jpg" alt="«Три А» — фото 2" onclick="openLightbox(this.src)">
+      <img src="/photos/tri-a-3.jpg" alt="«Три А» — фото 3" onclick="openLightbox(this.src)">
+      <img src="/photos/tri-a-4.jpg" alt="«Три А» — фото 4" onclick="openLightbox(this.src)">
+      <img src="/photos/tri-a-5.jpg" alt="«Три А» — фото 5" onclick="openLightbox(this.src)">
+      <img src="/photos/tri-a-6.jpg" alt="«Три А» — фото 6" onclick="openLightbox(this.src)">
+      <img src="/photos/tri-a-7.jpg" alt="«Три А» — фото 7" onclick="openLightbox(this.src)">
+      <img src="/photos/tri-a-8.jpg" alt="«Три А» — фото 8" onclick="openLightbox(this.src)">
+      <img src="/photos/tri-a-9.jpg" alt="«Три А» — фото 9" onclick="openLightbox(this.src)">
+      <img src="/photos/tri-a-10.jpg" alt="«Три А» — фото 10" onclick="openLightbox(this.src)">
+      <img src="/photos/tri-a-11.jpg" alt="«Три А» — фото 11" onclick="openLightbox(this.src)">
+      <img src="/photos/tri-a-12.jpg" alt="«Три А» — фото 12" onclick="openLightbox(this.src)">
+      <img src="/photos/tri-a-13.jpg" alt="«Три А» — фото 13" onclick="openLightbox(this.src)">
+      <img src="/photos/tri-a-14.jpg" alt="«Три А» — фото 14" onclick="openLightbox(this.src)">
+    </div>
+  </div>
+</div>
+
+<div id="lightbox" class="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">&#x2715;</button>
+  <img id="lightboxImg" src="" alt="" onclick="event.stopPropagation()">
 </div>
 
 <div class="mobile-pdf-overlay" id="mobilePdfOverlay" onclick="closeMobilePdfPopup(event)">
@@ -261,6 +295,9 @@ function saveKPPDF() {
 }
 function shareLink() { navigator.clipboard.writeText(window.location.href).then(function(){var h=document.getElementById('shareHint');h.textContent='Ссылка скопирована!';h.classList.add('copied');setTimeout(function(){h.textContent='';h.classList.remove('copied');},2500);}).catch(function(){prompt('Скопируйте ссылку:',window.location.href);}); }
 window.addEventListener('afterprint',function(){document.getElementById('kpPrintBlock').style.display='none';});
+function openLightbox(src) { document.getElementById('lightboxImg').src=src; document.getElementById('lightbox').classList.add('open'); document.body.style.overflow='hidden'; }
+function closeLightbox() { document.getElementById('lightbox').classList.remove('open'); document.body.style.overflow=''; }
+document.addEventListener('keydown', function(e) { if (e.key==='Escape') closeLightbox(); });
 </script>
 <script src="/footer.js"></script>
 </body>
