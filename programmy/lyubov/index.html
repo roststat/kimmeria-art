@@ -285,7 +285,10 @@ function savePDF() {
 
     // Poster + specs side by side
     if (imgData) {
-      var pW = 55, pH = 73;
+      var pW = 55;
+      var naturalW = posterImg.naturalWidth || posterImg.width || 1;
+      var naturalH = posterImg.naturalHeight || posterImg.height || 1;
+      var pH = Math.round(pW * naturalH / naturalW);
       pdf.addImage(imgData, 'JPEG', m, y, pW, pH);
       var cx = m + pW + 8, cw = pw - pW - 8, cy = y;
       setB(7); rgb(150, 150, 150);

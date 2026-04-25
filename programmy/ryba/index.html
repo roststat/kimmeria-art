@@ -648,7 +648,9 @@ function savePDF() {
     y += 10;
 
     // Афиша + характеристики
-    var pW = 55, pH = 73;
+    var pW = 55;
+    var posterEl = document.querySelector('.poster-img');
+    var pH = posterEl ? Math.round(pW * posterEl.naturalHeight / (posterEl.naturalWidth || 1)) : 73;
     pdf.addImage(imgData, 'JPEG', m, y, pW, pH);
 
     var cx = m + pW + 8, cw = pw - pW - 8, cy = y;
