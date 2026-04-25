@@ -58,6 +58,17 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:60px;display:flex;ali
 .team-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px 32px;}
 .team-item{font-size:14px;color:#333;}
 .team-role{font-size:10px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:#aaa;display:block;margin-bottom:2px;}
+.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:4px;}
+.gallery-item{aspect-ratio:3/2;overflow:hidden;border-radius:8px;cursor:pointer;background:#e8e8e8;}
+.gallery-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s;}
+.gallery-item:hover img{transform:scale(1.06);}
+.lightbox{position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,0.92);display:none;align-items:center;justify-content:center;padding:20px;}
+.lightbox.open{display:flex;}
+.lightbox img{max-width:100%;max-height:90vh;border-radius:8px;object-fit:contain;}
+.lightbox-close{position:absolute;top:20px;right:24px;background:rgba(255,255,255,0.1);border:none;border-radius:50%;width:40px;height:40px;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:center;font-size:22px;line-height:1;}
+.lightbox-close:hover{background:rgba(255,255,255,0.2);}
+@media(max-width:860px){.gallery-grid{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:600px){.gallery-grid{grid-template-columns:repeat(2,1fr);}}
 .admin-entry{margin-top:12px;text-align:center;}
 .admin-entry-btn{background:none;border:none;padding:0;cursor:pointer;font-size:11px;color:#ccc;font-family:'Onest',sans-serif;display:inline-flex;align-items:center;gap:5px;transition:color 0.15s;}
 .admin-entry-btn:hover{color:#888;}
@@ -119,8 +130,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:60px;display:flex;ali
   </div>
   <div class="top-grid">
     <div class="poster-wrap">
-      <div class="poster-label">Афиша</div>
-      <div class="poster-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1"><path d="M2 9a1 1 0 0 1 0-2V5a1 1 0 0 1 1-1h18a1 1 0 0 1 1 1v2a1 1 0 0 1 0 2v2a1 1 0 0 1 0 2v2a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-2a1 1 0 0 1 0-2V9z"/><line x1="9" y1="4" x2="9" y2="20"/></svg></div>
+      <div class="poster-label">Фото с мероприятия</div>
+      <img class="poster-img" src="/photos/lyubov-cover.jpg" alt="«Любовь, море и десерты»" onclick="openLightbox(this.src)" style="cursor:zoom-in;">
     </div>
     <div class="specs-wrap">
       <div class="specs-title">Характеристики</div>
@@ -161,19 +172,46 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:60px;display:flex;ali
   <div class="content-block">
     <div class="block-eyebrow">О перформансе</div>
     <p class="body-text">Проект создан на стыке авторской музыки и театрализованной поэзии. Это не концерт и не чтение стихов — атмосферное погружение в мир, где роскошь граничит с иронией, а чувственная поэзия сплетается с утончённой музыкой.</p>
+    <p class="body-text">Зритель вовлекается в интимный диалог через звук и слово, балансируя на тонкой грани между пафосом и самоиронией, красотой и абсурдом. Название «Любовь, море и десерты» — намеренная игра слов, соединяющая романтику, стихию и гастрономическое удовольствие.</p>
+    <p class="body-text">Перформанс органично дополняет вечер дегустации вин и десертов, создавая синестезию вкуса, звука и слова.</p>
     <hr class="block-divider">
     <div class="block-sub-eyebrow">Команда</div>
     <div class="team-grid">
-      <div class="team-item"><span class="team-role">Музыка (фортепиано)</span>Лолита Полтавская</div>
-      <div class="team-item"><span class="team-role">Поэзия</span>Мимла Же</div>
+      <div class="team-item"><span class="team-role">Музыка (фортепиано, авторские произведения)</span>Лолита Полтавская</div>
+      <div class="team-item"><span class="team-role">Поэзия (театрализованное авторское прочтение)</span>Мимла Же</div>
     </div>
+    <hr class="block-divider">
+    <div class="block-sub-eyebrow">Об авторах</div>
+    <p class="body-text"><strong>Мимла Же</strong> — севастопольская поэтесса и художница, работает на пересечении поэзии, визуального искусства и перформанса. На крымских выставках представляла сюрреалистичные проволочные портреты. В октябре 2025 года открыла концептуальную выставку «Крепкое слово» в галерее «ШКАF» в Симферополе — шрифтовые скульптуры о весомости произнесённых слов, выполненные из проволоки и камня. Активно работает с детской аудиторией.</p>
+    <hr class="block-divider">
+    <div class="block-sub-eyebrow">Формат и аудитория</div>
+    <p class="body-text">Камерный перформанс. Может быть адаптирован под любое пространство: ресторан, лаундж, открытая терраса. Идеально вписывается в концепцию тематического ужина или вечера дегустации вин и десертов.</p>
+    <p class="body-text">Ценители камерного искусства, интеллектуальной игры и декадентской эстетики. Взрослая, искушённая аудитория. 18+</p>
     <hr class="block-divider">
     <div class="block-sub-eyebrow">Технический райдер</div>
     <p class="body-text">Требуется рояль или фортепиано в хорошем состоянии.</p>
-    <hr class="block-divider">
-    <div class="block-sub-eyebrow">Аудитория</div>
-    <p class="body-text">Ценители камерного искусства, интеллектуальной игры и декадентской эстетики. Взрослая, искушённая аудитория. 18+</p>
   </div>
+
+  <div class="content-block">
+    <div class="block-eyebrow">Фотографии с мероприятия</div>
+    <div class="gallery-grid">
+      <div class="gallery-item" onclick="openLightbox('/photos/lyubov-1.jpg')"><img src="/photos/lyubov-1.jpg" alt="" loading="lazy"></div>
+      <div class="gallery-item" onclick="openLightbox('/photos/lyubov-2.jpg')"><img src="/photos/lyubov-2.jpg" alt="" loading="lazy"></div>
+      <div class="gallery-item" onclick="openLightbox('/photos/lyubov-3.jpg')"><img src="/photos/lyubov-3.jpg" alt="" loading="lazy"></div>
+      <div class="gallery-item" onclick="openLightbox('/photos/lyubov-4.jpg')"><img src="/photos/lyubov-4.jpg" alt="" loading="lazy"></div>
+      <div class="gallery-item" onclick="openLightbox('/photos/lyubov-5.jpg')"><img src="/photos/lyubov-5.jpg" alt="" loading="lazy"></div>
+      <div class="gallery-item" onclick="openLightbox('/photos/lyubov-6.jpg')"><img src="/photos/lyubov-6.jpg" alt="" loading="lazy"></div>
+      <div class="gallery-item" onclick="openLightbox('/photos/lyubov-7.jpg')"><img src="/photos/lyubov-7.jpg" alt="" loading="lazy"></div>
+      <div class="gallery-item" onclick="openLightbox('/photos/lyubov-8.jpg')"><img src="/photos/lyubov-8.jpg" alt="" loading="lazy"></div>
+      <div class="gallery-item" onclick="openLightbox('/photos/lyubov-9.jpg')"><img src="/photos/lyubov-9.jpg" alt="" loading="lazy"></div>
+      <div class="gallery-item" onclick="openLightbox('/photos/lyubov-10.jpg')"><img src="/photos/lyubov-10.jpg" alt="" loading="lazy"></div>
+    </div>
+  </div>
+</div>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">×</button>
+  <img id="lightboxImg" src="" alt="">
 </div>
 <div class="mobile-pdf-overlay" id="mobilePdfOverlay" onclick="closeMobilePdfPopup(event)">
   <div class="mobile-pdf-box"><div class="mobile-pdf-icon">🖥️</div><div class="mobile-pdf-title">PDF доступен только на компьютере</div><div class="mobile-pdf-text">Откройте эту страницу на ноутбуке или компьютере, чтобы скачать PDF-презентацию программы.</div><button class="mobile-pdf-close" onclick="document.getElementById('mobilePdfOverlay').classList.remove('open')">Понятно</button></div>
@@ -401,6 +439,9 @@ function saveKPPDF(){
 }
 function shareLink(){navigator.clipboard.writeText(window.location.href).then(function(){var h=document.getElementById('shareHint');h.textContent='Ссылка скопирована!';h.classList.add('copied');setTimeout(function(){h.textContent='';h.classList.remove('copied');},2500);}).catch(function(){prompt('Скопируйте ссылку:',window.location.href);});}
 window.addEventListener('afterprint',function(){document.getElementById('kpPrintBlock').style.display='none';});
+function openLightbox(src){document.getElementById('lightboxImg').src=src;document.getElementById('lightbox').classList.add('open');document.body.style.overflow='hidden';}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('open');document.body.style.overflow='';}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbox();});
 </script>
 <script src="/footer.js"></script>
 </body>
