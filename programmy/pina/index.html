@@ -236,7 +236,7 @@ function savePDF() {
     teamItems.push([role.trim(), name.trim()]);
   });
 
-  var posterImg = document.querySelector('.poster-img');
+  var posterImg = document.querySelector('.poster-img, .poster-wrap img');
 
   Promise.all([
     fetch('/fonts/NotoSans-Regular.ttf').then(function(r) { return r.arrayBuffer(); }),
