@@ -208,27 +208,165 @@ function getKPData(){var d={};['price','rider','terms','contact','extra'].forEac
 function saveKPToStorage(){localStorage.setItem(KP_STORAGE_KEY,JSON.stringify(getKPData()));}
 document.addEventListener('DOMContentLoaded',function(){['price','rider','terms','contact','extra'].forEach(function(k){var el=document.getElementById('kp-'+k);if(el)el.addEventListener('input',saveKPToStorage);});if(sessionStorage.getItem(SESSION_KEY)==='1'){showAdminWorkspace();loadKPData();document.getElementById('adminPanel').classList.add('open');}});
 function _arrayBufferToBase64(buf){var b='',u=new Uint8Array(buf);for(var i=0;i<u.byteLength;i++)b+=String.fromCharCode(u[i]);return btoa(b);}
-function savePDF(){
-  if(isMobile()){document.getElementById('mobilePdfOverlay').classList.add('open');return;}
-  var btn=document.querySelector('.btn-pdf-main'),orig=btn.innerHTML;btn.innerHTML='Формируется…';btn.disabled=true;
-  Promise.all([fetch('/fonts/NotoSans-Regular.ttf').then(function(r){return r.arrayBuffer();}),fetch('/fonts/NotoSans-Bold.ttf').then(function(r){return r.arrayBuffer();}),makeQR(PAGE_URL,200)])
-  .then(function(res){
-    var pdf=new window.jspdf.jsPDF({orientation:'portrait',unit:'mm',format:'a4'});
-    pdf.addFileToVFS('NotoSans-Regular.ttf',_arrayBufferToBase64(res[0]));pdf.addFileToVFS('NotoSans-Bold.ttf',_arrayBufferToBase64(res[1]));
-    pdf.addFont('NotoSans-Regular.ttf','NotoSans','normal');pdf.addFont('NotoSans-Bold.ttf','NotoSans','bold');
-    var qr=res[2],m=16,pw=178,y=m;
-    function setN(s){pdf.setFont('NotoSans','normal');pdf.setFontSize(s);}function setB(s){pdf.setFont('NotoSans','bold');pdf.setFontSize(s);}
-    function rgb(r,g,b){pdf.setTextColor(r,g,b);}function hline(x1,y1,x2,y2,r,g,b,w){pdf.setDrawColor(r||200,g||200,b||200);pdf.setLineWidth(w||0.2);pdf.line(x1,y1,x2,y2);}
-    setN(9);rgb(170,170,170);pdf.text('ПЕРФОРМАНС  18+  АБСУРДИСТСКИЙ ДЕКАДАНС',m,y+4);hline(m,y+8,210-m,y+8,26,74,58,0.8);y+=15;
-    setB(20);rgb(17,17,17);pdf.text('"Любовь, море и десерты"',m,y);y+=7;setN(11);rgb(100,100,100);pdf.text('Музыкально-поэтический перформанс  Киммерия-Арт',m,y);y+=12;
-    hline(m,y,210-m,y);y+=7;setB(7);rgb(150,150,150);pdf.text('ХАРАКТЕРИСТИКИ',m,y);y+=5;
-    [['Жанр','Музыкально-поэтический перформанс'],['Возраст','18+'],['Состав','Фортепиано + поэтическое чтение'],['Техника','Требуется рояль или фортепиано'],['Площадка','Камерное пространство с инструментом']].forEach(function(s){setB(8);rgb(17,17,17);pdf.text(s[0],m,y);setN(8);rgb(80,80,80);var ll=pdf.splitTextToSize(s[1],pw-36);pdf.text(ll,m+36,y);y+=ll.length*5.5+3;hline(m,y,210-m,y);y+=3;});y+=4;
-    hline(m,y,210-m,y);y+=7;setB(7);rgb(150,150,150);pdf.text('О ПЕРФОРМАНСЕ',m,y);y+=5;setN(10);rgb(50,50,50);
-    var t=pdf.splitTextToSize('Проект создан на стыке авторской музыки и театрализованной поэзии. Атмосферное погружение в мир, где роскошь граничит с иронией, а чувственная поэзия сплетается с утончённой музыкой. Музыка — Лолита Полтавская (фортепиано). Поэзия — Мимла Же. Требуется рояль или фортепиано.',pw);pdf.text(t,m,y);y+=t.length*5+10;
-    hline(m,y,210-m,y,26,74,58,0.4);y+=6;
-    if(qr){pdf.addImage(qr,'PNG',m,y,28,28);setN(7);rgb(150,150,150);pdf.text('Страница программы',m,y+32);setN(7);rgb(190,190,190);pdf.text('art-kimmeria.ru/programmy/lyubov/',m,y+36);}
-    pdf.save('lyubov-kimmeria-art.pdf');btn.innerHTML=orig;btn.disabled=false;
-  }).catch(function(e){console.error(e);btn.innerHTML=orig;btn.disabled=false;alert('Не удалось создать PDF.');});
+function savePDF() {
+  if (isMobile()) { document.getElementById('mobilePdfOverlay').classList.add('open'); return; }
+
+  var btn = document.querySelector('.btn-pdf-main');
+  var orig = btn.innerHTML;
+  btn.innerHTML = 'Формируется…'; btn.disabled = true;
+
+  // Read content from DOM so Cyrillic is always correct
+  var eyebrow  = (document.querySelector('.page-eyebrow')  || {}).textContent || '';
+  var title    = (document.querySelector('.page-title')    || {}).textContent || '';
+  var subtitle = (document.querySelector('.page-subtitle') || {}).textContent || '';
+
+  var specs = [];
+  document.querySelectorAll('.spec-row').forEach(function(row) {
+    var lbl = (row.querySelector('.spec-label') || {}).textContent || '';
+    var val = (row.querySelector('.spec-value') || {}).textContent || '';
+    if (lbl || val) specs.push([lbl.trim(), val.trim()]);
+  });
+
+  var bodyTexts = [];
+  document.querySelectorAll('.body-text').forEach(function(el) {
+    var t = el.textContent.trim();
+    if (t) bodyTexts.push(t);
+  });
+
+  var teamItems = [];
+  document.querySelectorAll('.team-item').forEach(function(el) {
+    var role = (el.querySelector('.team-role') || {}).textContent || '';
+    var name = el.childNodes[el.childNodes.length - 1].textContent || '';
+    teamItems.push([role.trim(), name.trim()]);
+  });
+
+  var posterImg = document.querySelector('.poster-img');
+
+  Promise.all([
+    fetch('/fonts/NotoSans-Regular.ttf').then(function(r) { return r.arrayBuffer(); }),
+    fetch('/fonts/NotoSans-Bold.ttf').then(function(r) { return r.arrayBuffer(); }),
+    makeQR(PAGE_URL, 200),
+    posterImg ? fetch(posterImg.src).then(function(r) { return r.blob(); }).then(blobToBase64) : Promise.resolve(null)
+  ]).then(function(results) {
+    var pdf = new window.jspdf.jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+    pdf.addFileToVFS('NotoSans-Regular.ttf', _arrayBufferToBase64(results[0]));
+    pdf.addFileToVFS('NotoSans-Bold.ttf',    _arrayBufferToBase64(results[1]));
+    pdf.addFont('NotoSans-Regular.ttf', 'NotoSans', 'normal');
+    pdf.addFont('NotoSans-Bold.ttf',    'NotoSans', 'bold');
+
+    var qrPage  = results[2];
+    var imgData = results[3];
+    var m = 16, pw = 210 - m * 2, y = m;
+
+    function setN(s) { pdf.setFont('NotoSans', 'normal'); pdf.setFontSize(s); }
+    function setB(s) { pdf.setFont('NotoSans', 'bold');   pdf.setFontSize(s); }
+    function rgb(r, g, b) { pdf.setTextColor(r, g, b); }
+    function hline(x1, y1, x2, y2, r, g, b, w) {
+      pdf.setDrawColor(r || 200, g || 200, b || 200);
+      pdf.setLineWidth(w || 0.2);
+      pdf.line(x1, y1, x2, y2);
+    }
+
+    // Header
+    setN(9); rgb(170, 170, 170);
+    pdf.text(eyebrow.toUpperCase(), m, y + 4);
+    hline(m, y + 8, 210 - m, y + 8, 26, 74, 58, 0.8);
+    y += 15;
+
+    setB(20); rgb(17, 17, 17);
+    var titLines = pdf.splitTextToSize(title, pw);
+    pdf.text(titLines, m, y);
+    y += titLines.length * 9 + 3;
+
+    setN(11); rgb(100, 100, 100);
+    var subLines = pdf.splitTextToSize(subtitle + '  —  Киммерия-Арт', pw);
+    pdf.text(subLines, m, y);
+    y += subLines.length * 6 + 6;
+
+    // Poster + specs side by side
+    if (imgData) {
+      var pW = 55, pH = 73;
+      pdf.addImage(imgData, 'JPEG', m, y, pW, pH);
+      var cx = m + pW + 8, cw = pw - pW - 8, cy = y;
+      setB(7); rgb(150, 150, 150);
+      pdf.text('ХАРАКТЕРИСТИКИ', cx, cy); cy += 5;
+      specs.forEach(function(s) {
+        setB(8); rgb(17, 17, 17); pdf.text(s[0], cx, cy);
+        setN(8); rgb(80, 80, 80);
+        var ll = pdf.splitTextToSize(s[1], cw - 32);
+        pdf.text(ll, cx + 32, cy);
+        cy += ll.length * 5.5 + 3;
+        hline(cx, cy, cx + cw, cy); cy += 3;
+      });
+      y += pH + 8;
+    } else {
+      // No poster — specs full width
+      hline(m, y, 210 - m, y); y += 7;
+      setB(7); rgb(150, 150, 150);
+      pdf.text('ХАРАКТЕРИСТИКИ', m, y); y += 5;
+      specs.forEach(function(s) {
+        setB(8); rgb(17, 17, 17); pdf.text(s[0], m, y);
+        setN(8); rgb(80, 80, 80);
+        var ll = pdf.splitTextToSize(s[1], pw - 36);
+        pdf.text(ll, m + 36, y);
+        y += ll.length * 5.5 + 3;
+        hline(m, y, 210 - m, y); y += 3;
+      });
+      y += 4;
+    }
+
+    // Description
+    if (bodyTexts.length) {
+      hline(m, y, 210 - m, y); y += 7;
+      setB(7); rgb(150, 150, 150);
+      pdf.text('О ПРОГРАММЕ', m, y); y += 5;
+      setN(10); rgb(50, 50, 50);
+      bodyTexts.forEach(function(t) {
+        var lines = pdf.splitTextToSize(t, pw);
+        // Check page overflow
+        if (y + lines.length * 5 > 270) { pdf.addPage(); y = m; }
+        pdf.text(lines, m, y);
+        y += lines.length * 5 + 4;
+      });
+    }
+
+    // Team
+    if (teamItems.length) {
+      if (y + 30 > 270) { pdf.addPage(); y = m; }
+      hline(m, y, 210 - m, y); y += 7;
+      setB(7); rgb(150, 150, 150);
+      pdf.text('КОМАНДА', m, y); y += 5;
+      var col = Math.ceil(teamItems.length / 2);
+      teamItems.forEach(function(t, i) {
+        var tx = i < col ? m : m + pw / 2;
+        var ty = y + (i % col) * 10;
+        setB(7); rgb(150, 150, 150); pdf.text(t[0].toUpperCase(), tx, ty);
+        setN(9); rgb(50, 50, 50);
+        var tl = pdf.splitTextToSize(t[1], pw / 2 - 6);
+        pdf.text(tl, tx, ty + 4.5);
+      });
+      y += col * 10 + 10;
+    }
+
+    // QR
+    if (y + 40 > 270) { pdf.addPage(); y = m; }
+    hline(m, y, 210 - m, y, 26, 74, 58, 0.4); y += 6;
+    if (qrPage) {
+      pdf.addImage(qrPage, 'PNG', m, y, 28, 28);
+      setN(7); rgb(150, 150, 150);
+      pdf.text('Страница программы', m, y + 32);
+      setN(7); rgb(190, 190, 190);
+      pdf.text(PAGE_URL.replace('https://', ''), m, y + 36);
+    }
+
+    // Save
+    var slug = PAGE_URL.replace(/.*\/programmy\//, '').replace(/\/$/, '') || 'program';
+    pdf.save(slug + '-kimmeria-art.pdf');
+    btn.innerHTML = orig; btn.disabled = false;
+  }).catch(function(err) {
+    console.error(err); btn.innerHTML = orig; btn.disabled = false;
+    alert('Не удалось создать PDF.');
+  });
 }
 function saveKPPDF(){
   saveKPToStorage();var d=getKPData();
