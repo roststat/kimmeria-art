@@ -86,6 +86,13 @@
     .schedule-more:hover { background: #f5f5f5; }
     .schedule-num { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; background: #f0f0f0; color: #666666; padding: 2px 8px; border-radius: 100px; margin-bottom: 6px; }
 
+    /* ARCHIVE */
+    #archive-list .schedule-item { grid-template-columns: 100px 80px 1fr; gap: 16px; cursor: pointer; }
+    #archive-list .schedule-item:hover { background: #fafafa; }
+    #archive-list .schedule-thumb { width: 100px; height: 133px; }
+    #archive-list .schedule-name { font-size: 14px; }
+    #archive-list .schedule-more { display: none; }
+
     /* AUTHOR */
     .author-block { margin-top: 48px; padding-top: 40px; border-top: 1px solid #e8e8e8; max-width: 620px; }
     .author-label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #666666; font-weight: 600; margin-bottom: 16px; }
@@ -467,7 +474,13 @@ document.addEventListener('keydown', function(e) { if (e.key === 'Escape') close
 
   if (past.length > 0) {
     archiveBlock.style.display = 'block';
-    past.forEach(function(item) { archiveList.appendChild(item); });
+    past.forEach(function(item) {
+      var link = item.querySelector('a.schedule-thumb');
+      if (link) {
+        item.addEventListener('click', function() { window.location.href = link.href; });
+      }
+      archiveList.appendChild(item);
+    });
   }
 })();
 </script>
