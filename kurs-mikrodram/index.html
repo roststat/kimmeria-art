@@ -37,20 +37,22 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 60px; di
 }
 
 /* HERO */
-.hero { padding-top: 60px; background: #0d0d0d; position: relative; overflow: hidden; }
-.hero-bg { position: absolute; inset: -40px; background-image: url('https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156896/kimmeria/master-mikrodrama-cover.jpg'); background-size: cover; background-position: center; filter: blur(28px); opacity: 0.3; transform: scale(1.08); }
-.hero-inner { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 80px 48px 88px; text-align: center; }
-.hero-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 20px; }
-.hero-title { font-size: 52px; font-weight: 800; color: #fff; line-height: 1.08; letter-spacing: -0.02em; margin-bottom: 24px; }
-.hero-title span { color: var(--accent-mid); }
-.hero-sub { font-size: 20px; color: rgba(255,255,255,0.7); margin-bottom: 36px; line-height: 1.6; }
-.hero-meta { display: flex; gap: 32px; justify-content: center; flex-wrap: wrap; margin-bottom: 44px; }
-.hero-meta-item { display: flex; flex-direction: column; align-items: center; gap: 4px; }
-.hero-meta-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); }
-.hero-meta-value { font-size: 16px; font-weight: 700; color: #fff; }
-.btn-hero { display: inline-block; padding: 18px 48px; background: #fff; color: #111; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 800; text-decoration: none; border-radius: 100px; transition: transform 0.15s, box-shadow 0.15s; box-shadow: 0 4px 24px rgba(0,0,0,0.4); letter-spacing: 0.01em; }
-.btn-hero:hover { transform: translateY(-2px); box-shadow: 0 8px 36px rgba(0,0,0,0.5); }
-.hero-note { font-size: 12px; color: rgba(255,255,255,0.3); margin-top: 14px; }
+.hero { padding-top: 60px; background: #ffffff; border-bottom: 1px solid #e8e8e8; }
+.hero-inner { max-width: 1100px; margin: 0 auto; padding: 72px 48px 80px; display: grid; grid-template-columns: 1fr 380px; gap: 64px; align-items: center; }
+.hero-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; }
+.hero-title { font-size: 48px; font-weight: 800; color: #111; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 20px; }
+.hero-title span { color: var(--accent); }
+.hero-sub { font-size: 18px; color: #666; margin-bottom: 32px; line-height: 1.6; }
+.hero-chips { display: flex; flex-wrap: wrap; gap: 10px; }
+.hero-chip { font-size: 13px; font-weight: 600; color: #444; background: #f5f5f5; padding: 7px 16px; border-radius: 100px; }
+.hero-chip strong { color: #111; }
+/* hero form card */
+.hero-form-card { background: #f8f8f8; border-radius: 20px; padding: 32px; border: 1px solid #e8e8e8; }
+.hero-form-title { font-size: 18px; font-weight: 800; color: #111; margin-bottom: 4px; }
+.hero-form-price { font-size: 36px; font-weight: 800; color: var(--accent); margin-bottom: 20px; letter-spacing: -0.02em; }
+.btn-hero { display: block; width: 100%; padding: 16px 24px; background: var(--accent); color: #fff; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 800; text-decoration: none; border: none; border-radius: 100px; cursor: pointer; text-align: center; transition: opacity 0.15s; }
+.btn-hero:hover { opacity: 0.88; }
+.hero-note { font-size: 12px; color: #999; margin-top: 12px; text-align: center; line-height: 1.5; }
 
 /* SECTIONS */
 .section { padding: 80px 40px; max-width: 1100px; margin: 0 auto; }
@@ -162,7 +164,7 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 60px; di
 
 /* RESPONSIVE */
 @media (max-width: 900px) {
-  .hero-inner { padding: 60px 24px 72px; }
+  .hero-inner { grid-template-columns: 1fr; gap: 32px; padding: 48px 24px 56px; }
   .hero-title { font-size: 36px; }
   .hero-sub { font-size: 17px; }
   .section { padding: 60px 24px; }
@@ -187,7 +189,7 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 60px; di
 }
 </style>
 </head>
-<body>
+<body id="top">
 
 <nav>
   <a href="/" class="nav-logo">Киммерия-Арт</a>
@@ -200,31 +202,32 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 60px; di
 
 <!-- БЛОК 1: HERO -->
 <div class="hero">
-  <div class="hero-bg"></div>
   <div class="hero-inner">
-    <div class="hero-eyebrow">Курс от кинокомпании «Киммерия»</div>
-    <h1 class="hero-title">Научись снимать<br><span>вертикальные сериалы</span> —<br>новый жанр кино,<br>который захватывает мир</h1>
-    <p class="hero-sub">8 встреч. 4 недели. От сценария до готового материала.</p>
-    <div class="hero-meta">
-      <div class="hero-meta-item">
-        <span class="hero-meta-label">Начало</span>
-        <span class="hero-meta-value">5 мая 2026</span>
-      </div>
-      <div class="hero-meta-item">
-        <span class="hero-meta-label">Занятия</span>
-        <span class="hero-meta-value">Вт и Сб, 18:00</span>
-      </div>
-      <div class="hero-meta-item">
-        <span class="hero-meta-label">Формат</span>
-        <span class="hero-meta-value">8 встреч · 4 недели</span>
-      </div>
-      <div class="hero-meta-item">
-        <span class="hero-meta-label">Стоимость</span>
-        <span class="hero-meta-value">15 000 ₽</span>
+    <div class="hero-text">
+      <div class="hero-eyebrow">Курс от кинокомпании «Киммерия»</div>
+      <h1 class="hero-title">Научись снимать<br><span>вертикальные сериалы</span></h1>
+      <p class="hero-sub">Новый жанр кино, который захватывает мир.</p>
+      <div class="hero-chips">
+        <span class="hero-chip"><strong>5 мая</strong> — старт</span>
+        <span class="hero-chip"><strong>8 встреч</strong> · 4 недели</span>
+        <span class="hero-chip">Вт и Сб · 18:00</span>
       </div>
     </div>
-    <a href="#price" class="btn-hero">Оставить заявку — 15 000 ₽ →</a>
-    <p class="hero-note">Оплата на месте при первом посещении</p>
+    <div class="hero-form-card">
+      <div class="hero-form-title">Оставить заявку</div>
+      <div class="hero-form-price">15 000 ₽</div>
+      <form class="reg-form" id="regForm" onsubmit="submitForm(event)">
+        <input type="text" name="name" placeholder="Имя и фамилия" required maxlength="80">
+        <input type="tel" name="phone" placeholder="Номер телефона" required maxlength="20">
+        <label class="form-consent">
+          <input type="checkbox" name="consent" required>
+          <span>Согласен на <a href="/privacy/" target="_blank">обработку персональных данных</a></span>
+        </label>
+        <button type="submit" class="btn-hero" id="submitBtn">Записаться →</button>
+        <div class="form-error" id="formError">Ошибка отправки. Попробуйте ещё раз.</div>
+      </form>
+      <p class="hero-note">Оплата на месте при первом посещении</p>
+    </div>
   </div>
 </div>
 
@@ -486,22 +489,9 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 60px; di
     </div>
   </div>
 
-  <div class="form-inner" style="max-width:100%;margin:0;">
-    <div class="form-card">
-      <div class="form-title">Оставить заявку →</div>
-      <p class="form-sub">Начало курса — 5 мая 2026. Вторник и суббота в 18:00. Мест ограниченное количество.</p>
-      <form class="reg-form" id="regForm" onsubmit="submitForm(event)">
-        <input type="text" name="name" placeholder="Имя и фамилия" required maxlength="80">
-        <input type="tel" name="phone" placeholder="Номер телефона" required maxlength="20">
-        <label class="form-consent">
-          <input type="checkbox" name="consent" required>
-          <span>Я даю согласие на <a href="/privacy/" target="_blank">обработку персональных данных</a> в соответствии с Федеральным законом № 152-ФЗ</span>
-        </label>
-        <button type="submit" class="btn-submit" id="submitBtn">Оставить заявку →</button>
-        <div class="form-error" id="formError">Ошибка отправки. Попробуйте ещё раз.</div>
-      </form>
-      <p style="font-size:13px;color:#999;margin-top:14px;text-align:center;line-height:1.6;">Вариант оплаты обсуждается с менеджером после подачи заявки. Оплата производится на месте.</p>
-    </div>
+  <div style="text-align:center;margin-top:8px;">
+    <a href="#top" class="btn-price" style="display:inline-block;width:auto;padding:16px 48px;">Оставить заявку →</a>
+    <p class="price-footnote" style="margin-top:14px;">Вариант оплаты обсуждается с менеджером после подачи заявки.<br>Оплата производится на месте при первом посещении.</p>
   </div>
 </div>
 
