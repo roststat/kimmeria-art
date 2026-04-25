@@ -244,10 +244,10 @@
       </ul>
     </div>
 
-    <h2 class="schedule-title">Расписание на май</h2>
+    <h2 class="schedule-title" id="upcoming-title">Ближайшие встречи</h2>
     <p class="schedule-subtitle">Встречи, дегустации, лекции</p>
-    <ul class="schedule-list">
-      <li class="schedule-item">
+    <ul class="schedule-list" id="upcoming-list">
+      <li class="schedule-item" data-date="2026-05-06">
         <a href="/vstrecha-sladkoe/" class="schedule-thumb"><img src="/photos/idealnaya-sreda-sladkoe.jpg" alt="А что у нас на сладкое?" loading="lazy"></a>
         <div class="schedule-date">6 мая<span>Среда · 19:00</span></div>
         <div>
@@ -258,7 +258,7 @@
           <a href="/vstrecha-sladkoe/" class="schedule-more">Подробнее →</a>
         </div>
       </li>
-      <li class="schedule-item">
+      <li class="schedule-item" data-date="2026-05-13">
         <a href="/vstrecha-kvartirnyy/" class="schedule-thumb"><img src="/photos/idealnaya-sreda-kvartirnyy.jpg" alt="Квартирный вопрос только испортил их" loading="lazy"></a>
         <div class="schedule-date">13 мая<span>Среда · 19:00</span></div>
         <div>
@@ -269,12 +269,7 @@
           <a href="/vstrecha-kvartirnyy/" class="schedule-more">Подробнее →</a>
         </div>
       </li>
-    </ul>
-
-    <h2 class="schedule-title" style="margin-top:48px;">Апрель — прошедшие встречи</h2>
-    <p class="schedule-subtitle">Авторский цикл лекций «Ялта: Территория Божественных игр» — Наталия Добрынская</p>
-    <ul class="schedule-list">
-      <li class="schedule-item">
+      <li class="schedule-item" data-date="2026-04-15">
         <a href="/lecture-afrodita/" class="schedule-thumb"><img src="/photos/lecture-afrodita.jpg" alt="Пространство Афродиты" loading="lazy"></a>
         <div class="schedule-date">15 апр<span>Среда · 19:00</span></div>
         <div>
@@ -285,7 +280,7 @@
           <a href="/lecture-afrodita/" class="schedule-more">Подробнее →</a>
         </div>
       </li>
-      <li class="schedule-item">
+      <li class="schedule-item" data-date="2026-04-22">
         <a href="/lecture-gekata/" class="schedule-thumb"><img src="/photos/lecture-gekata.jpg" alt="Геката в Фияльте" loading="lazy"></a>
         <div class="schedule-date">22 апр<span>Среда · 19:00</span></div>
         <div>
@@ -296,7 +291,7 @@
           <a href="/lecture-gekata/" class="schedule-more">Подробнее →</a>
         </div>
       </li>
-      <li class="schedule-item">
+      <li class="schedule-item" data-date="2026-04-29">
         <a href="/lecture-lilit/" class="schedule-thumb"><img src="/photos/lecture-lilit.jpg" alt="Осторожно, Лилит!" loading="lazy"></a>
         <div class="schedule-date">29 апр<span>Среда · 19:00</span></div>
         <div>
@@ -319,6 +314,12 @@
         </div>
       </div>
       <p class="author-desc">Беллетрист, преподаватель английского и латыни, краевед-исследователь. Идейный основатель клуба «Идеальная среда». Автор уникальных маршрутов по Крыму.</p>
+    </div>
+
+    <div id="archive-block" style="display:none; margin-top:48px;">
+      <h2 class="schedule-title">Архив встреч</h2>
+      <p class="schedule-subtitle" id="archive-subtitle">Прошедшие мероприятия</p>
+      <ul class="schedule-list" id="archive-list"></ul>
     </div>
 
   </div>
@@ -428,6 +429,47 @@ function closeLightbox() {
   document.getElementById('lightbox').classList.remove('open');
 }
 document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeLightbox(); });
+</script>
+<script>
+(function() {
+  var today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  var upcomingList = document.getElementById('upcoming-list');
+  var archiveList = document.getElementById('archive-list');
+  var archiveBlock = document.getElementById('archive-block');
+  var upcomingTitle = document.getElementById('upcoming-title');
+
+  var items = Array.from(upcomingList.querySelectorAll('.schedule-item'));
+
+  var upcoming = [];
+  var past = [];
+
+  items.forEach(function(item) {
+    var d = new Date(item.dataset.date);
+    if (d >= today) {
+      upcoming.push(item);
+    } else {
+      past.push(item);
+    }
+  });
+
+  upcoming.sort(function(a, b) { return new Date(a.dataset.date) - new Date(b.dataset.date); });
+  past.sort(function(a, b) { return new Date(b.dataset.date) - new Date(a.dataset.date); });
+
+  upcomingList.innerHTML = '';
+  if (upcoming.length === 0) {
+    upcomingTitle.style.display = 'none';
+    upcomingList.previousElementSibling.style.display = 'none';
+  } else {
+    upcoming.forEach(function(item) { upcomingList.appendChild(item); });
+  }
+
+  if (past.length > 0) {
+    archiveBlock.style.display = 'block';
+    past.forEach(function(item) { archiveList.appendChild(item); });
+  }
+})();
 </script>
 <script src="/footer.js"></script>
 </body>
