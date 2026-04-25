@@ -4,7 +4,9 @@
     { "source": "/api/auth", "destination": "/api/auth/index" },
     { "source": "/privacy", "destination": "/privacy/index.html" },
     { "source": "/terms", "destination": "/terms/index.html" },
-    { "source": "/cookies", "destination": "/cookies/index.html" }
+    { "source": "/cookies", "destination": "/cookies/index.html" },
+    { "source": "/kurs-mikrodram", "destination": "/kurs-mikrodram/index.html" },
+    { "source": "/spasibo", "destination": "/spasibo/index.html" }
   ],
   "headers": [
     {

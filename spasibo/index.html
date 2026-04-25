@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Вы записаны на курс! — Кинокомпания «Киммерия»</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; background: #f8f8f8; color: #111; font-size: 16px; line-height: 1.6; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 20px; }
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 60px; display: flex; align-items: center; padding: 0 40px; background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid #e8e8e8; }
+.nav-logo { font-size: 15px; font-weight: 700; color: #111; text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; }
+.card { background: #fff; border-radius: 24px; padding: 56px 48px; max-width: 520px; width: 100%; text-align: center; box-shadow: 0 8px 40px rgba(0,0,0,0.08); margin-top: 60px; }
+.icon { font-size: 64px; margin-bottom: 24px; }
+.title { font-size: 32px; font-weight: 800; color: #111; line-height: 1.2; margin-bottom: 16px; letter-spacing: -0.01em; }
+.subtitle { font-size: 16px; color: #555; line-height: 1.7; margin-bottom: 32px; }
+.details { background: #f0f7f5; border-radius: 16px; padding: 24px; text-align: left; margin-bottom: 32px; }
+.details-row { display: flex; gap: 12px; align-items: baseline; padding: 9px 0; border-bottom: 1px solid #ddeee9; }
+.details-row:last-child { border-bottom: none; }
+.details-key { font-size: 11px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: #1a4a3a; min-width: 88px; flex-shrink: 0; }
+.details-val { font-size: 15px; color: #111; font-weight: 600; }
+.btn { display: block; width: 100%; padding: 16px 24px; background: #1a4a3a; color: #fff; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 700; text-decoration: none; border-radius: 100px; transition: opacity 0.15s; text-align: center; }
+.btn:hover { opacity: 0.88; }
+@media (max-width: 600px) {
+  .card { padding: 36px 24px; }
+  .title { font-size: 26px; }
+  nav { padding: 0 20px; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="/" class="nav-logo">Киммерия-Арт</a>
+</nav>
+<div class="card">
+  <div class="icon">🎬</div>
+  <h1 class="title">Вы записаны на курс!</h1>
+  <p class="subtitle">Спасибо! Мы получили вашу заявку. В ближайшее время с вами свяжется менеджер для подтверждения записи и уточнения деталей оплаты.</p>
+  <div class="details">
+    <div class="details-row">
+      <span class="details-key">Начало</span>
+      <span class="details-val">5 мая 2026</span>
+    </div>
+    <div class="details-row">
+      <span class="details-key">Расписание</span>
+      <span class="details-val">Вторник и суббота, 18:00</span>
+    </div>
+    <div class="details-row">
+      <span class="details-key">Формат</span>
+      <span class="details-val">8 встреч · 4 недели</span>
+    </div>
+    <div class="details-row">
+      <span class="details-key">Оплата</span>
+      <span class="details-val">На месте при первом посещении</span>
+    </div>
+  </div>
+  <a href="/" class="btn">Вернуться на главную →</a>
+</div>
+<div id="site-footer"></div>
+<script src="/footer.js"></script>
+</body>
+</html>
