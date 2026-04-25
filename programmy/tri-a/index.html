@@ -268,23 +268,54 @@ function getKPData() { var d={}; ['price','rider','terms','contact','extra'].for
 function saveKPToStorage() { localStorage.setItem(KP_STORAGE_KEY, JSON.stringify(getKPData())); }
 document.addEventListener('DOMContentLoaded', function() { ['price','rider','terms','contact','extra'].forEach(function(k) { var el=document.getElementById('kp-'+k); if(el) el.addEventListener('input',saveKPToStorage); }); if(sessionStorage.getItem(SESSION_KEY)==='1') { showAdminWorkspace(); loadKPData(); document.getElementById('adminPanel').classList.add('open'); } });
 function _arrayBufferToBase64(buf) { var b='',u=new Uint8Array(buf); for(var i=0;i<u.byteLength;i++) b+=String.fromCharCode(u[i]); return btoa(b); }
+function fetchImgDataUrl(url) {
+  return fetch(url).then(function(r){return r.blob();}).then(function(blob){return new Promise(function(resolve){var fr=new FileReader();fr.onload=function(){resolve(fr.result);};fr.readAsDataURL(blob);});}).catch(function(){return null;});
+}
 function savePDF() {
   if (isMobile()) { document.getElementById('mobilePdfOverlay').classList.add('open'); return; }
   var btn = document.querySelector('.btn-pdf-main'), orig = btn.innerHTML; btn.innerHTML='Формируется…'; btn.disabled=true;
-  Promise.all([fetch('/fonts/NotoSans-Regular.ttf').then(function(r){return r.arrayBuffer();}),fetch('/fonts/NotoSans-Bold.ttf').then(function(r){return r.arrayBuffer();}),makeQR(PAGE_URL,200)])
+  var photoUrls = ['/photos/tri-a-1.jpg','/photos/tri-a-2.jpg','/photos/tri-a-3.jpg','/photos/tri-a-4.jpg','/photos/tri-a-5.jpg','/photos/tri-a-6.jpg'];
+  Promise.all([
+    fetch('/fonts/NotoSans-Regular.ttf').then(function(r){return r.arrayBuffer();}),
+    fetch('/fonts/NotoSans-Bold.ttf').then(function(r){return r.arrayBuffer();}),
+    makeQR(PAGE_URL,200),
+    fetchImgDataUrl('/photos/tri-a-1.jpg')
+  ].concat(photoUrls.map(fetchImgDataUrl)))
   .then(function(res) {
+    var fontReg=res[0], fontBold=res[1], qr=res[2], coverImg=res[3];
+    var galleryImgs=res.slice(4);
     var pdf=new window.jspdf.jsPDF({orientation:'portrait',unit:'mm',format:'a4'});
-    pdf.addFileToVFS('NotoSans-Regular.ttf',_arrayBufferToBase64(res[0])); pdf.addFileToVFS('NotoSans-Bold.ttf',_arrayBufferToBase64(res[1]));
+    pdf.addFileToVFS('NotoSans-Regular.ttf',_arrayBufferToBase64(fontReg)); pdf.addFileToVFS('NotoSans-Bold.ttf',_arrayBufferToBase64(fontBold));
     pdf.addFont('NotoSans-Regular.ttf','NotoSans','normal'); pdf.addFont('NotoSans-Bold.ttf','NotoSans','bold');
-    var qr=res[2], m=16, pw=178, y=m;
+    var m=16, pw=178, y=m;
     function setN(s){pdf.setFont('NotoSans','normal');pdf.setFontSize(s);} function setB(s){pdf.setFont('NotoSans','bold');pdf.setFontSize(s);}
     function rgb(r,g,b){pdf.setTextColor(r,g,b);} function hline(x1,y1,x2,y2,r,g,b,w){pdf.setDrawColor(r||200,g||200,b||200);pdf.setLineWidth(w||0.2);pdf.line(x1,y1,x2,y2);}
+    /* Шапка */
     setN(9);rgb(170,170,170);pdf.text('СПЕКТАКЛЬ-ВЫСТАВКА  18+  75 МИНУТ',m,y+4);hline(m,y+8,210-m,y+8,26,74,58,0.8);y+=15;
-    setB(20);rgb(17,17,17);pdf.text('"Три А"',m,y);y+=7;setN(11);rgb(100,100,100);pdf.text('Спектакль-выставка  Киммерия-Арт',m,y);y+=12;
+    /* Обложка + заголовок */
+    if(coverImg){pdf.addImage(coverImg,'JPEG',m,y,52,52*4/3);setB(20);rgb(17,17,17);pdf.text('"Три А"',m+58,y+10);setN(11);rgb(100,100,100);pdf.text('Спектакль-выставка  Киммерия-Арт',m+58,y+18);y+=52*4/3+6;}else{setB(20);rgb(17,17,17);pdf.text('"Три А"',m,y);y+=7;setN(11);rgb(100,100,100);pdf.text('Спектакль-выставка  Киммерия-Арт',m,y);y+=12;}
+    /* Характеристики */
     hline(m,y,210-m,y);y+=7;setB(7);rgb(150,150,150);pdf.text('ХАРАКТЕРИСТИКИ',m,y);y+=5;
     [['Жанр','Иммерсивный спектакль-выставка'],['Хронометраж','75 минут'],['Возраст','18+'],['Формат','Театр + contemporary dance + вернисаж'],['Площадка','Выставочное пространство или зал с возможностью развески картин']].forEach(function(s){setB(8);rgb(17,17,17);pdf.text(s[0],m,y);setN(8);rgb(80,80,80);var ll=pdf.splitTextToSize(s[1],pw-36);pdf.text(ll,m+36,y);y+=ll.length*5.5+3;hline(m,y,210-m,y);y+=3;});y+=4;
+    /* О спектакле */
     hline(m,y,210-m,y);y+=7;setB(7);rgb(150,150,150);pdf.text('О СПЕКТАКЛЕ',m,y);y+=5;setN(10);rgb(50,50,50);
-    var t=pdf.splitTextToSize('Уникальный проект, ломающий границы между зрителем и художником. Подлинные картины трёх крымских художниц (Анна Павленко, Анна Храпко, Алла Лебеденко) оживают через театральное действие, contemporary dance и поэзию пространства.',pw);pdf.text(t,m,y);y+=t.length*5+10;
+    var t=pdf.splitTextToSize('Уникальный проект, ломающий границы между зрителем и художником. В основе — подлинные картины трёх известных крымских художниц: Анны Павленко, Анны Храпко и Аллы Лебеденко. Каждая картина становится отправной точкой для театрального исследования, превращаясь в живую автобиографию, рассказанную через пластику, слово, свет и музыку.',pw);pdf.text(t,m,y);y+=t.length*5+4;
+    var t2=pdf.splitTextToSize('Три истории — о творчестве, страхе, свободе и поиске. Личные интервью, документальные тексты, хореография и видеоарт создают целостную эстетическую среду, в которую погружается зритель. Гости не просто смотрят спектакль — они проживают три истории о природе творчества.',pw);pdf.text(t2,m,y);y+=t2.length*5+4;
+    var t3=pdf.splitTextToSize('Формат адаптируется под любое камерное пространство: конференц-зал, лобби-зону, открытую террасу. Команда обеспечивает доставку и монтаж выставочных работ, приезд полного творческого состава, профессиональный звук, свет и видеооборудование. Организация мероприятия «под ключ».',pw);pdf.text(t3,m,y);y+=t3.length*5+8;
+    /* Галерея фотографий */
+    var validPhotos=galleryImgs.filter(function(i){return i;});
+    if(validPhotos.length>0){
+      hline(m,y,210-m,y);y+=7;setB(7);rgb(150,150,150);pdf.text('ФОТОГРАФИИ С ПРОГРАММЫ',m,y);y+=6;
+      var cols=3, imgW=(pw-(cols-1)*4)/cols, imgH=imgW*3/4, row=0, col=0;
+      validPhotos.forEach(function(img,idx){
+        var x=m+col*(imgW+4);
+        if(y+imgH>290){pdf.addPage();y=m;}
+        pdf.addImage(img,'JPEG',x,y,imgW,imgH);
+        col++;if(col>=cols){col=0;row++;y+=imgH+4;}
+      });
+      if(col>0)y+=imgH+8;else y+=4;
+    }
+    /* QR */
     hline(m,y,210-m,y,26,74,58,0.4);y+=6;
     if(qr){pdf.addImage(qr,'PNG',m,y,28,28);setN(7);rgb(150,150,150);pdf.text('Страница программы',m,y+32);setN(7);rgb(190,190,190);pdf.text('art-kimmeria.ru/programmy/tri-a/',m,y+36);}
     pdf.save('tri-a-kimmeria-art.pdf'); btn.innerHTML=orig; btn.disabled=false;
