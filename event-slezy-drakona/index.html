@@ -87,6 +87,12 @@
     .fab-back { position: fixed; top: 72px; right: 20px; z-index: 200; display: flex; align-items: center; gap: 7px; background: #ffffff; color: #111111; font-family: inherit; font-size: 13px; font-weight: 600; padding: 9px 16px 9px 12px; border-radius: 100px; border: 1px solid #e8e8e8; box-shadow: 0 4px 16px rgba(0,0,0,0.10); cursor: pointer; text-decoration: none; transition: box-shadow 0.15s, transform 0.15s; }
     .fab-back:hover { box-shadow: 0 6px 22px rgba(0,0,0,0.14); transform: translateY(-1px); }
     .fab-back svg { width: 16px; height: 16px; flex-shrink: 0; }
+    .event-gallery { margin-bottom: 40px; }
+    .event-gallery-title { font-size: 20px; font-weight: 600; color: #111111; margin-bottom: 16px; }
+    .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .gallery-grid img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 8px; cursor: zoom-in; transition: opacity 0.15s; }
+    .gallery-grid img:hover { opacity: 0.88; }
+    @media (max-width: 600px) { .gallery-grid { grid-template-columns: repeat(2, 1fr); } }
     .author-block { margin-top: 48px; padding-top: 40px; border-top: 1px solid #e8e8e8; max-width: 620px; }
     .author-label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #666666; font-weight: 600; margin-bottom: 16px; }
     .author-row { display: flex; align-items: center; gap: 20px; margin-bottom: 16px; }
@@ -176,6 +182,17 @@
         <li><strong>Режиссёр</strong> Татьяна Мирошник</li>
         <li><strong>Год</strong> 2025</li>
       </ul>
+    </div>
+
+    <div class="event-gallery">
+      <h2 class="event-gallery-title">Фотографии с показа</h2>
+      <div class="gallery-grid">
+        <img src="/photos/slezy-drakona-1.jpg" alt="Слёзы дракона — фото 1" onclick="openLightbox(this.src)">
+        <img src="/photos/slezy-drakona-2.jpg" alt="Слёзы дракона — фото 2" onclick="openLightbox(this.src)">
+        <img src="/photos/slezy-drakona-3.jpg" alt="Слёзы дракона — фото 3" onclick="openLightbox(this.src)">
+        <img src="/photos/slezy-drakona-4.jpg" alt="Слёзы дракона — фото 4" onclick="openLightbox(this.src)">
+        <img src="/photos/slezy-drakona-5.jpg" alt="Слёзы дракона — фото 5" onclick="openLightbox(this.src)">
+      </div>
     </div>
 
     <div class="author-block">
