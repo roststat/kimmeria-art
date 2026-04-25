@@ -9,7 +9,7 @@
 <meta property="og:url" content="https://art-kimmeria.ru/programmy/ryba/">
 <meta property="og:title" content="«Лучше я буду рыбой…» — спектакль-притча · Киммерия-Арт">
 <meta property="og:description" content="Спектакль по мотивам Чингиза Айтматова «Белый пароход». Театр анимации, тотемы, живая этническая музыка. Камерный формат для вашей площадки.">
-<meta property="og:image" content="https://art-kimmeria.ru/photos/event-ryba.jpg">
+<meta property="og:image" content="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156861/kimmeria/event-ryba.jpg">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -295,7 +295,7 @@ nav {
     <!-- Афиша -->
     <div class="poster-wrap">
       <div class="poster-label">Пример рекламного баннера мероприятия</div>
-      <img class="poster-img" src="/photos/event-ryba.jpg" alt="Афиша спектакля «Лучше я буду рыбой…»">
+      <img class="poster-img" src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156861/kimmeria/event-ryba.jpg" alt="Афиша спектакля «Лучше я буду рыбой…»">
     </div>
 
     <!-- Характеристики + кнопки -->
@@ -410,17 +410,17 @@ nav {
   <div class="content-block">
     <div class="block-eyebrow">Фотографии с мероприятия</div>
     <div class="gallery-grid">
-      <div class="gallery-item" onclick="openLightbox('/photos/event-ryba-photo-1.jpg')">
-        <img src="/photos/event-ryba-photo-1.jpg" alt="">
+      <div class="gallery-item" onclick="openLightbox('https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156858/kimmeria/event-ryba-photo-1.jpg')">
+        <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156858/kimmeria/event-ryba-photo-1.jpg" alt="">
       </div>
-      <div class="gallery-item" onclick="openLightbox('/photos/event-ryba-photo-2.jpg')">
-        <img src="/photos/event-ryba-photo-2.jpg" alt="">
+      <div class="gallery-item" onclick="openLightbox('https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156858/kimmeria/event-ryba-photo-2.jpg')">
+        <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156858/kimmeria/event-ryba-photo-2.jpg" alt="">
       </div>
-      <div class="gallery-item" onclick="openLightbox('/photos/event-ryba-photo-3.jpg')">
-        <img src="/photos/event-ryba-photo-3.jpg" alt="">
+      <div class="gallery-item" onclick="openLightbox('https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156859/kimmeria/event-ryba-photo-3.jpg')">
+        <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156859/kimmeria/event-ryba-photo-3.jpg" alt="">
       </div>
-      <div class="gallery-item" onclick="openLightbox('/photos/event-ryba-photo-4.jpg')">
-        <img src="/photos/event-ryba-photo-4.jpg" alt="">
+      <div class="gallery-item" onclick="openLightbox('https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156859/kimmeria/event-ryba-photo-4.jpg')">
+        <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156859/kimmeria/event-ryba-photo-4.jpg" alt="">
       </div>
     </div>
   </div>
@@ -608,7 +608,7 @@ function savePDF() {
   Promise.all([
     fetch('/fonts/NotoSans-Regular.ttf').then(function(r){ return r.arrayBuffer(); }),
     fetch('/fonts/NotoSans-Bold.ttf').then(function(r){ return r.arrayBuffer(); }),
-    fetch('/photos/event-ryba.jpg').then(function(r){ return r.blob(); }).then(blobToBase64),
+    fetch('https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156861/kimmeria/event-ryba.jpg').then(function(r){ return r.blob(); }).then(blobToBase64),
     makeQR(PAGE_URL, 200),
     makeQR(VIDEO_URL, 200)
   ])

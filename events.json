@@ -8,7 +8,7 @@
     "format": "лекция",
     "location": "Ялта, ул. Игнатенко, 5, офис 2",
     "price": "1 000 ₽",
-    "image": "https://art-kimmeria.ru/photos/idealnaya-sreda-kvartirnyy.jpg",
+    "image": "https://art-kimmeria.ruhttps://res.cloudinary.com/dmzsczjzd/image/upload/v1777156882/kimmeria/idealnaya-sreda-kvartirnyy.jpg",
     "url": "https://art-kimmeria.ru/vstrecha-kvartirnyy/"
   },
   {
@@ -20,7 +20,7 @@
     "format": "дегустация",
     "location": "Ялта, ул. Игнатенко, 5, офис 2",
     "price": "1 000 ₽",
-    "image": "https://art-kimmeria.ru/photos/idealnaya-sreda-sladkoe.jpg",
+    "image": "https://art-kimmeria.ruhttps://res.cloudinary.com/dmzsczjzd/image/upload/v1777156883/kimmeria/idealnaya-sreda-sladkoe.jpg",
     "url": "https://art-kimmeria.ru/vstrecha-sladkoe/"
   },
   {
@@ -32,7 +32,7 @@
     "format": "кинопоказ",
     "location": "Ялта, ул. Игнатенко, 5, офис 2",
     "price": "700 ₽",
-    "image": "https://art-kimmeria.ru/photos/event-jarmusch-cover.jpg",
+    "image": "https://art-kimmeria.ruhttps://res.cloudinary.com/dmzsczjzd/image/upload/v1777156818/kimmeria/event-jarmusch-cover.jpg",
     "url": "https://art-kimmeria.ru/event-jarmusch/"
   },
   {
@@ -44,7 +44,7 @@
     "format": "спектакль",
     "location": "Галерея «Стикс», ул. Игнатенко, 10",
     "price": "800 ₽",
-    "image": "https://art-kimmeria.ru/photos/photo_819@30-03-2026_09-17-02.jpg",
+    "image": "https://art-kimmeria.ruhttps://res.cloudinary.com/dmzsczjzd/image/upload/v1777156925/kimmeria/photo_819%4030-03-2026_09-17-02.jpg",
     "url": "https://art-kimmeria.ru/event-uzhe/"
   },
   {
@@ -56,7 +56,7 @@
     "format": "спектакль",
     "location": "Галерея «Стикс», ул. Игнатенко, 10",
     "price": "2 000 ₽",
-    "image": "https://art-kimmeria.ru/photos/event-ryba.jpg",
+    "image": "https://art-kimmeria.ruhttps://res.cloudinary.com/dmzsczjzd/image/upload/v1777156861/kimmeria/event-ryba.jpg",
     "url": "https://art-kimmeria.ru/event-ryba/"
   },
   {
@@ -68,7 +68,7 @@
     "format": "лекция",
     "location": "Арт-пространство «Киммерия», ул. Игнатенко, 5",
     "price": "1 000 ₽",
-    "image": "https://art-kimmeria.ru/photos/lecture-afrodita.jpg",
+    "image": "https://art-kimmeria.ruhttps://res.cloudinary.com/dmzsczjzd/image/upload/v1777156883/kimmeria/lecture-afrodita.jpg",
     "url": "https://art-kimmeria.ru/lecture-afrodita/"
   },
   {
@@ -80,7 +80,7 @@
     "format": "лекция",
     "location": "Арт-пространство «Киммерия», ул. Игнатенко, 5",
     "price": "1 000 ₽",
-    "image": "https://art-kimmeria.ru/photos/lecture-gekata.jpg",
+    "image": "https://art-kimmeria.ruhttps://res.cloudinary.com/dmzsczjzd/image/upload/v1777156886/kimmeria/lecture-gekata.jpg",
     "url": "https://art-kimmeria.ru/lecture-gekata/"
   },
   {
@@ -92,7 +92,7 @@
     "format": "лекция",
     "location": "Арт-пространство «Киммерия», ул. Игнатенко, 5",
     "price": "1 000 ₽",
-    "image": "https://art-kimmeria.ru/photos/lecture-lilit.jpg",
+    "image": "https://art-kimmeria.ruhttps://res.cloudinary.com/dmzsczjzd/image/upload/v1777156887/kimmeria/lecture-lilit.jpg",
     "url": "https://art-kimmeria.ru/lecture-lilit/"
   },
   {
@@ -104,7 +104,7 @@
     "format": "кинопоказ",
     "location": "Симферополь, кинотеатр «Спартак», ул. Пушкина, 9А",
     "price": "Свободный вход",
-    "image": "https://art-kimmeria.ru/photos/event-dom-aivazovskogo-cover.jpg",
+    "image": "https://art-kimmeria.ruhttps://res.cloudinary.com/dmzsczjzd/image/upload/v1777156813/kimmeria/event-dom-aivazovskogo-cover.jpg",
     "url": "https://art-kimmeria.ru/event-dom-aivazovskogo/"
   }
 ]

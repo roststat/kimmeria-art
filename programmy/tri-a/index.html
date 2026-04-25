@@ -140,7 +140,7 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: 60px; di
   <div class="top-grid">
     <div class="poster-wrap">
       <div class="poster-label">Афиша</div>
-      <img src="/photos/tri-a-1.jpg" alt="«Три А»" style="width:100%;border-radius:12px;display:block;box-shadow:0 8px 32px rgba(0,0,0,0.12);cursor:zoom-in;" onclick="openLightbox(this.src)">
+      <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156960/kimmeria/tri-a-1.jpg" alt="«Три А»" style="width:100%;border-radius:12px;display:block;box-shadow:0 8px 32px rgba(0,0,0,0.12);cursor:zoom-in;" onclick="openLightbox(this.src)">
     </div>
     <div class="specs-wrap">
       <div class="specs-title">Характеристики</div>
@@ -207,19 +207,19 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: 60px; di
   <div class="content-block">
     <div class="block-eyebrow">Фотографии с программы</div>
     <div class="gallery-grid">
-      <img src="/photos/tri-a-1.jpg" alt="«Три А» — фото 1" onclick="openLightbox(this.src)">
-      <img src="/photos/tri-a-2.jpg" alt="«Три А» — фото 2" onclick="openLightbox(this.src)">
-      <img src="/photos/tri-a-3.jpg" alt="«Три А» — фото 3" onclick="openLightbox(this.src)">
-      <img src="/photos/tri-a-4.jpg" alt="«Три А» — фото 4" onclick="openLightbox(this.src)">
-      <img src="/photos/tri-a-5.jpg" alt="«Три А» — фото 5" onclick="openLightbox(this.src)">
-      <img src="/photos/tri-a-6.jpg" alt="«Три А» — фото 6" onclick="openLightbox(this.src)">
-      <img src="/photos/tri-a-7.jpg" alt="«Три А» — фото 7" onclick="openLightbox(this.src)">
-      <img src="/photos/tri-a-8.jpg" alt="«Три А» — фото 8" onclick="openLightbox(this.src)">
-      <img src="/photos/tri-a-9.jpg" alt="«Три А» — фото 9" onclick="openLightbox(this.src)">
-      <img src="/photos/tri-a-10.jpg" alt="«Три А» — фото 10" onclick="openLightbox(this.src)">
-      <img src="/photos/tri-a-11.jpg" alt="«Три А» — фото 11" onclick="openLightbox(this.src)">
-      <img src="/photos/tri-a-12.jpg" alt="«Три А» — фото 12" onclick="openLightbox(this.src)">
-      <img src="/photos/tri-a-13.jpg" alt="«Три А» — фото 13" onclick="openLightbox(this.src)">
+      <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156960/kimmeria/tri-a-1.jpg" alt="«Три А» — фото 1" onclick="openLightbox(this.src)">
+      <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156964/kimmeria/tri-a-2.jpg" alt="«Три А» — фото 2" onclick="openLightbox(this.src)">
+      <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156965/kimmeria/tri-a-3.jpg" alt="«Три А» — фото 3" onclick="openLightbox(this.src)">
+      <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156966/kimmeria/tri-a-4.jpg" alt="«Три А» — фото 4" onclick="openLightbox(this.src)">
+      <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156967/kimmeria/tri-a-5.jpg" alt="«Три А» — фото 5" onclick="openLightbox(this.src)">
+      <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156967/kimmeria/tri-a-6.jpg" alt="«Три А» — фото 6" onclick="openLightbox(this.src)">
+      <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156968/kimmeria/tri-a-7.jpg" alt="«Три А» — фото 7" onclick="openLightbox(this.src)">
+      <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156969/kimmeria/tri-a-8.jpg" alt="«Три А» — фото 8" onclick="openLightbox(this.src)">
+      <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156969/kimmeria/tri-a-9.jpg" alt="«Три А» — фото 9" onclick="openLightbox(this.src)">
+      <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156961/kimmeria/tri-a-10.jpg" alt="«Три А» — фото 10" onclick="openLightbox(this.src)">
+      <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156962/kimmeria/tri-a-11.jpg" alt="«Три А» — фото 11" onclick="openLightbox(this.src)">
+      <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156962/kimmeria/tri-a-12.jpg" alt="«Три А» — фото 12" onclick="openLightbox(this.src)">
+      <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156963/kimmeria/tri-a-13.jpg" alt="«Три А» — фото 13" onclick="openLightbox(this.src)">
     </div>
   </div>
 </div>
@@ -257,12 +257,12 @@ function fetchImgDataUrl(url){return fetch(url).then(function(r){return r.blob()
 function buildPDF(withKP){
   var btn=withKP?document.querySelector('.admin-btn-pdf'):document.querySelector('.btn-pdf-main'),orig=btn.innerHTML;btn.innerHTML='Формируется…';btn.disabled=true;
   /* обложка + 6 фото галереи (без дублей: 1 — обложка, 2-7 — галерея) */
-  var galleryUrls=['/photos/tri-a-2.jpg','/photos/tri-a-3.jpg','/photos/tri-a-4.jpg','/photos/tri-a-5.jpg','/photos/tri-a-6.jpg','/photos/tri-a-7.jpg'];
+  var galleryUrls=['https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156964/kimmeria/tri-a-2.jpg','https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156965/kimmeria/tri-a-3.jpg','https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156966/kimmeria/tri-a-4.jpg','https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156967/kimmeria/tri-a-5.jpg','https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156967/kimmeria/tri-a-6.jpg','https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156968/kimmeria/tri-a-7.jpg'];
   Promise.all([
     fetch('/fonts/NotoSans-Regular.ttf').then(function(r){return r.arrayBuffer();}),
     fetch('/fonts/NotoSans-Bold.ttf').then(function(r){return r.arrayBuffer();}),
     makeQR(PAGE_URL,200),
-    fetchImgDataUrl('/photos/tri-a-1.jpg')
+    fetchImgDataUrl('https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156960/kimmeria/tri-a-1.jpg')
   ].concat(galleryUrls.map(fetchImgDataUrl)))
   .then(function(res){
     var fontReg=res[0],fontBold=res[1],qr=res[2],coverImg=res[3],galleryImgs=res.slice(4);
@@ -277,7 +277,7 @@ function buildPDF(withKP){
     /* Шапка */
     setN(9);rgb(170,170,170);pdf.text('СПЕКТАКЛЬ-ВЫСТАВКА  18+  75 МИНУТ',m,y+4);hline(m,y+8,210-m,y+8,26,74,58,0.8);y+=15;
     /* Обложка + заголовок */
-    if(coverImg){var cW=46,cH=46;var ci=new Image();ci.src='/photos/tri-a-1.jpg';if(ci.naturalWidth&&ci.naturalHeight)cH=Math.round(cW*ci.naturalHeight/ci.naturalWidth);pdf.addImage(coverImg,'JPEG',m,y,cW,cH);setB(20);rgb(17,17,17);pdf.text('"Три А"',m+54,y+10);setN(11);rgb(100,100,100);pdf.text('Спектакль-выставка  Киммерия-Арт',m+54,y+18);y+=cH+6;}
+    if(coverImg){var cW=46,cH=46;var ci=new Image();ci.src='https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156960/kimmeria/tri-a-1.jpg';if(ci.naturalWidth&&ci.naturalHeight)cH=Math.round(cW*ci.naturalHeight/ci.naturalWidth);pdf.addImage(coverImg,'JPEG',m,y,cW,cH);setB(20);rgb(17,17,17);pdf.text('"Три А"',m+54,y+10);setN(11);rgb(100,100,100);pdf.text('Спектакль-выставка  Киммерия-Арт',m+54,y+18);y+=cH+6;}
     else{setB(20);rgb(17,17,17);pdf.text('"Три А"',m,y);y+=7;setN(11);rgb(100,100,100);pdf.text('Спектакль-выставка  Киммерия-Арт',m,y);y+=12;}
     /* Характеристики */
     hline(m,y,210-m,y);y+=7;setB(7);rgb(150,150,150);pdf.text('ХАРАКТЕРИСТИКИ',m,y);y+=5;
