@@ -3,6 +3,7 @@
     { "source": "/api/auth/callback", "destination": "/api/auth/callback" },
     { "source": "/api/auth", "destination": "/api/auth/index" },
     { "source": "/api/schedules", "destination": "/api/schedules" },
+    { "source": "/api/afisha", "destination": "/api/afisha" },
     { "source": "/admin/schedule", "destination": "/admin/schedule/index.html" },
     { "source": "/privacy", "destination": "/privacy/index.html" },
     { "source": "/terms", "destination": "/terms/index.html" },
