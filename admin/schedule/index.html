@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Конструктор расписаний — Киммерия-Арт</title>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root { --accent: #1a4a3a; --accent-dark: #0f2e24; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Onest', Arial, sans-serif; background: #f5f5f5; color: #111; font-size: 15px; }
+
+/* AUTH */
+.auth-screen {
+  min-height: 100vh; display: flex; align-items: center; justify-content: center;
+}
+.auth-box {
+  background: #fff; border-radius: 16px; padding: 40px; width: 340px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+}
+.auth-logo { font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #999; margin-bottom: 24px; }
+.auth-title { font-size: 22px; font-weight: 700; margin-bottom: 24px; }
+.auth-input {
+  width: 100%; padding: 12px 14px; border: 1px solid #e0e0e0; border-radius: 10px;
+  font-family: inherit; font-size: 15px; margin-bottom: 12px; outline: none;
+  transition: border-color 0.15s;
+}
+.auth-input:focus { border-color: var(--accent); }
+.auth-btn {
+  width: 100%; padding: 12px; background: var(--accent); color: #fff;
+  border: none; border-radius: 10px; font-family: inherit; font-size: 15px;
+  font-weight: 600; cursor: pointer; transition: opacity 0.15s;
+}
+.auth-btn:hover { opacity: 0.85; }
+.auth-error { color: #d00; font-size: 13px; margin-top: 10px; }
+
+/* LAYOUT */
+.app { display: none; min-height: 100vh; }
+.app.visible { display: flex; }
+
+.sidebar {
+  width: 340px; flex-shrink: 0; background: #fff;
+  border-right: 1px solid #e8e8e8; display: flex; flex-direction: column;
+  height: 100vh; position: sticky; top: 0; overflow-y: auto;
+}
+.main { flex: 1; padding: 32px; overflow-y: auto; }
+
+/* SIDEBAR */
+.sidebar-header {
+  padding: 20px; border-bottom: 1px solid #e8e8e8;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.sidebar-logo { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #999; }
+.sidebar-title { font-size: 16px; font-weight: 700; margin-top: 4px; }
+
+.sidebar-section { padding: 16px 20px; border-bottom: 1px solid #e8e8e8; }
+.sidebar-section-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  color: #aaa; margin-bottom: 12px;
+}
+
+/* SCHEDULE LIST */
+.schedule-list { display: flex; flex-direction: column; gap: 6px; }
+.schedule-item {
+  padding: 10px 12px; border-radius: 8px; cursor: pointer;
+  border: 1px solid transparent; transition: all 0.15s;
+}
+.schedule-item:hover { background: #f5f5f5; }
+.schedule-item.active { background: #f0faf8; border-color: var(--accent); }
+.schedule-item-name { font-size: 13px; font-weight: 600; }
+.schedule-item-client { font-size: 11px; color: #999; margin-top: 2px; }
+
+.btn-new-schedule {
+  width: 100%; padding: 10px; border: 1.5px dashed #d0d0d0; border-radius: 8px;
+  background: none; font-family: inherit; font-size: 13px; color: #666;
+  cursor: pointer; transition: all 0.15s; margin-top: 6px;
+}
+.btn-new-schedule:hover { border-color: var(--accent); color: var(--accent); }
+
+/* PROGRAM LIBRARY */
+.program-search {
+  width: 100%; padding: 8px 12px; border: 1px solid #e0e0e0; border-radius: 8px;
+  font-family: inherit; font-size: 13px; outline: none; margin-bottom: 10px;
+}
+.program-search:focus { border-color: var(--accent); }
+.program-list { display: flex; flex-direction: column; gap: 4px; max-height: 400px; overflow-y: auto; }
+.program-item {
+  display: flex; align-items: center; gap: 10px; padding: 8px 10px;
+  border-radius: 8px; cursor: pointer; transition: background 0.15s;
+}
+.program-item:hover { background: #f5f5f5; }
+.program-thumb {
+  width: 36px; height: 36px; border-radius: 6px; object-fit: cover; flex-shrink: 0;
+  background: #e8e8e8;
+}
+.program-thumb-placeholder {
+  width: 36px; height: 36px; border-radius: 6px; background: #e8e8e8;
+  flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+}
+.program-name { font-size: 13px; font-weight: 500; line-height: 1.3; }
+.program-add-btn {
+  margin-left: auto; flex-shrink: 0; width: 26px; height: 26px;
+  border-radius: 50%; background: var(--accent); color: #fff;
+  border: none; cursor: pointer; font-size: 18px; line-height: 1;
+  display: flex; align-items: center; justify-content: center;
+  transition: opacity 0.15s;
+}
+.program-add-btn:hover { opacity: 0.8; }
+
+/* MAIN */
+.main-header { margin-bottom: 28px; }
+.main-empty {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  min-height: 50vh; color: #aaa; text-align: center; gap: 12px;
+}
+.main-empty-icon { font-size: 48px; }
+.main-empty-text { font-size: 15px; }
+
+.schedule-header {
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 16px;
+  margin-bottom: 28px;
+}
+.schedule-name { font-size: 26px; font-weight: 700; }
+.schedule-client { font-size: 14px; color: #666; margin-top: 4px; }
+
+.widget-block {
+  background: #f0faf8; border: 1px solid #c8e8e0; border-radius: 12px;
+  padding: 16px 20px; margin-bottom: 28px;
+}
+.widget-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+.widget-code {
+  font-family: monospace; font-size: 12px; background: #fff;
+  border: 1px solid #d0e8e0; border-radius: 8px; padding: 10px 12px;
+  white-space: nowrap; overflow-x: auto; cursor: pointer; color: #333;
+}
+.widget-copy-hint { font-size: 11px; color: #888; margin-top: 6px; }
+
+.items-grid { display: flex; flex-direction: column; gap: 12px; }
+
+.item-card {
+  background: #fff; border-radius: 12px; border: 1px solid #e8e8e8;
+  display: flex; align-items: center; gap: 16px; padding: 16px;
+  transition: box-shadow 0.15s;
+}
+.item-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.07); }
+.item-img {
+  width: 56px; height: 56px; border-radius: 8px; object-fit: cover; flex-shrink: 0;
+  background: #e8e8e8;
+}
+.item-info { flex: 1; min-width: 0; }
+.item-title { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+.item-fields { display: flex; gap: 10px; flex-wrap: wrap; }
+.item-field {
+  display: flex; flex-direction: column; gap: 2px;
+}
+.item-field label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: #aaa; }
+.item-field input {
+  padding: 5px 8px; border: 1px solid #e0e0e0; border-radius: 6px;
+  font-family: inherit; font-size: 13px; outline: none; width: 120px;
+  transition: border-color 0.15s;
+}
+.item-field input:focus { border-color: var(--accent); }
+.item-field input.price-input { width: 140px; }
+.item-save-btn {
+  padding: 6px 14px; background: var(--accent); color: #fff;
+  border: none; border-radius: 6px; font-family: inherit; font-size: 12px;
+  font-weight: 600; cursor: pointer; transition: opacity 0.15s; margin-top: 8px;
+}
+.item-save-btn:hover { opacity: 0.85; }
+.item-save-btn.saved { background: #22c55e; }
+.item-remove-btn {
+  width: 32px; height: 32px; border-radius: 8px; border: 1px solid #e8e8e8;
+  background: none; cursor: pointer; color: #aaa; font-size: 16px;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.15s; flex-shrink: 0;
+}
+.item-remove-btn:hover { background: #fff0f0; border-color: #ffcccc; color: #e00; }
+
+/* MODAL */
+.modal-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.4);
+  display: none; align-items: center; justify-content: center; z-index: 200;
+}
+.modal-overlay.open { display: flex; }
+.modal-box {
+  background: #fff; border-radius: 16px; padding: 32px; width: 400px;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.15);
+}
+.modal-title { font-size: 18px; font-weight: 700; margin-bottom: 20px; }
+.modal-field { margin-bottom: 14px; }
+.modal-label { font-size: 12px; font-weight: 600; color: #666; margin-bottom: 6px; display: block; }
+.modal-input {
+  width: 100%; padding: 10px 12px; border: 1px solid #e0e0e0; border-radius: 8px;
+  font-family: inherit; font-size: 14px; outline: none;
+}
+.modal-input:focus { border-color: var(--accent); }
+.modal-actions { display: flex; gap: 10px; margin-top: 20px; }
+.modal-btn {
+  flex: 1; padding: 11px; border-radius: 8px; border: none; font-family: inherit;
+  font-size: 14px; font-weight: 600; cursor: pointer; transition: opacity 0.15s;
+}
+.modal-btn-primary { background: var(--accent); color: #fff; }
+.modal-btn-primary:hover { opacity: 0.85; }
+.modal-btn-cancel { background: #f5f5f5; color: #666; }
+.modal-btn-cancel:hover { background: #eee; }
+
+.delete-btn {
+  padding: 8px 14px; border: 1px solid #ffd0d0; border-radius: 8px;
+  background: none; color: #d00; font-family: inherit; font-size: 12px;
+  font-weight: 600; cursor: pointer; transition: all 0.15s;
+}
+.delete-btn:hover { background: #fff0f0; }
+</style>
+</head>
+<body>
+
+<!-- AUTH -->
+<div class="auth-screen" id="authScreen">
+  <div class="auth-box">
+    <div class="auth-logo">Киммерия-Арт</div>
+    <div class="auth-title">Вход в конструктор</div>
+    <input class="auth-input" type="password" id="authInput" placeholder="Пароль" onkeydown="if(event.key==='Enter')doLogin()">
+    <button class="auth-btn" onclick="doLogin()">Войти</button>
+    <div class="auth-error" id="authError"></div>
+  </div>
+</div>
+
+<!-- APP -->
+<div class="app" id="app">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <div>
+        <div class="sidebar-logo">Киммерия-Арт</div>
+        <div class="sidebar-title">Расписания</div>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Мои расписания</div>
+      <div class="schedule-list" id="scheduleList"></div>
+      <button class="btn-new-schedule" onclick="openNewScheduleModal()">+ Новое расписание</button>
+    </div>
+
+    <div class="sidebar-section" style="flex:1">
+      <div class="sidebar-section-label">Библиотека программ</div>
+      <input class="program-search" type="text" placeholder="Поиск..." oninput="filterPrograms(this.value)">
+      <div class="program-list" id="programList"></div>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main">
+    <div class="main-empty" id="mainEmpty">
+      <div class="main-empty-icon">📋</div>
+      <div class="main-empty-text">Выберите расписание или создайте новое</div>
+    </div>
+    <div id="mainContent" style="display:none">
+      <div class="schedule-header">
+        <div>
+          <div class="schedule-name" id="scheduleName"></div>
+          <div class="schedule-client" id="scheduleClient"></div>
+        </div>
+        <button class="delete-btn" onclick="deleteSchedule()">Удалить расписание</button>
+      </div>
+      <div class="widget-block">
+        <div class="widget-label">Виджет для заказчика</div>
+        <div class="widget-code" id="widgetCode" onclick="copyWidget()"></div>
+        <div class="widget-copy-hint">Нажмите чтобы скопировать</div>
+      </div>
+      <div class="items-grid" id="itemsGrid"></div>
+      <div id="itemsEmpty" style="display:none;color:#aaa;padding:32px 0;text-align:center">
+        Добавьте программы из библиотеки слева
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: новое расписание -->
+<div class="modal-overlay" id="newScheduleModal">
+  <div class="modal-box">
+    <div class="modal-title">Новое расписание</div>
+    <div class="modal-field">
+      <label class="modal-label">Название расписания</label>
+      <input class="modal-input" id="newScheduleTitle" placeholder="Отель Таврида — май 2026">
+    </div>
+    <div class="modal-field">
+      <label class="modal-label">Заказчик</label>
+      <input class="modal-input" id="newScheduleClient" placeholder="Отель Таврида">
+    </div>
+    <div class="modal-actions">
+      <button class="modal-btn modal-btn-cancel" onclick="closeModal('newScheduleModal')">Отмена</button>
+      <button class="modal-btn modal-btn-primary" onclick="createSchedule()">Создать</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: добавить программу -->
+<div class="modal-overlay" id="addItemModal">
+  <div class="modal-box">
+    <div class="modal-title" id="addItemTitle"></div>
+    <div class="modal-field">
+      <label class="modal-label">Дата</label>
+      <input class="modal-input" type="date" id="addItemDate">
+    </div>
+    <div class="modal-field">
+      <label class="modal-label">Время</label>
+      <input class="modal-input" type="time" id="addItemTime" value="19:00">
+    </div>
+    <div class="modal-field">
+      <label class="modal-label">Цена для покупателя</label>
+      <input class="modal-input" id="addItemPrice" placeholder="2 000 ₽">
+    </div>
+    <div class="modal-actions">
+      <button class="modal-btn modal-btn-cancel" onclick="closeModal('addItemModal')">Отмена</button>
+      <button class="modal-btn modal-btn-primary" onclick="confirmAddItem()">Добавить</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const API = '/api/schedules';
+const PROGRAMS = [
+  {slug:'afrodita',    title:'«Пространство Афродиты»',                        image:'https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156883/kimmeria/lecture-afrodita.jpg'},
+  {slug:'gekata',      title:'«Геката в Фияльте»',                             image:'https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156886/kimmeria/lecture-gekata.jpg'},
+  {slug:'kantiya',     title:'«Кантия»',                                       image:'https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156819/kimmeria/event-kantiya-cover.jpg'},
+  {slug:'kondratenko', title:'Творческая встреча с Дмитрием Кондратенко',      image:'https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156826/kimmeria/event-kondratenko-cover.jpg'},
+  {slug:'korolkova',   title:'«За кадром» — встреча с Анастасией Корольковой', image:'https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156829/kimmeria/event-korolkova-adults-cover.jpg'},
+  {slug:'koshki',      title:'«Люди-кошки»',                                   image:''},
+  {slug:'kovrigin',    title:'«Полёты в кино и наяву»',                        image:'https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156835/kimmeria/event-kovrigin-cover.jpg'},
+  {slug:'lebed',       title:'«Умирающий лебедь»',                             image:''},
+  {slug:'lilit',       title:'«Осторожно, Лилит!»',                            image:'https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156887/kimmeria/lecture-lilit.jpg'},
+  {slug:'lyubov',      title:'«Любовь, море и десерты»',                       image:'https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156895/kimmeria/lyubov-cover.jpg'},
+  {slug:'nazarov-black',title:'«Чёрные дыры»',                                 image:''},
+  {slug:'nazarov-dark', title:'«Тёмная энергия и тёмная материя»',             image:'https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156921/kimmeria/photo_814%4027-03-2026_18-42-39.jpg'},
+  {slug:'okno-vo-dvor', title:'«Окно во двор»',                                image:'https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156902/kimmeria/okno-vo-dvor-cover.jpg'},
+  {slug:'pina',        title:'Пина Бауш. Танцтеатр',                           image:'https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156914/kimmeria/photo_256%4013-02-2025_11-45-57.jpg'},
+  {slug:'potok',       title:'«Поток»',                                        image:'https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156845/kimmeria/event-potok-cover.jpg'},
+  {slug:'provody',     title:'«Проводы»',                                      image:'https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156941/kimmeria/provody-cover.jpg'},
+  {slug:'ryba',        title:'«Лучше я буду рыбой…»',                          image:'https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156861/kimmeria/event-ryba.jpg'},
+  {slug:'salomeya',    title:'«Саломея»',                                      image:''},
+  {slug:'stihii',      title:'«4 стихии» + гончарный мастер-класс',            image:''},
+  {slug:'tavrichersky',title:'Творческая встреча с Анатолием Таврическим',     image:'https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156862/kimmeria/event-tavrichersky-cover.jpg'},
+  {slug:'tri-a',       title:'«Три А»',                                        image:''},
+  {slug:'uzhe',        title:'«УЖЕ»',                                          image:'https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156925/kimmeria/photo_819%4030-03-2026_09-17-02.jpg'},
+  {slug:'zabytoe-serebro',title:'«Забытое серебро»',                           image:'https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156974/kimmeria/zabytoe-serebro-cover.jpg'},
+];
+
+let adminPassword = '';
+let schedules = [];
+let currentSchedule = null;
+let currentItems = [];
+let pendingProgram = null;
+
+// AUTH
+function doLogin() {
+  const pwd = document.getElementById('authInput').value;
+  if (!pwd) return;
+  adminPassword = pwd;
+  loadSchedules();
+}
+
+async function loadSchedules() {
+  const res = await fetch(API, { headers: { 'x-admin-password': adminPassword } });
+  if (res.status === 401) {
+    document.getElementById('authError').textContent = 'Неверный пароль';
+    return;
+  }
+  schedules = await res.json();
+  document.getElementById('authScreen').style.display = 'none';
+  document.getElementById('app').classList.add('visible');
+  renderScheduleList();
+  renderProgramList(PROGRAMS);
+}
+
+// SCHEDULES
+function renderScheduleList() {
+  const el = document.getElementById('scheduleList');
+  if (!schedules.length) {
+    el.innerHTML = '<div style="color:#aaa;font-size:13px">Нет расписаний</div>';
+    return;
+  }
+  el.innerHTML = schedules.map(s => `
+    <div class="schedule-item ${currentSchedule && currentSchedule.id === s.id ? 'active' : ''}"
+         onclick="selectSchedule(${s.id})">
+      <div class="schedule-item-name">${s.title}</div>
+      <div class="schedule-item-client">${s.client_name}</div>
+    </div>
+  `).join('');
+}
+
+async function selectSchedule(id) {
+  const s = schedules.find(x => x.id === id);
+  if (!s) return;
+  currentSchedule = s;
+  renderScheduleList();
+
+  const res = await fetch(`${API}?token=${s.token}`);
+  const data = await res.json();
+  currentItems = data.items || [];
+
+  document.getElementById('mainEmpty').style.display = 'none';
+  document.getElementById('mainContent').style.display = 'block';
+  document.getElementById('scheduleName').textContent = s.title;
+  document.getElementById('scheduleClient').textContent = s.client_name;
+  const code = `<script src="https://art-kimmeria.ru/widget.js" data-token="${s.token}"><\/script>`;
+  document.getElementById('widgetCode').textContent = code;
+  renderItems();
+}
+
+function renderItems() {
+  const grid = document.getElementById('itemsGrid');
+  const empty = document.getElementById('itemsEmpty');
+  if (!currentItems.length) {
+    grid.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+  grid.innerHTML = currentItems.map(item => {
+    const prog = PROGRAMS.find(p => p.slug === item.program_slug) || {};
+    const img = item.program_image || prog.image || '';
+    return `
+    <div class="item-card" id="item-${item.id}">
+      ${img ? `<img class="item-img" src="${img}" alt="">` : `<div class="item-img" style="background:#e8e8e8"></div>`}
+      <div class="item-info">
+        <div class="item-title">${item.program_title}</div>
+        <div class="item-fields">
+          <div class="item-field">
+            <label>Дата</label>
+            <input type="date" value="${item.event_date ? item.event_date.slice(0,10) : ''}" id="date-${item.id}">
+          </div>
+          <div class="item-field">
+            <label>Время</label>
+            <input type="time" value="${item.event_time || '19:00'}" id="time-${item.id}">
+          </div>
+          <div class="item-field">
+            <label>Цена</label>
+            <input class="price-input" value="${item.price || ''}" id="price-${item.id}" placeholder="2 000 ₽">
+          </div>
+        </div>
+        <button class="item-save-btn" id="save-${item.id}" onclick="saveItem(${item.id})">Сохранить</button>
+      </div>
+      <button class="item-remove-btn" onclick="removeItem(${item.id})" title="Удалить">×</button>
+    </div>`;
+  }).join('');
+}
+
+async function saveItem(id) {
+  const btn = document.getElementById(`save-${id}`);
+  const date = document.getElementById(`date-${id}`).value;
+  const time = document.getElementById(`time-${id}`).value;
+  const price = document.getElementById(`price-${id}`).value;
+  await fetch(`${API}?id=${id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json', 'x-admin-password': adminPassword },
+    body: JSON.stringify({ event_date: date, event_time: time, price }),
+  });
+  btn.textContent = 'Сохранено ✓';
+  btn.classList.add('saved');
+  setTimeout(() => { btn.textContent = 'Сохранить'; btn.classList.remove('saved'); }, 2000);
+  const item = currentItems.find(i => i.id === id);
+  if (item) { item.event_date = date; item.event_time = time; item.price = price; }
+}
+
+async function removeItem(id) {
+  if (!confirm('Удалить программу из расписания?')) return;
+  await fetch(`${API}?action=item&id=${id}`, {
+    method: 'DELETE',
+    headers: { 'x-admin-password': adminPassword },
+  });
+  currentItems = currentItems.filter(i => i.id !== id);
+  renderItems();
+}
+
+async function deleteSchedule() {
+  if (!currentSchedule) return;
+  if (!confirm(`Удалить расписание "${currentSchedule.title}"?`)) return;
+  await fetch(`${API}?id=${currentSchedule.id}`, {
+    method: 'DELETE',
+    headers: { 'x-admin-password': adminPassword },
+  });
+  schedules = schedules.filter(s => s.id !== currentSchedule.id);
+  currentSchedule = null;
+  currentItems = [];
+  renderScheduleList();
+  document.getElementById('mainContent').style.display = 'none';
+  document.getElementById('mainEmpty').style.display = 'flex';
+}
+
+// NEW SCHEDULE
+function openNewScheduleModal() {
+  document.getElementById('newScheduleTitle').value = '';
+  document.getElementById('newScheduleClient').value = '';
+  document.getElementById('newScheduleModal').classList.add('open');
+  setTimeout(() => document.getElementById('newScheduleTitle').focus(), 100);
+}
+
+async function createSchedule() {
+  const title = document.getElementById('newScheduleTitle').value.trim();
+  const client_name = document.getElementById('newScheduleClient').value.trim();
+  if (!title || !client_name) return alert('Заполните все поля');
+  const res = await fetch(API, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'x-admin-password': adminPassword },
+    body: JSON.stringify({ title, client_name }),
+  });
+  const s = await res.json();
+  schedules.unshift(s);
+  closeModal('newScheduleModal');
+  renderScheduleList();
+  selectSchedule(s.id);
+}
+
+// PROGRAMS
+function renderProgramList(list) {
+  const el = document.getElementById('programList');
+  el.innerHTML = list.map(p => `
+    <div class="program-item">
+      ${p.image
+        ? `<img class="program-thumb" src="${p.image}" alt="">`
+        : `<div class="program-thumb-placeholder">🎭</div>`}
+      <div class="program-name">${p.title}</div>
+      <button class="program-add-btn" onclick="openAddItem('${p.slug}')" title="Добавить в расписание">+</button>
+    </div>
+  `).join('');
+}
+
+function filterPrograms(q) {
+  const filtered = PROGRAMS.filter(p => p.title.toLowerCase().includes(q.toLowerCase()));
+  renderProgramList(filtered);
+}
+
+function openAddItem(slug) {
+  if (!currentSchedule) { alert('Сначала выберите расписание'); return; }
+  const prog = PROGRAMS.find(p => p.slug === slug);
+  pendingProgram = prog;
+  document.getElementById('addItemTitle').textContent = prog.title;
+  document.getElementById('addItemDate').value = '';
+  document.getElementById('addItemTime').value = '19:00';
+  document.getElementById('addItemPrice').value = '';
+  document.getElementById('addItemModal').classList.add('open');
+  setTimeout(() => document.getElementById('addItemDate').focus(), 100);
+}
+
+async function confirmAddItem() {
+  const date = document.getElementById('addItemDate').value;
+  const time = document.getElementById('addItemTime').value;
+  const price = document.getElementById('addItemPrice').value.trim() || 'По запросу';
+  if (!date) { alert('Укажите дату'); return; }
+  const res = await fetch(`${API}?action=add-item`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'x-admin-password': adminPassword },
+    body: JSON.stringify({
+      schedule_id: currentSchedule.id,
+      program_slug: pendingProgram.slug,
+      program_title: pendingProgram.title,
+      program_image: pendingProgram.image,
+      event_date: date,
+      event_time: time,
+      price,
+    }),
+  });
+  const item = await res.json();
+  currentItems.push(item);
+  closeModal('addItemModal');
+  renderItems();
+}
+
+// UTILS
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+function copyWidget() {
+  const code = document.getElementById('widgetCode').textContent;
+  navigator.clipboard.writeText(code).then(() => {
+    document.querySelector('.widget-copy-hint').textContent = 'Скопировано!';
+    setTimeout(() => { document.querySelector('.widget-copy-hint').textContent = 'Нажмите чтобы скопировать'; }, 2000);
+  });
+}
+
+// Close modals on overlay click
+document.querySelectorAll('.modal-overlay').forEach(el => {
+  el.addEventListener('click', e => { if (e.target === el) el.classList.remove('open'); });
+});
+</script>
+</body>
+</html>

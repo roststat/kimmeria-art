@@ -120,7 +120,41 @@
     }).join('');
   }
 
+  function formatDateRu(dateStr) {
+    var months = ['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
+    var d = new Date(dateStr);
+    return d.getDate() + ' ' + months[d.getMonth()];
+  }
+
+  function renderScheduleCards(items, partner) {
+    if (!items.length) {
+      return '<div class="km-empty">Программа мероприятий уточняется</div>';
+    }
+    var today = new Date(); today.setHours(0,0,0,0);
+    var upcoming = items.filter(function(i) { return new Date(i.event_date) >= today; });
+    if (!upcoming.length) upcoming = items;
+    return upcoming.map(function(item) {
+      var href = buildURL('https://art-kimmeria.ru/programmy/' + item.program_slug + '/', partner);
+      var dateLabel = formatDateRu(item.event_date) + ' · ' + item.event_time;
+      return '<a class="km-card" href="' + href + '" target="_blank" rel="noopener">' +
+        '<div class="km-photo">' +
+          (item.program_image ? '<img src="' + item.program_image + '" alt="' + item.program_title + '" loading="lazy">' : '') +
+          '<span class="km-badge">Программа</span>' +
+        '</div>' +
+        '<div class="km-body">' +
+          '<div class="km-date">' + dateLabel + '</div>' +
+          '<div class="km-title">' + item.program_title + '</div>' +
+          '<div class="km-bottom">' +
+            '<span class="km-price">' + item.price + '</span>' +
+            '<span class="km-btn">Подробнее</span>' +
+          '</div>' +
+        '</div>' +
+      '</a>';
+    }).join('');
+  }
+
   function initWidget(container) {
+    var token   = getParam(container, 'token',   null);
     var format  = getParam(container, 'format',  null);
     var limit   = getParam(container, 'limit',   null);
     var ids     = getParam(container, 'ids',     null);
@@ -129,6 +163,26 @@
 
     container.classList.add('km-widget');
 
+    // Режим расписания заказчика
+    if (token) {
+      fetch('https://art-kimmeria.ru/api/schedules?token=' + token)
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          var html = '<div class="km-grid">' + renderScheduleCards(data.items || [], partner) + '</div>';
+          if (footer) {
+            html += '<div class="km-footer"><a href="https://art-kimmeria.ru/?utm_source=' +
+              (partner || 'widget') + '&utm_medium=widget" target="_blank" rel="noopener">' +
+              'Киммерия-Арт · Ялта</a></div>';
+          }
+          container.innerHTML = html;
+        })
+        .catch(function() {
+          container.innerHTML = '<div class="km-empty">Не удалось загрузить программу</div>';
+        });
+      return;
+    }
+
+    // Стандартный режим — все мероприятия
     fetch(ENDPOINT + '?_=' + Date.now())
       .then(function (r) { return r.json(); })
       .then(function (events) {

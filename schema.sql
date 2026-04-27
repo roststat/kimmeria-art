@@ -50,3 +50,30 @@ CREATE TABLE IF NOT EXISTS events (
 CREATE INDEX IF NOT EXISTS events_status_date ON events(status, date);
 CREATE INDEX IF NOT EXISTS events_slug ON events(slug);
 CREATE INDEX IF NOT EXISTS events_user_id ON events(user_id);
+
+-- Расписания заказчиков
+CREATE TABLE IF NOT EXISTS schedules (
+  id          SERIAL PRIMARY KEY,
+  token       TEXT UNIQUE NOT NULL,       -- уникальный токен для виджета
+  title       TEXT NOT NULL,              -- "Отель Таврида — май 2026"
+  client_name TEXT NOT NULL,              -- имя заказчика
+  created_at  TIMESTAMPTZ NOT NULL DEFAULT now(),
+  updated_at  TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+-- Программы в расписании заказчика
+CREATE TABLE IF NOT EXISTS schedule_items (
+  id          SERIAL PRIMARY KEY,
+  schedule_id INTEGER NOT NULL REFERENCES schedules(id) ON DELETE CASCADE,
+  program_slug TEXT NOT NULL,             -- slug из /programmy/ (ryba, kantiya и т.д.)
+  program_title TEXT NOT NULL,            -- название (денормализовано для скорости)
+  program_image TEXT NOT NULL,            -- картинка
+  event_date  DATE NOT NULL,
+  event_time  TEXT NOT NULL DEFAULT '19:00',
+  price       TEXT NOT NULL DEFAULT 'По запросу',
+  sort_order  INTEGER NOT NULL DEFAULT 0,
+  created_at  TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+CREATE INDEX IF NOT EXISTS schedule_items_schedule_id ON schedule_items(schedule_id);
+CREATE INDEX IF NOT EXISTS schedules_token ON schedules(token);
