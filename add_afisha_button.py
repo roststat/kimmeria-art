@@ -129,7 +129,7 @@ function _loadAfishaState() {
     }).catch(function(){});
 }
 
-function uploadBanner(input) {
+window.uploadBanner = function uploadBanner(input) {
   var file = input.files[0];
   if (!file) return;
   var result = document.getElementById('bannerUploadResult');
@@ -165,7 +165,7 @@ function uploadBanner(input) {
       result.textContent = 'Ошибка: ' + e.message;
       result.style.color = '#c00';
     });
-}
+};
 
 function _showBannerPreview(url) {
   var wrap = document.getElementById('bannerPreviewWrap');
@@ -173,7 +173,7 @@ function _showBannerPreview(url) {
   if (wrap && img) { img.src = url; wrap.style.display = 'block'; }
 }
 
-function resetBanner() {
+window.resetBanner = function resetBanner() {
   _customBannerUrl = null;
   var wrap = document.getElementById('bannerPreviewWrap');
   if (wrap) wrap.style.display = 'none';
@@ -184,9 +184,9 @@ function resetBanner() {
     headers: { 'Content-Type': 'application/json', 'x-admin-password': ADMIN_PASSWORD },
     body: JSON.stringify({ custom_banner: null }),
   }).catch(function(){});
-}
+};
 
-function addToAfisha() {
+window.addToAfisha = function addToAfisha() {
   var date  = document.getElementById('afisha-date').value;
   var time  = document.getElementById('afisha-time').value || '19:00';
   var price = document.getElementById('afisha-price').value.trim() || 'По запросу';
@@ -250,9 +250,9 @@ function addToAfisha() {
     result.style.color = '#c00';
     btn.disabled = false;
   });
-}
+};
 
-function removeFromAfisha() {
+window.removeFromAfisha = function removeFromAfisha() {
   if (!confirm('Снять программу с главной афиши?')) return;
   fetch('/api/afisha?id=' + _afishaSlug, {
     method: 'DELETE',
@@ -263,7 +263,7 @@ function removeFromAfisha() {
     var removeBtn = document.getElementById('afishaRemoveBtn');
     if (removeBtn) removeBtn.style.display = 'none';
   }).catch(function(){});
-}
+};
 """
 
 def patch_file(path):
@@ -273,7 +273,7 @@ def patch_file(path):
     changed = False
 
     # Если уже есть новая версия — пропускаем
-    if 'uploadBanner' in html:
+    if 'window.uploadBanner' in html:
         print('  уже актуально, пропускаю')
         return False
 
