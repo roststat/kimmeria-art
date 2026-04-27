@@ -1957,7 +1957,62 @@ footer {
     if (soonMsg) soonMsg.style.display = currentTab === 'upcoming' ? 'block' : 'none';
   }
 
-  document.addEventListener('DOMContentLoaded', initEvents);
+  function buildCardFromAPI(e) {
+    const SHARE_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>';
+    const FORMAT_LABELS = {лекция:'Лекция',спектакль:'Спектакль',кинопоказ:'Кинопоказ',встреча:'Встреча',дегустация:'Дегустация','мастер-класс':'Мастер-класс',мероприятие:'Мероприятие'};
+    const badge = FORMAT_LABELS[e.format] || e.format || 'Мероприятие';
+    const url = e.url || `/programmy/${e.id}/`;
+    const ticketBtn = e.ticket_url
+      ? `<a class="event-buy-btn" href="${e.ticket_url}" target="_blank" rel="noopener" onclick="event.stopPropagation()">Билеты</a>`
+      : '';
+    const div = document.createElement('div');
+    div.className = 'event-card api-card';
+    div.dataset.tab = 'upcoming';
+    div.dataset.format = e.format || 'мероприятие';
+    div.dataset.date = e.date;
+    div.onclick = () => location.href = url;
+    div.innerHTML = `
+      <div class="event-photo-wrap">
+        <img src="${e.image}" alt="${e.title}" loading="lazy">
+        <span class="event-badge">${badge}</span>
+        <button class="event-share-btn" onclick="shareCard(event,this)" title="Поделиться">
+          ${SHARE_SVG}<span class="event-share-toast">Скопировано</span>
+        </button>
+      </div>
+      <div class="event-body">
+        <div class="event-date-line">${e.date_label}</div>
+        <h3 class="event-title">${e.title}</h3>
+        <p class="event-desc">${e.description}</p>
+        <div class="event-bottom">
+          <span class="event-location">${e.location || 'Арт-пространство «Киммерия»'}</span>
+          <div>
+            <div class="event-price">${e.price}</div>
+            ${ticketBtn}
+          </div>
+        </div>
+      </div>`;
+    return div;
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const grid = document.getElementById('eventsGrid');
+    fetch('/api/events?_=' + Date.now())
+      .then(r => r.json())
+      .then(events => {
+        const existingSlugs = new Set(
+          Array.from(grid.querySelectorAll('.event-card[onclick]'))
+            .map(c => (c.getAttribute('onclick') || '').replace(/.*href='\/([^/]+)\/.*/,'$1'))
+        );
+        events.forEach(e => {
+          const slug = e.id || '';
+          if (!existingSlugs.has(slug)) {
+            grid.appendChild(buildCardFromAPI(e));
+          }
+        });
+      })
+      .catch(() => {})
+      .finally(() => initEvents());
+  });
 
   // ── Auto-rotating sidebar banner ─────────────────────────────────────────
   (function() {
