@@ -323,8 +323,8 @@ window.addEventListener('afterprint',function(){document.getElementById('kpPrint
     if (wrap && img) { img.src = url; wrap.style.display = 'block'; }
   }
 
-  // Перехватываем showAdminWorkspace
-  document.addEventListener('DOMContentLoaded', function() {
+  // Перехватываем showAdminWorkspace — после загрузки страницы
+  window.addEventListener('load', function() {
     var orig = window.showAdminWorkspace;
     window.showAdminWorkspace = function() {
       if (orig) orig();
@@ -391,9 +391,12 @@ window.addEventListener('afterprint',function(){document.getElementById('kpPrint
   };
 
   window.addToAfisha = function() {
-    var date  = document.getElementById('afisha-date').value;
-    var time  = document.getElementById('afisha-time').value || '19:00';
-    var price = document.getElementById('afisha-price').value.trim() || 'По запросу';
+    var section = document.querySelector('.admin-section-afisha');
+    var date  = section ? section.querySelector('#afisha-date').value : document.getElementById('afisha-date').value;
+    var time  = section ? section.querySelector('#afisha-time').value : (document.getElementById('afisha-time').value || '19:00');
+    var price = section ? section.querySelector('#afisha-price').value.trim() : document.getElementById('afisha-price').value.trim();
+    if (!time) time = '19:00';
+    if (!price) price = 'По запросу';
     var res   = document.getElementById('afishaResult');
     if (!date) { res.textContent='Укажите дату'; res.style.color='#c00'; return; }
     var btn = document.getElementById('afishaBtn');
