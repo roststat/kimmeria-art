@@ -47,8 +47,8 @@ export default async function handler(req, res) {
         format, location, price, image_url, custom_banner, ticket_url, age,
       } = req.body;
 
-      if (!slug || !title || !date) {
-        return res.status(400).json({ error: 'slug, title, date required' });
+      if (!slug || !date) {
+        return res.status(400).json({ error: 'slug and date required' });
       }
 
       const { rows: [event] } = await pool.query(`
@@ -57,10 +57,16 @@ export default async function handler(req, res) {
            location, price, image_url, custom_banner, ticket_url, age, status, source)
         VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,'published','admin')
         ON CONFLICT (slug) DO UPDATE SET
+          title            = EXCLUDED.title,
+          description      = EXCLUDED.description,
+          description_short= EXCLUDED.description_short,
           date             = EXCLUDED.date,
           time             = EXCLUDED.time,
           date_label       = EXCLUDED.date_label,
+          format           = EXCLUDED.format,
           price            = EXCLUDED.price,
+          image_url        = COALESCE(NULLIF(EXCLUDED.image_url,''), events.image_url),
+          custom_banner    = COALESCE(EXCLUDED.custom_banner, events.custom_banner),
           status           = 'published',
           updated_at       = now()
         RETURNING id, slug, title, date, status
