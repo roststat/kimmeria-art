@@ -4,6 +4,7 @@
     { "source": "/api/auth", "destination": "/api/auth/index" },
     { "source": "/api/schedules", "destination": "/api/schedules" },
     { "source": "/api/afisha", "destination": "/api/afisha" },
+    { "source": "/event/:slug", "destination": "/api/event?slug=:slug" },
     { "source": "/admin/schedule", "destination": "/admin/schedule/index.html" },
     { "source": "/privacy", "destination": "/privacy/index.html" },
     { "source": "/terms", "destination": "/terms/index.html" },

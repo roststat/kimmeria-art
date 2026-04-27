@@ -35,7 +35,7 @@ export default async function handler(req, res) {
       location:    r.location,
       price:       r.price,
       image:       r.custom_banner || r.image_url,
-      url:         `https://art-kimmeria.ru/programmy/${r.slug}/`,
+      url:         `https://art-kimmeria.ru/event/${r.slug}/`,
       ticket_url:  r.ticket_url || null,
     }));
 
