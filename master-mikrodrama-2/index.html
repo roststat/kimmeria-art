@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Мастер-класс по микродрамам — Кинокомпания «Киммерия»</title>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Киммерия-Арт">
+  <meta property="og:title" content="Мастер-класс по микродрамам — Кинокомпания «Киммерия»">
+  <meta property="og:description" content="Бесплатный мастер-класс. Как снимать микродрамы для Reels, Shorts, TikTok — и попасть на платформы. Ялта.">
+  <meta property="og:image" content="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156896/kimmeria/master-mikrodrama-cover.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156896/kimmeria/master-mikrodrama-cover.jpg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: #ffffff; color: #111111; font-size: 16px; line-height: 1.6; overflow-x: hidden; max-width: 100vw; }
+    img { max-width: 100%; height: auto; }
+
+    /* ── NAV ── */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 60px; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid #e8e8e8; }
+    .nav-logo { font-size: 17px; font-weight: 700; color: #111111; text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; }
+    .nav-back { font-size: 13px; font-weight: 600; color: #111111; text-decoration: none; padding: 8px 16px; border-radius: 100px; border: 1px solid #e8e8e8; transition: background 0.15s; }
+    .nav-back:hover { background: #f5f5f5; }
+    .nav-burger { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 40px; height: 40px; background: none; border: none; cursor: pointer; padding: 8px; border-radius: 8px; transition: background 0.15s; }
+    .nav-burger:hover { background: #f5f5f5; }
+    .nav-burger span { display: block; width: 22px; height: 2px; background: #111111; border-radius: 2px; transition: all 0.25s; }
+    .nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-burger.open span:nth-child(2) { opacity: 0; }
+    .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu { display: none; position: fixed; top: 60px; left: 0; right: 0; bottom: 0; background: #ffffff; z-index: 99; padding: 24px 20px; flex-direction: column; gap: 4px; overflow-y: auto; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { font-size: 20px; font-weight: 600; color: #111111; text-decoration: none; padding: 14px 16px; border-radius: 12px; transition: background 0.15s; }
+    .mobile-menu a:hover { background: #f5f5f5; }
+    .mobile-menu-divider { height: 1px; background: #e8e8e8; margin: 8px 0; }
+    /* ── STICKY CTA BAR (mobile/tablet only) ── */
+    .sticky-cta { display: none; }
+    @media (max-width: 900px) {
+      .sticky-cta {
+        display: block;
+        position: sticky; top: 60px; z-index: 90;
+        background: #1a4a3a;
+        padding: 10px 20px;
+        text-align: center;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+      }
+      .sticky-cta a {
+        display: inline-block;
+        color: #ffffff;
+        font-family: 'Inter', sans-serif;
+        font-size: 14px; font-weight: 700;
+        text-decoration: none;
+        letter-spacing: 0.02em;
+      }
+    }
+
+    @media (max-width: 900px) {
+      nav { padding: 0 20px; }
+      .nav-back { display: none; }
+      .nav-burger { display: flex; }
+    }
+
+    /* ── FAB ── */
+    .fab-back { position: fixed; top: 72px; right: 20px; z-index: 200; display: flex; align-items: center; gap: 7px; background: #ffffff; color: #111111; font-family: inherit; font-size: 13px; font-weight: 600; padding: 9px 16px 9px 12px; border-radius: 100px; border: 1px solid #e8e8e8; box-shadow: 0 4px 16px rgba(0,0,0,0.10); cursor: pointer; text-decoration: none; transition: box-shadow 0.15s, transform 0.15s; }
+    .fab-back:hover { box-shadow: 0 6px 22px rgba(0,0,0,0.14); transform: translateY(-1px); }
+    .fab-back svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+    /* ── HERO ── */
+    .event-hero { padding-top: 60px; position: relative; overflow: hidden; background: #0d0d0d; }
+    .event-hero-bg { position: absolute; inset: -40px; background-size: cover; background-position: center; filter: blur(28px); opacity: 0.45; transform: scale(1.08); }
+    .event-hero-inner { position: relative; z-index: 1; display: grid; grid-template-columns: auto 1fr; gap: 56px; align-items: center; max-width: 1200px; margin: 0 auto; padding: 56px 48px; }
+    .event-hero-poster { flex-shrink: 0; max-height: 500px; max-width: 360px; display: flex; align-items: center; }
+    .event-hero-poster img { display: block; width: 100%; height: auto; object-fit: contain; border-radius: 12px; box-shadow: 0 24px 64px rgba(0,0,0,0.7); cursor: zoom-in; }
+    .event-hero-text { color: #ffffff; }
+    .event-hero-tag { display: inline-block; background: rgba(255,255,255,0.12); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.2); color: #ffffff; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 14px; border-radius: 100px; margin-bottom: 14px; }
+    .event-hero-title { font-size: 42px; font-weight: 700; color: #ffffff; line-height: 1.1; margin-bottom: 16px; letter-spacing: -0.01em; }
+    .event-hero-sub { font-size: 17px; color: rgba(255,255,255,0.65); line-height: 1.75; margin-bottom: 28px; max-width: 520px; }
+    .hero-hashtags { color: rgba(255,255,255,0.4); font-size: 14px; }
+    .hero-footnote { font-size: 12px; color: rgba(255,255,255,0.35); line-height: 1.5; margin-top: 10px; max-width: 480px; }
+    .btn-hero { display: inline-block; padding: 16px 36px; background: #ffffff; color: #111111; font-family: inherit; font-size: 15px; font-weight: 700; text-decoration: none; border-radius: 100px; transition: transform 0.15s, box-shadow 0.15s; box-shadow: 0 4px 24px rgba(0,0,0,0.35); }
+    .btn-hero:hover { transform: translateY(-2px); box-shadow: 0 8px 36px rgba(0,0,0,0.4); }
+
+    /* ── MAIN CONTENT ── */
+    .event-main { display: grid; grid-template-columns: 1fr 340px; gap: 56px; max-width: 1200px; margin: 0 auto; padding: 64px 48px; align-items: start; }
+
+    .section-label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #999999; font-weight: 600; margin-bottom: 14px; }
+    .event-description { font-size: 20px; font-weight: 600; line-height: 1.6; color: #111111; margin-bottom: 32px; max-width: 580px; }
+    .event-text { font-size: 15px; color: #555555; line-height: 1.85; margin-bottom: 28px; max-width: 580px; }
+
+    /* логотип-представление */
+    .presenter-block {
+      display: inline-flex; flex-direction: column; align-items: flex-start; gap: 8px;
+      margin-bottom: 28px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .presenter-logo {
+      width: 220px;
+    }
+    .presenter-logo img {
+      display: block; width: 100%; height: auto;
+      filter: contrast(1.15) saturate(1.1);
+    }
+    .presenter-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.13em;
+      text-transform: uppercase; color: #1a4a3a;
+    }
+
+    /* детали события */
+    .event-details-list { list-style: none; margin-bottom: 40px; }
+    .event-details-list li { font-size: 15px; color: #555555; padding: 12px 0; border-bottom: 1px solid #eeeeee; display: flex; gap: 16px; align-items: baseline; }
+    .event-details-list li:first-child { border-top: 1px solid #eeeeee; }
+    .event-details-list li strong { color: #111111; font-weight: 600; min-width: 90px; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; flex-shrink: 0; }
+
+    /* программа */
+    .program-block { margin-bottom: 48px; }
+    .program-title { font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #111111; margin-bottom: 4px; }
+    .program-list { list-style: none; margin-top: 0; }
+    .program-list li { font-size: 15px; color: #333333; padding: 13px 0; border-bottom: 1px solid #f0f0f0; display: flex; align-items: baseline; gap: 14px; line-height: 1.55; }
+    .program-list li:first-child { border-top: 1px solid #f0f0f0; }
+    .program-num { font-size: 11px; font-weight: 700; color: #1a4a3a; background: #f0f7f5; padding: 3px 9px; border-radius: 100px; flex-shrink: 0; letter-spacing: 0.05em; }
+
+    /* inline cta */
+    .cta-inline {
+      font-size: 20px; font-weight: 800; color: #111111;
+      line-height: 1.45; margin-bottom: 48px;
+      padding: 24px 28px;
+      background: #f0f7f5;
+      border-left: 4px solid #1a4a3a;
+      border-radius: 0 12px 12px 0;
+    }
+    .cta-inline a { color: #1a4a3a; text-decoration: underline; text-underline-offset: 3px; }
+    .cta-inline a:hover { opacity: 0.8; }
+
+    /* мастер */
+    .master-block { background: #f8f8f8; border-radius: 16px; padding: 28px 28px 32px; margin-bottom: 0; }
+    .master-header { display: flex; align-items: center; gap: 18px; margin-bottom: 16px; }
+    .master-avatar {
+      flex-shrink: 0; width: 72px; height: 72px; border-radius: 50%;
+      background: #e0e0e0; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+      border: 3px solid #ffffff; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .master-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; cursor: zoom-in; }
+
+    /* ── LIGHTBOX ── */
+    .lightbox { display: none; position: fixed; inset: 0; z-index: 9999; background: rgba(0,0,0,0.85); align-items: center; justify-content: center; cursor: zoom-out; }
+    .lightbox.open { display: flex; }
+    .lightbox img { max-width: 90vw; max-height: 85vh; border-radius: 12px; box-shadow: 0 24px 80px rgba(0,0,0,0.7); object-fit: contain; cursor: default; animation: lbIn 0.2s ease; }
+    .lightbox-close { position: absolute; top: 20px; right: 24px; background: none; border: none; color: #fff; font-size: 32px; cursor: pointer; line-height: 1; opacity: 0.75; }
+    .lightbox-close:hover { opacity: 1; }
+    @keyframes lbIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+    .master-avatar-placeholder {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      background: #d0d0d0;
+    }
+    .master-avatar-placeholder svg { width: 32px; height: 32px; color: #999; }
+    .master-name { font-size: 22px; font-weight: 700; color: #111111; margin-bottom: 4px; }
+    .master-role { font-size: 13px; color: #888888; font-weight: 500; letter-spacing: 0.03em; margin-bottom: 14px; }
+    .master-bio { font-size: 14px; color: #555555; line-height: 1.75; }
+    .master-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 16px; }
+    .master-tag { font-size: 11px; font-weight: 600; letter-spacing: 0.05em; color: #1a4a3a; background: #e8f4f0; padding: 4px 11px; border-radius: 100px; }
+
+    /* sidebar / форма */
+    .event-sidebar { position: sticky; top: 80px; }
+    .sidebar-card { background: #ffffff; border: 1px solid #e8e8e8; border-radius: 16px; padding: 28px 28px 32px; margin-bottom: 12px; }
+    .sidebar-note { font-size: 14px; color: #666666; line-height: 1.6; margin-bottom: 20px; }
+    .sidebar-divider { border: none; border-top: 1px solid #f0f0f0; margin: 20px 0; }
+    .sidebar-label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #999999; font-weight: 600; margin-bottom: 6px; }
+    .sidebar-value { font-size: 15px; color: #111111; font-weight: 600; line-height: 1.5; }
+    .sidebar-form-title { font-size: 18px; font-weight: 700; color: #111111; margin-bottom: 16px; }
+
+    .reg-form { display: flex; flex-direction: column; gap: 10px; }
+    .reg-form input {
+      width: 100%; padding: 13px 16px;
+      font-family: 'Inter', sans-serif; font-size: 15px; color: #111111;
+      background: #f7f7f7; border: 1px solid #e8e8e8; border-radius: 10px;
+      outline: none; transition: border-color 0.15s, background 0.15s;
+    }
+    .reg-form input:focus { border-color: #1a4a3a; background: #ffffff; }
+    .reg-form input::placeholder { color: #aaaaaa; }
+    .btn-submit {
+      width: 100%; padding: 16px 24px;
+      background: #1a4a3a; color: #ffffff;
+      font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 700;
+      border: none; border-radius: 100px; cursor: pointer;
+      transition: opacity 0.15s; margin-top: 4px;
+    }
+    .btn-submit:hover { opacity: 0.88; }
+    .btn-submit:disabled { opacity: 0.5; cursor: default; }
+    .form-success {
+      display: none; text-align: center; padding: 20px 0;
+    }
+    .form-success-icon { font-size: 36px; margin-bottom: 10px; }
+    .form-success-text { font-size: 15px; font-weight: 600; color: #1a4a3a; }
+    .form-success-sub { font-size: 13px; color: #888888; margin-top: 6px; }
+    /* бесплатно-бейджи */
+    .hero-free-badge {
+      display: inline-block;
+      font-size: 13px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase;
+      color: #0f2e24; background: #6ee7b7;
+      padding: 6px 18px; border-radius: 100px;
+      margin-bottom: 20px;
+    }
+    .sidebar-free {
+      display: inline-block;
+      font-size: 11px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase;
+      color: #ffffff; background: #1a4a3a;
+      padding: 4px 14px; border-radius: 100px;
+      margin-bottom: 12px;
+    }
+    .cta-free {
+      display: inline-block;
+      font-size: 12px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase;
+      color: #0f2e24; background: #6ee7b7;
+      padding: 5px 16px; border-radius: 100px;
+      margin-bottom: 14px;
+    }
+
+    .form-consent { display: flex; align-items: flex-start; gap: 10px; cursor: pointer; margin-top: 2px; }
+    .form-consent input[type="checkbox"] { flex-shrink: 0; width: 16px; height: 16px; margin-top: 2px; accent-color: #1a4a3a; cursor: pointer; }
+    .form-consent span { font-size: 12px; color: #888888; line-height: 1.55; }
+    .form-consent a { color: #1a4a3a; text-decoration: underline; }
+    .form-consent a:hover { color: #0f2e24; }
+    .form-error { font-size: 13px; color: #cc3333; margin-top: 6px; display: none; }
+
+    /* ── THANK YOU POPUP ── */
+    .popup-overlay {
+      display: none; position: fixed; inset: 0; z-index: 9000;
+      background: rgba(0,0,0,0.55); backdrop-filter: blur(4px);
+      align-items: center; justify-content: center; padding: 20px;
+    }
+    .popup-overlay.open { display: flex; }
+    .popup-box {
+      background: #ffffff; border-radius: 20px;
+      max-width: 440px; width: 100%;
+      padding: 40px 36px 36px;
+      text-align: center;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.3);
+      animation: popupIn 0.3s cubic-bezier(0.34,1.56,0.64,1);
+      position: relative;
+    }
+    @keyframes popupIn {
+      from { opacity: 0; transform: scale(0.85) translateY(20px); }
+      to   { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    .popup-close {
+      position: absolute; top: 16px; right: 20px;
+      background: none; border: none; font-size: 24px;
+      color: #aaaaaa; cursor: pointer; line-height: 1;
+    }
+    .popup-close:hover { color: #111111; }
+    .popup-icon { font-size: 52px; margin-bottom: 16px; }
+    .popup-title { font-size: 22px; font-weight: 800; color: #111111; margin-bottom: 8px; line-height: 1.2; }
+    .popup-sub { font-size: 15px; color: #555555; margin-bottom: 28px; line-height: 1.6; }
+    .popup-card {
+      background: #f0f7f5; border-radius: 14px;
+      padding: 20px 24px; text-align: left; margin-bottom: 24px;
+    }
+    .popup-card-row { display: flex; gap: 12px; align-items: baseline; padding: 9px 0; border-bottom: 1px solid #ddeee9; }
+    .popup-card-row:last-child { border-bottom: none; }
+    .popup-card-key { font-size: 11px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: #1a4a3a; min-width: 72px; flex-shrink: 0; }
+    .popup-card-val { font-size: 14px; color: #111111; font-weight: 600; line-height: 1.4; }
+    .popup-ticket {
+      font-size: 12px; color: #888888; margin-bottom: 20px; line-height: 1.5;
+    }
+    .popup-ticket strong { color: #1a4a3a; }
+    .popup-btn {
+      display: block; width: 100%; padding: 15px 24px;
+      background: #1a4a3a; color: #ffffff;
+      font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 700;
+      border: none; border-radius: 100px; cursor: pointer;
+      transition: opacity 0.15s;
+    }
+    .popup-btn:hover { opacity: 0.88; }
+
+    .btn-secondary { display: block; width: 100%; padding: 14px 24px; text-align: center; background: #ffffff; color: #111111; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; text-decoration: none; border: 1px solid #e8e8e8; border-radius: 100px; transition: background 0.15s; margin-top: 10px; }
+    .btn-secondary:hover { background: #f5f5f5; }
+
+    /* CTA-секция внизу */
+    .cta-section { background: #1a4a3a; }
+    .cta-inner { max-width: 1200px; margin: 0 auto; padding: 72px 48px; display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+    .cta-text { }
+    .cta-h2 { font-size: 36px; font-weight: 700; color: #ffffff; line-height: 1.15; letter-spacing: -0.01em; margin-bottom: 10px; }
+    .cta-sub { font-size: 16px; color: rgba(255,255,255,0.65); line-height: 1.6; }
+    .cta-action { flex-shrink: 0; text-align: center; }
+    .btn-cta { display: inline-block; padding: 18px 44px; background: #ffffff; color: #1a4a3a; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 700; text-decoration: none; border-radius: 100px; transition: transform 0.15s, box-shadow 0.15s; box-shadow: 0 4px 24px rgba(0,0,0,0.25); white-space: nowrap; }
+    .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.3); }
+    .cta-note { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 12px; letter-spacing: 0.04em; }
+
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1100px) {
+      .event-hero-inner { gap: 36px; padding: 48px 32px; }
+      .event-hero-poster { max-width: 280px; }
+      .event-hero-title { font-size: 36px; }
+    }
+    @media (max-width: 900px) {
+      .event-hero-inner { grid-template-columns: 1fr; gap: 24px; padding: 40px 24px 48px; }
+      .event-hero-poster { max-width: 220px; max-height: 300px; margin: 0 auto; }
+      .event-hero-text { text-align: center; display: flex; flex-direction: column; align-items: center; }
+      .event-hero-tag { text-align: center; }
+      .event-hero-title { font-size: 30px; text-align: center; }
+      .event-hero-sub { font-size: 16px; max-width: 100%; text-align: center; }
+      .hero-hashtags { display: block; text-align: center; }
+      .hero-footnote { text-align: center; max-width: 100%; }
+      .hero-free-badge { display: block; text-align: center; }
+      .event-main { grid-template-columns: 1fr; padding: 40px 24px; gap: 40px; }
+      .event-sidebar { position: static; }
+      .presenter-block { display: flex; align-items: center; width: 100%; }
+      .cta-inline { font-size: 17px; }
+      .cta-inner { flex-direction: column; text-align: center; padding: 56px 24px; gap: 28px; }
+      footer { padding: 28px 20px; flex-direction: column; gap: 16px; text-align: center; }
+      .footer-links { flex-wrap: wrap; justify-content: center; }
+    }
+    @media (max-width: 600px) {
+      nav { padding: 0 16px; }
+      .event-hero { overflow: hidden; }
+      .event-hero-inner { padding: 28px 16px 36px; gap: 20px; }
+      .event-hero-poster { max-width: 150px; }
+      .event-hero-title { font-size: 24px; }
+      .event-hero-sub { font-size: 15px; }
+      .event-main { padding: 32px 16px; overflow: hidden; }
+      .sidebar-card { padding: 20px; }
+      .cta-h2 { font-size: 26px; }
+      .cta-inner { padding: 48px 16px; }
+      footer { padding: 24px 16px; }
+      .presenter-logo { width: 160px; }
+      .master-header { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<a class="fab-back" id="fabBack" href="/" aria-label="На главную" style="display:none;">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 5l-7 7 7 7"/></svg>
+  Назад
+</a>
+
+<nav>
+  <a href="/" class="nav-logo">Киммерия-Арт</a>
+  <a href="/" class="nav-back">← На главную</a>
+  <button class="nav-burger" id="navBurger" onclick="toggleMenu()" aria-label="Меню">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="sticky-cta">
+  <a href="#register">Записаться БЕСПЛАТНО →</a>
+</div>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="/" onclick="closeMenu()">← На главную</a>
+  <div class="mobile-menu-divider"></div>
+  <a href="#register" onclick="closeMenu()">Записаться</a>
+</div>
+
+<!-- ── HERO ── -->
+<div class="event-hero">
+  <div class="event-hero-bg" style="background-image: url('https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156896/kimmeria/master-mikrodrama-cover.jpg');"></div>
+  <div class="event-hero-inner">
+    <div class="event-hero-poster">
+      <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156896/kimmeria/master-mikrodrama-cover.jpg" alt="Мастер-класс по микродрамам">
+    </div>
+    <div class="event-hero-text">
+      <div class="event-hero-tag">Мастер-класс · Кинокомпания «Киммерия»</div>
+      <h1 class="event-hero-title">Ты смотришь TikTok и Reels?<br>Теперь так снимают сериалы.</h1>
+      <p class="event-hero-sub">Мастер-класс: как стать из рилсмейкера шоуранером микродрам! <span class="hero-hashtags">#блогинг #профессия #хобби</span></p>
+      <p class="hero-footnote">Шоуранер (showrunner) — профессионал в сфере кинопроизводства, который руководит творческим процессом создания сериалов или шоу.</p>
+      <div class="hero-free-badge" style="margin-top: 24px;">БЕСПЛАТНО · 2 мая · 18:00</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── ОСНОВНОЙ КОНТЕНТ ── -->
+<div class="event-main">
+  <div class="event-content">
+
+    <div class="presenter-block">
+      <div class="presenter-logo">
+        <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156887/kimmeria/logo-kimmeria.jpg" alt="Кинокомпания Киммерия">
+      </div>
+      <div class="presenter-label">Кинокомпания Киммерия представляет</div>
+    </div>
+
+    <p class="section-label">Что такое микродрама</p>
+    <div class="event-description">Короткий вертикальный сериал. Каждая серия — 1–2 минуты. Смотрят одну за одной, не останавливаясь.</div>
+    <p class="event-text">Микродрама — один из самых быстро растущих форматов в мире. Сначала взорвал Китай, затем США и Европу — теперь активно развивается в России. Иви, Кинопоиск, Окко уже покупают такие сериалы. Платформы ищут авторов, студии объявляют питчинги, спрос на сценаристов формата стремительно растёт.</p>
+
+    <p class="section-label">Для кого этот мастер-класс</p>
+    <p class="event-text">Для тех, кто уже снимает Reels и хочет вырасти в полноценный сериальный формат. И для тех, кто давно хочет снимать своё кино — но не знал с чего начать. Опыт в кино не нужен — нужно желание.</p>
+
+    <ul class="event-details-list">
+      <li><strong>Дата</strong> 2 мая 2026, суббота</li>
+      <li><strong>Время</strong> 18:00</li>
+      <li><strong>Место</strong> г. Ялта, ул. Игнатенко, 5, офис 2</li>
+      <li><strong>Стоимость</strong> Бесплатно</li>
+    </ul>
+
+    <div class="program-block">
+      <p class="section-label">Что разберём на мастер-классе</p>
+      <ul class="program-list">
+        <li><span class="program-num">01</span>Как устроена микродрама изнутри — структура, крючки, клиффхэнгеры</li>
+        <li><span class="program-num">02</span>Как написать сценарий серии за вечер</li>
+        <li><span class="program-num">03</span>Как снять с телефона — без студии и команды</li>
+        <li><span class="program-num">04</span>Как попасть на платформы и найти свою аудиторию</li>
+      </ul>
+    </div>
+
+    <div class="cta-inline">
+      Индустрия не ждёт.<br>Твоя первая серия может выйти уже в мае — <a href="#register">запишись на мастер-класс.</a>
+    </div>
+
+    <p class="section-label">Спикеры</p>
+
+    <div class="master-block">
+      <div class="master-header">
+        <div class="master-avatar">
+          <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156957/kimmeria/speaker-lebedeva.jpg" alt="Наталья Лебедева" onerror="this.parentNode.innerHTML='<div class=\'master-avatar-placeholder\'><svg viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'1.5\'><circle cx=\'12\' cy=\'8\' r=\'4\'/><path d=\'M4 20c0-4 3.6-7 8-7s8 3 8 7\'/></svg></div>'">
+        </div>
+        <div>
+          <div class="master-name">Наталья Лебедева</div>
+          <div class="master-role">Режиссёр · Продюсер · Основатель кинокомпании «Киммерия»</div>
+        </div>
+      </div>
+      <div class="master-bio">С 2016 года работает в киноиндустрии как режиссёр и продюсер. Снимает короткометражные и полнометражные фильмы — «Жди меня», «Изольда», «Артистка», «Феодосийская сказка», — получившие признание на фестивалях и вышедшие в широкий прокат. Создала кинокомпанию «Киммерия». Руководит культурно-исследовательскими и образовательными проектами.</div>
+      <div class="master-tags">
+        <span class="master-tag">Режиссёр</span>
+        <span class="master-tag">Продюсер</span>
+        <span class="master-tag">Кинокомпания «Киммерия»</span>
+      </div>
+    </div>
+
+    <div class="master-block" style="margin-top: 16px;">
+      <div class="master-header">
+        <div class="master-avatar">
+          <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156959/kimmeria/speaker-vedene.jpg" alt="Сергей Веденьё" onerror="this.parentNode.innerHTML='<div class=\'master-avatar-placeholder\'><svg viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'1.5\'><circle cx=\'12\' cy=\'8\' r=\'4\'/><path d=\'M4 20c0-4 3.6-7 8-7s8 3 8 7\'/></svg></div>'">
+        </div>
+        <div>
+          <div class="master-name">Сергей Веденьё</div>
+          <div class="master-role">Сценарист · Писатель · Выпускник ВГИКа</div>
+        </div>
+      </div>
+      <div class="master-bio">Член Союза писателей. Писал для ОРТ, НТВ, «России». Автор тысяч вирусных афоризмов в соцсетях. Преподавал теорию драматургии и сторителлинга.</div>
+      <div class="master-tags">
+        <span class="master-tag">ВГИК</span>
+        <span class="master-tag">Союз писателей</span>
+        <span class="master-tag">ОРТ · НТВ · Россия</span>
+        <span class="master-tag">Драматургия</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── SIDEBAR / ФОРМА ── -->
+  <aside class="event-sidebar" id="register">
+    <div class="sidebar-card">
+      <div class="sidebar-free">Бесплатно</div>
+      <div class="sidebar-form-title">Записаться на мастер-класс</div>
+      <div style="font-size: 13px; color: #555; line-height: 1.5; margin-bottom: 14px; margin-top: -8px;">«Как стать из рилсмейкера шоуранером микродрам»</div>
+      <div class="sidebar-note">2 мая · 18:00 · Ялта, ул. Игнатенко, 5<br>Количество мест ограничено.</div>
+
+      <form class="reg-form" id="regForm" onsubmit="submitForm(event)">
+        <input type="text" name="name" placeholder="Имя и фамилия" required maxlength="80">
+        <input type="tel" name="phone" placeholder="Номер телефона" required maxlength="20">
+        <label class="form-consent">
+          <input type="checkbox" name="consent" required>
+          <span>Я даю согласие на <a href="/privacy/" target="_blank">обработку персональных данных</a> в соответствии с Федеральным законом № 152-ФЗ</span>
+        </label>
+        <button type="submit" class="btn-submit" id="submitBtn">Записаться →</button>
+        <div class="form-error" id="formError">Ошибка отправки. Попробуйте ещё раз.</div>
+      </form>
+
+      <div class="form-success" id="formSuccess">
+        <div class="form-success-icon">✅</div>
+        <div class="form-success-text">Заявка отправлена!</div>
+        <div class="form-success-sub">Мы свяжемся с вами в ближайшее время.</div>
+      </div>
+    </div>
+<a href="/" class="btn-secondary">← На главную</a>
+  </aside>
+</div>
+
+<!-- ── CTA-СЕКЦИЯ ── -->
+<div class="cta-section">
+  <div class="cta-inner">
+    <div class="cta-text">
+      <div class="cta-free">Бесплатно</div>
+      <div class="cta-h2">Запись обязательная.</div>
+      <div class="cta-sub">Количество мест ограничено!</div>
+    </div>
+  </div>
+</div>
+
+<div id="site-footer"></div>
+
+<script>
+var TG_TOKEN = '8555296982:AAE2LCN_eeCy33jGJfyWh7guxS2ia2yq68A';
+var TG_CHAT  = '214662526';
+var GS_URL   = 'https://script.google.com/macros/s/AKfycbyczEsIbkKi5lcDTBbN_FW-FQ4DWH6Lwaig2wq-2KanbLXmdFfUYwhP1xC9SF9FvpS8/exec';
+
+function submitForm(e) {
+  e.preventDefault();
+  var form  = document.getElementById('regForm');
+  var btn   = document.getElementById('submitBtn');
+  var err   = document.getElementById('formError');
+  var name  = form.name.value.trim();
+  var phone = form.phone.value.trim();
+
+  btn.disabled = true;
+  btn.textContent = 'Отправляем…';
+  err.style.display = 'none';
+
+  var params = new URLSearchParams(window.location.search);
+  var utmFields = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'];
+  var utmLines = '';
+  utmFields.forEach(function(key) {
+    if (params.get(key)) utmLines += '\n🔖 ' + key + ': ' + params.get(key);
+  });
+  if (!utmLines && document.referrer) utmLines = '\n🔗 Реферер: ' + document.referrer;
+
+  var text = '🎬 Новая заявка на мастер-класс по микродрамам (2 мая)\n\n'
+           + '👤 Имя: ' + name + '\n'
+           + '📞 Телефон: ' + phone
+           + (utmLines ? '\n\n📊 Источник:' + utmLines : '');
+
+  var gsParams = new URLSearchParams({
+    name: name,
+    phone: phone,
+    utm_source: params.get('utm_source') || '',
+    utm_medium: params.get('utm_medium') || '',
+    utm_campaign: params.get('utm_campaign') || '',
+    referrer: document.referrer || ''
+  });
+
+  fetch(GS_URL + '?' + gsParams.toString(), {
+    method: 'GET',
+    mode: 'no-cors'
+  }).catch(function() {});
+
+  fetch('https://api.telegram.org/bot' + TG_TOKEN + '/sendMessage', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ chat_id: TG_CHAT, text: text })
+  }).catch(function() {});
+
+  document.getElementById('thankPopup').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+// скрывать sticky CTA когда виден блок спикеров
+(function() {
+  var bar = document.querySelector('.sticky-cta');
+  var speakers = document.querySelector('.master-block');
+  if (!bar || !speakers || window.innerWidth > 900) return;
+  var obs = new IntersectionObserver(function(entries) {
+    bar.style.display = entries[0].isIntersecting ? 'none' : '';
+  }, { threshold: 0.1 });
+  obs.observe(speakers);
+})();
+
+// показать кнопку Назад только если пришли с нашего сайта
+(function() {
+  var ref = document.referrer;
+  if (ref && (ref.indexOf('art-kimmeria.ru') !== -1 || ref.indexOf(location.hostname) !== -1)) {
+    document.getElementById('fabBack').style.display = 'flex';
+  }
+})();
+
+function closeThankPopup() {
+  document.getElementById('thankPopup').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closePopup(e) {
+  if (e.target === document.getElementById('thankPopup')) closeThankPopup();
+}
+
+function toggleMenu() {
+  var burger = document.getElementById('navBurger');
+  var menu = document.getElementById('mobileMenu');
+  burger.classList.toggle('open');
+  menu.classList.toggle('open');
+  document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+}
+function closeMenu() {
+  document.getElementById('navBurger').classList.remove('open');
+  document.getElementById('mobileMenu').classList.remove('open');
+  document.body.style.overflow = '';
+}
+</script>
+<!-- ── THANK YOU POPUP ── -->
+<div class="popup-overlay" id="thankPopup" onclick="closePopup(event)">
+  <div class="popup-box">
+    <button class="popup-close" onclick="closeThankPopup()" aria-label="Закрыть">×</button>
+    <div class="popup-icon">🎬</div>
+    <div class="popup-title">Вы записаны на мастер-класс!</div>
+    <div class="popup-sub">Ждём вас. Приходите — это бесплатно и полезно.</div>
+    <div class="popup-card">
+      <div class="popup-card-row">
+        <span class="popup-card-key">Дата</span>
+        <span class="popup-card-val">2 мая 2026, суббота</span>
+      </div>
+      <div class="popup-card-row">
+        <span class="popup-card-key">Время</span>
+        <span class="popup-card-val">18:00</span>
+      </div>
+      <div class="popup-card-row">
+        <span class="popup-card-key">Адрес</span>
+        <span class="popup-card-val">г. Ялта, ул. Игнатенко, 5, офис 2</span>
+      </div>
+    </div>
+    <div class="popup-ticket">🎟 <strong>Билет не требуется</strong> — просто приходите в указанное время</div>
+    <button class="popup-btn" onclick="closeThankPopup()">Отлично, буду!</button>
+  </div>
+</div>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()" aria-label="Закрыть">×</button>
+  <img id="lightboxImg" src="" alt="" onclick="event.stopPropagation()">
+</div>
+
+<script src="/footer.js"></script>
+<script>
+function openLightbox(img) {
+  document.getElementById('lightboxImg').src = img.src;
+  document.getElementById('lightboxImg').alt = img.alt;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeLightbox();
+});
+document.querySelectorAll('.master-avatar img, .event-hero-poster img').forEach(function(img) {
+  img.addEventListener('click', function() { openLightbox(this); });
+});
+</script>
+</body>
+</html>
