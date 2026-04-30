@@ -494,7 +494,7 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 60px; di
 }
 </style>
 
-<div id="splitWrap" class="split-open">
+<div id="splitWrap">
   <div class="split-card" id="splitCard">
     <div class="split-card-top">
       <span class="split-card-badge">Рассрочка</span>
@@ -609,6 +609,21 @@ function submitForm(e) {
 function toggleSplit() {
   document.getElementById('splitWrap').classList.toggle('split-open');
 }
+
+// Открыть баннер при скролле до второго блока (#about)
+(function() {
+  var opened = false;
+  var trigger = document.getElementById('about');
+  if (!trigger) return;
+  window.addEventListener('scroll', function() {
+    if (opened) return;
+    var wrap = document.getElementById('splitWrap');
+    if (window.scrollY >= trigger.offsetTop - window.innerHeight * 0.6) {
+      opened = true;
+      wrap.classList.add('split-open');
+    }
+  }, { passive: true });
+})();
 </script>
 <script src="/footer.js"></script>
 </body>
