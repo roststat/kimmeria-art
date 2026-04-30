@@ -55,6 +55,73 @@ footer {
   }
 })();
 
+// Куки-баннер
+(function () {
+  if (localStorage.getItem('cookie_accepted')) return;
+
+  var style = document.createElement('style');
+  style.textContent = `
+    .cookie-bar {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999;
+      background: #111; color: #fff;
+      padding: 16px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; flex-wrap: wrap;
+      box-shadow: 0 -4px 24px rgba(0,0,0,0.2);
+      font-family: inherit; font-size: 13px; line-height: 1.55;
+      animation: cookieSlide 0.3s ease;
+    }
+    @keyframes cookieSlide { from { transform: translateY(100%); } to { transform: translateY(0); } }
+    .cookie-bar-text { flex: 1; min-width: 200px; color: rgba(255,255,255,0.8); }
+    .cookie-bar-text a { color: #fff; text-decoration: underline; }
+    .cookie-bar-text a:hover { opacity: 0.8; }
+    .cookie-bar-actions { display: flex; gap: 10px; flex-shrink: 0; }
+    .cookie-btn-accept {
+      padding: 9px 22px; background: #fff; color: #111;
+      font-size: 13px; font-weight: 700; border: none; border-radius: 100px;
+      cursor: pointer; font-family: inherit; transition: opacity 0.15s;
+    }
+    .cookie-btn-accept:hover { opacity: 0.88; }
+    .cookie-btn-decline {
+      padding: 9px 16px; background: none; color: rgba(255,255,255,0.5);
+      font-size: 13px; font-weight: 600; border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 100px; cursor: pointer; font-family: inherit; transition: color 0.15s;
+    }
+    .cookie-btn-decline:hover { color: #fff; }
+    @media (max-width: 600px) {
+      .cookie-bar { padding: 14px 16px; }
+      .cookie-bar-actions { width: 100%; }
+      .cookie-btn-accept { flex: 1; text-align: center; }
+    }
+  `;
+  document.head.appendChild(style);
+
+  var bar = document.createElement('div');
+  bar.className = 'cookie-bar';
+  bar.id = 'cookieBar';
+  bar.innerHTML = `
+    <div class="cookie-bar-text">
+      Мы используем файлы cookie для улучшения работы сайта и аналитики.
+      Продолжая пользоваться сайтом, вы соглашаетесь с нашей
+      <a href="/cookies/">политикой cookie</a>.
+    </div>
+    <div class="cookie-bar-actions">
+      <button class="cookie-btn-accept" onclick="cookieAccept()">Принять</button>
+      <button class="cookie-btn-decline" onclick="cookieDecline()">Отклонить</button>
+    </div>
+  `;
+  document.body.appendChild(bar);
+
+  window.cookieAccept = function () {
+    localStorage.setItem('cookie_accepted', '1');
+    document.getElementById('cookieBar').remove();
+  };
+  window.cookieDecline = function () {
+    localStorage.setItem('cookie_accepted', '0');
+    document.getElementById('cookieBar').remove();
+  };
+})();
+
 // Автоскрытие стоимости на страницах прошедших мероприятий
 (function () {
   var MONTHS = {
