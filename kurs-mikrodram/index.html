@@ -419,9 +419,10 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 60px; di
 .split-card {
   position: fixed; bottom: 92px; right: 24px; z-index: 400;
   width: 300px;
-  background: var(--accent-dark);
+  background: #fff;
   border-radius: 20px;
-  box-shadow: 0 12px 48px rgba(0,0,0,0.35);
+  border: 2px dashed var(--accent);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
   overflow: hidden;
   /* Исходное состояние: скрыта у кнопки */
   transform-origin: bottom right;
@@ -443,20 +444,20 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 60px; di
 }
 .split-card-badge {
   font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
-  color: var(--accent-dark); background: var(--green);
+  color: #fff; background: var(--accent);
   padding: 4px 12px; border-radius: 100px;
 }
 .split-close-btn {
-  background: rgba(255,255,255,0.12); border: none; cursor: pointer;
-  color: rgba(255,255,255,0.7); font-size: 18px; line-height: 1;
+  background: #f0f0f0; border: none; cursor: pointer;
+  color: #888; font-size: 18px; line-height: 1;
   width: 28px; height: 28px; border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0; transition: background 0.15s;
 }
-.split-close-btn:hover { background: rgba(255,255,255,0.22); color: #fff; }
+.split-close-btn:hover { background: #e0e0e0; color: #333; }
 
 .split-card-title {
-  font-size: 17px; font-weight: 800; color: #fff;
+  font-size: 17px; font-weight: 800; color: #111;
   line-height: 1.25; padding: 0 18px 14px;
 }
 
@@ -465,15 +466,15 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 60px; di
   display: flex; gap: 6px; padding: 0 18px 14px;
 }
 .split-step {
-  flex: 1; background: rgba(255,255,255,0.1); border-radius: 12px;
+  flex: 1; background: var(--accent-light); border-radius: 12px;
   padding: 10px 6px; text-align: center;
-  border: 1px solid rgba(255,255,255,0.12);
+  border: 1px solid rgba(26,74,58,0.12);
 }
-.split-step-num { font-size: 13px; font-weight: 800; color: var(--green); }
-.split-step-label { font-size: 11px; color: rgba(255,255,255,0.85); margin-top: 3px; font-weight: 500; }
+.split-step-num { font-size: 13px; font-weight: 800; color: var(--accent); }
+.split-step-label { font-size: 11px; color: #555; margin-top: 3px; font-weight: 500; }
 
 .split-card-sub {
-  font-size: 13px; color: rgba(255,255,255,0.85); line-height: 1.65; font-weight: 400;
+  font-size: 13px; color: #555; line-height: 1.65; font-weight: 400;
   padding: 0 18px 16px;
 }
 
@@ -481,7 +482,7 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 60px; di
 .split-phone {
   display: block; margin: 0 18px 18px;
   padding: 13px;
-  background: var(--green); color: var(--accent-dark);
+  background: var(--accent); color: #fff;
   font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 800;
   text-align: center; text-decoration: none; border-radius: 100px;
   transition: opacity 0.15s;
