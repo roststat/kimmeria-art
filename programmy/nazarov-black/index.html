@@ -457,5 +457,14 @@ window.addEventListener('afterprint',function(){document.getElementById('kpPrint
 })();
 </script>
 
+<script>
+(function(){
+  var ref = document.referrer;
+  if (ref && ref.indexOf('hotel-foros') !== -1) {
+    var btn = document.querySelector('.nav-back');
+    if (btn) { btn.textContent = '← Назад'; btn.href = ref; }
+  }
+})();
+</script>
 </body>
 </html>
