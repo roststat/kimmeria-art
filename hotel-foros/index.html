@@ -3,127 +3,136 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Мероприятия Ялты — Афиша для гостей отеля «Форос»</title>
-<meta property="og:title" content="Мероприятия Ялты — Афиша для гостей отеля «Форос»">
-<meta property="og:description" content="Спектакли, лекции и кинопоказы в Ялте. Специально для гостей отеля «Форос».">
-<meta property="og:image" content="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156881/kimmeria/hero-archer.png">
+<title>Предложение для отеля «Форос» — Киммерия-Арт · Май 2026</title>
+<meta property="og:title" content="Предложение для отеля «Форос» — Киммерия-Арт · Май 2026">
+<meta property="og:description" content="4 мероприятия в мае 2026. Спектакли, лекция и кинопоказ на площадке отеля.">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root { --accent: #1a4a3a; --accent-dark: #0f2e24; --green: #4ade80; }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-body { font-family: 'Onest', Arial, sans-serif; background: #f7f7f5; color: #111; font-size: 16px; line-height: 1.6; overflow-x: hidden; }
+body { font-family: 'Onest', Arial, sans-serif; background: #f5f5f3; color: #111; font-size: 16px; line-height: 1.6; overflow-x: hidden; }
 
 /* ── ШАПКА ── */
-.top-bar {
+.header {
   background: var(--accent-dark);
+  padding: 18px 40px;
+  display: flex; align-items: center; justify-content: space-between; gap: 20px;
+}
+.header-brand { font-size: 13px; font-weight: 700; color: #fff; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; }
+.header-tag {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--accent-dark); background: var(--green);
+  padding: 5px 14px; border-radius: 100px;
+}
+
+/* ── INTRO ── */
+.intro {
+  max-width: 860px; margin: 0 auto;
+  padding: 48px 40px 12px;
+}
+.intro-eyebrow {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  color: #999; margin-bottom: 10px;
+}
+.intro-title {
+  font-size: 32px; font-weight: 700; color: #111; line-height: 1.2;
+  letter-spacing: -0.01em; margin-bottom: 10px;
+}
+.intro-sub { font-size: 15px; color: #666; line-height: 1.65; max-width: 580px; }
+
+/* ── СЕТКА КАРТОЧЕК ── */
+.cards-wrap {
+  max-width: 860px; margin: 0 auto;
+  padding: 32px 40px 64px;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* ── КАРТОЧКА ── */
+.card {
+  background: #fff; border-radius: 18px;
+  overflow: hidden; border: 1px solid #e8e8e8;
+  display: flex; flex-direction: column;
+  text-decoration: none; color: inherit;
+  transition: transform 0.18s, box-shadow 0.18s;
+}
+.card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(0,0,0,0.10); }
+
+.card-cover {
+  position: relative; width: 100%; height: 220px;
+  overflow: hidden; flex-shrink: 0;
+  background: var(--accent-dark);
+}
+.card-cover img {
+  width: 100%; height: 100%; object-fit: cover;
+  display: block; transition: transform 0.3s;
+}
+.card:hover .card-cover img { transform: scale(1.04); }
+.card-cover-placeholder {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 52px;
+}
+
+.card-date-badge {
+  position: absolute; top: 14px; left: 14px;
+  background: #fff; color: #111;
+  font-size: 13px; font-weight: 700;
+  padding: 5px 12px; border-radius: 100px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+  white-space: nowrap;
+}
+
+.card-format-badge {
+  position: absolute; top: 14px; right: 14px;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  color: #fff; background: var(--accent);
+  padding: 4px 10px; border-radius: 100px;
+}
+
+.card-body { padding: 22px 24px 24px; flex: 1; display: flex; flex-direction: column; gap: 8px; }
+
+.card-title { font-size: 19px; font-weight: 700; color: #111; line-height: 1.25; }
+
+.card-desc { font-size: 14px; color: #666; line-height: 1.6; flex: 1; }
+
+.card-footer {
   display: flex; align-items: center; justify-content: space-between;
-  padding: 0 40px; height: 52px; gap: 12px;
+  padding-top: 14px; border-top: 1px solid #f0f0f0; margin-top: 4px;
 }
-.top-bar-brand {
-  font-size: 13px; font-weight: 700; color: #fff;
-  letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none;
+.card-author { font-size: 12px; color: #999; font-weight: 500; }
+.card-link {
+  font-size: 12px; font-weight: 700; color: var(--accent);
+  display: flex; align-items: center; gap: 4px;
 }
-.top-bar-hotel {
-  font-size: 12px; color: rgba(255,255,255,0.5);
-  letter-spacing: 0.04em;
-}
-@media (max-width: 600px) {
-  .top-bar { padding: 0 20px; }
-  .top-bar-hotel { display: none; }
-}
+.card-link svg { width: 12px; height: 12px; }
 
-/* ── HERO ── */
-.hero {
-  background: var(--accent);
-  padding: 52px 40px 48px;
-  text-align: center;
-}
-.hero-badge {
-  display: inline-block;
-  font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--accent); background: var(--green);
-  padding: 5px 14px; border-radius: 100px; margin-bottom: 20px;
-}
-.hero-title {
-  font-size: 38px; font-weight: 700; color: #fff;
-  line-height: 1.15; letter-spacing: -0.01em; margin-bottom: 12px;
-}
-.hero-sub {
-  font-size: 16px; color: rgba(255,255,255,0.7); line-height: 1.6;
-  max-width: 500px; margin: 0 auto 28px;
-}
-.hero-chips {
-  display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;
-}
-.hero-chip {
-  font-size: 13px; font-weight: 600;
-  color: rgba(255,255,255,0.85);
-  background: rgba(255,255,255,0.12);
-  border: 1px solid rgba(255,255,255,0.2);
-  padding: 7px 16px; border-radius: 100px;
-}
-@media (max-width: 600px) {
-  .hero { padding: 40px 20px 36px; }
-  .hero-title { font-size: 28px; }
-}
-
-/* ── РАСПИСАНИЕ ── */
-.schedule-section {
-  max-width: 820px; margin: 0 auto;
-  padding: 40px 24px 60px;
-}
-.schedule-label {
-  font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
-  color: #999; margin-bottom: 20px; text-align: center;
-}
-
-/* ── КОНТАКТЫ ── */
-.contact-section {
-  background: #fff;
-  border-top: 1px solid #e8e8e8;
+/* ── КОНТАКТ ── */
+.contact {
+  background: var(--accent-dark);
   padding: 40px;
   text-align: center;
 }
-.contact-title {
-  font-size: 18px; font-weight: 700; color: #111; margin-bottom: 6px;
-}
-.contact-sub {
-  font-size: 14px; color: #888; margin-bottom: 20px;
-}
+.contact-title { font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+.contact-sub { font-size: 14px; color: rgba(255,255,255,0.5); margin-bottom: 20px; }
 .contact-phone {
-  display: inline-block;
-  font-size: 24px; font-weight: 700; color: var(--accent);
-  text-decoration: none; letter-spacing: 0.01em;
-  transition: opacity 0.15s;
+  display: inline-block; font-size: 26px; font-weight: 700;
+  color: var(--green); text-decoration: none; transition: opacity 0.15s;
 }
-.contact-phone:hover { opacity: 0.75; }
-.contact-note {
-  font-size: 13px; color: #bbb; margin-top: 10px;
-}
-@media (max-width: 600px) {
-  .contact-section { padding: 32px 20px; }
-  .contact-phone { font-size: 20px; }
-}
+.contact-phone:hover { opacity: 0.8; }
+.contact-note { font-size: 13px; color: rgba(255,255,255,0.3); margin-top: 10px; }
 
-/* ── ФУТЕР ── */
-.page-footer {
-  background: var(--accent-dark);
-  padding: 20px 40px;
-  display: flex; align-items: center; justify-content: space-between;
-  gap: 12px; flex-wrap: wrap;
-}
-.footer-brand {
-  font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.5);
-  letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none;
-}
-.footer-note { font-size: 12px; color: rgba(255,255,255,0.25); }
-@media (max-width: 600px) {
-  .page-footer { padding: 18px 20px; flex-direction: column; align-items: flex-start; gap: 4px; }
+/* ── АДАПТИВ ── */
+@media (max-width: 700px) {
+  .header { padding: 14px 20px; }
+  .intro { padding: 32px 20px 8px; }
+  .intro-title { font-size: 24px; }
+  .cards-wrap { grid-template-columns: 1fr; padding: 24px 20px 48px; gap: 14px; }
+  .card-cover { height: 190px; }
+  .contact { padding: 32px 20px; }
+  .contact-phone { font-size: 22px; }
 }
 </style>
 <!-- Yandex.Metrika counter -->
@@ -133,42 +142,94 @@ body { font-family: 'Onest', Arial, sans-serif; background: #f7f7f5; color: #111
 </head>
 <body>
 
-<!-- ШАПКА -->
-<div class="top-bar">
-  <a class="top-bar-brand" href="/">Киммерия-Арт</a>
-  <span class="top-bar-hotel">Специально для гостей отеля «Форос»</span>
+<div class="header">
+  <a class="header-brand" href="/">Киммерия-Арт</a>
+  <span class="header-tag">КП · Отель «Форос»</span>
 </div>
 
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-badge">Афиша · Ялта</div>
-  <h1 class="hero-title">Культурная жизнь Ялты</h1>
-  <p class="hero-sub">Спектакли, лекции и кинопоказы — выберите мероприятие и запишитесь прямо сейчас</p>
-  <div class="hero-chips">
-    <span class="hero-chip">📍 Ялта, ул. Игнатенко, 5</span>
-    <span class="hero-chip">🎭 Спектакли · Лекции · Кино</span>
-    <span class="hero-chip">🎟 Запись по телефону</span>
-  </div>
+<div class="intro">
+  <div class="intro-eyebrow">Предложение на май 2026</div>
+  <h1 class="intro-title">Мероприятия на площадке отеля</h1>
+  <p class="intro-sub">Четыре события — спектакли, кино и лекция. Нажмите на карточку, чтобы узнать подробнее о каждой программе.</p>
 </div>
 
-<!-- РАСПИСАНИЕ -->
-<div class="schedule-section">
-  <div class="schedule-label">Ближайшие мероприятия</div>
-  <script src="https://art-kimmeria.ru/widget.js" data-token="4dmol4242laxain03pidu8"></script>
+<div class="cards-wrap">
+
+  <!-- 1. УЖЕ — 10 мая -->
+  <a class="card" href="https://art-kimmeria.ru/programmy/uzhe/" target="_blank">
+    <div class="card-cover">
+      <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156925/kimmeria/photo_819%4030-03-2026_09-17-02.jpg" alt="УЖЕ">
+      <span class="card-date-badge">10 мая</span>
+      <span class="card-format-badge">Спектакль</span>
+    </div>
+    <div class="card-body">
+      <div class="card-title">«УЖЕ»</div>
+      <div class="card-desc">Мультимедийный поэтический перформанс. Четыре стихотворные сказки — бытовой символизм, философия и эко-эстетика. Декорации из переработанного пластика.</div>
+      <div class="card-footer">
+        <span class="card-author">Мимла Же</span>
+        <span class="card-link">Подробнее <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      </div>
+    </div>
+  </a>
+
+  <!-- 2. Умирающий лебедь — 16 мая -->
+  <a class="card" href="https://art-kimmeria.ru/programmy/lebed/" target="_blank">
+    <div class="card-cover">
+      <div class="card-cover-placeholder">🦢</div>
+      <span class="card-date-badge">16 мая</span>
+      <span class="card-format-badge">Кино + лекция</span>
+    </div>
+    <div class="card-body">
+      <div class="card-title">«Умирающий лебедь»</div>
+      <div class="card-desc">Кинопоказ немого шедевра Евгения Бауэра (Россия, 1917) с авторской лекцией. История балерины, красота смерти и рождение русского кино.</div>
+      <div class="card-footer">
+        <span class="card-author">Мимла Же · Наталия Добрынская</span>
+        <span class="card-link">Подробнее <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      </div>
+    </div>
+  </a>
+
+  <!-- 3. Чёрные дыры — 25 мая -->
+  <a class="card" href="https://art-kimmeria.ru/programmy/nazarov-black/" target="_blank">
+    <div class="card-cover">
+      <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156921/kimmeria/photo_814%4027-03-2026_18-42-39.jpg" alt="Чёрные дыры">
+      <span class="card-date-badge">25 мая</span>
+      <span class="card-format-badge">Лекция</span>
+    </div>
+    <div class="card-body">
+      <div class="card-title">«Чёрные дыры»</div>
+      <div class="card-desc">Научно-популярная лекция об астрофизике. Природа чёрных дыр, как их обнаруживают, первая в истории фотография. Доступно и увлекательно для любой аудитории.</div>
+      <div class="card-footer">
+        <span class="card-author">Сергей Назаров · КрАО</span>
+        <span class="card-link">Подробнее <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      </div>
+    </div>
+  </a>
+
+  <!-- 4. Алла Назимова / Саломея — 30 мая -->
+  <a class="card" href="https://art-kimmeria.ru/programmy/salomeya/" target="_blank">
+    <div class="card-cover">
+      <div class="card-cover-placeholder" style="background: linear-gradient(135deg, #2d1b4e, #1a0a2e);">🌹</div>
+      <span class="card-date-badge">30 мая</span>
+      <span class="card-format-badge">Кино + лекция</span>
+    </div>
+    <div class="card-body">
+      <div class="card-title">«Алла Назимова. Саломея»</div>
+      <div class="card-desc">Легенда немого Голливуда и её главный фильм. Кинопоказ «Саломеи» (США, 1923) по пьесе Оскара Уайльда с авторской лекцией об Алле Назимовой — звезде из Ялты.</div>
+      <div class="card-footer">
+        <span class="card-author">Мимла Же · Наталия Добрынская</span>
+        <span class="card-link">Подробнее <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      </div>
+    </div>
+  </a>
+
 </div>
 
-<!-- КОНТАКТЫ -->
-<div class="contact-section">
-  <div class="contact-title">Запись и вопросы</div>
-  <div class="contact-sub">Администратор арт-пространства «Киммерия-Арт»</div>
-  <a class="contact-phone" href="tel:+79780602986">+7 978 060-29-86</a>
-  <div class="contact-note">Арт-пространство «Киммерия», г. Ялта, ул. Игнатенко, 5, оф. 2</div>
-</div>
-
-<!-- ФУТЕР -->
-<div class="page-footer">
-  <a class="footer-brand" href="/">Киммерия-Арт</a>
-  <span class="footer-note">Арт-пространство · Ялта</span>
+<div class="contact">
+  <div class="contact-title">Обсудить условия</div>
+  <div class="contact-sub">Филипп Емельянов · Продюсер · Киммерия-Арт</div>
+  <a class="contact-phone" href="tel:+79260662878">+7 926 066-28-78</a>
+  <div class="contact-note">art-kimmeria.ru · Ялта</div>
 </div>
 
 </body>
