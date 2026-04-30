@@ -124,6 +124,15 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 60px; di
 .btn-final:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.25); }
 .final-note { font-size: 13px; color: rgba(255,255,255,0.4); margin-top: 16px; }
 
+/* ANCHOR NAV */
+.anchor-nav { position: sticky; top: 60px; z-index: 90; background: rgba(255,255,255,0.97); backdrop-filter: blur(16px); border-bottom: 1px solid #e8e8e8; }
+.anchor-nav-inner { max-width: 1060px; margin: 0 auto; padding: 0 48px; display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; }
+.anchor-nav-inner::-webkit-scrollbar { display: none; }
+.anchor-nav-link { font-size: 13px; font-weight: 600; color: #666; text-decoration: none; padding: 12px 14px; white-space: nowrap; border-bottom: 2px solid transparent; transition: color 0.15s, border-color 0.15s; flex-shrink: 0; }
+.anchor-nav-link:hover { color: #111; }
+.anchor-nav-link.active { color: var(--accent); border-bottom-color: var(--accent); }
+@media (max-width: 900px) { .anchor-nav-inner { padding: 0 16px; } }
+
 /* RESPONSIVE */
 @media (max-width: 900px) {
   .hero-inner { padding: 56px 24px 64px; }
@@ -160,6 +169,14 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 60px; di
   <button class="nav-cta" onclick="openForm()">Записаться на курс</button>
 </nav>
 
+<div class="anchor-nav">
+  <div class="anchor-nav-inner">
+    <a href="#about" class="anchor-nav-link">О курсе</a>
+    <a href="#schedule" class="anchor-nav-link">Расписание</a>
+    <a href="#price" class="anchor-nav-link">Стоимость</a>
+  </div>
+</div>
+
 <!-- HERO -->
 <div class="hero">
   <div class="hero-inner">
@@ -179,7 +196,7 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 60px; di
 <hr class="divider">
 
 <!-- БЛОК 2: МАСТЕР + МЕТОДИКА -->
-<div class="section">
+<div class="section" id="about">
   <div class="section-eyebrow">Авторская методика</div>
   <h2 class="section-title">Сценарное мастерство от Сергея Веденьё</h2>
   <div class="master-section">
@@ -230,7 +247,7 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 60px; di
 <hr class="divider">
 
 <!-- ПРОГРАММА КУРСА -->
-<div class="section">
+<div class="section" id="schedule">
   <div class="section-eyebrow">Содержание курса</div>
   <h2 class="section-title">Программа — 8 встреч за 4 недели</h2>
   <div class="program-list">
@@ -371,6 +388,22 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 60px; di
 </div>
 
 <script>
+// Anchor nav active state
+(function() {
+  var links = document.querySelectorAll('.anchor-nav-link');
+  var sections = ['about', 'schedule', 'price'].map(function(id) { return document.getElementById(id); });
+  function onScroll() {
+    var scrollY = window.scrollY + 120;
+    var active = sections[0];
+    sections.forEach(function(s) { if (s && s.offsetTop <= scrollY) active = s; });
+    links.forEach(function(l) {
+      l.classList.toggle('active', l.getAttribute('href') === '#' + (active ? active.id : ''));
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
+
 var TG_TOKEN = '8555296982:AAE2LCN_eeCy33jGJfyWh7guxS2ia2yq68A';
 var TG_CHAT  = '214662526';
 var GS_URL   = 'https://script.google.com/macros/s/AKfycbyczEsIbkKi5lcDTBbN_FW-FQ4DWH6Lwaig2wq-2KanbLXmdFfUYwhP1xC9SF9FvpS8/exec';
