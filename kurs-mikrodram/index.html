@@ -347,7 +347,7 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 60px; di
   <div class="popup">
     <button class="popup-close" onclick="closeForm()">×</button>
     <div class="popup-title">Записаться на курс</div>
-    <p class="popup-sub">Начало 5 мая 2026 · Вт и Сб · 18:00 · 15 000 ₽</p>
+    <p class="popup-sub" id="formSub">Начало 5 мая 2026 · Вт и Сб · 18:00 · 15 000 ₽</p>
     <div style="background:#f0f7f5;border-radius:12px;padding:14px 18px;margin-bottom:20px;font-size:13px;color:#1a4a3a;line-height:1.6;">
       Оплата курса производится после подписания договора. Возможна рассрочка от кинокомпании «Киммерия» — условия уточняйте по телефону.
     </div>
@@ -518,7 +518,7 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 60px; di
       </div>
     </div>
     <div class="split-card-sub">Без кредита и банков — рассрочка напрямую от кинокомпании «Киммерия». Подробности по телефону.</div>
-    <a class="split-phone" href="tel:+79780602986">+7 978 060-29-86</a>
+    <button class="split-phone" onclick="openForm(true)">Оставить заявку →</button>
   </div>
 
   <button class="split-btn" id="splitBtn" onclick="toggleSplit()" aria-label="Рассрочка">
@@ -547,7 +547,17 @@ var TG_TOKEN = '8555296982:AAE2LCN_eeCy33jGJfyWh7guxS2ia2yq68A';
 var TG_CHAT  = '214662526';
 var GS_URL   = 'https://script.google.com/macros/s/AKfycbyczEsIbkKi5lcDTBbN_FW-FQ4DWH6Lwaig2wq-2KanbLXmdFfUYwhP1xC9SF9FvpS8/exec';
 
-function openForm() {
+var _formInstallment = false;
+function openForm(installment) {
+  _formInstallment = !!installment;
+  var sub = document.getElementById('formSub');
+  if (_formInstallment) {
+    sub.textContent = '3 платежа по 5 000 ₽ в течение месяца';
+    sub.style.color = 'var(--accent)';
+  } else {
+    sub.textContent = 'Начало 5 мая 2026 · Вт и Сб · 18:00 · 15 000 ₽';
+    sub.style.color = '';
+  }
   document.getElementById('formOverlay').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
@@ -586,8 +596,11 @@ function submitForm(e) {
   });
   if (!utmLines && document.referrer) utmLines = '\n🔗 Реферер: ' + document.referrer;
 
+  var installmentLine = _formInstallment ? '\n💳 Рассрочка: 3 × 5 000 ₽' : '';
+
   var text = '🎬 Новая заявка на КУРС «КАК СОЗДАТЬ МИКРОДРАМУ»\n\n'
            + '👤 ' + name + '\n📞 ' + phone
+           + installmentLine
            + (utmLines ? '\n\n📊 Источник:' + utmLines : '');
 
   var gsParams = new URLSearchParams({
@@ -595,7 +608,8 @@ function submitForm(e) {
     utm_source: params.get('utm_source') || '',
     utm_medium: params.get('utm_medium') || '',
     utm_campaign: params.get('utm_campaign') || '',
-    referrer: document.referrer || ''
+    referrer: document.referrer || '',
+    installment: _formInstallment ? 'да' : ''
   });
 
   fetch(GS_URL + '?' + gsParams.toString(), { method: 'GET', mode: 'no-cors' }).catch(function(){});
