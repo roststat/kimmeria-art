@@ -5,133 +5,105 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Предложение для отеля «Форос» — Киммерия-Арт · Май 2026</title>
 <meta property="og:title" content="Предложение для отеля «Форос» — Киммерия-Арт · Май 2026">
-<meta property="og:description" content="4 мероприятия в мае 2026. Спектакли, лекция и кинопоказ на площадке отеля.">
+<meta property="og:description" content="4 мероприятия в мае 2026 на площадке отеля.">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root { --accent: #1a4a3a; --accent-dark: #0f2e24; --green: #4ade80; }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-body { font-family: 'Onest', Arial, sans-serif; background: #f5f5f3; color: #111; font-size: 16px; line-height: 1.6; overflow-x: hidden; }
+body { font-family: 'Onest', Arial, sans-serif; background: #f5f5f3; color: #111; font-size: 16px; line-height: 1.6; }
 
-/* ── ШАПКА ── */
+/* ШАПКА */
 .header {
   background: var(--accent-dark);
-  padding: 18px 40px;
-  display: flex; align-items: center; justify-content: space-between; gap: 20px;
+  padding: 16px 40px;
+  display: flex; align-items: center; justify-content: space-between;
 }
 .header-brand { font-size: 13px; font-weight: 700; color: #fff; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; }
-.header-tag {
-  font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
-  color: var(--accent-dark); background: var(--green);
-  padding: 5px 14px; border-radius: 100px;
-}
+.header-tag { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-dark); background: var(--green); padding: 5px 14px; border-radius: 100px; }
 
-/* ── INTRO ── */
-.intro {
-  max-width: 860px; margin: 0 auto;
-  padding: 48px 40px 12px;
-}
-.intro-eyebrow {
-  font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
-  color: #999; margin-bottom: 10px;
-}
-.intro-title {
-  font-size: 32px; font-weight: 700; color: #111; line-height: 1.2;
-  letter-spacing: -0.01em; margin-bottom: 10px;
-}
-.intro-sub { font-size: 15px; color: #666; line-height: 1.65; max-width: 580px; }
+/* INTRO */
+.intro { max-width: 900px; margin: 0 auto; padding: 44px 40px 8px; }
+.intro-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #999; margin-bottom: 8px; }
+.intro-title { font-size: 30px; font-weight: 700; color: #111; line-height: 1.2; margin-bottom: 8px; }
+.intro-sub { font-size: 15px; color: #777; line-height: 1.65; max-width: 560px; }
 
-/* ── СЕТКА КАРТОЧЕК ── */
-.cards-wrap {
-  max-width: 860px; margin: 0 auto;
-  padding: 32px 40px 64px;
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 20px;
-}
+/* СПИСОК КАРТОЧЕК */
+.cards { max-width: 900px; margin: 0 auto; padding: 28px 40px 60px; display: flex; flex-direction: column; gap: 20px; }
 
-/* ── КАРТОЧКА ── */
+/* КАРТОЧКА */
 .card {
-  background: #fff; border-radius: 18px;
-  overflow: hidden; border: 1px solid #e8e8e8;
-  display: flex; flex-direction: column;
+  background: #fff; border-radius: 18px; border: 1px solid #e8e8e8;
+  overflow: hidden; display: grid; grid-template-columns: 280px 1fr;
   text-decoration: none; color: inherit;
-  transition: transform 0.18s, box-shadow 0.18s;
+  transition: box-shadow 0.2s, transform 0.2s;
 }
-.card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(0,0,0,0.10); }
+.card:hover { box-shadow: 0 10px 36px rgba(0,0,0,0.10); transform: translateY(-2px); }
 
+/* ЛЕВАЯ КОЛОНКА — ОБЛОЖКА */
 .card-cover {
-  position: relative; width: 100%; height: 220px;
-  overflow: hidden; flex-shrink: 0;
-  background: var(--accent-dark);
+  position: relative; overflow: hidden;
+  background: var(--accent-dark); min-height: 300px;
 }
-.card-cover img {
-  width: 100%; height: 100%; object-fit: cover;
-  display: block; transition: transform 0.3s;
-}
+.card-cover img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s; }
 .card:hover .card-cover img { transform: scale(1.04); }
-.card-cover-placeholder {
-  width: 100%; height: 100%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 52px;
-}
+.card-cover-placeholder { width: 100%; height: 100%; min-height: 300px; display: flex; align-items: center; justify-content: center; font-size: 64px; }
 
-.card-date-badge {
+.card-date {
   position: absolute; top: 14px; left: 14px;
-  background: #fff; color: #111;
-  font-size: 13px; font-weight: 700;
-  padding: 5px 12px; border-radius: 100px;
+  background: #fff; color: #111; font-size: 14px; font-weight: 700;
+  padding: 6px 14px; border-radius: 100px;
   box-shadow: 0 2px 10px rgba(0,0,0,0.15);
-  white-space: nowrap;
 }
-
-.card-format-badge {
+.card-format {
   position: absolute; top: 14px; right: 14px;
+  background: var(--accent); color: #fff;
   font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
-  color: #fff; background: var(--accent);
   padding: 4px 10px; border-radius: 100px;
 }
 
-.card-body { padding: 22px 24px 24px; flex: 1; display: flex; flex-direction: column; gap: 8px; }
+/* ПРАВАЯ КОЛОНКА */
+.card-body { padding: 28px 32px; display: flex; flex-direction: column; gap: 14px; }
 
-.card-title { font-size: 19px; font-weight: 700; color: #111; line-height: 1.25; }
+.card-title { font-size: 22px; font-weight: 700; color: #111; line-height: 1.2; }
+.card-desc { font-size: 14px; color: #555; line-height: 1.7; }
 
-.card-desc { font-size: 14px; color: #666; line-height: 1.6; flex: 1; }
+/* ХАРАКТЕРИСТИКИ */
+.specs { display: flex; flex-direction: column; border-top: 1px solid #f0f0f0; padding-top: 14px; gap: 0; }
+.spec-row { display: flex; gap: 12px; padding: 9px 0; border-bottom: 1px solid #f0f0f0; font-size: 13px; }
+.spec-row:last-child { border-bottom: none; }
+.spec-label { font-weight: 700; color: #111; flex-shrink: 0; width: 110px; }
+.spec-value { color: #555; line-height: 1.5; }
 
-.card-footer {
-  display: flex; align-items: center; justify-content: space-between;
-  padding-top: 14px; border-top: 1px solid #f0f0f0; margin-top: 4px;
+.card-cta {
+  margin-top: auto; padding-top: 14px;
+  display: flex; align-items: center; gap: 6px;
+  font-size: 13px; font-weight: 700; color: var(--accent);
 }
-.card-author { font-size: 12px; color: #999; font-weight: 500; }
-.card-link {
-  font-size: 12px; font-weight: 700; color: var(--accent);
-  display: flex; align-items: center; gap: 4px;
-}
-.card-link svg { width: 12px; height: 12px; }
+.card-cta svg { width: 13px; height: 13px; }
 
-/* ── КОНТАКТ ── */
-.contact {
-  background: var(--accent-dark);
-  padding: 40px;
-  text-align: center;
-}
+/* КОНТАКТ */
+.contact { background: var(--accent-dark); padding: 40px; text-align: center; }
 .contact-title { font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 6px; }
-.contact-sub { font-size: 14px; color: rgba(255,255,255,0.5); margin-bottom: 20px; }
-.contact-phone {
-  display: inline-block; font-size: 26px; font-weight: 700;
-  color: var(--green); text-decoration: none; transition: opacity 0.15s;
-}
+.contact-sub { font-size: 14px; color: rgba(255,255,255,0.45); margin-bottom: 18px; }
+.contact-phone { display: inline-block; font-size: 28px; font-weight: 700; color: var(--green); text-decoration: none; }
 .contact-phone:hover { opacity: 0.8; }
-.contact-note { font-size: 13px; color: rgba(255,255,255,0.3); margin-top: 10px; }
+.contact-note { font-size: 13px; color: rgba(255,255,255,0.25); margin-top: 8px; }
 
-/* ── АДАПТИВ ── */
+/* АДАПТИВ */
 @media (max-width: 700px) {
   .header { padding: 14px 20px; }
-  .intro { padding: 32px 20px 8px; }
-  .intro-title { font-size: 24px; }
-  .cards-wrap { grid-template-columns: 1fr; padding: 24px 20px 48px; gap: 14px; }
-  .card-cover { height: 190px; }
-  .contact { padding: 32px 20px; }
+  .intro { padding: 28px 20px 4px; }
+  .intro-title { font-size: 22px; }
+  .cards { padding: 20px 20px 48px; gap: 16px; }
+  .card { grid-template-columns: 1fr; }
+  .card-cover { min-height: 200px; }
+  .card-cover-placeholder { min-height: 200px; }
+  .card-body { padding: 20px; }
+  .card-title { font-size: 18px; }
+  .spec-label { width: 90px; }
+  .contact { padding: 28px 20px; }
   .contact-phone { font-size: 22px; }
 }
 </style>
@@ -150,76 +122,93 @@ body { font-family: 'Onest', Arial, sans-serif; background: #f5f5f3; color: #111
 <div class="intro">
   <div class="intro-eyebrow">Предложение на май 2026</div>
   <h1 class="intro-title">Мероприятия на площадке отеля</h1>
-  <p class="intro-sub">Четыре события — спектакли, кино и лекция. Нажмите на карточку, чтобы узнать подробнее о каждой программе.</p>
+  <p class="intro-sub">Четыре события — спектакли, кино и лекция. Все подробности прямо здесь, переходите на программу если нужно больше.</p>
 </div>
 
-<div class="cards-wrap">
+<div class="cards">
 
-  <!-- 1. УЖЕ — 10 мая -->
+  <!-- ── 1. УЖЕ ── -->
   <a class="card" href="https://art-kimmeria.ru/programmy/uzhe/" target="_blank">
     <div class="card-cover">
       <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156925/kimmeria/photo_819%4030-03-2026_09-17-02.jpg" alt="УЖЕ">
-      <span class="card-date-badge">10 мая</span>
-      <span class="card-format-badge">Спектакль</span>
+      <span class="card-date">10 мая</span>
+      <span class="card-format">Спектакль</span>
     </div>
     <div class="card-body">
-      <div class="card-title">«УЖЕ»</div>
-      <div class="card-desc">Мультимедийный поэтический перформанс. Четыре стихотворные сказки — бытовой символизм, философия и эко-эстетика. Декорации из переработанного пластика.</div>
-      <div class="card-footer">
-        <span class="card-author">Мимла Же</span>
-        <span class="card-link">Подробнее <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      <div class="card-title">«УЖЕ» — Мимла Же</div>
+      <div class="card-desc">Мультимедийный поэтический перформанс. Четыре стихотворные сказки-новеллы — бытовой символизм, философия и эко-эстетика. Декорации и костюмы из переработанного пластика, живая музыка, видеоарт.</div>
+      <div class="specs">
+        <div class="spec-row"><span class="spec-label">Жанр</span><span class="spec-value">Поэтический перформанс, экспериментальный театр</span></div>
+        <div class="spec-row"><span class="spec-label">Автор</span><span class="spec-value">Мимла Же — поэтесса и художница</span></div>
+        <div class="spec-row"><span class="spec-label">Формат</span><span class="spec-value">Четыре стихотворные сказки-новеллы</span></div>
+        <div class="spec-row"><span class="spec-label">Площадка</span><span class="spec-value">Камерное пространство, стационарная сцена не нужна</span></div>
+        <div class="spec-row"><span class="spec-label">Возраст</span><span class="spec-value">12+</span></div>
       </div>
+      <div class="card-cta">Полная программа <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
     </div>
   </a>
 
-  <!-- 2. Умирающий лебедь — 16 мая -->
+  <!-- ── 2. УМИРАЮЩИЙ ЛЕБЕДЬ ── -->
   <a class="card" href="https://art-kimmeria.ru/programmy/lebed/" target="_blank">
     <div class="card-cover">
       <div class="card-cover-placeholder">🦢</div>
-      <span class="card-date-badge">16 мая</span>
-      <span class="card-format-badge">Кино + лекция</span>
+      <span class="card-date">16 мая</span>
+      <span class="card-format">Кино + лекция</span>
     </div>
     <div class="card-body">
       <div class="card-title">«Умирающий лебедь»</div>
-      <div class="card-desc">Кинопоказ немого шедевра Евгения Бауэра (Россия, 1917) с авторской лекцией. История балерины, красота смерти и рождение русского кино.</div>
-      <div class="card-footer">
-        <span class="card-author">Мимла Же · Наталия Добрынская</span>
-        <span class="card-link">Подробнее <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      <div class="card-desc">Показ немого шедевра Евгения Бауэра (Россия, 1917) с авторской лекцией. История балерины, одержимой смертью как красотой. Мероприятие проводится в рамках «Дней Александра Ханжонкова в Ялте».</div>
+      <div class="specs">
+        <div class="spec-row"><span class="spec-label">Жанр</span><span class="spec-value">Кинопоказ + авторская лекция + дискуссия</span></div>
+        <div class="spec-row"><span class="spec-label">Фильм</span><span class="spec-value">«Умирающий лебедь», Россия, 1917, реж. Евгений Бауэр</span></div>
+        <div class="spec-row"><span class="spec-label">Ведущая</span><span class="spec-value">Наталия Добрынская</span></div>
+        <div class="spec-row"><span class="spec-label">Контекст</span><span class="spec-value">Дни Александра Ханжонкова в Ялте</span></div>
+        <div class="spec-row"><span class="spec-label">Площадка</span><span class="spec-value">Зал с видеопроекцией и аудиосистемой</span></div>
       </div>
+      <div class="card-cta">Полная программа <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
     </div>
   </a>
 
-  <!-- 3. Чёрные дыры — 25 мая -->
+  <!-- ── 3. ЧЁРНЫЕ ДЫРЫ ── -->
   <a class="card" href="https://art-kimmeria.ru/programmy/nazarov-black/" target="_blank">
     <div class="card-cover">
       <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156921/kimmeria/photo_814%4027-03-2026_18-42-39.jpg" alt="Чёрные дыры">
-      <span class="card-date-badge">25 мая</span>
-      <span class="card-format-badge">Лекция</span>
+      <span class="card-date">25 мая</span>
+      <span class="card-format">Лекция</span>
     </div>
     <div class="card-body">
-      <div class="card-title">«Чёрные дыры»</div>
-      <div class="card-desc">Научно-популярная лекция об астрофизике. Природа чёрных дыр, как их обнаруживают, первая в истории фотография. Доступно и увлекательно для любой аудитории.</div>
-      <div class="card-footer">
-        <span class="card-author">Сергей Назаров · КрАО</span>
-        <span class="card-link">Подробнее <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      <div class="card-title">«Чёрные дыры» — Сергей Назаров</div>
+      <div class="card-desc">Научно-популярная лекция об астрофизике. Природа чёрных дыр, как их обнаруживают, первая в истории фотография. Доступно для любой аудитории — специальные знания не нужны.</div>
+      <div class="specs">
+        <div class="spec-row"><span class="spec-label">Жанр</span><span class="spec-value">Научно-популярная лекция</span></div>
+        <div class="spec-row"><span class="spec-label">Тема</span><span class="spec-value">Астрофизика · Чёрные дыры</span></div>
+        <div class="spec-row"><span class="spec-label">Лектор</span><span class="spec-value">Сергей Назаров — н. с. КрАО, первооткрыватель астероидов</span></div>
+        <div class="spec-row"><span class="spec-label">Формат</span><span class="spec-value">Лекция с мультимедийным сопровождением</span></div>
+        <div class="spec-row"><span class="spec-label">Включено</span><span class="spec-value">Приветственный напиток и угощение</span></div>
+        <div class="spec-row"><span class="spec-label">Площадка</span><span class="spec-value">Зал с видеопроекцией</span></div>
       </div>
+      <div class="card-cta">Полная программа <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
     </div>
   </a>
 
-  <!-- 4. Алла Назимова / Саломея — 30 мая -->
+  <!-- ── 4. АЛЛА НАЗИМОВА / САЛОМЕЯ ── -->
   <a class="card" href="https://art-kimmeria.ru/programmy/salomeya/" target="_blank">
     <div class="card-cover">
       <div class="card-cover-placeholder" style="background: linear-gradient(135deg, #2d1b4e, #1a0a2e);">🌹</div>
-      <span class="card-date-badge">30 мая</span>
-      <span class="card-format-badge">Кино + лекция</span>
+      <span class="card-date">30 мая</span>
+      <span class="card-format">Кино + лекция</span>
     </div>
     <div class="card-body">
       <div class="card-title">«Алла Назимова. Саломея»</div>
-      <div class="card-desc">Легенда немого Голливуда и её главный фильм. Кинопоказ «Саломеи» (США, 1923) по пьесе Оскара Уайльда с авторской лекцией об Алле Назимовой — звезде из Ялты.</div>
-      <div class="card-footer">
-        <span class="card-author">Мимла Же · Наталия Добрынская</span>
-        <span class="card-link">Подробнее <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      <div class="card-desc">Легенда немого Голливуда и её главный фильм. Алла Назимова — уроженка Ялты, звезда американского кино 1920-х. Кинопоказ «Саломеи» по пьесе Оскара Уайльда с авторской лекцией о её жизни и эпохе.</div>
+      <div class="specs">
+        <div class="spec-row"><span class="spec-label">Жанр</span><span class="spec-value">Кинопоказ + авторская лекция + дискуссия</span></div>
+        <div class="spec-row"><span class="spec-label">Фильм</span><span class="spec-value">«Саломея», США, 1923, по пьесе Оскара Уайльда</span></div>
+        <div class="spec-row"><span class="spec-label">Ведущая</span><span class="spec-value">Наталия Добрынская</span></div>
+        <div class="spec-row"><span class="spec-label">Особенность</span><span class="spec-value">Алла Назимова — уроженка Ялты, звезда Голливуда</span></div>
+        <div class="spec-row"><span class="spec-label">Площадка</span><span class="spec-value">Зал с видеопроекцией и аудиосистемой</span></div>
       </div>
+      <div class="card-cta">Полная программа <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
     </div>
   </a>
 
