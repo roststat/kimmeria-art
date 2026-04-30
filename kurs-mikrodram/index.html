@@ -157,8 +157,9 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 60px; di
   .hero-chips { gap: 8px; }
 }
 @media (max-width: 700px) {
-  .mk-card { flex-direction: column !important; }
-  .mk-card img { width: 100% !important; aspect-ratio: 16/9 !important; }
+  .mk-card { flex-direction: column !important; padding: 0 !important; overflow: hidden; }
+  .mk-card img { width: 100% !important; height: 200px !important; aspect-ratio: unset !important; object-fit: cover; border-radius: 0 !important; box-shadow: none !important; }
+  .mk-card-body { padding: 20px !important; }
 }
 </style>
 <!-- Yandex.Metrika counter -->
@@ -199,10 +200,10 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 60px; di
 
 <!-- КАРТОЧКА МАСТЕР-КЛАССА -->
 <div style="max-width:1060px;margin:0 auto;padding:40px 48px 0;">
-  <a href="/master-mikrodrama-2/" class="mk-card" style="text-decoration:none;display:flex;gap:32px;align-items:center;background:#fff8f0;border:2px solid #f0c070;border-radius:20px;padding:28px 32px;transition:box-shadow 0.2s,transform 0.2s;" onmouseover="this.style.boxShadow='0 8px 32px rgba(0,0,0,0.10)';this.style.transform='translateY(-2px)';" onmouseout="this.style.boxShadow='';this.style.transform='';">
+  <a href="/master-mikrodrama-2/" class="mk-card" id="mkCardLink" style="text-decoration:none;display:flex;gap:32px;align-items:center;background:#fff8f0;border:2px solid #f0c070;border-radius:20px;padding:28px 32px;transition:box-shadow 0.2s,transform 0.2s;" onmouseover="this.style.boxShadow='0 8px 32px rgba(0,0,0,0.10)';this.style.transform='translateY(-2px)';" onmouseout="this.style.boxShadow='';this.style.transform='';">
     <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777559323/kimmeria/master-mikrodrama-poster.jpg" alt="Мастер-класс по микродрамам" style="width:110px;flex-shrink:0;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.15);aspect-ratio:3/4;object-fit:cover;">
-    <div>
-      <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#c08020;margin-bottom:8px;">Бесплатно · 2 мая · 18:00</div>
+    <div class="mk-card-body">
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#c08020;margin-bottom:8px;">Бесплатно · 4 мая · 18:00</div>
       <div style="font-size:20px;font-weight:800;color:#111;line-height:1.2;margin-bottom:8px;">Не готов сразу на курс?<br>Приходи на мастер-класс</div>
       <div style="font-size:14px;color:#666;line-height:1.6;margin-bottom:16px;">Бесплатный мастер-класс от шоуранера — узнай, как снимать микродрамы для Reels, Shorts и TikTok, и пойми подходит ли тебе этот путь.</div>
       <span style="display:inline-block;padding:10px 22px;background:#111;color:#fff;font-size:13px;font-weight:700;border-radius:100px;">Узнать подробнее →</span>
@@ -656,6 +657,19 @@ function toggleSplit() {
       wrap.classList.add('split-open');
     }
   }, { passive: true });
+})();
+
+// Пробрасываем UTM в ссылку на мастер-класс
+(function() {
+  var link = document.getElementById('mkCardLink');
+  if (!link) return;
+  var params = new URLSearchParams(window.location.search);
+  var utmKeys = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'];
+  var hasUtm = utmKeys.some(function(k) { return params.get(k); });
+  if (hasUtm) {
+    var sep = link.href.indexOf('?') !== -1 ? '&' : '?';
+    link.href = link.href + sep + params.toString();
+  }
 })();
 </script>
 <script src="/footer.js"></script>

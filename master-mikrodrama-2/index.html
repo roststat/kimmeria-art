@@ -344,7 +344,7 @@
 </head>
 <body>
 
-<a class="fab-back" id="fabBack" href="/" aria-label="На главную" style="display:none;">
+<a class="fab-back" id="fabBack" href="/" aria-label="Назад">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 5l-7 7 7 7"/></svg>
   Назад
 </a>
@@ -379,7 +379,7 @@
       <h1 class="event-hero-title">Ты смотришь TikTok и Reels?<br>Теперь так снимают сериалы.</h1>
       <p class="event-hero-sub">Мастер-класс: как стать из рилсмейкера шоуранером микродрам! <span class="hero-hashtags">#блогинг #профессия #хобби</span></p>
       <p class="hero-footnote">Шоуранер (showrunner) — профессионал в сфере кинопроизводства, который руководит творческим процессом создания сериалов или шоу.</p>
-      <div class="hero-free-badge" style="margin-top: 24px;">БЕСПЛАТНО · 2 мая · 18:00</div>
+      <div class="hero-free-badge" style="margin-top: 24px;">БЕСПЛАТНО · 4 мая · 18:00</div>
     </div>
   </div>
 </div>
@@ -403,7 +403,7 @@
     <p class="event-text">Для тех, кто уже снимает Reels и хочет вырасти в полноценный сериальный формат. И для тех, кто давно хочет снимать своё кино — но не знал с чего начать. Опыт в кино не нужен — нужно желание.</p>
 
     <ul class="event-details-list">
-      <li><strong>Дата</strong> 2 мая 2026, суббота</li>
+      <li><strong>Дата</strong> 4 мая 2026, воскресенье</li>
       <li><strong>Время</strong> 18:00</li>
       <li><strong>Место</strong> г. Ялта, ул. Игнатенко, 5, офис 2</li>
       <li><strong>Стоимость</strong> Бесплатно</li>
@@ -470,7 +470,7 @@
       <div class="sidebar-free">Бесплатно</div>
       <div class="sidebar-form-title">Записаться на мастер-класс</div>
       <div style="font-size: 13px; color: #555; line-height: 1.5; margin-bottom: 14px; margin-top: -8px;">«Как стать из рилсмейкера шоуранером микродрам»</div>
-      <div class="sidebar-note">2 мая · 18:00 · Ялта, ул. Игнатенко, 5<br>Количество мест ограничено.</div>
+      <div class="sidebar-note">4 мая · 18:00 · Ялта, ул. Игнатенко, 5<br>Количество мест ограничено.</div>
 
       <form class="reg-form" id="regForm" onsubmit="submitForm(event)">
         <input type="text" name="name" placeholder="Имя и фамилия" required maxlength="80">
@@ -507,6 +507,35 @@
 <div id="site-footer"></div>
 
 <script>
+// Кнопка «Назад» — ведёт туда откуда пришли, UTM сохраняются
+(function() {
+  var btn = document.getElementById('fabBack');
+  if (!btn) return;
+
+  // Пробросить UTM из текущего URL на все исходящие ссылки страницы
+  var currentParams = new URLSearchParams(window.location.search);
+  var hasUtm = false;
+  ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'].forEach(function(k) {
+    if (currentParams.get(k)) hasUtm = true;
+  });
+
+  // Кнопка назад — возвращаем на реферер если он наш, иначе на главную
+  var ref = document.referrer;
+  if (ref && ref.indexOf(location.hostname) !== -1) {
+    // Если пришли со страницы курса — сохраняем UTM в ссылке назад
+    var backUrl = ref;
+    if (hasUtm) {
+      var sep = backUrl.indexOf('?') !== -1 ? '&' : '?';
+      backUrl += sep + currentParams.toString();
+    }
+    btn.href = backUrl;
+    btn.querySelector('svg').nextSibling.textContent = ' На страницу курса';
+  } else {
+    btn.href = '/kurs-mikrodram/';
+  }
+  btn.style.display = 'flex';
+})();
+
 var TG_TOKEN = '8555296982:AAE2LCN_eeCy33jGJfyWh7guxS2ia2yq68A';
 var TG_CHAT  = '214662526';
 var GS_URL   = 'https://script.google.com/macros/s/AKfycbyczEsIbkKi5lcDTBbN_FW-FQ4DWH6Lwaig2wq-2KanbLXmdFfUYwhP1xC9SF9FvpS8/exec';
@@ -531,7 +560,7 @@ function submitForm(e) {
   });
   if (!utmLines && document.referrer) utmLines = '\n🔗 Реферер: ' + document.referrer;
 
-  var text = '🎬 Новая заявка на мастер-класс по микродрамам (2 мая)\n\n'
+  var text = '🎬 Новая заявка на мастер-класс по микродрамам (4 мая)\n\n'
            + '👤 Имя: ' + name + '\n'
            + '📞 Телефон: ' + phone
            + (utmLines ? '\n\n📊 Источник:' + utmLines : '');
@@ -610,7 +639,7 @@ function closeMenu() {
     <div class="popup-card">
       <div class="popup-card-row">
         <span class="popup-card-key">Дата</span>
-        <span class="popup-card-val">2 мая 2026, суббота</span>
+        <span class="popup-card-val">4 мая 2026, воскресенье</span>
       </div>
       <div class="popup-card-row">
         <span class="popup-card-key">Время</span>
