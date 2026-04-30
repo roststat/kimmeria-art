@@ -2041,12 +2041,13 @@ footer {
     fetch('/api/events?_=' + Date.now())
       .then(r => r.json())
       .then(events => {
+        const normalizeSlug = s => s.replace(/^event-/, '');
         const existingSlugs = new Set(
           Array.from(grid.querySelectorAll('.event-card[onclick]'))
-            .map(c => (c.getAttribute('onclick') || '').replace(/.*href='\/([^/]+)\/.*/,'$1'))
+            .map(c => normalizeSlug((c.getAttribute('onclick') || '').replace(/.*href='\/([^/]+)\/.*/,'$1')))
         );
         events.forEach(e => {
-          const slug = e.id || '';
+          const slug = normalizeSlug(e.id || '');
           if (!existingSlugs.has(slug)) {
             grid.appendChild(buildCardFromAPI(e));
           }
