@@ -86,11 +86,15 @@ body { font-family: 'Onest', Arial, sans-serif; background: #f5f5f3; color: #111
 
 /* КОНТАКТ */
 .contact { background: var(--accent-dark); padding: 40px; text-align: center; }
-.contact-title { font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 6px; }
-.contact-sub { font-size: 14px; color: rgba(255,255,255,0.45); margin-bottom: 18px; }
-.contact-phone { display: inline-block; font-size: 28px; font-weight: 700; color: var(--green); text-decoration: none; }
+.contact-title { font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 20px; }
+.contact-card { display: flex; align-items: center; gap: 20px; justify-content: center; }
+.contact-avatar { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 3px solid rgba(255,255,255,0.2); }
+.contact-info { text-align: left; }
+.contact-name { font-size: 17px; font-weight: 700; color: #fff; margin-bottom: 2px; }
+.contact-role { font-size: 12px; color: rgba(255,255,255,0.45); margin-bottom: 8px; }
+.contact-phone { display: inline-block; font-size: 22px; font-weight: 700; color: var(--green); text-decoration: none; }
 .contact-phone:hover { opacity: 0.8; }
-.contact-note { font-size: 13px; color: rgba(255,255,255,0.25); margin-top: 8px; }
+.contact-note { font-size: 13px; color: rgba(255,255,255,0.25); margin-top: 16px; }
 
 /* АДАПТИВ */
 @media (max-width: 700px) {
@@ -216,8 +220,14 @@ body { font-family: 'Onest', Arial, sans-serif; background: #f5f5f3; color: #111
 
 <div class="contact">
   <div class="contact-title">Обсудить условия</div>
-  <div class="contact-sub">Филипп Емельянов · Продюсер · Киммерия-Арт</div>
-  <a class="contact-phone" href="tel:+79260662878">+7 926 066-28-78</a>
+  <div class="contact-card">
+    <img class="contact-avatar" src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156903/kimmeria/philip-emelyanov.jpg" alt="Филипп Емельянов">
+    <div class="contact-info">
+      <div class="contact-name">Филипп Емельянов</div>
+      <div class="contact-role">Продюсер · Киммерия-Арт</div>
+      <a class="contact-phone" href="tel:+79790474734">+7 979 047-47-34</a>
+    </div>
+  </div>
   <div class="contact-note">art-kimmeria.ru · Ялта</div>
 </div>
 
