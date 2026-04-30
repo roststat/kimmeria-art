@@ -1070,7 +1070,7 @@ footer {
     </div>
 
     <!-- «Дом для Айвазовского» — премьерный показ -->
-    <div class="event-card" data-tab="upcoming" data-format="кинопоказ" data-date="2026-04-15" onclick="location.href='/event-dom-aivazovskogo/'">
+    <div class="event-card" data-tab="upcoming" data-format="кинопоказ" data-date="2026-04-15" data-slug="aivazovskogo" onclick="location.href='/event-dom-aivazovskogo/'">
       <div class="event-photo-wrap">
         <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156813/kimmeria/event-dom-aivazovskogo-cover.jpg" alt="«Дом для Айвазовского» — премьерный показ">
         <span class="event-badge">Кинопоказ</span>
@@ -2044,7 +2044,7 @@ footer {
         const normalizeSlug = s => s.replace(/^event-/, '');
         const existingSlugs = new Set(
           Array.from(grid.querySelectorAll('.event-card[onclick]'))
-            .map(c => normalizeSlug((c.getAttribute('onclick') || '').replace(/.*href='\/([^/]+)\/.*/,'$1')))
+            .map(c => c.dataset.slug || normalizeSlug((c.getAttribute('onclick') || '').replace(/.*href='\/([^/]+)\/.*/,'$1')))
         );
         events.forEach(e => {
           const slug = normalizeSlug(e.id || '');
