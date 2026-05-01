@@ -654,6 +654,7 @@ function submitForm(e) {
     body: JSON.stringify({ chat_id: TG_CHAT, text: text })
   }).catch(function(){});
 
+  if (window.ym) ym(108987141, 'reachGoal', 'zayavka');
   window.location.href = '/spasibo/';
 }
 
