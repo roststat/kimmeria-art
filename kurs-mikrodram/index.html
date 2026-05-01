@@ -712,15 +712,15 @@ function toggleSplit() {
   document.getElementById('splitWrap').classList.toggle('split-open');
 }
 
-// Открыть баннер при скролле до второго блока (#about)
+// Открыть баннер при скролле до блока стоимости (#price)
 (function() {
   var opened = false;
-  var trigger = document.getElementById('about');
+  var trigger = document.getElementById('price');
   if (!trigger) return;
   window.addEventListener('scroll', function() {
     if (opened) return;
     var wrap = document.getElementById('splitWrap');
-    if (window.scrollY >= trigger.offsetTop - window.innerHeight * 0.6) {
+    if (window.scrollY >= trigger.offsetTop - window.innerHeight * 0.7) {
       opened = true;
       wrap.classList.add('split-open');
     }
