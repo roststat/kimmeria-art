@@ -548,6 +548,14 @@ function submitForm(e) {
   var name  = form.name.value.trim();
   var phone = form.phone.value.trim();
 
+  var digits = phone.replace(/\D/g, '');
+  if (!phone || digits.length < 10) {
+    err.textContent = 'Введите корректный номер телефона';
+    err.style.display = 'block';
+    form.phone.focus();
+    return;
+  }
+
   btn.disabled = true;
   btn.textContent = 'Отправляем…';
   err.style.display = 'none';
