@@ -703,8 +703,9 @@ function toggleSplit() {
 <style>
 .fab-share {
   position: fixed;
-  bottom: 28px;
+  top: 50%;
   right: 24px;
+  transform: translateY(-50%);
   z-index: 200;
   display: flex;
   align-items: center;
@@ -721,10 +722,10 @@ function toggleSplit() {
   box-shadow: 0 4px 20px rgba(0,0,0,0.10);
   transition: box-shadow 0.15s, transform 0.15s;
 }
-.fab-share:hover { box-shadow: 0 6px 28px rgba(0,0,0,0.14); transform: translateY(-1px); }
+.fab-share:hover { box-shadow: 0 6px 28px rgba(0,0,0,0.14); transform: translateY(calc(-50% - 1px)); }
 .fab-share-toast {
   position: fixed;
-  bottom: 80px;
+  top: calc(50% - 56px);
   right: 24px;
   z-index: 201;
   background: #1a4a3a;
@@ -738,9 +739,9 @@ function toggleSplit() {
   box-shadow: 0 4px 16px rgba(0,0,0,0.15);
 }
 @media (max-width: 600px) {
-  .fab-share { bottom: 20px; right: 16px; padding: 10px 16px 10px 14px; }
+  .fab-share { right: 16px; padding: 10px 16px 10px 14px; }
   .fab-share-label { display: none; }
-  .fab-share-toast { bottom: 70px; right: 16px; }
+  .fab-share-toast { right: 16px; }
 }
 </style>
 <script>
