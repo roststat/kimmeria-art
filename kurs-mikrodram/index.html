@@ -30,20 +30,21 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 60px; di
 
 /* HERO */
 .hero { padding-top: 60px; position: relative; overflow: hidden; background: #0d0d0d; }
-.hero-bg { position: absolute; inset: -40px; background-image: url('https://res.cloudinary.com/dmzsczjzd/image/upload/v1777636511/kimmeria/banners/ib4oznbpfcqt6ev6qlf5.jpg'); background-size: cover; background-position: center; filter: blur(28px); opacity: 0.55; transform: scale(1.08); }
+.hero-bg { position: absolute; inset: -40px; background-image: url('https://res.cloudinary.com/dmzsczjzd/image/upload/v1777636511/kimmeria/banners/ib4oznbpfcqt6ev6qlf5.jpg'); background-size: cover; background-position: center; filter: blur(28px); opacity: 0.35; transform: scale(1.08); }
+.hero-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(10,30,22,0.82) 0%, rgba(0,0,0,0.65) 100%); }
 .hero-inner { position: relative; z-index: 1; display: grid; grid-template-columns: auto 1fr; gap: 48px; align-items: center; max-width: 1200px; margin: 0 auto; padding: 48px; }
 .hero-poster { flex-shrink: 0; }
-.hero-poster img { display: block; width: 280px; aspect-ratio: 3/4; object-fit: cover; border-radius: 12px; box-shadow: 0 24px 64px rgba(0,0,0,0.6); }
+.hero-poster img { display: block; width: 280px; aspect-ratio: 3/4; object-fit: cover; border-radius: 12px; box-shadow: 0 24px 64px rgba(0,0,0,0.7); }
 .hero-text { color: #fff; }
-.hero-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 16px; display: inline-block; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); padding: 5px 14px; border-radius: 100px; }
-.hero-title { font-size: 48px; font-weight: 800; color: #fff; line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 10px; text-transform: uppercase; }
-.hero-title-sub { font-size: 20px; font-weight: 600; color: rgba(255,255,255,0.7); margin-bottom: 24px; }
-.hero-desc { font-size: 17px; color: rgba(255,255,255,0.75); margin-bottom: 32px; line-height: 1.6; }
+.hero-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent-mid); margin-bottom: 16px; display: inline-block; background: rgba(110,231,183,0.12); border: 1px solid rgba(110,231,183,0.3); padding: 5px 14px; border-radius: 100px; }
+.hero-title { font-size: 48px; font-weight: 800; color: #fff; line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 10px; text-transform: uppercase; text-shadow: 0 2px 16px rgba(0,0,0,0.4); }
+.hero-title-sub { font-size: 20px; font-weight: 600; color: rgba(255,255,255,0.75); margin-bottom: 24px; }
+.hero-desc { font-size: 17px; color: rgba(255,255,255,0.7); margin-bottom: 32px; line-height: 1.6; }
 .hero-chips { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 40px; }
-.hero-chip { font-size: 13px; font-weight: 600; color: #fff; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); padding: 8px 18px; border-radius: 100px; }
+.hero-chip { font-size: 13px; font-weight: 600; color: #fff; background: rgba(0,0,0,0.45); border: 1px solid rgba(255,255,255,0.18); padding: 8px 18px; border-radius: 100px; backdrop-filter: blur(8px); }
 .hero-chip strong { color: #fff; }
-.btn-cta { display: inline-block; padding: 18px 52px; background: #fff; color: var(--accent); font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 800; text-decoration: none; border-radius: 100px; border: none; cursor: pointer; transition: opacity 0.15s, transform 0.15s; box-shadow: 0 4px 24px rgba(0,0,0,0.25); }
-.btn-cta:hover { opacity: 0.92; transform: translateY(-1px); }
+.btn-cta { display: inline-block; padding: 18px 52px; background: var(--accent); color: #fff; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 800; text-decoration: none; border-radius: 100px; border: none; cursor: pointer; transition: background 0.15s, transform 0.15s; box-shadow: 0 4px 24px rgba(0,0,0,0.35); }
+.btn-cta:hover { background: var(--accent-dark); transform: translateY(-1px); }
 @media (max-width: 900px) {
   .hero-inner { grid-template-columns: 1fr; gap: 24px; padding: 36px 24px; }
   .hero-poster { display: flex; justify-content: center; }
@@ -197,6 +198,7 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 60px; di
 <!-- HERO -->
 <div class="hero">
   <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
   <div class="hero-inner">
     <div class="hero-poster">
       <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777636511/kimmeria/banners/ib4oznbpfcqt6ev6qlf5.jpg" alt="Как создать микродраму">
@@ -209,7 +211,6 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 60px; di
         <span class="hero-chip">Начало курса — <strong>5 мая 2026</strong></span>
         <span class="hero-chip"><strong>8 занятий</strong> · 5 мая — 6 июня</span>
         <span class="hero-chip">Вторник и суббота · 18:00</span>
-        <span class="hero-chip"><strong>15 000 ₽</strong></span>
       </div>
       <button class="btn-cta" onclick="openForm()">Записаться на курс →</button>
     </div>
