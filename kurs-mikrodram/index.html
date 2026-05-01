@@ -27,6 +27,7 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 60px; di
 .nav-cta { font-size: 13px; font-weight: 700; color: #fff; background: var(--accent); text-decoration: none; padding: 8px 20px; border-radius: 100px; transition: opacity 0.15s; cursor: pointer; border: none; font-family: inherit; }
 .nav-cta:hover { opacity: 0.85; }
 @media (max-width: 900px) { nav { padding: 0 20px; } }
+@media (max-width: 600px) { nav { transform: translateY(-100%); transition: transform 0.3s ease; } nav.visible { transform: translateY(0); } }
 
 /* HERO */
 .hero { padding-top: 60px; position: relative; overflow: hidden; background: #0d0d0d; }
@@ -599,7 +600,8 @@ document.addEventListener('keydown', function(e) {
 <script>
 // Anchor nav active state + mobile show on scroll
 (function() {
-  var nav = document.querySelector('.anchor-nav');
+  var anchorNav = document.querySelector('.anchor-nav');
+  var topNav = document.querySelector('nav');
   var links = document.querySelectorAll('.anchor-nav-link');
   var sections = ['about', 'schedule', 'price'].map(function(id) { return document.getElementById(id); });
   var trigger = document.getElementById('about');
@@ -610,7 +612,11 @@ document.addEventListener('keydown', function(e) {
     links.forEach(function(l) {
       l.classList.toggle('active', l.getAttribute('href') === '#' + (active ? active.id : ''));
     });
-    if (trigger) nav.classList.toggle('visible', window.scrollY >= trigger.offsetTop - 100);
+    if (trigger) {
+      var show = window.scrollY >= trigger.offsetTop - 100;
+      anchorNav.classList.toggle('visible', show);
+      topNav.classList.toggle('visible', show);
+    }
   }
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
