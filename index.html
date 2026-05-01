@@ -449,28 +449,6 @@ select.form-input { cursor: pointer; }
 .form-submit:hover { background: var(--accent-dark); }
 .form-note { font-size: 12px; color: #666666; margin-top: 10px; text-align: center; }
 
-/* ── COOKIE BANNER ── */
-.cookie-banner {
-  position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999;
-  background: #1a1a1a; color: #ffffff;
-  padding: 16px 24px;
-  display: flex; align-items: center; justify-content: center; gap: 20px;
-  flex-wrap: wrap;
-  font-size: 13px; line-height: 1.5;
-  box-shadow: 0 -4px 24px rgba(0,0,0,0.2);
-}
-.cookie-banner.hidden { display: none; }
-.cookie-banner-text { color: rgba(255,255,255,0.8); }
-.cookie-banner-text a { color: #ffffff; }
-.cookie-banner-btn {
-  flex-shrink: 0;
-  background: #ffffff; color: #111111;
-  border: none; border-radius: 8px;
-  padding: 8px 20px; font-size: 13px; font-weight: 600;
-  cursor: pointer; font-family: inherit;
-  transition: background 0.15s;
-}
-.cookie-banner-btn:hover { background: #f0f0f0; }
 
 /* ── FOOTER ── */
 footer {
@@ -1875,15 +1853,6 @@ footer {
 <!-- FOOTER -->
 <div id="site-footer"></div>
 
-<!-- COOKIE BANNER -->
-<div class="cookie-banner" id="cookieBanner">
-  <span class="cookie-banner-text">
-    Мы используем файлы cookie для аналитики и улучшения сайта.
-    Продолжая использовать сайт, вы соглашаетесь с <a href="/cookies/">Политикой cookie</a>
-    и <a href="/privacy/">обработкой персональных данных</a>.
-  </span>
-  <button class="cookie-banner-btn" onclick="acceptCookies()">Принять</button>
-</div>
 
 <script>
   let currentTab = 'upcoming';
@@ -2219,17 +2188,6 @@ document.addEventListener('click', function(e) {
 });
 
 
-// ── COOKIE BANNER ──
-function acceptCookies() {
-  localStorage.setItem('cookie_accepted', '1');
-  document.getElementById('cookieBanner').classList.add('hidden');
-}
-(function() {
-  if (localStorage.getItem('cookie_accepted')) {
-    var b = document.getElementById('cookieBanner');
-    if (b) b.classList.add('hidden');
-  }
-})();
 
 </script>
 <script src="/footer.js"></script>

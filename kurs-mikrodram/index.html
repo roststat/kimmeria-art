@@ -579,8 +579,10 @@ var TG_CHAT  = '214662526';
 var GS_URL   = 'https://script.google.com/macros/s/AKfycbyczEsIbkKi5lcDTBbN_FW-FQ4DWH6Lwaig2wq-2KanbLXmdFfUYwhP1xC9SF9FvpS8/exec';
 
 var _formInstallment = false;
+var _formSource = 'Основная форма';
 function openForm(installment) {
   _formInstallment = !!installment;
+  _formSource = installment ? 'Виджет рассрочки' : 'Основная форма';
   var sub = document.getElementById('formSub');
   if (_formInstallment) {
     sub.textContent = '3 платежа по 5 000 ₽ в течение месяца';
@@ -631,6 +633,7 @@ function submitForm(e) {
 
   var text = '🎬 Новая заявка на КУРС «КАК СОЗДАТЬ МИКРОДРАМУ»\n\n'
            + '👤 ' + name + '\n📞 ' + phone
+           + '\n📋 Форма: ' + _formSource
            + installmentLine
            + (utmLines ? '\n\n📊 Источник:' + utmLines : '');
 
@@ -640,7 +643,8 @@ function submitForm(e) {
     utm_medium: params.get('utm_medium') || '',
     utm_campaign: params.get('utm_campaign') || '',
     referrer: document.referrer || '',
-    installment: _formInstallment ? 'да' : ''
+    installment: _formInstallment ? 'да' : '',
+    form_source: _formSource
   });
 
   fetch(GS_URL + '?' + gsParams.toString(), { method: 'GET', mode: 'no-cors' }).catch(function(){});
