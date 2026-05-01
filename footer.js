@@ -110,7 +110,7 @@ footer {
       <button class="cookie-btn-decline" onclick="cookieDecline()">Отклонить</button>
     </div>
   `;
-  document.body.appendChild(bar);
+  setTimeout(function() { document.body.appendChild(bar); }, 6000);
 
   window.cookieAccept = function () {
     localStorage.setItem('cookie_accepted', '1');
