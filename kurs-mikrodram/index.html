@@ -157,6 +157,7 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 60px; di
 .anchor-nav-link:hover { color: #111; }
 .anchor-nav-link.active { color: var(--accent); border-bottom-color: var(--accent); }
 @media (max-width: 900px) { .anchor-nav-inner { padding: 0 16px; } }
+@media (max-width: 600px) { .anchor-nav { display: none; } .anchor-nav.visible { display: block; } }
 
 /* RESPONSIVE */
 @media (max-width: 900px) {
@@ -596,10 +597,12 @@ document.addEventListener('keydown', function(e) {
 </div>
 
 <script>
-// Anchor nav active state
+// Anchor nav active state + mobile show on scroll
 (function() {
+  var nav = document.querySelector('.anchor-nav');
   var links = document.querySelectorAll('.anchor-nav-link');
   var sections = ['about', 'schedule', 'price'].map(function(id) { return document.getElementById(id); });
+  var trigger = document.getElementById('about');
   function onScroll() {
     var scrollY = window.scrollY + 120;
     var active = sections[0];
@@ -607,6 +610,7 @@ document.addEventListener('keydown', function(e) {
     links.forEach(function(l) {
       l.classList.toggle('active', l.getAttribute('href') === '#' + (active ? active.id : ''));
     });
+    if (trigger) nav.classList.toggle('visible', window.scrollY >= trigger.offsetTop - 100);
   }
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
