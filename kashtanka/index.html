@@ -171,7 +171,7 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 60px; di
 .final-note { font-size: 13px; color: rgba(255,255,255,0.4); margin-top: 16px; }
 
 /* ANCHOR NAV */
-.anchor-nav { position: sticky; top: 60px; z-index: 90; background: rgba(255,255,255,0.97); backdrop-filter: blur(16px); border-bottom: 1px solid #e8e8e8; }
+.anchor-nav { position: sticky; top: 106px; z-index: 88; background: rgba(255,255,255,0.97); backdrop-filter: blur(16px); border-bottom: 1px solid #e8e8e8; }
 .anchor-nav-inner { max-width: 1060px; margin: 0 auto; padding: 0 48px; display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; }
 .anchor-nav-inner::-webkit-scrollbar { display: none; }
 .anchor-nav-link { font-size: 13px; font-weight: 600; color: #666; text-decoration: none; padding: 12px 14px; white-space: nowrap; border-bottom: 2px solid transparent; transition: color 0.15s, border-color 0.15s; flex-shrink: 0; }
@@ -225,15 +225,6 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 60px; di
   <button class="nav-cta" onclick="openForm()">Записаться</button>
 </nav>
 
-<div class="anchor-nav">
-  <div class="anchor-nav-inner">
-    <a href="#about" class="anchor-nav-link">О лаборатории</a>
-    <a href="#teacher" class="anchor-nav-link">Педагог</a>
-    <a href="#program" class="anchor-nav-link">Программа</a>
-    <a href="#price" class="anchor-nav-link">Стоимость</a>
-  </div>
-</div>
-
 <!-- HERO -->
 <div class="hero">
   <div class="hero-bg"></div>
@@ -267,6 +258,15 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 60px; di
       Дата начала и расписание уточняются
     </div>
     <button class="prebook-banner-btn" onclick="openForm()">Записаться</button>
+  </div>
+</div>
+
+<div class="anchor-nav">
+  <div class="anchor-nav-inner">
+    <a href="#about" class="anchor-nav-link">О лаборатории</a>
+    <a href="#teacher" class="anchor-nav-link">Педагог</a>
+    <a href="#program" class="anchor-nav-link">Программа</a>
+    <a href="#price" class="anchor-nav-link">Стоимость</a>
   </div>
 </div>
 
@@ -626,12 +626,11 @@ function fabShareClick() {
 #prebookBar {
   background: #fff;
   border-bottom: 1px solid #e8e8e8;
-  z-index: 89;
-  position: relative;
-}
-#prebookBar.is-sticky {
   position: sticky;
   top: 60px;
+  z-index: 89;
+}
+#prebookBar.is-sticky {
   box-shadow: 0 2px 12px rgba(0,0,0,0.08);
 }
 #prebookBarInner {
@@ -691,7 +690,7 @@ function fabShareClick() {
   bar.parentNode.insertBefore(sentinel, bar);
   var obs = new IntersectionObserver(function(entries) {
     bar.classList.toggle('is-sticky', !entries[0].isIntersecting);
-  }, { threshold: 0, rootMargin: '-60px 0px 0px 0px' });
+  }, { threshold: 0 });
   obs.observe(sentinel);
 })();
 </script>
