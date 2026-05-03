@@ -65,7 +65,14 @@ function renderPage(e) {
     .event-hero-poster { flex-shrink: 0; max-height: 480px; max-width: 300px; }
     .event-hero-poster img { display: block; width: 100%; height: auto; object-fit: contain; border-radius: 8px; box-shadow: 0 24px 64px rgba(0,0,0,0.6); }
     .event-hero-text { color: #ffffff; }
+    .event-trailer { margin-top: 40px; margin-bottom: 8px; }
+    .event-trailer .section-label { margin-bottom: 16px; }
+    .trailer-wrap { position: relative; width: 100%; max-width: 720px; aspect-ratio: 16/9; background: #000; border-radius: 12px; overflow: hidden; }
+    .trailer-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; border-radius: 12px; }
     .event-hero-tag { display: inline-block; background: rgba(255,255,255,0.15); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.25); color: #ffffff; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 12px; border-radius: 100px; margin-bottom: 14px; }
+    .event-hero-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+    .event-hero-tags .event-hero-tag { margin-bottom: 0; }
+    .event-hero-tag--premiere { background: rgba(220, 38, 38, 0.85); border-color: rgba(220,38,38,0.6); }
     .event-hero-title { font-size: 44px; font-weight: 700; color: #ffffff; line-height: 1.1; margin-bottom: 12px; }
     .event-hero-date { font-size: 15px; font-weight: 500; color: rgba(255,255,255,0.75); }
     .event-main { display: grid; grid-template-columns: 1fr 360px; gap: 48px; max-width: 1200px; margin: 0 auto; padding: 60px 48px; align-items: start; }
@@ -133,7 +140,10 @@ function renderPage(e) {
   <div class="event-hero-inner">
     ${img ? `<div class="event-hero-poster"><img src="${img}" alt="${e.title}"></div>` : ''}
     <div class="event-hero-text">
-      <div class="event-hero-tag">${e.format || 'Мероприятие'}${e.age ? ' · ' + e.age : ''}</div>
+      <div class="event-hero-tags">
+        <div class="event-hero-tag">${e.format || 'Мероприятие'}${e.age ? ' · ' + e.age : ''}</div>
+        ${e.is_premiere ? `<div class="event-hero-tag event-hero-tag--premiere">⭐ Премьера</div>` : ''}
+      </div>
       <h1 class="event-hero-title">${e.title}</h1>
       <div class="event-hero-date">${date.full} · ${e.time || '19:00'}</div>
     </div>
@@ -145,6 +155,12 @@ function renderPage(e) {
     <p class="section-label">О мероприятии</p>
     <p class="event-description">${e.description || ''}</p>
     ${e.description_full ? `<p class="event-text">${e.description_full}</p>` : ''}
+
+    ${e.trailer_html ? `
+    <div class="event-trailer">
+      <p class="section-label">Трейлер</p>
+      <div class="trailer-wrap">${e.trailer_html}</div>
+    </div>` : ''}
 
     <ul class="event-details-list">
       <li><strong>Дата</strong>${date.full}</li>
@@ -211,7 +227,7 @@ export default async function handler(req, res) {
     const { rows: [e] } = await pool.query(
       `SELECT slug, title, description, description_short, description_full,
               date, time, date_label, format, location, price, image_url,
-              custom_banner, ticket_url, age, status
+              custom_banner, ticket_url, age, trailer_html, is_premiere, status
        FROM events WHERE slug = $1 AND status = 'published'`, [slug]
     );
 
