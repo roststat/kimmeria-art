@@ -3,13 +3,14 @@ function doGet(e) {
     var sheet = SpreadsheetApp.openById("137KFeMp079ULrLjFXb5y6wzer5iiPtNyirBAHTdsraY").getActiveSheet();
 
     if (sheet.getLastRow() === 0) {
-      sheet.appendRow(["Дата", "Имя", "Телефон", "Страница", "UTM Source", "UTM Medium", "UTM Campaign", "Реферер"]);
+      sheet.appendRow(["Дата", "Имя", "Телефон", "Возраст", "Страница", "UTM Source", "UTM Medium", "UTM Campaign", "Реферер"]);
     }
 
     sheet.appendRow([
       new Date(),
       e.parameter.name || "",
       e.parameter.phone || "",
+      e.parameter.age || "",
       e.parameter.event || "",
       e.parameter.utm_source || "",
       e.parameter.utm_medium || "",
