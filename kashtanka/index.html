@@ -22,14 +22,14 @@ body { font-family: 'Inter', sans-serif; background: #fff; color: #111; font-siz
 :root { --accent: #7a2232; --accent-dark: #5a1620; --accent-light: #fdf0f2; --accent-mid: #f4b8c2; --gold: #c08020; --gold-light: #fff8f0; --gold-border: #f0c070; }
 
 /* NAV */
-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 60px; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; background: rgba(255,255,255,0.96); backdrop-filter: blur(20px); border-bottom: 1px solid #e8e8e8; }
+nav { display: none; }
 .nav-logo { font-size: 15px; font-weight: 700; color: #111; text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; }
 .nav-cta { font-size: 13px; font-weight: 700; color: #fff; background: var(--accent); text-decoration: none; padding: 8px 20px; border-radius: 100px; transition: opacity 0.15s; cursor: pointer; border: none; font-family: inherit; }
 .nav-cta:hover { opacity: 0.85; }
 @media (max-width: 900px) { nav { padding: 0 20px; } }
 
 /* HERO */
-.hero { padding-top: 60px; position: relative; overflow: hidden; background: #1a0a0e; }
+.hero { padding-top: 0; position: relative; overflow: hidden; background: #1a0a0e; }
 .hero-bg { position: absolute; inset: -40px; background-image: url('https://res.cloudinary.com/dmzsczjzd/image/upload/kimmeria/kashtanka/poster.jpg'); background-size: cover; background-position: center; filter: blur(28px); opacity: 0.30; transform: scale(1.08); }
 .hero-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(60,8,20,0.88) 0%, rgba(10,5,8,0.72) 100%); }
 .hero-inner { position: relative; z-index: 1; display: grid; grid-template-columns: auto 1fr; gap: 48px; align-items: center; max-width: 1200px; margin: 0 auto; padding: 48px; }
@@ -584,7 +584,7 @@ function fabShareClick() {
   background: #fff;
   border-bottom: 1px solid #e8e8e8;
   position: sticky;
-  top: 60px;
+  top: 0;
   z-index: 89;
 }
 #prebookBar.is-sticky {
