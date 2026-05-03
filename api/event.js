@@ -145,8 +145,8 @@ function renderPage(e) {
     .form-consent input[type="checkbox"] { flex-shrink: 0; width: 16px; height: 16px; margin-top: 3px; cursor: pointer; }
     .form-consent span { font-size: 12px; color: #888; line-height: 1.55; }
     .form-consent a { color: #111; }
-    .btn-submit { width: 100%; padding: 16px 24px; background: #111111; color: #ffffff; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; border: none; border-radius: 100px; cursor: pointer; transition: opacity 0.15s; }
-    .btn-submit:hover { opacity: 0.85; }
+    .btn-submit { width: 100%; padding: 16px 24px; background: #1a4a3a; color: #ffffff; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; border: none; border-radius: 100px; cursor: pointer; transition: background 0.15s; }
+    .btn-submit:hover { background: #0f2e24; }
     .btn-submit:disabled { opacity: 0.5; cursor: default; }
     .form-error { font-size: 13px; color: #cc3333; display: none; margin-top: 4px; }
     .btn-register { display: block; width: 100%; padding: 16px 24px; text-align: center; background: #1a4a3a; color: #ffffff; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; border: none; border-radius: 100px; cursor: pointer; transition: background 0.15s; margin-bottom: 0; }
