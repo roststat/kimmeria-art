@@ -169,9 +169,6 @@ function renderPage(e) {
       ${e.age ? `<li><strong>Возраст</strong>${e.age}</li>` : ''}
     </ul>
 
-    <a href="${programUrl}" class="back-link" style="margin-bottom: 32px; display: inline-block;">
-      Подробнее о программе →
-    </a>
   </div>
 
   <aside class="event-sidebar">
@@ -184,8 +181,7 @@ function renderPage(e) {
     <hr class="sidebar-divider">
     <div class="sidebar-label">Стоимость</div>
     <div class="sidebar-price-main">${e.price || 'По запросу'}</div>
-    ${ticketBtn}
-    <a href="${programUrl}" class="btn-program">О программе →</a>
+    ${e.ticket_url && !isPast ? `<a href="${e.ticket_url}" class="btn-primary" target="_blank" rel="noopener">Купить билет</a>` : isPast ? `<div class="btn-past">Мероприятие завершено</div>` : ''}
     <a href="/#events" class="btn-secondary">← Все события</a>
     <button class="btn-share" onclick="shareEvent(this)">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
