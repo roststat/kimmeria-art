@@ -78,8 +78,15 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 60px; di
 /* ПРЕПОДАВАТЕЛЬ */
 .master-section { display: grid; grid-template-columns: 260px 1fr; gap: 56px; align-items: start; }
 .master-photo-wrap { position: sticky; top: 80px; }
-.master-photo { width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 16px; display: block; box-shadow: 0 8px 32px rgba(0,0,0,0.12); cursor: pointer; transition: transform 0.2s; }
-.master-photo:hover { transform: scale(1.02); }
+.master-photo-click { position: relative; cursor: pointer; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 32px rgba(0,0,0,0.12); }
+.master-photo { width: 100%; aspect-ratio: 3/4; object-fit: cover; display: block; transition: transform 0.25s; }
+.master-photo-click:hover .master-photo { transform: scale(1.04); }
+.master-photo-overlay { position: absolute; inset: 0; background: rgba(122,34,50,0.55); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; opacity: 0; transition: opacity 0.2s; }
+.master-photo-click:hover .master-photo-overlay { opacity: 1; }
+.master-photo-overlay span { font-size: 13px; font-weight: 700; color: #fff; letter-spacing: 0.04em; }
+.master-photo-more-btn { margin-top: 12px; background: none; border: none; padding: 0; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; color: var(--accent); cursor: pointer; text-decoration: underline; text-underline-offset: 3px; transition: opacity 0.15s; }
+.master-photo-more-btn:hover { opacity: 0.7; }
+@media (hover: none) { .master-photo-overlay { opacity: 1; background: rgba(122,34,50,0.38); } }
 .master-photo-name { font-size: 16px; font-weight: 700; color: #111; margin-top: 16px; }
 .master-photo-role { font-size: 13px; color: #888; margin-top: 4px; }
 .master-modules { display: flex; flex-direction: column; gap: 16px; margin-bottom: 40px; }
@@ -188,8 +195,9 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 60px; di
   .section { padding: 56px 24px; }
   .section-title { font-size: 28px; }
   .master-section { grid-template-columns: 1fr; gap: 32px; }
-  .master-photo-wrap { position: static; display: flex; gap: 20px; align-items: center; }
-  .master-photo { width: 120px; aspect-ratio: 1; border-radius: 50%; }
+  .master-photo-wrap { position: static; display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
+  .master-photo-click { width: 120px; flex-shrink: 0; border-radius: 50%; }
+  .master-photo { aspect-ratio: 1; border-radius: 50%; }
   .skills-grid { grid-template-columns: 1fr; }
   .details-grid { grid-template-columns: 1fr 1fr; }
   .program-item { grid-template-columns: 120px 1fr; }
@@ -285,9 +293,16 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 60px; di
   <h2 class="section-title">Режиссёр с двадцатилетним опытом</h2>
   <div class="master-section">
     <div class="master-photo-wrap">
-      <img class="master-photo" src="https://res.cloudinary.com/dmzsczjzd/image/upload/kimmeria/kashtanka/teacher.jpg" alt="Анастасия Емельянова" onclick="openMasterPopup()">
+      <div class="master-photo-click" onclick="openMasterPopup()">
+        <img class="master-photo" src="https://res.cloudinary.com/dmzsczjzd/image/upload/kimmeria/kashtanka/teacher.jpg" alt="Анастасия Емельянова">
+        <div class="master-photo-overlay">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+          <span>Подробнее</span>
+        </div>
+      </div>
       <div class="master-photo-name">Анастасия Емельянова</div>
       <div class="master-photo-role">Режиссёр · Ведущая лаборатории</div>
+      <button class="master-photo-more-btn" onclick="openMasterPopup()">Подробнее о педагоге →</button>
     </div>
     <div class="master-content">
       <div class="skills-title">Что получит ребёнок</div>
