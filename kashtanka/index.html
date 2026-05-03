@@ -27,7 +27,6 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 60px; di
 .nav-cta { font-size: 13px; font-weight: 700; color: #fff; background: var(--accent); text-decoration: none; padding: 8px 20px; border-radius: 100px; transition: opacity 0.15s; cursor: pointer; border: none; font-family: inherit; }
 .nav-cta:hover { opacity: 0.85; }
 @media (max-width: 900px) { nav { padding: 0 20px; } }
-@media (max-width: 600px) { nav { transform: translateY(-100%); transition: transform 0.3s ease; } nav.visible { transform: translateY(0); } }
 
 /* HERO */
 .hero { padding-top: 60px; position: relative; overflow: hidden; background: #1a0a0e; }
@@ -170,15 +169,6 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 60px; di
 .btn-final:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.25); }
 .final-note { font-size: 13px; color: rgba(255,255,255,0.4); margin-top: 16px; }
 
-/* ANCHOR NAV */
-.anchor-nav { position: sticky; top: 106px; z-index: 88; background: rgba(255,255,255,0.97); backdrop-filter: blur(16px); border-bottom: 1px solid #e8e8e8; }
-.anchor-nav-inner { max-width: 1060px; margin: 0 auto; padding: 0 48px; display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; }
-.anchor-nav-inner::-webkit-scrollbar { display: none; }
-.anchor-nav-link { font-size: 13px; font-weight: 600; color: #666; text-decoration: none; padding: 12px 14px; white-space: nowrap; border-bottom: 2px solid transparent; transition: color 0.15s, border-color 0.15s; flex-shrink: 0; }
-.anchor-nav-link:hover { color: #111; }
-.anchor-nav-link.active { color: var(--accent); border-bottom-color: var(--accent); }
-@media (max-width: 900px) { .anchor-nav-inner { padding: 0 16px; } }
-@media (max-width: 600px) { .anchor-nav { display: none; } .anchor-nav.visible { display: block; } }
 
 /* PHONE LINK */
 .phone-link { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; background: #fff; color: var(--accent); font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 700; text-decoration: none; border: 2px solid var(--accent); border-radius: 100px; transition: background 0.15s, color 0.15s; margin-left: 12px; }
@@ -258,15 +248,6 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 60px; di
       Дата начала и расписание уточняются
     </div>
     <button class="prebook-banner-btn" onclick="openForm()">Записаться</button>
-  </div>
-</div>
-
-<div class="anchor-nav">
-  <div class="anchor-nav-inner">
-    <a href="#about" class="anchor-nav-link">О лаборатории</a>
-    <a href="#teacher" class="anchor-nav-link">Педагог</a>
-    <a href="#program" class="anchor-nav-link">Программа</a>
-    <a href="#price" class="anchor-nav-link">Стоимость</a>
   </div>
 </div>
 
@@ -495,30 +476,6 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 60px; di
 <div class="fab-share-toast" id="fabShareToast">Ссылка скопирована!</div>
 
 <script>
-// Anchor nav scroll tracking + mobile show
-(function() {
-  var anchorNav = document.querySelector('.anchor-nav');
-  var topNav = document.querySelector('nav');
-  var links = document.querySelectorAll('.anchor-nav-link');
-  var sectionIds = ['about', 'teacher', 'program', 'price'];
-  var sections = sectionIds.map(function(id) { return document.getElementById(id); });
-  var trigger = document.getElementById('about');
-  function onScroll() {
-    var scrollY = window.scrollY + 120;
-    var active = sections[0];
-    sections.forEach(function(s) { if (s && s.offsetTop <= scrollY) active = s; });
-    links.forEach(function(l) {
-      l.classList.toggle('active', l.getAttribute('href') === '#' + (active ? active.id : ''));
-    });
-    if (trigger) {
-      var show = window.scrollY >= trigger.offsetTop - 100;
-      anchorNav.classList.toggle('visible', show);
-      topNav.classList.toggle('visible', show);
-    }
-  }
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
-})();
 
 var TG_TOKEN = '8555296982:AAE2LCN_eeCy33jGJfyWh7guxS2ia2yq68A';
 var TG_CHAT  = '214662526';
