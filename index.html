@@ -449,7 +449,6 @@ select.form-input { cursor: pointer; }
 .form-submit:hover { background: var(--accent-dark); }
 .form-note { font-size: 12px; color: #666666; margin-top: 10px; text-align: center; }
 
-
 /* ── FOOTER ── */
 footer {
   background: #f5f5f5; border-top: 1px solid #e8e8e8; padding: 36px 40px;
@@ -593,10 +592,6 @@ footer {
 
 }
 </style>
-<!-- Yandex.Metrika counter -->
-<script type="text/javascript">(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");ym(108987141,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true});</script>
-<noscript><div><img src="https://mc.yandex.ru/watch/108987141" style="position:absolute;left:-9999px;" alt=""/></div></noscript>
-<!-- /Yandex.Metrika counter -->
 </head>
 <body>
 <div class="page-wrap">
@@ -604,24 +599,6 @@ footer {
 <!-- NAV -->
 <nav>
   <div style="display:flex;align-items:center;gap:10px;">
-    <!-- nav-dots-wrap hidden temporarily
-    <div class="nav-dots-wrap">
-      <button class="nav-dots-btn" id="navDotsBtn" onclick="toggleDots()" aria-label="Группа компаний">
-        <span></span><span></span><span></span>
-      </button>
-      <div class="nav-dots-menu" id="navDotsMenu">
-        <a href="https://kimmeria-company.ru/" target="_blank">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 10l4.553-2.069A1 1 0 0 1 21 8.82v6.362a1 1 0 0 1-1.447.894L15 14"/><rect x="1" y="6" width="14" height="12" rx="2"/></svg>
-          Кинокомпания
-        </a>
-        <a href="https://kimmeria-kinoschool.ru/" target="_blank">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-          Киношкола
-        </a>
-        <div class="nav-dots-footer">Группа компаний КИММЕРИЯ</div>
-      </div>
-    </div>
-    -->
     <a href="/" class="nav-logo">Киммерия-Арт</a>
   </div>
   <ul class="nav-links"></ul>
@@ -709,7 +686,7 @@ footer {
     <!-- Врачи победы -->
     <div class="event-card" data-tab="upcoming" data-format="кинопоказ" data-date="2026-05-09" data-slug="vrachi-pobedy" onclick="location.href='/event/vrachi-pobedy/'">
       <div class="event-photo-wrap">
-        <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777826661/vrachi-pobedy.jpg" alt="Врачи победы">
+        <img loading="lazy" src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777826661/vrachi-pobedy.jpg" alt="Врачи победы">
         <span class="event-badge">Премьера</span>
         <button class="event-share-btn" onclick="shareCard(event,this)" title="Поделиться">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
@@ -733,7 +710,7 @@ footer {
     <!-- Вирус Буратино -->
     <div class="event-card" data-tab="upcoming" data-format="кинопоказ" data-date="2026-05-11" onclick="location.href='/event-virus-buratino/'">
       <div class="event-photo-wrap">
-        <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777810245/kimmeria/event-virus-buratino.jpg" alt="Вирус Буратино">
+        <img loading="lazy" src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777810245/kimmeria/event-virus-buratino.jpg" alt="Вирус Буратино">
         <span class="event-badge">Премьера</span>
         <button class="event-share-btn" onclick="shareCard(event,this)" title="Поделиться">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
@@ -763,7 +740,7 @@ footer {
     <!-- Пополам -->
     <div class="event-card" data-tab="upcoming" data-format="концерт" data-date="2026-05-23" onclick="location.href='/event-popolam/'">
       <div class="event-photo-wrap">
-        <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777831399/kimmeria/popolam/cover.jpg" alt="Пополам">
+        <img loading="lazy" src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777831399/kimmeria/popolam/cover.jpg" alt="Пополам">
         <span class="event-badge">Концерт</span>
         <button class="event-share-btn" onclick="shareCard(event,this)" title="Поделиться">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
@@ -786,7 +763,7 @@ footer {
     <!-- Слёзы дракона -->
     <div class="event-card" data-tab="upcoming" data-format="кинопоказ" data-date="2026-04-24" onclick="location.href='/event-slezy-drakona/'">
       <div class="event-photo-wrap">
-        <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156861/kimmeria/event-slezy-drakona.jpg" alt="Слёзы дракона">
+        <img loading="lazy" src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156861/kimmeria/event-slezy-drakona.jpg" alt="Слёзы дракона">
         <span class="event-badge">Кинопоказ</span>
         <button class="event-share-btn" onclick="shareCard(event,this)" title="Поделиться">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
@@ -815,7 +792,7 @@ footer {
 
     <div class="event-card" data-tab="upcoming" data-format="спектакль" data-date="2026-04-05" onclick="location.href='/event-uzhe/'">
       <div class="event-photo-wrap">
-        <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156925/kimmeria/photo_819%4030-03-2026_09-17-02.jpg" alt="Спектакль УЖЕ">
+        <img loading="lazy" src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156925/kimmeria/photo_819%4030-03-2026_09-17-02.jpg" alt="Спектакль УЖЕ">
         <span class="event-badge">Спектакль</span>
         <button class="event-share-btn" onclick="shareCard(event,this)" title="Поделиться">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
@@ -838,7 +815,7 @@ footer {
     <!-- Рыба -->
     <div class="event-card" data-tab="upcoming" data-format="спектакль" data-date="2026-04-20" onclick="location.href='/event-ryba/'">
       <div class="event-photo-wrap">
-        <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156861/kimmeria/event-ryba.jpg" alt="Лучше я буду рыбой">
+        <img loading="lazy" src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156861/kimmeria/event-ryba.jpg" alt="Лучше я буду рыбой">
         <span class="event-badge">Спектакль</span>
         <button class="event-share-btn" onclick="shareCard(event,this)" title="Поделиться">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
@@ -861,7 +838,7 @@ footer {
     <!-- Афродита -->
     <div class="event-card" data-tab="upcoming" data-format="лекция" data-date="2026-04-15" onclick="location.href='/lecture-afrodita/'">
       <div class="event-photo-wrap">
-        <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156883/kimmeria/lecture-afrodita.jpg" alt="Пространство Афродиты">
+        <img loading="lazy" src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156883/kimmeria/lecture-afrodita.jpg" alt="Пространство Афродиты">
         <span class="event-badge">Лекция</span>
         <button class="event-share-btn" onclick="shareCard(event,this)" title="Поделиться">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
@@ -891,7 +868,7 @@ footer {
     <!-- Геката -->
     <div class="event-card" data-tab="upcoming" data-format="лекция" data-date="2026-04-22" onclick="location.href='/lecture-gekata/'">
       <div class="event-photo-wrap">
-        <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156886/kimmeria/lecture-gekata.jpg" alt="Геката в Фияльте">
+        <img loading="lazy" src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156886/kimmeria/lecture-gekata.jpg" alt="Геката в Фияльте">
         <span class="event-badge">Лекция</span>
         <button class="event-share-btn" onclick="shareCard(event,this)" title="Поделиться">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
@@ -921,7 +898,7 @@ footer {
     <!-- Лилит -->
     <div class="event-card" data-tab="upcoming" data-format="лекция" data-date="2026-04-29" onclick="location.href='/lecture-lilit/'">
       <div class="event-photo-wrap">
-        <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156887/kimmeria/lecture-lilit.jpg" alt="Осторожно, Лилит!">
+        <img loading="lazy" src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156887/kimmeria/lecture-lilit.jpg" alt="Осторожно, Лилит!">
         <span class="event-badge">Лекция</span>
         <button class="event-share-btn" onclick="shareCard(event,this)" title="Поделиться">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
@@ -948,10 +925,9 @@ footer {
       </div>
     </div>
 
-
     <div class="event-card" data-tab="upcoming" data-format="дегустация" data-date="2026-05-06" onclick="location.href='/vstrecha-sladkoe/'">
       <div class="event-photo-wrap">
-        <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156883/kimmeria/idealnaya-sreda-sladkoe.jpg" alt="А что у нас на сладкое?">
+        <img loading="lazy" src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156883/kimmeria/idealnaya-sreda-sladkoe.jpg" alt="А что у нас на сладкое?">
         <span class="event-badge">Дегустация</span>
         <button class="event-share-btn" onclick="shareCard(event,this)" title="Поделиться">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
@@ -988,7 +964,7 @@ footer {
 
     <div class="event-card" data-tab="upcoming" data-format="лекция" data-date="2026-05-13" onclick="location.href='/vstrecha-kvartirnyy/'">
       <div class="event-photo-wrap">
-        <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156882/kimmeria/idealnaya-sreda-kvartirnyy.jpg" alt="Квартирный вопрос только испортил их">
+        <img loading="lazy" src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156882/kimmeria/idealnaya-sreda-kvartirnyy.jpg" alt="Квартирный вопрос только испортил их">
         <span class="event-badge">Лекция</span>
         <button class="event-share-btn" onclick="shareCard(event,this)" title="Поделиться">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
@@ -1022,7 +998,7 @@ footer {
     <!-- Мастер-класс по микродрамам — 2 мая -->
     <div class="event-card" data-tab="upcoming" data-format="мастер-класс" data-date="2026-05-02" onclick="location.href='/master-mikrodrama-2/'" style="display:none">
       <div class="event-photo-wrap">
-        <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777445729/mikrodrama2cover.jpg" alt="Мастер-класс по микродрамам">
+        <img loading="lazy" src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777445729/mikrodrama2cover.jpg" alt="Мастер-класс по микродрамам">
         <span class="event-badge">Мастер-класс</span>
         <button class="event-share-btn" onclick="shareCard(event,this)" title="Поделиться">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
@@ -1059,7 +1035,7 @@ footer {
     <!-- Мастер-класс по микродрамам — 25 апреля -->
     <div class="event-card" data-tab="upcoming" data-format="мастер-класс" data-date="2026-04-25" onclick="location.href='/master-mikrodrama/'">
       <div class="event-photo-wrap">
-        <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156896/kimmeria/master-mikrodrama-cover.jpg" alt="Мастер-класс по микродрамам">
+        <img loading="lazy" src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156896/kimmeria/master-mikrodrama-cover.jpg" alt="Мастер-класс по микродрамам">
         <span class="event-badge">Мастер-класс</span>
         <button class="event-share-btn" onclick="shareCard(event,this)" title="Поделиться">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
@@ -1096,7 +1072,7 @@ footer {
     <!-- Джармуш — Киноклуб -->
     <div class="event-card" data-tab="upcoming" data-format="кинопоказ" data-date="2026-04-17" onclick="location.href='/event-jarmusch/'">
       <div class="event-photo-wrap">
-        <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156818/kimmeria/event-jarmusch-cover.jpg" alt="«Отец Мать Сестра Брат» — Джим Джармуш">
+        <img loading="lazy" src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156818/kimmeria/event-jarmusch-cover.jpg" alt="«Отец Мать Сестра Брат» — Джим Джармуш">
         <span class="event-badge">Кинопоказ</span>
         <button class="event-share-btn" onclick="shareCard(event,this)" title="Поделиться">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
@@ -1126,7 +1102,7 @@ footer {
     <!-- «Дом для Айвазовского» — премьерный показ -->
     <div class="event-card" data-tab="upcoming" data-format="кинопоказ" data-date="2026-04-15" data-slug="aivazovskogo" onclick="location.href='/event-dom-aivazovskogo/'">
       <div class="event-photo-wrap">
-        <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156813/kimmeria/event-dom-aivazovskogo-cover.jpg" alt="«Дом для Айвазовского» — премьерный показ">
+        <img loading="lazy" src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156813/kimmeria/event-dom-aivazovskogo-cover.jpg" alt="«Дом для Айвазовского» — премьерный показ">
         <span class="event-badge">Кинопоказ</span>
         <button class="event-share-btn" onclick="shareCard(event,this)" title="Поделиться">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
@@ -1148,7 +1124,7 @@ footer {
     <!-- Назаров -->
     <div class="event-card past hidden" data-tab="past" data-format="лекция" data-date="2026-03-28" onclick="location.href='/event-nazarov/'">
       <div class="event-photo-wrap">
-        <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156921/kimmeria/photo_814%4027-03-2026_18-42-39.jpg" alt="Лекция Назаров">
+        <img loading="lazy" src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156921/kimmeria/photo_814%4027-03-2026_18-42-39.jpg" alt="Лекция Назаров">
         <span class="event-badge">Лекция</span>
         <button class="event-share-btn" onclick="shareCard(event,this)" title="Поделиться">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
@@ -1172,7 +1148,7 @@ footer {
     <!-- Добрынская -->
     <div class="event-card past hidden" data-tab="past" data-format="лекция" data-date="2026-04-04" onclick="location.href='/event-dobynskaya/'">
       <div class="event-photo-wrap">
-        <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156926/kimmeria/photo_821%4003-04-2026_18-36-25.jpg" alt="Лекция Добрынской">
+        <img loading="lazy" src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156926/kimmeria/photo_821%4003-04-2026_18-36-25.jpg" alt="Лекция Добрынской">
         <span class="event-badge">Лекция</span>
         <button class="event-share-btn" onclick="shareCard(event,this)" title="Поделиться">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
@@ -1194,11 +1170,10 @@ footer {
       </div>
     </div>
 
-
     <!-- Творческая встреча с режиссёром Дмитрием Кондратенко -->
     <div class="event-card past hidden" data-tab="past" data-format="встреча" data-date="2025-10-05" onclick="location.href='/event-kondratenko/'">
       <div class="event-photo-wrap">
-        <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156826/kimmeria/event-kondratenko-cover.jpg" alt="Творческая встреча с режиссёром Дмитрием Кондратенко">
+        <img loading="lazy" src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156826/kimmeria/event-kondratenko-cover.jpg" alt="Творческая встреча с режиссёром Дмитрием Кондратенко">
         <span class="event-badge">Встреча</span>
         <button class="event-share-btn" onclick="shareCard(event,this)" title="Поделиться">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
@@ -1221,7 +1196,7 @@ footer {
     <!-- «Поток» (Flow) — Гинт Зильбалдис, 2024 -->
     <div class="event-card past hidden" data-tab="past" data-format="кинопоказ" data-date="2025-10-03" onclick="location.href='/event-potok/'">
       <div class="event-photo-wrap">
-        <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156845/kimmeria/event-potok-cover.jpg" alt="«Поток» (Flow) — Гинт Зильбалдис, 2024">
+        <img loading="lazy" src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156845/kimmeria/event-potok-cover.jpg" alt="«Поток» (Flow) — Гинт Зильбалдис, 2024">
         <span class="event-badge">Кинопоказ</span>
         <button class="event-share-btn" onclick="shareCard(event,this)" title="Поделиться">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
@@ -1244,7 +1219,7 @@ footer {
     <!-- «Прикосновение» — Альберт Мкртчян, 1992 -->
     <div class="event-card past hidden" data-tab="past" data-format="кинопоказ" data-date="2025-09-26" onclick="location.href='/event-prikosnovenie/'">
       <div class="event-photo-wrap">
-        <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156852/kimmeria/event-prikosnovenie-cover.jpg" alt="«Прикосновение» — Альберт Мкртчян, 1992">
+        <img loading="lazy" src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156852/kimmeria/event-prikosnovenie-cover.jpg" alt="«Прикосновение» — Альберт Мкртчян, 1992">
         <span class="event-badge">Кинопоказ</span>
         <button class="event-share-btn" onclick="shareCard(event,this)" title="Поделиться">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
@@ -1267,7 +1242,7 @@ footer {
     <!-- «Мама!» (Mother!) — Даррен Аронофски, 2017 -->
     <div class="event-card past hidden" data-tab="past" data-format="кинопоказ" data-date="2025-09-12" onclick="location.href='/event-mama-aronofski/'">
       <div class="event-photo-wrap">
-        <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156844/kimmeria/event-mama-aronofski-cover.jpg" alt="«Мама!» (Mother!) — Даррен Аронофски, 2017">
+        <img loading="lazy" src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156844/kimmeria/event-mama-aronofski-cover.jpg" alt="«Мама!» (Mother!) — Даррен Аронофски, 2017">
         <span class="event-badge">Кинопоказ</span>
         <button class="event-share-btn" onclick="shareCard(event,this)" title="Поделиться">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
@@ -1290,7 +1265,7 @@ footer {
     <!-- «Цвет граната» — Сергей Параджанов, 1969 -->
     <div class="event-card past hidden" data-tab="past" data-format="кинопоказ" data-date="2025-09-09" onclick="location.href='/event-tsvet-granata/'">
       <div class="event-photo-wrap">
-        <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156874/kimmeria/event-tsvet-granata-cover.jpg" alt="«Цвет граната» — Сергей Параджанов, 1969">
+        <img loading="lazy" src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156874/kimmeria/event-tsvet-granata-cover.jpg" alt="«Цвет граната» — Сергей Параджанов, 1969">
         <span class="event-badge">Кинопоказ</span>
         <button class="event-share-btn" onclick="shareCard(event,this)" title="Поделиться">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
@@ -1313,7 +1288,7 @@ footer {
     <!-- «В поисках Шугармэна» (Searching for Sugar Man) — Малик Бенджеллуль, 2012 -->
     <div class="event-card past hidden" data-tab="past" data-format="кинопоказ" data-date="2025-09-05" onclick="location.href='/event-v-poiskah-shugarmena/'">
       <div class="event-photo-wrap">
-        <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156879/kimmeria/event-v-poiskah-shugarmena-cover.jpg" alt="«В поисках Шугармэна» (Searching for Sugar Man) — Малик Бенджеллуль, 2012">
+        <img loading="lazy" src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156879/kimmeria/event-v-poiskah-shugarmena-cover.jpg" alt="«В поисках Шугармэна» (Searching for Sugar Man) — Малик Бенджеллуль, 2012">
         <span class="event-badge">Кинопоказ</span>
         <button class="event-share-btn" onclick="shareCard(event,this)" title="Поделиться">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
@@ -1336,7 +1311,7 @@ footer {
     <!-- «Главная роль» (Official Competition) — Гастон Дюпра, Мариано Кон, 2021 -->
     <div class="event-card past hidden" data-tab="past" data-format="кинопоказ" data-date="2025-08-29" onclick="location.href='/event-glavnaya-rol/'">
       <div class="event-photo-wrap">
-        <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156814/kimmeria/event-glavnaya-rol-cover.jpg" alt="«Главная роль» (Official Competition) — Гастон Дюпра, Мариано Кон, 2021">
+        <img loading="lazy" src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156814/kimmeria/event-glavnaya-rol-cover.jpg" alt="«Главная роль» (Official Competition) — Гастон Дюпра, Мариано Кон, 2021">
         <span class="event-badge">Кинопоказ</span>
         <button class="event-share-btn" onclick="shareCard(event,this)" title="Поделиться">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
@@ -1360,7 +1335,7 @@ footer {
     <!-- «Кантия» — Мария Вихрова -->
     <div class="event-card past hidden" data-tab="past" data-format="кинопоказ" data-date="2025-07-20" onclick="location.href='/event-kantiya/'">
       <div class="event-photo-wrap">
-        <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156819/kimmeria/event-kantiya-cover.jpg" alt="«Кантия» — Мария Вихрова">
+        <img loading="lazy" src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156819/kimmeria/event-kantiya-cover.jpg" alt="«Кантия» — Мария Вихрова">
         <span class="event-badge">Кинопоказ</span>
         <button class="event-share-btn" onclick="shareCard(event,this)" title="Поделиться">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
@@ -1381,11 +1356,10 @@ footer {
       </div>
     </div>
 
-
     <!-- За кадром: как создаётся кино — встреча с Анастасией Корольковой -->
     <div class="event-card past hidden" data-tab="past" data-format="встреча" data-date="2025-06-07" onclick="location.href='/event-korolkova-adults/'">
       <div class="event-photo-wrap">
-        <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156829/kimmeria/event-korolkova-adults-cover.jpg" alt="За кадром: как создаётся кино — встреча с Анастасией Корольковой">
+        <img loading="lazy" src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156829/kimmeria/event-korolkova-adults-cover.jpg" alt="За кадром: как создаётся кино — встреча с Анастасией Корольковой">
         <span class="event-badge">Встреча</span>
         <button class="event-share-btn" onclick="shareCard(event,this)" title="Поделиться">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
@@ -1408,7 +1382,7 @@ footer {
     <!-- Кино за кадром — встреча с Анастасией Корольковой (для подростков) -->
     <div class="event-card past hidden" data-tab="past" data-format="встреча" data-date="2025-06-05" onclick="location.href='/event-korolkova-teens/'">
       <div class="event-photo-wrap">
-        <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156832/kimmeria/event-korolkova-teens-cover.jpg" alt="Кино за кадром — встреча с Анастасией Корольковой (для подростков)">
+        <img loading="lazy" src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156832/kimmeria/event-korolkova-teens-cover.jpg" alt="Кино за кадром — встреча с Анастасией Корольковой (для подростков)">
         <span class="event-badge">Встреча</span>
         <button class="event-share-btn" onclick="shareCard(event,this)" title="Поделиться">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
@@ -1431,7 +1405,7 @@ footer {
     <!-- «Картина без авторства» (Werk ohne Autor) — Флориан Хенкель фон Доннерсмарк, 2018 -->
     <div class="event-card past hidden" data-tab="past" data-format="кинопоказ" data-date="2025-05-16" onclick="location.href='/event-kartina-bez-avtorstva/'">
       <div class="event-photo-wrap">
-        <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156826/kimmeria/event-kartina-bez-avtorstva-cover.jpg" alt="«Картина без авторства» (Werk ohne Autor) — Флориан Хенкель фон Доннерсмарк, 2018">
+        <img loading="lazy" src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156826/kimmeria/event-kartina-bez-avtorstva-cover.jpg" alt="«Картина без авторства» (Werk ohne Autor) — Флориан Хенкель фон Доннерсмарк, 2018">
         <span class="event-badge">Кинопоказ</span>
         <button class="event-share-btn" onclick="shareCard(event,this)" title="Поделиться">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
@@ -1454,7 +1428,7 @@ footer {
     <!-- «Разговор» (The Conversation) — Фрэнсис Форд Коппола, 1974 -->
     <div class="event-card past hidden" data-tab="past" data-format="кинопоказ" data-date="2025-05-02" onclick="location.href='/event-razgovor/'">
       <div class="event-photo-wrap">
-        <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156856/kimmeria/event-razgovor-cover.jpg" alt="«Разговор» (The Conversation) — Фрэнсис Форд Коппола, 1974">
+        <img loading="lazy" src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156856/kimmeria/event-razgovor-cover.jpg" alt="«Разговор» (The Conversation) — Фрэнсис Форд Коппола, 1974">
         <span class="event-badge">Кинопоказ</span>
         <button class="event-share-btn" onclick="shareCard(event,this)" title="Поделиться">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
@@ -1477,7 +1451,7 @@ footer {
     <!-- Окно во двор -->
     <div class="event-card past hidden" data-tab="past" data-format="кинопоказ" data-date="2025-04-11" onclick="location.href='/event-okno-vo-dvor/'">
       <div class="event-photo-wrap">
-        <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156902/kimmeria/okno-vo-dvor-cover.jpg" alt="Окно во двор — Хичкок">
+        <img loading="lazy" src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156902/kimmeria/okno-vo-dvor-cover.jpg" alt="Окно во двор — Хичкок">
         <span class="event-badge">Кинопоказ</span>
         <button class="event-share-btn" onclick="shareCard(event,this)" title="Поделиться">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
@@ -1501,7 +1475,7 @@ footer {
     <!-- Двадцать дней без войны -->
     <div class="event-card past hidden" data-tab="past" data-format="кинопоказ" data-date="2025-05-09" onclick="location.href='/event-20-dney/'">
       <div class="event-photo-wrap">
-        <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156811/kimmeria/20-dney-cover.jpg" alt="Двадцать дней без войны — Алексей Герман">
+        <img loading="lazy" src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156811/kimmeria/20-dney-cover.jpg" alt="Двадцать дней без войны — Алексей Герман">
         <span class="event-badge">Кинопоказ</span>
         <button class="event-share-btn" onclick="shareCard(event,this)" title="Поделиться">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
@@ -1525,7 +1499,7 @@ footer {
     <!-- Говорухин -->
     <div class="event-card past hidden" data-tab="past" data-format="кинопоказ" data-date="2026-03-25" onclick="location.href='/event-govoryukhin/'">
       <div class="event-photo-wrap">
-        <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156919/kimmeria/photo_803%4023-03-2026_19-31-02.jpg" alt="Вечер памяти Говорухина">
+        <img loading="lazy" src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156919/kimmeria/photo_803%4023-03-2026_19-31-02.jpg" alt="Вечер памяти Говорухина">
         <span class="event-badge">Кинопоказ</span>
         <button class="event-share-btn" onclick="shareCard(event,this)" title="Поделиться">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
@@ -1549,7 +1523,7 @@ footer {
     <!-- Встреча с режиссёром документального кино, кинооператором Станиславом Шубертом -->
     <div class="event-card past hidden" data-tab="past" data-format="встреча" data-date="2025-03-21" onclick="location.href='/vstrecha-denpolyarnika/'">
       <div class="event-photo-wrap">
-        <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156975/kimmeria/%D0%BE%D0%B1%D0%BB%D0%BE%D0%B6%D0%BA%D0%B0.jpg" alt="Встреча с режиссёром документального кино, кинооператором Станиславом Шубертом">
+        <img loading="lazy" src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156975/kimmeria/%D0%BE%D0%B1%D0%BB%D0%BE%D0%B6%D0%BA%D0%B0.jpg" alt="Встреча с режиссёром документального кино, кинооператором Станиславом Шубертом">
         <span class="event-badge">Встреча</span>
         <button class="event-share-btn" onclick="shareCard(event,this)" title="Поделиться">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
@@ -1572,7 +1546,7 @@ footer {
     <!-- Пина Бауш -->
     <div class="event-card past hidden" data-tab="past" data-format="лекция" data-date="2025-02-22" onclick="location.href='/event-pina-bausch/'">
       <div class="event-photo-wrap">
-        <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156914/kimmeria/photo_256%4013-02-2025_11-45-57.jpg" alt="Пина Бауш">
+        <img loading="lazy" src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156914/kimmeria/photo_256%4013-02-2025_11-45-57.jpg" alt="Пина Бауш">
         <span class="event-badge">Лекция</span>
         <button class="event-share-btn" onclick="shareCard(event,this)" title="Поделиться">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
@@ -1596,7 +1570,7 @@ footer {
     <!-- Отсчёт утопленников -->
     <div class="event-card past hidden" data-tab="past" data-format="кинопоказ" data-date="2025-02-14" onclick="location.href='/event-otschet/'">
       <div class="event-photo-wrap">
-        <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156914/kimmeria/photo_255%4011-02-2025_12-36-02.jpg" alt="Отсчёт утопленников">
+        <img loading="lazy" src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156914/kimmeria/photo_255%4011-02-2025_12-36-02.jpg" alt="Отсчёт утопленников">
         <span class="event-badge">Кинопоказ</span>
         <button class="event-share-btn" onclick="shareCard(event,this)" title="Поделиться">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
@@ -1617,11 +1591,10 @@ footer {
       </div>
     </div>
 
-
     <!-- «Полёты в кино и наяву» — творческая встреча с Юрием Ковригиным -->
     <div class="event-card past hidden" data-tab="past" data-format="кинопоказ" data-date="2025-02-13" onclick="location.href='/event-kovrigin/'">
       <div class="event-photo-wrap">
-        <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156835/kimmeria/event-kovrigin-cover.jpg" alt="«Полёты в кино и наяву» — творческая встреча с Юрием Ковригиным">
+        <img loading="lazy" src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156835/kimmeria/event-kovrigin-cover.jpg" alt="«Полёты в кино и наяву» — творческая встреча с Юрием Ковригиным">
         <span class="event-badge">Кинопоказ</span>
         <button class="event-share-btn" onclick="shareCard(event,this)" title="Поделиться">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
@@ -1644,7 +1617,7 @@ footer {
     <!-- Забытое серебро -->
     <div class="event-card past hidden" data-tab="past" data-format="кинопоказ" data-date="2025-02-13" onclick="location.href='/event-zabytoe-serebro/'">
       <div class="event-photo-wrap">
-        <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156974/kimmeria/zabytoe-serebro-cover.jpg" alt="Забытое серебро — Питер Джексон">
+        <img loading="lazy" src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156974/kimmeria/zabytoe-serebro-cover.jpg" alt="Забытое серебро — Питер Джексон">
         <span class="event-badge">Кинопоказ</span>
         <button class="event-share-btn" onclick="shareCard(event,this)" title="Поделиться">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
@@ -1668,7 +1641,7 @@ footer {
     <!-- Анора -->
     <div class="event-card past hidden" data-tab="past" data-format="кинопоказ" data-date="2025-02-07" onclick="location.href='/event-anora/'">
       <div class="event-photo-wrap">
-        <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156912/kimmeria/photo_247%4004-02-2025_21-37-42.jpg" alt="Анора">
+        <img loading="lazy" src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156912/kimmeria/photo_247%4004-02-2025_21-37-42.jpg" alt="Анора">
         <span class="event-badge">Кинопоказ</span>
         <button class="event-share-btn" onclick="shareCard(event,this)" title="Поделиться">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
@@ -1692,7 +1665,7 @@ footer {
     <!-- Семейный портрет -->
     <div class="event-card past hidden" data-tab="past" data-format="кинопоказ" data-date="2025-01-31" onclick="location.href='/event-semeynyy-portret/'">
       <div class="event-photo-wrap">
-        <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156912/kimmeria/photo_236%4029-01-2025_11-29-02.jpg" alt="Семейный портрет">
+        <img loading="lazy" src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156912/kimmeria/photo_236%4029-01-2025_11-29-02.jpg" alt="Семейный портрет">
         <span class="event-badge">Кинопоказ</span>
         <button class="event-share-btn" onclick="shareCard(event,this)" title="Поделиться">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
@@ -1716,7 +1689,7 @@ footer {
     <!-- Дети небес -->
     <div class="event-card past hidden" data-tab="past" data-format="кинопоказ" data-date="2025-01-17" onclick="location.href='/event-deti-nebes/'">
       <div class="event-photo-wrap">
-        <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156910/kimmeria/photo_227%4015-01-2025_23-06-07.jpg" alt="Дети небес">
+        <img loading="lazy" src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156910/kimmeria/photo_227%4015-01-2025_23-06-07.jpg" alt="Дети небес">
         <span class="event-badge">Кинопоказ</span>
         <button class="event-share-btn" onclick="shareCard(event,this)" title="Поделиться">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
@@ -1740,7 +1713,7 @@ footer {
     <!-- Аномализа -->
     <div class="event-card past hidden" data-tab="past" data-format="кинопоказ" data-date="2025-01-16" onclick="location.href='/event-anomalisa/'">
       <div class="event-photo-wrap">
-        <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156812/kimmeria/anomalisa-cover.jpg" alt="Аномализа — Чарли Кауфман">
+        <img loading="lazy" src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156812/kimmeria/anomalisa-cover.jpg" alt="Аномализа — Чарли Кауфман">
         <span class="event-badge">Кинопоказ</span>
         <button class="event-share-btn" onclick="shareCard(event,this)" title="Поделиться">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
@@ -1761,12 +1734,10 @@ footer {
       </div>
     </div>
 
-
-
     <!-- Творческая встреча с Анатолием Таврическим -->
     <div class="event-card past hidden" data-tab="past" data-format="творческая встреча" data-date="2025-01-10" onclick="location.href='/event-tavrichersky/'">
       <div class="event-photo-wrap">
-        <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156862/kimmeria/event-tavrichersky-cover.jpg" alt="Творческая встреча с Анатолием Таврическим">
+        <img loading="lazy" src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156862/kimmeria/event-tavrichersky-cover.jpg" alt="Творческая встреча с Анатолием Таврическим">
         <span class="event-badge">Творческая встреча</span>
         <button class="event-share-btn" onclick="shareCard(event,this)" title="Поделиться">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
@@ -1789,7 +1760,7 @@ footer {
     <!-- «Идеальные дни» (Perfect Days) — Вим Вендерс, 2023 -->
     <div class="event-card past hidden" data-tab="past" data-format="кинопоказ" data-date="2025-01-02" onclick="location.href='/event-idealnye-dni/'">
       <div class="event-photo-wrap">
-        <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156815/kimmeria/event-idealnye-dni-cover.jpg" alt="«Идеальные дни» (Perfect Days) — Вим Вендерс, 2023">
+        <img loading="lazy" src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156815/kimmeria/event-idealnye-dni-cover.jpg" alt="«Идеальные дни» (Perfect Days) — Вим Вендерс, 2023">
         <span class="event-badge">Кинопоказ</span>
         <button class="event-share-btn" onclick="shareCard(event,this)" title="Поделиться">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
@@ -1812,7 +1783,7 @@ footer {
     <!-- Проводы -->
     <div class="event-card past hidden" data-tab="past" data-format="кинопоказ" data-date="2024-12-19" onclick="location.href='/event-provody/'">
       <div class="event-photo-wrap">
-        <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156941/kimmeria/provody-cover.jpg" alt="Проводы — Сергей Четверухин">
+        <img loading="lazy" src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156941/kimmeria/provody-cover.jpg" alt="Проводы — Сергей Четверухин">
         <span class="event-badge">Кинопоказ</span>
         <button class="event-share-btn" onclick="shareCard(event,this)" title="Поделиться">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
@@ -1836,7 +1807,7 @@ footer {
     <!-- Проект Флорида -->
     <div class="event-card past hidden" data-tab="past" data-format="кинопоказ" data-date="2024-12-13" onclick="location.href='/event-proekt-florida/'">
       <div class="event-photo-wrap">
-        <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156905/kimmeria/photo_200%4012-12-2024_10-06-26.jpg" alt="Проект Флорида">
+        <img loading="lazy" src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156905/kimmeria/photo_200%4012-12-2024_10-06-26.jpg" alt="Проект Флорида">
         <span class="event-badge">Кинопоказ</span>
         <button class="event-share-btn" onclick="shareCard(event,this)" title="Поделиться">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
@@ -1860,7 +1831,7 @@ footer {
     <!-- Рок за гранью -->
     <div class="event-card past hidden" data-tab="past" data-format="кинопоказ" data-date="2024-12-12" onclick="location.href='/event-rok-za-granju/'">
       <div class="event-photo-wrap">
-        <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156951/kimmeria/rok-za-granju-cover.jpg" alt="Рок за гранью">
+        <img loading="lazy" src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156951/kimmeria/rok-za-granju-cover.jpg" alt="Рок за гранью">
         <span class="event-badge">Кинопоказ</span>
         <button class="event-share-btn" onclick="shareCard(event,this)" title="Поделиться">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
@@ -1884,7 +1855,7 @@ footer {
     <!-- Субстанция -->
     <div class="event-card past hidden" data-tab="past" data-format="кинопоказ" data-date="2024-12-06" onclick="location.href='/event-substanciya/'">
       <div class="event-photo-wrap">
-        <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156905/kimmeria/photo_194%4003-12-2024_18-35-16.jpg" alt="Субстанция">
+        <img loading="lazy" src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156905/kimmeria/photo_194%4003-12-2024_18-35-16.jpg" alt="Субстанция">
         <span class="event-badge">Кинопоказ</span>
         <button class="event-share-btn" onclick="shareCard(event,this)" title="Поделиться">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
@@ -1928,7 +1899,6 @@ footer {
 
 <!-- FOOTER -->
 <div id="site-footer"></div>
-
 
 <script>
   let currentTab = 'upcoming';
@@ -2263,9 +2233,11 @@ document.addEventListener('click', function(e) {
   }
 });
 
-
-
 </script>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");ym(108987141,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true});</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/108987141" style="position:absolute;left:-9999px;" alt=""/></div></noscript>
+<!-- /Yandex.Metrika counter -->
 <script src="/footer.js"></script>
 </body>
 </html>
