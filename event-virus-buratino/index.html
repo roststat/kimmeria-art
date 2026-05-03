@@ -59,6 +59,7 @@
     .event-crew-list { list-style: none; }
     .event-crew-list li { font-size: 16px; color: #666666; padding: 10px 0; border-bottom: 1px solid #e8e8e8; display: flex; gap: 16px; }
     .event-crew-list li strong { color: #111111; font-weight: 600; min-width: 200px; }
+    .event-crew-list li:not(:has(strong)) { color: #111111; }
     .event-sidebar { position: sticky; top: 80px; background: #ffffff; border: 1px solid #e8e8e8; border-radius: 16px; padding: 32px; }
     .sidebar-date-block { margin-bottom: 24px; border-bottom: 1px solid #e8e8e8; padding-bottom: 24px; }
     .sidebar-date-label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #666666; font-weight: 600; margin-bottom: 6px; }
@@ -161,11 +162,21 @@
       <li><strong>Информация</strong> +7-978-060-29-86</li>
     </ul>
 
+    <div class="author-block" style="margin-top:0;padding-top:0;border-top:none;">
+      <div class="author-label">Режиссёр фильма</div>
+      <div class="author-row">
+        <img class="author-avatar" src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777802977/kimmeria/kashtanka/teacher.jpg" alt="Анастасия Емельянова" onclick="openLightbox(this.src)">
+        <div>
+          <div class="author-name">Анастасия Емельянова</div>
+          <div class="author-role">Режиссёр театра и кино · Автор сценария</div>
+        </div>
+      </div>
+      <p class="author-desc">Режиссёр театра и кино с двадцатилетним опытом. Поставила более 200 спектаклей для детей. Спектакль «Гроза» восемь лет шёл на сцене Электротеатра Станиславский. С 2021 года сотрудничает с Кинокомпанией «Киммерия» в Ялте. «Вирус Буратино, или Театр мечты» — её авторский фильм.</p>
+    </div>
+
     <div class="event-crew">
       <h2 class="event-crew-title">Съёмочная группа</h2>
       <ul class="event-crew-list">
-        <li><strong>Режиссёр</strong> Анастасия Емельянова</li>
-        <li><strong>Сценарий</strong> Анастасия Емельянова</li>
         <li><strong>Продюсеры</strong> Наталья Лебедева, Филипп Емельянов</li>
         <li><strong>Оператор</strong> Иван Мозгов</li>
         <li><strong>Второй оператор</strong> Павел Маханьков</li>
@@ -178,16 +189,32 @@
       </ul>
     </div>
 
-    <div class="author-block">
-      <div class="author-label">Режиссёр фильма</div>
-      <div class="author-row">
-        <img class="author-avatar" src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777802977/kimmeria/kashtanka/teacher.jpg" alt="Анастасия Емельянова" onclick="openLightbox(this.src)">
-        <div>
-          <div class="author-name">Анастасия Емельянова</div>
-          <div class="author-role">Режиссёр театра и кино · Автор сценария</div>
-        </div>
-      </div>
-      <p class="author-desc">Режиссёр театра и кино с двадцатилетним опытом. Поставила более 200 спектаклей для детей. Спектакль «Гроза» восемь лет шёл на сцене Электротеатра Станиславский. С 2021 года сотрудничает с Кинокомпанией «Киммерия» в Ялте. «Вирус Буратино, или Театр мечты» — её авторский фильм.</p>
+    <div class="event-crew">
+      <h2 class="event-crew-title">В ролях</h2>
+      <ul class="event-crew-list">
+        <li>Самулёва Агата</li>
+        <li>Клячина Наталья</li>
+        <li>Лебедева Ольга</li>
+        <li>Ващишин Владислав</li>
+        <li>Черноклинов Марк</li>
+        <li>Почепин Богдан</li>
+        <li>Гогина Эвелина</li>
+        <li>Левченко Анна</li>
+        <li>Ростков Артем</li>
+        <li>Тышкевич Алиссия Алессандра</li>
+        <li>Иноземцева Полина</li>
+        <li>Чепорнюк Всеволод</li>
+        <li>Попивненко Андрей</li>
+        <li>Величкин Макар</li>
+        <li>Пилипенко Анжелика</li>
+        <li>Емдин Матвей</li>
+        <li>Берая Анастасия</li>
+        <li>Рындин Тимофей</li>
+        <li>Назаренко Максим</li>
+        <li>Таболина Варвара</li>
+        <li>Яковенко Максим</li>
+        <li>Бронникова Наталья</li>
+      </ul>
     </div>
   </div>
 
