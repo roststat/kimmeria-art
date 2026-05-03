@@ -149,8 +149,8 @@ function renderPage(e) {
     .btn-submit:hover { opacity: 0.85; }
     .btn-submit:disabled { opacity: 0.5; cursor: default; }
     .form-error { font-size: 13px; color: #cc3333; display: none; margin-top: 4px; }
-    .btn-register { display: block; width: 100%; padding: 16px 24px; text-align: center; background: #111111; color: #ffffff; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; border: none; border-radius: 100px; cursor: pointer; transition: opacity 0.15s; margin-bottom: 0; }
-    .btn-register:hover { opacity: 0.85; }
+    .btn-register { display: block; width: 100%; padding: 16px 24px; text-align: center; background: #1a4a3a; color: #ffffff; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; border: none; border-radius: 100px; cursor: pointer; transition: background 0.15s; margin-bottom: 0; }
+    .btn-register:hover { background: #0f2e24; }
   </style>
 </head>
 <body>
@@ -209,7 +209,7 @@ function renderPage(e) {
       ? `<a href="${e.ticket_url}" class="btn-primary" target="_blank" rel="noopener">Купить билет</a>`
       : isPast
       ? `<div class="btn-past">Мероприятие завершено</div>`
-      : `<button class="btn-program" onclick="openRegForm()">Записаться на мероприятие</button>`}
+      : `<button class="btn-register" onclick="openRegForm()">Записаться на мероприятие</button>`}
     <a href="/#events" class="btn-secondary">← Все события</a>
     <button class="btn-share" onclick="shareEvent(this)">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
