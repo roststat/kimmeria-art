@@ -254,8 +254,19 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 60px; di
         <span class="hero-chip">Ялта, ул. Игнатенко, 5</span>
         <span class="hero-chip">Группа <strong>5–8 детей</strong></span>
       </div>
-      <button class="btn-cta" onclick="openForm()">Записать ребёнка →</button>
     </div>
+  </div>
+</div>
+
+<!-- БАННЕР ПРЕДЗАПИСИ -->
+<div id="prebookBar">
+  <div id="prebookBarInner">
+    <div class="prebook-banner-dot"></div>
+    <div class="prebook-banner-text">
+      <strong>Идёт предварительная запись</strong>
+      Дата начала и расписание уточняются
+    </div>
+    <button class="prebook-banner-btn" onclick="openForm()">Записаться</button>
   </div>
 </div>
 
@@ -611,29 +622,25 @@ function fabShareClick() {
 </script>
 <script src="/footer.js"></script>
 
-<!-- ПЛАВАЮЩИЙ БАННЕР ПРЕДЗАПИСИ -->
 <style>
-.prebook-banner {
-  position: fixed;
-  bottom: 24px;
-  left: 50%;
-  transform: translateX(-50%) translateY(100px);
-  z-index: 300;
+#prebookBar {
   background: #fff;
-  border: 1.5px solid rgba(122,34,50,0.2);
-  border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.14);
-  padding: 14px 20px;
+  border-bottom: 1px solid #e8e8e8;
+  z-index: 89;
+  position: relative;
+}
+#prebookBar.is-sticky {
+  position: sticky;
+  top: 60px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+#prebookBarInner {
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: 12px 48px;
   display: flex;
   align-items: center;
-  gap: 16px;
-  white-space: nowrap;
-  transition: transform 0.5s cubic-bezier(0.34,1.3,0.64,1), opacity 0.4s ease;
-  opacity: 0;
-}
-.prebook-banner.visible {
-  transform: translateX(-50%) translateY(0);
-  opacity: 1;
+  gap: 14px;
 }
 .prebook-banner-dot {
   width: 8px; height: 8px; border-radius: 50%;
@@ -647,17 +654,16 @@ function fabShareClick() {
 }
 .prebook-banner-text {
   font-size: 13px;
-  color: #444;
+  color: #555;
   line-height: 1.4;
+  flex: 1;
 }
 .prebook-banner-text strong {
-  display: block;
-  font-size: 14px;
   font-weight: 700;
   color: #111;
 }
 .prebook-banner-btn {
-  padding: 9px 18px;
+  padding: 8px 18px;
   background: var(--accent);
   color: #fff;
   font-family: 'Inter', sans-serif;
@@ -671,56 +677,22 @@ function fabShareClick() {
   flex-shrink: 0;
 }
 .prebook-banner-btn:hover { opacity: 0.85; }
-.prebook-banner-close {
-  background: none; border: none; cursor: pointer;
-  color: #bbb; font-size: 18px; line-height: 1;
-  padding: 0 0 0 4px; flex-shrink: 0;
-  transition: color 0.15s;
-}
-.prebook-banner-close:hover { color: #666; }
+@media (max-width: 900px) { #prebookBarInner { padding: 12px 24px; } }
 @media (max-width: 600px) {
-  .prebook-banner {
-    left: 16px; right: 16px;
-    transform: translateX(0) translateY(100px);
-    white-space: normal;
-    bottom: 16px;
-  }
-  .prebook-banner.visible {
-    transform: translateX(0) translateY(0);
-  }
+  #prebookBarInner { padding: 12px 16px; gap: 10px; }
+  .prebook-banner-text { font-size: 12px; }
 }
 </style>
 
-<div class="prebook-banner" id="prebookBanner">
-  <div class="prebook-banner-dot"></div>
-  <div class="prebook-banner-text">
-    <strong>Идёт предварительная запись</strong>
-    Дата начала и расписание уточняются
-  </div>
-  <button class="prebook-banner-btn" onclick="openForm(); hidePrebookBanner();">Записаться</button>
-  <button class="prebook-banner-close" onclick="hidePrebookBanner()" aria-label="Закрыть">×</button>
-</div>
-
 <script>
 (function() {
-  var shown = false;
-  var dismissed = false;
-  function showBanner() {
-    if (shown || dismissed) return;
-    shown = true;
-    document.getElementById('prebookBanner').classList.add('visible');
-  }
-  setTimeout(showBanner, 2500);
-  window.addEventListener('scroll', function() {
-    if (window.scrollY > 300) showBanner();
-  }, { passive: true });
-  window.hidePrebookBanner = function() {
-    dismissed = true;
-    var b = document.getElementById('prebookBanner');
-    b.style.opacity = '0';
-    b.style.transform = b.style.transform.replace('translateY(0)', 'translateY(100px)');
-    setTimeout(function() { b.style.display = 'none'; }, 400);
-  };
+  var bar = document.getElementById('prebookBar');
+  var sentinel = document.createElement('div');
+  bar.parentNode.insertBefore(sentinel, bar);
+  var obs = new IntersectionObserver(function(entries) {
+    bar.classList.toggle('is-sticky', !entries[0].isIntersecting);
+  }, { threshold: 0, rootMargin: '-60px 0px 0px 0px' });
+  obs.observe(sentinel);
 })();
 </script>
 </body>
