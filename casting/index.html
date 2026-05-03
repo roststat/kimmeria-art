@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Кастинг актёров — Кинокомпания «Киммерия»</title>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Киммерия-Арт">
+<meta property="og:url" content="https://art-kimmeria.ru/casting/">
+<meta property="og:title" content="Кастинг актёров — Кинокомпания «Киммерия»">
+<meta property="og:description" content="Приглашаем актрис и актёров на кастинг для спектакля по пьесам Александра Вампилова «Провинциальные анекдоты». Ялта, лето 2026.">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; background: #f8f8f6; color: #111; font-size: 16px; line-height: 1.6; min-height: 100vh; }
+
+.page { max-width: 680px; margin: 0 auto; padding: 60px 24px 80px; }
+
+.eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #1a4a3a; margin-bottom: 16px; display: inline-block; background: #e8f4f0; padding: 5px 14px; border-radius: 100px; }
+
+h1 { font-size: 40px; font-weight: 800; color: #111; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 20px; }
+
+.lead { font-size: 18px; color: #444; line-height: 1.7; margin-bottom: 32px; }
+
+.details { background: #fff; border-radius: 16px; border: 1px solid #e8e8e8; padding: 28px 32px; margin-bottom: 40px; display: flex; flex-direction: column; gap: 14px; }
+.detail-row { display: flex; gap: 16px; font-size: 15px; border-bottom: 1px solid #f0f0f0; padding-bottom: 14px; }
+.detail-row:last-child { border-bottom: none; padding-bottom: 0; }
+.detail-label { font-weight: 700; color: #111; min-width: 130px; flex-shrink: 0; }
+.detail-value { color: #555; line-height: 1.5; }
+
+.form-card { background: #fff; border-radius: 20px; border: 1px solid #e8e8e8; padding: 36px 32px; box-shadow: 0 4px 24px rgba(0,0,0,0.06); }
+.form-title { font-size: 22px; font-weight: 800; color: #111; margin-bottom: 6px; }
+.form-sub { font-size: 14px; color: #888; margin-bottom: 28px; line-height: 1.5; }
+
+.form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+.form-label { font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #888; }
+.form-input { width: 100%; padding: 14px 16px; font-family: 'Inter', sans-serif; font-size: 15px; color: #111; background: #f7f7f7; border: 1.5px solid #e8e8e8; border-radius: 12px; outline: none; transition: border-color 0.15s, background 0.15s; -webkit-appearance: none; }
+.form-input:focus { border-color: #1a4a3a; background: #fff; }
+.form-input::placeholder { color: #bbb; }
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+.form-consent { display: flex; align-items: flex-start; gap: 10px; cursor: pointer; margin-top: 4px; margin-bottom: 20px; }
+.form-consent input[type="checkbox"] { flex-shrink: 0; width: 16px; height: 16px; margin-top: 3px; accent-color: #1a4a3a; cursor: pointer; }
+.form-consent span { font-size: 12px; color: #888; line-height: 1.55; }
+.form-consent a { color: #1a4a3a; text-decoration: underline; }
+
+.btn-submit { width: 100%; padding: 17px 24px; background: #1a4a3a; color: #fff; font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 800; border: none; border-radius: 100px; cursor: pointer; transition: background 0.15s, transform 0.15s; }
+.btn-submit:hover { background: #0f2e24; transform: translateY(-1px); }
+.btn-submit:disabled { opacity: 0.5; cursor: default; transform: none; }
+
+.form-error { font-size: 13px; color: #cc3333; margin-top: 8px; display: none; }
+
+.success-block { display: none; text-align: center; padding: 40px 20px; }
+.success-icon { font-size: 56px; margin-bottom: 16px; }
+.success-title { font-size: 24px; font-weight: 800; color: #111; margin-bottom: 8px; }
+.success-text { font-size: 15px; color: #666; line-height: 1.6; }
+
+.nav { display: flex; align-items: center; justify-content: space-between; padding: 0 24px; height: 60px; position: fixed; top: 0; left: 0; right: 0; background: rgba(255,255,255,0.96); backdrop-filter: blur(20px); border-bottom: 1px solid #e8e8e8; z-index: 100; }
+.nav-logo { font-size: 15px; font-weight: 700; color: #111; text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; }
+.nav-back { font-size: 13px; font-weight: 600; color: #111; text-decoration: none; padding: 7px 16px; border-radius: 100px; border: 1px solid #e8e8e8; transition: background 0.15s; }
+.nav-back:hover { background: #f5f5f5; }
+
+body { padding-top: 60px; }
+
+@media (max-width: 600px) {
+  .page { padding: 32px 16px 64px; }
+  h1 { font-size: 28px; }
+  .lead { font-size: 16px; }
+  .details { padding: 20px; }
+  .form-card { padding: 24px 20px; }
+  .form-row { grid-template-columns: 1fr; }
+  .detail-label { min-width: 100px; }
+}
+</style>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");ym(108987141,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true});</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/108987141" style="position:absolute;left:-9999px;" alt=""/></div></noscript>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="/" class="nav-logo">Киммерия-Арт</a>
+  <a href="/" class="nav-back">← На главную</a>
+</nav>
+
+<div class="page">
+
+  <div class="eyebrow">Кастинг · Лето 2026</div>
+  <h1>Кастинг актёров</h1>
+  <p class="lead">Приглашаем актрис и актёров для участия в спектакле по пьесам Александра Вампилова — «Провинциальные анекдоты». Две удивительные истории — смешные, трогательные и очень человечные. Репетиции в Ялте, премьера этим летом.</p>
+
+  <div class="details">
+    <div class="detail-row">
+      <span class="detail-label">Спектакль</span>
+      <span class="detail-value">«Провинциальные анекдоты» по пьесам Александра Вампилова</span>
+    </div>
+    <div class="detail-row">
+      <span class="detail-label">Кто нужен</span>
+      <span class="detail-value">Актрисы и актёры, мужчины и женщины от 25 до 60 лет</span>
+    </div>
+    <div class="detail-row">
+      <span class="detail-label">Роли</span>
+      <span class="detail-value">Характерные, комедийные, лирические</span>
+    </div>
+    <div class="detail-row">
+      <span class="detail-label">Репетиции</span>
+      <span class="detail-value">Ялта</span>
+    </div>
+    <div class="detail-row">
+      <span class="detail-label">Премьера</span>
+      <span class="detail-value">Лето 2026</span>
+    </div>
+    <div class="detail-row">
+      <span class="detail-label">Организатор</span>
+      <span class="detail-value">Кинокомпания «Киммерия»</span>
+    </div>
+  </div>
+
+  <div class="form-card" id="formCard">
+    <div id="formBody">
+      <div class="form-title">Подать заявку</div>
+      <p class="form-sub">Оставьте контакты — мы свяжемся с вами и расскажем подробности о кастинге.</p>
+
+      <form id="castingForm" onsubmit="submitForm(event)">
+        <div class="form-group">
+          <label class="form-label">Имя и фамилия</label>
+          <input class="form-input" type="text" name="name" placeholder="Иван Иванов" required maxlength="80">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Телефон</label>
+            <input class="form-input" type="tel" name="phone" placeholder="+7 900 000-00-00" required maxlength="20">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Возраст</label>
+            <input class="form-input" type="number" name="age" placeholder="35" min="16" max="80" required>
+          </div>
+        </div>
+        <label class="form-consent">
+          <input type="checkbox" name="consent" required>
+          <span>Согласен на <a href="/privacy/" target="_blank">обработку персональных данных</a></span>
+        </label>
+        <button type="submit" class="btn-submit" id="submitBtn">Отправить заявку →</button>
+        <div class="form-error" id="formError"></div>
+      </form>
+    </div>
+
+    <div class="success-block" id="successBlock">
+      <div class="success-icon">🎭</div>
+      <div class="success-title">Заявка отправлена!</div>
+      <p class="success-text">Мы получили вашу заявку и свяжемся с вами в ближайшее время.</p>
+    </div>
+  </div>
+
+</div>
+
+<div id="site-footer"></div>
+
+<script>
+var TG_TOKEN = '8555296982:AAE2LCN_eeCy33jGJfyWh7guxS2ia2yq68A';
+var TG_CHAT  = '214662526';
+var GS_URL   = 'https://script.google.com/macros/s/AKfycbwNq5IbOa23Ncdd-rjeuvm09fpmOyKmsvisvhHia66jXx9xxapcwgkuqfj0kBK_FeDC/exec';
+
+function submitForm(e) {
+  e.preventDefault();
+  var form = document.getElementById('castingForm');
+  var btn  = document.getElementById('submitBtn');
+  var err  = document.getElementById('formError');
+
+  var name  = form.name.value.trim();
+  var phone = form.phone.value.trim();
+  var age   = form.age.value.trim();
+
+  var digits = phone.replace(/\D/g, '');
+  if (!phone || digits.length < 10) {
+    err.textContent = 'Введите корректный номер телефона';
+    err.style.display = 'block';
+    form.phone.focus();
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Отправляем…';
+  err.style.display = 'none';
+
+  var params = new URLSearchParams(window.location.search);
+  var utmLines = '';
+  ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'].forEach(function(k) {
+    if (params.get(k)) utmLines += '\n🔖 ' + k + ': ' + params.get(k);
+  });
+  if (!utmLines && document.referrer) utmLines = '\n🔗 Реферер: ' + document.referrer;
+
+  var text = '🎭 Новая заявка на КАСТИНГ\n\n'
+           + '👤 ' + name + '\n📞 ' + phone + '\n🎂 Возраст: ' + age
+           + (utmLines ? '\n\n📊 Источник:' + utmLines : '');
+
+  var gsParams = new URLSearchParams({
+    name: name, phone: phone, event: 'casting-vampilov',
+    utm_source: params.get('utm_source') || '',
+    utm_medium: params.get('utm_medium') || '',
+    utm_campaign: params.get('utm_campaign') || '',
+    referrer: document.referrer || '',
+    age: age
+  });
+
+  fetch(GS_URL + '?' + gsParams.toString(), { method: 'GET', mode: 'no-cors' }).catch(function(){});
+  fetch('https://api.telegram.org/bot' + TG_TOKEN + '/sendMessage', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ chat_id: TG_CHAT, text: text })
+  }).then(function() {
+    if (window.ym) ym(108987141, 'reachGoal', 'zayavka');
+    document.getElementById('formBody').style.display = 'none';
+    document.getElementById('successBlock').style.display = 'block';
+  }).catch(function() {
+    err.textContent = 'Ошибка отправки. Попробуйте ещё раз.';
+    err.style.display = 'block';
+    btn.disabled = false;
+    btn.textContent = 'Отправить заявку →';
+  });
+}
+</script>
+<script src="/footer.js"></script>
+</body>
+</html>
