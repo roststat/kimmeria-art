@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>«Пополам» — Мимла Же и Луиза · Киммерия-Арт</title>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Киммерия-Арт">
+<meta property="og:url" content="https://art-kimmeria.ru/programmy/popolam/">
+<meta property="og:title" content="«Пополам» — Мимла Же и Луиза · Киммерия-Арт">
+<meta property="og:description" content="Музыкально-поэтическая программа. Стихи с припевом и песни с рифмой. Авторская лирика Луизы, песни на стихи Мимлы Же.">
+<meta property="og:image" content="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777831399/kimmeria/popolam/cover.jpg">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+:root { --accent: #1a4a3a; --accent-dark: #0f2e24; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Onest', Arial, sans-serif; background: #f5f5f3; color: #111; font-size: 16px; line-height: 1.6; overflow-x: hidden; }
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: 60px; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid #e8e8e8; }
+.nav-logo { font-size: 15px; font-weight: 700; color: #111; text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; }
+.nav-back { font-size: 13px; font-weight: 600; color: #111; text-decoration: none; padding: 7px 16px; border-radius: 100px; border: 1px solid #e8e8e8; transition: background 0.15s; }
+.nav-back:hover { background: #f5f5f5; }
+.page-wrap { max-width: 1060px; margin: 0 auto; padding: 80px 40px 80px; }
+.page-header { margin-bottom: 40px; padding-top: 20px; }
+.page-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #aaa; margin-bottom: 10px; }
+.page-title { font-size: 42px; font-weight: 700; color: #111; line-height: 1.1; margin-bottom: 8px; }
+.page-subtitle { font-size: 17px; color: #666; font-weight: 400; }
+.top-grid { display: grid; grid-template-columns: 300px 1fr; gap: 32px; align-items: start; margin-bottom: 32px; }
+.poster-wrap { position: relative; }
+.poster-label { font-size: 10px; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: #aaa; margin-bottom: 8px; }
+.poster-img { width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 12px; display: block; box-shadow: 0 8px 32px rgba(0,0,0,0.12); }
+.specs-wrap { display: flex; flex-direction: column; gap: 0; }
+.specs-title { font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #aaa; margin-bottom: 14px; }
+.spec-row { display: flex; gap: 0; padding: 12px 0; border-bottom: 1px solid #e8e8e8; font-size: 14px; }
+.spec-row:first-of-type { border-top: 1px solid #e8e8e8; }
+.spec-label { font-weight: 700; color: #111; width: 150px; flex-shrink: 0; }
+.spec-value { color: #444; line-height: 1.55; }
+.actions { display: flex; flex-direction: column; gap: 10px; margin-top: 24px; }
+.btn-primary { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 14px 20px; background: var(--accent); color: #fff; font-family: 'Onest', sans-serif; font-size: 14px; font-weight: 600; border: none; border-radius: 100px; cursor: pointer; text-decoration: none; transition: background 0.15s; }
+.btn-primary:hover { background: var(--accent-dark); }
+.btn-primary svg { width: 15px; height: 15px; flex-shrink: 0; }
+.btn-secondary { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 13px 20px; background: #fff; color: #111; font-family: 'Onest', sans-serif; font-size: 14px; font-weight: 600; border: 1.5px solid #e0e0e0; border-radius: 100px; cursor: pointer; text-decoration: none; transition: border-color 0.15s; }
+.btn-secondary:hover { border-color: #111; }
+.btn-secondary svg { width: 15px; height: 15px; flex-shrink: 0; }
+.share-hint { font-size: 12px; color: #bbb; text-align: center; min-height: 16px; transition: color 0.3s; }
+.share-hint.copied { color: var(--accent); }
+.content-block { background: #fff; border-radius: 14px; padding: 32px; margin-bottom: 20px; }
+.block-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #aaa; margin-bottom: 14px; }
+.body-text { font-size: 15px; color: #333; line-height: 1.85; }
+.body-text + .body-text { margin-top: 14px; }
+.block-divider { border: none; border-top: 1px solid #f0f0f0; margin: 20px 0; }
+.block-sub-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #bbb; margin-bottom: 10px; margin-top: 4px; }
+.team-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 32px; }
+.team-item { font-size: 14px; color: #333; }
+.team-role { font-size: 10px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: #aaa; display: block; margin-bottom: 2px; }
+.gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 4px; }
+.gallery-item { overflow: hidden; border-radius: 8px; aspect-ratio: 3/4; cursor: zoom-in; background: #f0f0f0; }
+.gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s; }
+.gallery-item:hover img { transform: scale(1.05); }
+.lightbox { display: none; position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,0.92); align-items: center; justify-content: center; cursor: zoom-out; }
+.lightbox.open { display: flex; }
+.lightbox img { max-width: 92vw; max-height: 92vh; object-fit: contain; border-radius: 4px; cursor: default; }
+.lightbox-close { position: absolute; top: 20px; right: 24px; font-size: 32px; color: #fff; cursor: pointer; background: none; border: none; opacity: 0.7; line-height: 1; }
+.lightbox-close:hover { opacity: 1; }
+.admin-entry { margin-top: 12px; text-align: center; }
+.admin-entry-btn { background: none; border: none; padding: 0; cursor: pointer; font-size: 11px; color: #ccc; font-family: 'Onest', sans-serif; display: inline-flex; align-items: center; gap: 5px; transition: color 0.15s; }
+.admin-entry-btn:hover { color: #888; }
+.admin-entry-btn svg { width: 11px; height: 11px; }
+.admin-panel { display: none; margin-top: 16px; }
+.admin-panel.open { display: block; }
+.admin-auth { background: #fff; border-radius: 14px; padding: 22px; }
+.admin-auth-title { font-size: 13px; font-weight: 700; color: #111; margin-bottom: 12px; }
+.admin-auth-row { display: flex; gap: 8px; }
+.form-input { width: 100%; padding: 11px 14px; border: 1.5px solid #e8e8e8; border-radius: 10px; background: #fff; font-family: 'Onest', sans-serif; font-size: 14px; color: #111; outline: none; transition: border-color 0.2s; -webkit-appearance: none; }
+.form-input:focus { border-color: #111; }
+.form-input::placeholder { color: #ccc; }
+.admin-auth-btn { flex-shrink: 0; padding: 11px 18px; background: #111; color: #fff; font-family: 'Onest', sans-serif; font-size: 13px; font-weight: 600; border: none; border-radius: 10px; cursor: pointer; white-space: nowrap; transition: opacity 0.15s; }
+.admin-auth-btn:hover { opacity: 0.8; }
+.admin-auth-error { font-size: 12px; color: #c0392b; margin-top: 8px; display: none; }
+.admin-auth-error.visible { display: block; }
+.admin-workspace { display: none; }
+.admin-workspace.open { display: block; }
+.admin-section { background: #fff; border-radius: 14px; padding: 24px; margin-bottom: 12px; border: 2px solid #dff0ea; }
+.admin-section-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+.admin-section-title { font-size: 12px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.06em; }
+.admin-badge { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; background: #e8f4f0; color: var(--accent); padding: 3px 10px; border-radius: 100px; }
+.field-label { font-size: 10px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: #aaa; margin-bottom: 5px; display: block; }
+.editable-field { width: 100%; padding: 10px 12px; border: 1.5px solid #e8e8e8; border-radius: 8px; font-family: 'Onest', sans-serif; font-size: 14px; color: #111; line-height: 1.6; outline: none; transition: border-color 0.2s; resize: vertical; min-height: 72px; background: #fafafa; }
+.editable-field:focus { border-color: var(--accent); background: #fff; }
+.editable-field::placeholder { color: #ccc; }
+.admin-field-group { margin-bottom: 14px; }
+.admin-field-group:last-child { margin-bottom: 0; }
+.admin-actions { margin-top: 16px; padding-top: 16px; border-top: 1px solid #dff0ea; }
+.admin-btn-pdf { width: 100%; padding: 12px 16px; background: var(--accent); color: #fff; font-family: 'Onest', sans-serif; font-size: 13px; font-weight: 600; border: none; border-radius: 100px; cursor: pointer; transition: background 0.15s; display: flex; align-items: center; justify-content: center; gap: 6px; }
+.admin-btn-pdf:hover { background: var(--accent-dark); }
+.admin-btn-pdf svg { width: 14px; height: 14px; }
+.admin-logout { background: none; border: none; padding: 0; cursor: pointer; font-size: 11px; color: #ccc; font-family: 'Onest', sans-serif; transition: color 0.15s; margin-top: 10px; display: block; text-align: center; width: 100%; }
+.admin-logout:hover { color: #888; }
+@media (max-width: 860px) {
+  nav { padding: 0 20px; }
+  .page-wrap { padding: 76px 20px 60px; }
+  .page-title { font-size: 30px; }
+  .top-grid { grid-template-columns: 220px 1fr; gap: 24px; }
+}
+@media (max-width: 600px) {
+  nav { padding: 0 16px; }
+  .page-wrap { padding: 72px 16px 48px; }
+  .page-title { font-size: 24px; }
+  .top-grid { grid-template-columns: 1fr; }
+  .team-grid { grid-template-columns: 1fr; }
+  .content-block { padding: 20px; }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");ym(108987141,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true});</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/108987141" style="position:absolute;left:-9999px;" alt=""/></div></noscript>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">Киммерия-Арт</a>
+  <a href="/programmy/" class="nav-back">← Все программы</a>
+</nav>
+
+<div class="page-wrap">
+
+  <div class="page-header">
+    <div class="page-eyebrow">Концерт · 16+ · Музыкально-поэтическая программа</div>
+    <h1 class="page-title">«Пополам»</h1>
+    <div class="page-subtitle">Мимла Же и Луиза</div>
+  </div>
+
+  <div class="top-grid">
+    <div class="poster-wrap">
+      <div class="poster-label">Обложка программы</div>
+      <img class="poster-img" src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777831399/kimmeria/popolam/cover.jpg" alt="«Пополам» — Мимла Же и Луиза">
+    </div>
+
+    <div class="specs-wrap">
+      <div class="specs-title">Характеристики</div>
+      <div class="spec-row"><span class="spec-label">Жанр</span><span class="spec-value">Музыкально-поэтическая программа</span></div>
+      <div class="spec-row"><span class="spec-label">Возраст</span><span class="spec-value">16+</span></div>
+      <div class="spec-row"><span class="spec-label">Авторы</span><span class="spec-value">Мимла Же, Луиза</span></div>
+      <div class="spec-row"><span class="spec-label">Площадка</span><span class="spec-value">Антикварно-художественная галерея «Стикс», г. Ялта, ул. Игнатенко, 10</span></div>
+      <div class="spec-row"><span class="spec-label">Стоимость</span><span class="spec-value">2 500 ₽ с человека</span></div>
+
+      <div class="actions">
+        <button class="btn-secondary" onclick="shareLink()">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="3" r="1.5"/><circle cx="3" cy="8" r="1.5"/><circle cx="12" cy="13" r="1.5"/><line x1="4.4" y1="7.1" x2="10.6" y2="3.9"/><line x1="4.4" y1="8.9" x2="10.6" y2="12.1"/></svg>
+          Поделиться
+        </button>
+        <div class="share-hint" id="shareHint"></div>
+        <div class="admin-entry">
+          <button class="admin-entry-btn" onclick="toggleAdminPanel()">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="5.5" r="2.5"/><path d="M2.5 13c0-3.04 2.46-5.5 5.5-5.5s5.5 2.46 5.5 5.5"/></svg>
+            Режим редактирования
+          </button>
+        </div>
+        <div class="admin-panel" id="adminPanel">
+          <div class="admin-auth" id="adminAuth">
+            <div class="admin-auth-title">Пароль администратора</div>
+            <div class="admin-auth-row">
+              <input class="form-input" type="password" id="adminPasswordInput" placeholder="Введите пароль" onkeydown="if(event.key==='Enter')checkAdminPassword()">
+              <button class="admin-auth-btn" onclick="checkAdminPassword()">Войти</button>
+            </div>
+            <div class="admin-auth-error" id="adminAuthError">Неверный пароль</div>
+          </div>
+          <div class="admin-workspace" id="adminWorkspace">
+            <div class="admin-section admin-section-afisha">
+              <div class="admin-section-top">
+                <div class="admin-section-title">Афиша Киммерия-Арт</div>
+              </div>
+              <div class="admin-field-group">
+                <label class="field-label">Кастомный баннер</label>
+                <div id="bannerPreviewWrap" style="margin-bottom:8px;display:none;">
+                  <img id="bannerPreview" src="" style="width:100%;border-radius:8px;display:block;margin-bottom:6px;">
+                  <button onclick="window.resetBanner()" style="font-size:11px;color:#c00;background:none;border:none;cursor:pointer;padding:0;">&#x2715; Сбросить баннер</button>
+                </div>
+                <label style="display:flex;align-items:center;gap:8px;padding:10px 12px;border:1.5px dashed #d0d0d0;border-radius:8px;cursor:pointer;font-size:13px;color:#666;transition:border-color 0.15s;" onmouseover="this.style.borderColor='#1a4a3a'" onmouseout="this.style.borderColor='#d0d0d0'">
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;flex-shrink:0;"><rect x="1" y="3" width="14" height="10" rx="2"/><circle cx="5.5" cy="7" r="1.5"/><path d="M1 11l4-4 3 3 2-2 4 4"/></svg>
+                  <span id="bannerUploadLabel">Загрузить баннер (JPG/PNG)</span>
+                  <input type="file" id="bannerFile" accept="image/*" style="display:none;" onchange="window.uploadBanner(this)">
+                </label>
+                <div id="bannerUploadResult" style="font-size:11px;color:#888;margin-top:6px;min-height:14px;"></div>
+              </div>
+              <div class="admin-field-group">
+                <label class="field-label">Дата показа</label>
+                <input class="editable-field" type="date" id="afisha-date" style="min-height:unset;resize:none;">
+              </div>
+              <div class="admin-field-group">
+                <label class="field-label">Время</label>
+                <input class="editable-field" type="time" id="afisha-time" value="20:00" style="min-height:unset;resize:none;">
+              </div>
+              <div class="admin-field-group">
+                <label class="field-label">Цена для покупателя</label>
+                <input class="editable-field" id="afisha-price" placeholder="2500 ₽" style="min-height:unset;resize:none;">
+              </div>
+              <div class="admin-actions">
+                <button class="admin-btn-pdf admin-btn-afisha" id="afishaBtn" onclick="window.addToAfisha()">
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="7"/><line x1="8" y1="5" x2="8" y2="11"/><line x1="5" y1="8" x2="11" y2="8"/></svg>
+                  Добавить в афишу
+                </button>
+                <button class="admin-btn-pdf" id="afishaRemoveBtn" onclick="window.removeFromAfisha()" style="background:#fff;color:#c00;border:1.5px solid #ffd0d0;margin-top:8px;display:none;">
+                  Снять с афиши
+                </button>
+                <div id="afishaResult" style="font-size:12px;color:#888;margin-top:8px;text-align:center;min-height:16px;"></div>
+              </div>
+            </div>
+            <button class="admin-logout" onclick="adminLogout()">Выйти из режима редактирования</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-block">
+    <div class="block-eyebrow">О программе</div>
+    <p class="body-text">Музыкально-поэтический дуэт Мимлы Же и Луизы. Они долго писали стихи, наигрывали мелодии, нащупывали стиль исполнения, а потом всё склеилось — «Пополам».</p>
+    <p class="body-text">Стихи с припевом и песни с рифмой. Авторская лирика Луизы, песни на стихи Мимлы Же. Гитарное звучание и вкуснейшие речитативы. Простые рифмы и глубокие смыслы.</p>
+
+    <hr class="block-divider">
+    <div class="block-sub-eyebrow">Команда</div>
+    <div class="team-grid">
+      <div class="team-item"><span class="team-role">Поэзия и речитативы</span>Мимла Же</div>
+      <div class="team-item"><span class="team-role">Авторская лирика и вокал</span>Луиза</div>
+      <div class="team-item"><span class="team-role">Живая гитара</span>Луиза</div>
+    </div>
+  </div>
+
+  <div class="content-block">
+    <div class="block-eyebrow">Как это бывает</div>
+    <div class="gallery-grid">
+      <div class="gallery-item" onclick="openLightbox('https://res.cloudinary.com/dmzsczjzd/image/upload/v1777831399/kimmeria/popolam/photo1.jpg')">
+        <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777831399/kimmeria/popolam/photo1.jpg" alt="Пополам — фото 1">
+      </div>
+      <div class="gallery-item" onclick="openLightbox('https://res.cloudinary.com/dmzsczjzd/image/upload/v1777831399/kimmeria/popolam/photo2.jpg')">
+        <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777831399/kimmeria/popolam/photo2.jpg" alt="Пополам — фото 2">
+      </div>
+      <div class="gallery-item" onclick="openLightbox('https://res.cloudinary.com/dmzsczjzd/image/upload/v1777831399/kimmeria/popolam/photo3.jpg')">
+        <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777831399/kimmeria/popolam/photo3.jpg" alt="Пополам — фото 3">
+      </div>
+      <div class="gallery-item" onclick="openLightbox('https://res.cloudinary.com/dmzsczjzd/image/upload/v1777831399/kimmeria/popolam/photo4.jpg')">
+        <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777831399/kimmeria/popolam/photo4.jpg" alt="Пополам — фото 4">
+      </div>
+      <div class="gallery-item" onclick="openLightbox('https://res.cloudinary.com/dmzsczjzd/image/upload/v1777831399/kimmeria/popolam/photo5.jpg')">
+        <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777831399/kimmeria/popolam/photo5.jpg" alt="Пополам — фото 5">
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="event.stopPropagation(); closeLightbox()">&#x2715;</button>
+  <img id="lightboxImg" src="" alt="" onclick="event.stopPropagation()">
+</div>
+
+<script>
+var SLUG = 'popolam';
+var PAGE_TITLE = '«Пополам» — Мимла Же и Луиза';
+var PAGE_URL = 'https://art-kimmeria.ru/programmy/popolam/';
+var COVER_URL = 'https://res.cloudinary.com/dmzsczjzd/image/upload/v1777831399/kimmeria/popolam/cover.jpg';
+var SESSION_KEY = 'kimmeria';
+var GS_URL = 'https://script.google.com/macros/s/AKfycbz4rkLWsDP4Oz7C6FvOqMKoqqb9E3MJvP7iQUCvQ-M5AiFm2Ml5816rxXWmSiS4d49d/exec';
+var API_AFISHA = '/api/afisha';
+var CLOUDINARY_CLOUD = 'dmzsczjzd';
+var CLOUDINARY_PRESET = 'kimmeria_unsigned';
+
+function openLightbox(src) {
+  document.getElementById('lightboxImg').src = src;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeLightbox(); });
+
+function shareLink() {
+  var hint = document.getElementById('shareHint');
+  if (navigator.share) { navigator.share({ title: PAGE_TITLE, url: PAGE_URL }); return; }
+  navigator.clipboard.writeText(PAGE_URL).then(function() {
+    hint.textContent = 'Ссылка скопирована!';
+    hint.classList.add('copied');
+    setTimeout(function() { hint.textContent = ''; hint.classList.remove('copied'); }, 2500);
+  });
+}
+
+function toggleAdminPanel() {
+  var panel = document.getElementById('adminPanel');
+  panel.classList.toggle('open');
+  if (panel.classList.contains('open') && sessionStorage.getItem('kimmeriaAdmin') === SESSION_KEY) {
+    showAdminWorkspace();
+  }
+}
+function checkAdminPassword() {
+  var val = document.getElementById('adminPasswordInput').value;
+  if (val === SESSION_KEY) {
+    sessionStorage.setItem('kimmeriaAdmin', SESSION_KEY);
+    showAdminWorkspace();
+  } else {
+    document.getElementById('adminAuthError').classList.add('visible');
+  }
+}
+function showAdminWorkspace() {
+  document.getElementById('adminAuth').style.display = 'none';
+  document.getElementById('adminWorkspace').classList.add('open');
+  syncAfishaStatus();
+}
+function adminLogout() {
+  sessionStorage.removeItem('kimmeriaAdmin');
+  document.getElementById('adminWorkspace').classList.remove('open');
+  document.getElementById('adminAuth').style.display = '';
+  document.getElementById('adminPanel').classList.remove('open');
+}
+
+function syncAfishaStatus() {
+  fetch(API_AFISHA + '?slug=' + SLUG).then(function(r){ return r.json(); }).then(function(data) {
+    var btn = document.getElementById('afishaBtn');
+    var removeBtn = document.getElementById('afishaRemoveBtn');
+    if (data && data.status === 'published') {
+      btn.style.display = 'none';
+      removeBtn.style.display = '';
+      if (data.custom_banner) {
+        document.getElementById('bannerPreview').src = data.custom_banner;
+        document.getElementById('bannerPreviewWrap').style.display = '';
+        document.getElementById('bannerUploadLabel').textContent = 'Заменить баннер';
+      }
+      if (data.date) document.getElementById('afisha-date').value = data.date;
+      if (data.time) document.getElementById('afisha-time').value = data.time;
+      if (data.price) document.getElementById('afisha-price').value = data.price;
+    }
+  }).catch(function(){});
+}
+
+window.uploadBanner = function(input) {
+  var file = input.files[0];
+  if (!file) return;
+  var label = document.getElementById('bannerUploadLabel');
+  var result = document.getElementById('bannerUploadResult');
+  label.textContent = 'Загружаем...';
+  result.textContent = '';
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    var body = new FormData();
+    body.append('file', e.target.result);
+    body.append('upload_preset', CLOUDINARY_PRESET);
+    body.append('folder', 'kimmeria/banners');
+    fetch('https://api.cloudinary.com/v1_1/' + CLOUDINARY_CLOUD + '/image/upload', { method: 'POST', body: body })
+      .then(function(r){ return r.json(); })
+      .then(function(data) {
+        if (data.secure_url) {
+          document.getElementById('bannerPreview').src = data.secure_url;
+          document.getElementById('bannerPreviewWrap').style.display = '';
+          label.textContent = 'Заменить баннер';
+          result.textContent = 'Загружено';
+        }
+      });
+  };
+  reader.readAsDataURL(file);
+};
+
+window.resetBanner = function() {
+  document.getElementById('bannerPreview').src = '';
+  document.getElementById('bannerPreviewWrap').style.display = 'none';
+  document.getElementById('bannerUploadLabel').textContent = 'Загрузить баннер (JPG/PNG)';
+  document.getElementById('bannerFile').value = '';
+};
+
+window.addToAfisha = function() {
+  var date = document.getElementById('afisha-date').value;
+  var time = document.getElementById('afisha-time').value;
+  var price = document.getElementById('afisha-price').value;
+  var banner = document.getElementById('bannerPreview').src;
+  var result = document.getElementById('afishaResult');
+  result.textContent = 'Сохраняем...';
+  fetch(API_AFISHA, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      password: SESSION_KEY, slug: SLUG,
+      title: PAGE_TITLE,
+      description: 'Музыкально-поэтическая программа. Стихи с припевом и песни с рифмой.',
+      image_url: COVER_URL,
+      custom_banner: banner || null,
+      date: date, time: time || '20:00', price: price || '2500 ₽',
+      format: 'Концерт', age: '16+',
+      location: 'Антикварно-художественная галерея «Стикс», г. Ялта, ул. Игнатенко, 10',
+      status: 'published'
+    })
+  }).then(function(r){ return r.json(); }).then(function(data) {
+    result.textContent = data.ok ? 'Добавлено в афишу' : ('Ошибка: ' + (data.error || ''));
+    if (data.ok) {
+      document.getElementById('afishaBtn').style.display = 'none';
+      document.getElementById('afishaRemoveBtn').style.display = '';
+    }
+  }).catch(function(e){ result.textContent = 'Ошибка: ' + e.message; });
+};
+
+window.removeFromAfisha = function() {
+  var result = document.getElementById('afishaResult');
+  result.textContent = 'Снимаем...';
+  fetch(API_AFISHA, {
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ password: SESSION_KEY, slug: SLUG })
+  }).then(function(r){ return r.json(); }).then(function(data) {
+    result.textContent = data.ok ? 'Снято с афиши' : ('Ошибка: ' + (data.error || ''));
+    if (data.ok) {
+      document.getElementById('afishaBtn').style.display = '';
+      document.getElementById('afishaRemoveBtn').style.display = 'none';
+    }
+  }).catch(function(e){ result.textContent = 'Ошибка: ' + e.message; });
+};
+</script>
+<script src="/footer.js"></script>
+</body>
+</html>
