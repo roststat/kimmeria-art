@@ -117,8 +117,9 @@ function renderPage(e) {
       nav { padding: 0 20px; } .nav-back { display: none; }
       .event-hero-inner { grid-template-columns: 1fr; padding: 32px 20px; justify-items: center; text-align: center; }
       .event-hero-poster { max-width: 260px; }
-      .event-hero-text { text-align: left; width: 100%; }
+      .event-hero-text { width: 100%; }
       .event-hero-tags { justify-content: center; }
+      .event-hero-date { text-align: center; display: block; }
       .event-hero-title { font-size: 28px; }
       .event-main { grid-template-columns: 1fr; padding: 32px 20px; gap: 24px; }
       .event-sidebar { position: static; }
