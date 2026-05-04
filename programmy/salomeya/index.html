@@ -145,6 +145,7 @@ function getKPData(){var d={};['price','rider','terms','contact','extra'].forEac
 function saveKPToStorage(){localStorage.setItem(KP_STORAGE_KEY,JSON.stringify(getKPData()));}
 document.addEventListener('DOMContentLoaded',function(){['price','rider','terms','contact','extra'].forEach(function(k){var el=document.getElementById('kp-'+k);if(el)el.addEventListener('input',saveKPToStorage);});if(sessionStorage.getItem(SESSION_KEY)==='1'){showAdminWorkspace();loadKPData();document.getElementById('adminPanel').classList.add('open');}});
 function _arrayBufferToBase64(buf){var b='',u=new Uint8Array(buf);for(var i=0;i<u.byteLength;i++)b+=String.fromCharCode(u[i]);return btoa(b);}
+function blobToBase64(blob){return new Promise(function(resolve,reject){var r=new FileReader();r.onload=function(){resolve(r.result);};r.onerror=reject;r.readAsDataURL(blob);});}
 function savePDF() {
   if (isMobile()) { document.getElementById('mobilePdfOverlay').classList.add('open'); return; }
 
