@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Заявка принята! — Кинокомпания «Киммерия»</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; background: #f8f8f8; color: #111; font-size: 16px; line-height: 1.6; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 20px; }
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 60px; display: flex; align-items: center; padding: 0 40px; background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid #e8e8e8; }
+.nav-logo { font-size: 15px; font-weight: 700; color: #111; text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; }
+.card { background: #fff; border-radius: 24px; padding: 56px 48px; max-width: 520px; width: 100%; text-align: center; box-shadow: 0 8px 40px rgba(0,0,0,0.08); margin-top: 60px; }
+.icon { font-size: 64px; margin-bottom: 24px; }
+.title { font-size: 32px; font-weight: 800; color: #111; line-height: 1.2; margin-bottom: 16px; letter-spacing: -0.01em; }
+.subtitle { font-size: 16px; color: #555; line-height: 1.7; margin-bottom: 32px; }
+.details { background: #f0f7f5; border-radius: 16px; padding: 24px; text-align: left; margin-bottom: 32px; }
+.details-row { display: flex; gap: 12px; align-items: baseline; padding: 9px 0; border-bottom: 1px solid #ddeee9; }
+.details-row:last-child { border-bottom: none; }
+.details-key { font-size: 11px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: #1a4a3a; min-width: 88px; flex-shrink: 0; }
+.details-val { font-size: 15px; color: #111; font-weight: 600; }
+.btn { display: block; width: 100%; padding: 16px 24px; background: #1a4a3a; color: #fff; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 700; text-decoration: none; border-radius: 100px; transition: opacity 0.15s; text-align: center; border: none; cursor: pointer; }
+.btn:hover { opacity: 0.88; }
+.btn-share { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 14px 24px; background: #fff; color: #1a4a3a; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; border: 1.5px solid #1a4a3a; border-radius: 100px; cursor: pointer; transition: background 0.15s; margin-top: 12px; }
+.btn-share:hover { background: #f0f7f5; }
+.share-toast { display: none; font-size: 13px; color: #1a4a3a; margin-top: 12px; font-weight: 500; }
+@media (max-width: 600px) {
+  .card { padding: 36px 24px; }
+  .title { font-size: 26px; }
+  nav { padding: 0 20px; }
+}
+</style>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");ym(108987141,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true});</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/108987141" style="position:absolute;left:-9999px;" alt=""/></div></noscript>
+<!-- /Yandex.Metrika counter -->
+</head>
+<body>
+<nav>
+  <a href="/" class="nav-logo">Киммерия-Арт</a>
+</nav>
+<div class="card">
+  <div class="icon">🎭</div>
+  <h1 class="title">Заявка принята!</h1>
+  <p class="subtitle">Спасибо! Мы получили вашу заявку на «Каштанку». В ближайшее время с вами свяжется менеджер для подтверждения записи.</p>
+  <div class="details">
+    <div class="details-row">
+      <span class="details-key">Проект</span>
+      <span class="details-val">«Каштанка» по А. П. Чехову</span>
+    </div>
+    <div class="details-row">
+      <span class="details-key">Формат</span>
+      <span class="details-val">Детская театральная лаборатория</span>
+    </div>
+    <div class="details-row">
+      <span class="details-key">Место</span>
+      <span class="details-val">Ялта, ул. Игнатенко, 5</span>
+    </div>
+    <div class="details-row">
+      <span class="details-key">Начало</span>
+      <span class="details-val">Лето 2026</span>
+    </div>
+  </div>
+  <button class="btn" onclick="window.location.href='/kashtanka/'">Назад к «Каштанке» →</button>
+  <button class="btn-share" onclick="shareInfo()">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+    Поделиться информацией о записи
+  </button>
+  <div class="share-toast" id="shareToast">Скопировано в буфер обмена!</div>
+</div>
+<div id="site-footer"></div>
+<script>
+function shareInfo() {
+  var text = 'Записались на детскую театральную лабораторию «Каштанка» в Кинокомпании «Киммерия»!\n\n'
+    + '📍 Ялта, ул. Игнатенко, 5\n'
+    + '📅 Лето 2026\n\n'
+    + 'Подробнее: https://art-kimmeria.ru/kashtanka/';
+
+  if (navigator.share) {
+    navigator.share({ title: 'Записались на «Каштанку»', text: text });
+  } else {
+    navigator.clipboard.writeText(text).then(function() {
+      var toast = document.getElementById('shareToast');
+      toast.style.display = 'block';
+      setTimeout(function() { toast.style.display = 'none'; }, 3000);
+    });
+  }
+}
+</script>
+<script src="/footer.js"></script>
+</body>
+</html>
