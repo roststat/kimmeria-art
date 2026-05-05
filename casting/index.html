@@ -284,16 +284,9 @@ function submitForm(e) {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ chat_id: TG_CHAT, text: text })
-  }).then(function() {
-    if (window.ym) ym(108987141, 'reachGoal', 'zayavka');
-    document.getElementById('formBody').style.display = 'none';
-    document.getElementById('successBlock').style.display = 'block';
-  }).catch(function() {
-    err.textContent = 'Ошибка отправки. Попробуйте ещё раз.';
-    err.style.display = 'block';
-    btn.disabled = false;
-    btn.textContent = 'Отправить заявку →';
-  });
+  }).catch(function(){});
+  if (window.ym) ym(108987141, 'reachGoal', 'zayavka');
+  window.location.href = '/spasibo/';
 }
 </script>
 <script src="/footer.js"></script>
