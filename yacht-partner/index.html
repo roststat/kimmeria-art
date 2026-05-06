@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Мероприятия на яхте — Киммерия-Арт · Предложение</title>
+<meta property="og:title" content="Мероприятия на яхте — Киммерия-Арт">
+<meta property="og:description" content="Камерные культурные вечера на борту: приветственные напитки, авторская лекция, кинопоказ и живое обсуждение.">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root { --accent: #1a4a3a; --accent-dark: #0f2e24; --green: #4ade80; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Onest', Arial, sans-serif; background: #f5f5f3; color: #111; font-size: 16px; line-height: 1.6; }
+
+.header { background: var(--accent-dark); padding: 16px 40px; display: flex; align-items: center; justify-content: space-between; }
+.header-brand { font-size: 13px; font-weight: 700; color: #fff; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; }
+.header-tag { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-dark); background: var(--green); padding: 5px 14px; border-radius: 100px; }
+
+.intro { max-width: 900px; margin: 0 auto; padding: 44px 40px 0; }
+.intro-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #999; margin-bottom: 8px; }
+.intro-title { font-size: 30px; font-weight: 700; color: #111; line-height: 1.2; margin-bottom: 24px; }
+
+/* АТМОСФЕРА */
+.atmosphere { max-width: 900px; margin: 0 auto; padding: 0 40px; }
+.atmosphere-card { background: #fff; border-radius: 18px; border: 1px solid #e8e8e8; padding: 32px 36px; }
+.atmosphere-lead { font-size: 20px; font-weight: 700; color: #111; line-height: 1.45; margin-bottom: 18px; }
+.atmosphere-text { font-size: 15px; color: #444; line-height: 1.8; margin-bottom: 14px; }
+.atmosphere-text:last-of-type { margin-bottom: 24px; }
+.atmosphere-features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.atmosphere-feature { background: #f5f5f3; border-radius: 12px; padding: 18px 20px; }
+.atmosphere-feature-icon { font-size: 22px; margin-bottom: 8px; }
+.atmosphere-feature-title { font-size: 13px; font-weight: 700; color: #111; margin-bottom: 4px; }
+.atmosphere-feature-desc { font-size: 12px; color: #666; line-height: 1.55; }
+
+/* КАРТОЧКИ */
+.cards { max-width: 900px; margin: 0 auto; padding: 28px 40px 20px; display: flex; flex-direction: column; gap: 20px; }
+.cards-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #999; margin-bottom: 4px; }
+
+.card { background: #fff; border-radius: 18px; border: 1px solid #e8e8e8; overflow: hidden; display: flex; flex-direction: row; text-decoration: none; color: inherit; transition: box-shadow 0.2s, transform 0.2s; }
+.card:hover { box-shadow: 0 10px 36px rgba(0,0,0,0.10); transform: translateY(-2px); }
+
+.card-cover { position: relative; overflow: hidden; background: var(--accent-dark); aspect-ratio: 3/4; width: 220px; flex-shrink: 0; }
+.card-cover img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s; }
+.card:hover .card-cover img { transform: scale(1.04); }
+.card-format { position: absolute; top: 14px; right: 14px; background: var(--accent); color: #fff; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 10px; border-radius: 100px; }
+
+.card-body { padding: 28px 32px; display: flex; flex-direction: column; gap: 14px; }
+.card-title { font-size: 22px; font-weight: 700; color: #111; line-height: 1.2; }
+.card-desc { font-size: 14px; color: #555; line-height: 1.7; }
+
+.specs { display: flex; flex-direction: column; border-top: 1px solid #f0f0f0; padding-top: 14px; }
+.spec-row { display: flex; gap: 12px; padding: 9px 0; border-bottom: 1px solid #f0f0f0; font-size: 13px; }
+.spec-row:last-child { border-bottom: none; }
+.spec-label { font-weight: 700; color: #111; flex-shrink: 0; width: 110px; }
+.spec-value { color: #555; line-height: 1.5; }
+
+.card-price { margin-top: auto; padding-top: 16px; border-top: 1px solid #f0f0f0; display: flex; align-items: baseline; gap: 8px; }
+.card-price-value { font-size: 22px; font-weight: 700; color: var(--accent); }
+.card-price-label { font-size: 13px; color: #999; }
+
+.card-cta { display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; color: var(--accent); margin-top: 4px; }
+.card-cta svg { width: 13px; height: 13px; }
+
+/* УСЛОВИЯ */
+.terms { max-width: 900px; margin: 0 auto; padding: 8px 40px 48px; }
+.terms-title { font-size: 18px; font-weight: 700; color: #111; margin-bottom: 20px; }
+.terms-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.terms-block { background: #fff; border-radius: 16px; border: 1px solid #e8e8e8; padding: 24px 26px; }
+.terms-block-title { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 14px; }
+.terms-block-title.green { color: var(--accent); }
+.terms-block-title.grey { color: #999; }
+.terms-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.terms-list li { font-size: 14px; color: #444; line-height: 1.55; display: flex; gap: 10px; }
+.terms-list li::before { content: ''; display: block; width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; margin-top: 7px; }
+.terms-block.ours .terms-list li::before { background: var(--accent); }
+.terms-block.theirs .terms-list li::before { background: #ccc; }
+.terms-note { margin-top: 14px; padding: 12px 16px; background: #f8f8f6; border-radius: 10px; font-size: 13px; color: #888; line-height: 1.6; border-left: 3px solid #e0e0e0; }
+
+/* КОНТАКТ */
+.contact { background: var(--accent-dark); padding: 40px; text-align: center; }
+.contact-title { font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 20px; }
+.contact-card { display: flex; align-items: center; gap: 20px; justify-content: center; }
+.contact-avatar { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 3px solid rgba(255,255,255,0.2); }
+.contact-info { text-align: left; }
+.contact-name { font-size: 17px; font-weight: 700; color: #fff; margin-bottom: 2px; }
+.contact-role { font-size: 12px; color: rgba(255,255,255,0.45); margin-bottom: 8px; }
+.contact-phone { display: inline-block; font-size: 22px; font-weight: 700; color: var(--green); text-decoration: none; }
+.contact-phone:hover { opacity: 0.8; }
+.contact-note { font-size: 13px; color: rgba(255,255,255,0.25); margin-top: 16px; }
+
+/* АДАПТИВ */
+@media (max-width: 700px) {
+  .header { padding: 14px 20px; }
+  .intro { padding: 28px 20px 0; }
+  .intro-title { font-size: 22px; }
+  .atmosphere { padding: 0 20px; }
+  .atmosphere-card { padding: 24px 20px; }
+  .atmosphere-lead { font-size: 17px; }
+  .atmosphere-features { grid-template-columns: 1fr; gap: 10px; }
+  .cards { padding: 20px 20px 20px; gap: 16px; }
+  .card { flex-direction: column; }
+  .card-cover { width: 100%; aspect-ratio: 4/3; }
+  .card-body { padding: 20px; }
+  .card-title { font-size: 18px; }
+  .spec-label { width: 90px; }
+  .terms { padding: 0 20px 40px; }
+  .terms-grid { grid-template-columns: 1fr; }
+  .contact { padding: 28px 20px; }
+}
+
+/* SHARE */
+.fab-share { position: fixed; top: 50%; right: 24px; transform: translateY(-50%); z-index: 200; display: flex; align-items: center; gap: 8px; background: #fff; color: #1a4a3a; border: 1.5px solid #d0e8e0; border-radius: 100px; padding: 11px 20px 11px 16px; font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 20px rgba(0,0,0,0.10); transition: box-shadow 0.15s, transform 0.15s; }
+.fab-share:hover { box-shadow: 0 6px 28px rgba(0,0,0,0.14); transform: translateY(calc(-50% - 1px)); }
+.fab-share-toast { position: fixed; top: calc(50% - 56px); right: 24px; z-index: 201; background: #1a4a3a; color: #fff; font-family: inherit; font-size: 13px; font-weight: 600; padding: 10px 18px; border-radius: 100px; display: none; box-shadow: 0 4px 16px rgba(0,0,0,0.15); }
+@media (max-width: 600px) { .fab-share { right: 16px; padding: 10px 14px; } .fab-share-label { display: none; } .fab-share-toast { right: 16px; } }
+</style>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");ym(108987141,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true});</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/108987141" style="position:absolute;left:-9999px;" alt=""/></div></noscript>
+<!-- /Yandex.Metrika counter -->
+</head>
+<body>
+
+<div class="header">
+  <a class="header-brand" href="/">Киммерия-Арт</a>
+  <span class="header-tag">КП · Мероприятия на яхте</span>
+</div>
+
+<div class="intro">
+  <div class="intro-eyebrow">Коммерческое предложение</div>
+  <h1 class="intro-title">Культурный вечер на борту яхты</h1>
+</div>
+
+<div class="atmosphere">
+  <div class="atmosphere-card">
+    <div class="atmosphere-lead">Светское мероприятие с особой атмосферой — прямо на борту</div>
+    <p class="atmosphere-text">Мы создаём вечера, которые запоминаются надолго. Гости поднимаются на борт и их встречают с бокалом игристого и лёгкими закусками — неспешный cocktail reception с видом на воду задаёт тон всему вечеру. Это уже не просто досуг, это событие.</p>
+    <p class="atmosphere-text">Затем начинается авторская лекция — живая, увлекательная, без академической сухости. Лектор погружает гостей в историю великого кино, раскрывает неожиданные связи между Ялтой и мировой культурой. После — сам фильм: проекция, звук, особое настроение замкнутого пространства на воде.</p>
+    <p class="atmosphere-text">Финал вечера — открытое обсуждение. Гости говорят, делятся впечатлениями, задают вопросы лектору. Такой формат создаёт редкое ощущение причастности: не просто просмотр, а настоящий интеллектуальный клуб на яхте.</p>
+    <div class="atmosphere-features">
+      <div class="atmosphere-feature">
+        <div class="atmosphere-feature-icon">🥂</div>
+        <div class="atmosphere-feature-title">Приветственные напитки</div>
+        <div class="atmosphere-feature-desc">Игристое и лёгкие закуски — встреча гостей в формате cocktail reception</div>
+      </div>
+      <div class="atmosphere-feature">
+        <div class="atmosphere-feature-icon">🎬</div>
+        <div class="atmosphere-feature-title">Лекция + кинопоказ</div>
+        <div class="atmosphere-feature-desc">Авторский рассказ лектора, затем показ фильма с видеопроекцией и звуком</div>
+      </div>
+      <div class="atmosphere-feature">
+        <div class="atmosphere-feature-icon">💬</div>
+        <div class="atmosphere-feature-title">Живое обсуждение</div>
+        <div class="atmosphere-feature-desc">Открытая дискуссия после показа в атмосфере интеллектуального клуба</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="cards">
+  <div class="cards-eyebrow">Программы для проведения на борту</div>
+
+  <!-- ── УМИРАЮЩИЙ ЛЕБЕДЬ ── -->
+  <a class="card" href="https://art-kimmeria.ru/programmy/lebed/" target="_blank">
+    <div class="card-cover">
+      <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777806961/kimmeria/lebed/cover.jpg" alt="Умирающий лебедь">
+      <span class="card-format">Кино + лекция</span>
+    </div>
+    <div class="card-body">
+      <div class="card-title">«Умирающий лебедь»</div>
+      <div class="card-desc">Показ немого шедевра Евгения Бауэра (Россия, 1917) с авторской лекцией. История балерины, одержимой красотой смерти — один из самых поэтичных фильмов эпохи немого кино. Идеален для камерного вечера с особой атмосферой.</div>
+      <div class="specs">
+        <div class="spec-row"><span class="spec-label">Жанр</span><span class="spec-value">Кинопоказ + авторская лекция + дискуссия</span></div>
+        <div class="spec-row"><span class="spec-label">Фильм</span><span class="spec-value">«Умирающий лебедь», Россия, 1917, реж. Евгений Бауэр</span></div>
+        <div class="spec-row"><span class="spec-label">Ведущая</span><span class="spec-value">Наталия Добрынская</span></div>
+        <div class="spec-row"><span class="spec-label">Включено</span><span class="spec-value">Приветственные напитки, лёгкие закуски, лекция, кино, обсуждение</span></div>
+        <div class="spec-row"><span class="spec-label">Площадка</span><span class="spec-value">Зал с видеопроекцией и аудиосистемой</span></div>
+      </div>
+      <div class="card-price">
+        <span class="card-price-value">от 5 000 ₽</span>
+        <span class="card-price-label">за мероприятие</span>
+      </div>
+      <div class="card-cta">Полная программа <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+    </div>
+  </a>
+
+  <!-- ── АЛЛА НАЗИМОВА ── -->
+  <a class="card" href="https://art-kimmeria.ru/programmy/salomeya/" target="_blank">
+    <div class="card-cover">
+      <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777807050/kimmeria/salomeya/cover.jpg" alt="Алла Назимова. Саломея">
+      <span class="card-format">Кино + лекция</span>
+    </div>
+    <div class="card-body">
+      <div class="card-title">«Алла Назимова. Саломея»</div>
+      <div class="card-desc">Легенда немого Голливуда и её самый эпатажный фильм. Алла Назимова — уроженка Ялты, первая русская звезда Голливуда 1920-х. Кинопоказ «Саломеи» по пьесе Оскара Уайльда с авторской лекцией о её жизни, эпохе и крымском происхождении.</div>
+      <div class="specs">
+        <div class="spec-row"><span class="spec-label">Жанр</span><span class="spec-value">Кинопоказ + авторская лекция + дискуссия</span></div>
+        <div class="spec-row"><span class="spec-label">Фильм</span><span class="spec-value">«Саломея», США, 1923, по пьесе Оскара Уайльда</span></div>
+        <div class="spec-row"><span class="spec-label">Ведущая</span><span class="spec-value">Наталия Добрынская</span></div>
+        <div class="spec-row"><span class="spec-label">Особенность</span><span class="spec-value">Алла Назимова — уроженка Ялты, звезда Голливуда 1920-х</span></div>
+        <div class="spec-row"><span class="spec-label">Включено</span><span class="spec-value">Приветственные напитки, лёгкие закуски, лекция, кино, обсуждение</span></div>
+        <div class="spec-row"><span class="spec-label">Площадка</span><span class="spec-value">Зал с видеопроекцией и аудиосистемой</span></div>
+      </div>
+      <div class="card-price">
+        <span class="card-price-value">от 5 000 ₽</span>
+        <span class="card-price-label">за мероприятие</span>
+      </div>
+      <div class="card-cta">Полная программа <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+    </div>
+  </a>
+
+  <!-- ── ЛЮДИ-КОШКИ ── -->
+  <a class="card" href="https://art-kimmeria.ru/programmy/koshki/" target="_blank">
+    <div class="card-cover">
+      <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1778054997/koshki-cover.jpg" alt="Люди-кошки">
+      <span class="card-format">Кино + лекция</span>
+    </div>
+    <div class="card-body">
+      <div class="card-title">«Люди-кошки»</div>
+      <div class="card-desc">Голливудский триллер 1942 года с неожиданным ялтинским следом: создатель фильма Вэл Льютон родился в Ялте. Авторская лекция раскроет историю фильма и судьбы его создателей — редкий повод увидеть мировое кино глазами крымской истории.</div>
+      <div class="specs">
+        <div class="spec-row"><span class="spec-label">Жанр</span><span class="spec-value">Кинопоказ + авторская лекция + дискуссия</span></div>
+        <div class="spec-row"><span class="spec-label">Фильм</span><span class="spec-value">«Люди-кошки» (Cat People), США, 1942, реж. Жак Турнёр</span></div>
+        <div class="spec-row"><span class="spec-label">Ведущая</span><span class="spec-value">Наталия Добрынская</span></div>
+        <div class="spec-row"><span class="spec-label">Особенность</span><span class="spec-value">Вэл Льютон (автор) — уроженец Ялты 1904 года</span></div>
+        <div class="spec-row"><span class="spec-label">Включено</span><span class="spec-value">Приветственные напитки, лёгкие закуски, лекция, кино, обсуждение</span></div>
+        <div class="spec-row"><span class="spec-label">Площадка</span><span class="spec-value">Зал с видеопроекцией и аудиосистемой</span></div>
+      </div>
+      <div class="card-price">
+        <span class="card-price-value">от 5 000 ₽</span>
+        <span class="card-price-label">за мероприятие</span>
+      </div>
+      <div class="card-cta">Полная программа <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+    </div>
+  </a>
+
+</div>
+
+<!-- УСЛОВИЯ -->
+<div class="terms">
+  <div class="terms-title">Условия организации</div>
+  <div style="background:#f0f7f5;border-left:4px solid var(--accent);border-radius:0 12px 12px 0;padding:16px 20px;margin-bottom:24px;font-size:14px;color:#333;line-height:1.7;">
+    Каждое мероприятие — готовый продукт «под ключ». Вы предоставляете площадку на борту — мы привозим лектора, оборудование и создаём атмосферу.
+  </div>
+  <div class="terms-grid">
+
+    <div class="terms-block ours">
+      <div class="terms-block-title green">Берёт на себя Киммерия</div>
+      <ul class="terms-list">
+        <li>Полная организация вечера — от программы до финала</li>
+        <li>Лектор и все необходимые материалы</li>
+        <li>Видеопроектор и аудиосистема (при необходимости)</li>
+        <li>Подготовка рекламных материалов: афиши, анонсы</li>
+        <li>Ведение вечера и работа с аудиторией</li>
+      </ul>
+    </div>
+
+    <div class="terms-block theirs">
+      <div class="terms-block-title grey">Требуется от партнёра</div>
+      <ul class="terms-list">
+        <li>Площадка на борту с возможностью видеопроекции</li>
+        <li>Организация приветственных напитков и лёгких закусок</li>
+        <li>Анонсирование события среди гостей и клиентов</li>
+      </ul>
+      <div class="terms-note">Даты и программы согласовываются индивидуально. Возможно проведение нескольких вечеров в сезон.</div>
+    </div>
+
+  </div>
+</div>
+
+<div class="contact">
+  <div class="contact-title">Обсудить условия</div>
+  <div class="contact-card">
+    <img class="contact-avatar" src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156903/kimmeria/philip-emelyanov.jpg" alt="Филипп Емельянов">
+    <div class="contact-info">
+      <div class="contact-name">Филипп Емельянов</div>
+      <div class="contact-role">Продюсер · Киммерия-Арт</div>
+      <a class="contact-phone" href="tel:+79790474734">+7 979 047-47-34</a>
+    </div>
+  </div>
+  <div class="contact-note">art-kimmeria.ru · Ялта</div>
+</div>
+
+<button class="fab-share" id="fabShare" onclick="fabShareClick()" title="Поделиться">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+  <span class="fab-share-label">Поделиться</span>
+</button>
+<div class="fab-share-toast" id="fabShareToast">Ссылка скопирована!</div>
+<script>
+function fabShareClick() {
+  var url = window.location.href.split('?')[0];
+  if (navigator.share) {
+    navigator.share({ title: 'Мероприятия на яхте — Киммерия-Арт', url: url }).catch(function(){});
+  } else {
+    navigator.clipboard.writeText(url).then(function() {
+      var toast = document.getElementById('fabShareToast');
+      toast.style.display = 'block';
+      setTimeout(function() { toast.style.display = 'none'; }, 2500);
+    }).catch(function() {
+      var ta = document.createElement('textarea');
+      ta.value = url; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+      var toast = document.getElementById('fabShareToast');
+      toast.style.display = 'block';
+      setTimeout(function() { toast.style.display = 'none'; }, 2500);
+    });
+  }
+}
+</script>
+</body>
+</html>
