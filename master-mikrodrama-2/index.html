@@ -357,14 +357,8 @@
   </button>
 </nav>
 
-<div class="sticky-cta">
-  <a href="#register">Записаться БЕСПЛАТНО →</a>
-</div>
-
 <div class="mobile-menu" id="mobileMenu">
   <a href="/" onclick="closeMenu()">← На главную</a>
-  <div class="mobile-menu-divider"></div>
-  <a href="#register" onclick="closeMenu()">Записаться</a>
 </div>
 
 <!-- ── HERO ── -->
@@ -379,7 +373,7 @@
       <h1 class="event-hero-title">Ты смотришь TikTok и Reels?<br>Теперь так снимают сериалы.</h1>
       <p class="event-hero-sub">Мастер-класс: как стать из рилсмейкера шоуранером микродрам! <span class="hero-hashtags">#блогинг #профессия #хобби</span></p>
       <p class="hero-footnote">Шоуранер (showrunner) — профессионал в сфере кинопроизводства, который руководит творческим процессом создания сериалов или шоу.</p>
-      <div class="hero-free-badge" style="margin-top: 24px;">БЕСПЛАТНО · 4 мая · 18:00</div>
+      <div class="hero-free-badge" style="margin-top: 24px; background: #e0e0e0; color: #666;">ЗАВЕРШЕНО · 4 мая · 18:00</div>
     </div>
   </div>
 </div>
@@ -420,7 +414,7 @@
     </div>
 
     <div class="cta-inline">
-      Индустрия не ждёт.<br>Твоя первая серия может выйти уже в мае — <a href="#register">запишись на мастер-класс.</a>
+      Мастер-класс прошёл 4 мая 2026 года.<br>Следите за новыми мероприятиями на <a href="/">главной странице.</a>
     </div>
 
     <p class="section-label">Спикеры</p>
@@ -464,30 +458,10 @@
 
   </div>
 
-  <!-- ── SIDEBAR / ФОРМА ── -->
+  <!-- ── SIDEBAR ── -->
   <aside class="event-sidebar" id="register">
     <div class="sidebar-card">
-      <div class="sidebar-free">Бесплатно</div>
-      <div class="sidebar-form-title">Записаться на мастер-класс</div>
-      <div style="font-size: 13px; color: #555; line-height: 1.5; margin-bottom: 14px; margin-top: -8px;">«Как стать из рилсмейкера шоуранером микродрам»</div>
-      <div class="sidebar-note">4 мая · 18:00 · Ялта, ул. Игнатенко, 5<br>Количество мест ограничено.</div>
-
-      <form class="reg-form" id="regForm" onsubmit="submitForm(event)">
-        <input type="text" name="name" placeholder="Имя и фамилия" required maxlength="80">
-        <input type="tel" name="phone" placeholder="Номер телефона" required maxlength="20">
-        <label class="form-consent">
-          <input type="checkbox" name="consent" required>
-          <span>Я даю согласие на <a href="/privacy/" target="_blank">обработку персональных данных</a> в соответствии с Федеральным законом № 152-ФЗ</span>
-        </label>
-        <button type="submit" class="btn-submit" id="submitBtn">Записаться →</button>
-        <div class="form-error" id="formError">Ошибка отправки. Попробуйте ещё раз.</div>
-      </form>
-
-      <div class="form-success" id="formSuccess">
-        <div class="form-success-icon">✅</div>
-        <div class="form-success-text">Заявка отправлена!</div>
-        <div class="form-success-sub">Мы свяжемся с вами в ближайшее время.</div>
-      </div>
+      <div style="background:#f5f5f5;border-radius:12px;padding:14px 18px;text-align:center;font-size:14px;color:#888;font-weight:600;">Мероприятие завершено · Запись закрыта</div>
     </div>
 <a href="/" class="btn-secondary">← На главную</a>
   </aside>
@@ -497,9 +471,11 @@
 <div class="cta-section">
   <div class="cta-inner">
     <div class="cta-text">
-      <div class="cta-free">Бесплатно</div>
-      <div class="cta-h2">Запись обязательная.</div>
-      <div class="cta-sub">Количество мест ограничено!</div>
+      <div class="cta-h2">Следите за новыми мероприятиями</div>
+      <div class="cta-sub">Мастер-классы, лекции, кинопоказы — на главной странице</div>
+    </div>
+    <div class="cta-action">
+      <a href="/" class="btn-cta">На главную →</a>
     </div>
   </div>
 </div>
