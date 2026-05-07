@@ -3,17 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>«Про Бородянского» — Киноклуб «Киммерия-Арт»</title>
+  <title>«Про Бородянского, автора сценария про сантехника Афоню и др.» — Киноклуб «Киммерия-Арт»</title>
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Киммерия-Арт">
   <meta property="og:url" content="https://art-kimmeria.ru/event-borodyansky/">
-  <meta property="og:title" content="«Про Бородянского» — Киноклуб «Киммерия-Арт»">
+  <meta property="og:title" content="«Про Бородянского, автора сценария про сантехника Афоню и др.» — Киноклуб «Киммерия-Арт»">
   <meta property="og:description" content="Документальный фильм о легенде отечественной сценаристики Александре Бородянском. Ялта, 8 мая, 19:00. Ведущая — Мария Вихрова. Оплата на месте.">
   <meta property="og:image" content="https://res.cloudinary.com/dmzsczjzd/image/upload/v1778183480/event-borodyansky-cover.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="«Про Бородянского» — Киноклуб «Киммерия-Арт»">
+  <meta name="twitter:title" content="«Про Бородянского, автора сценария про сантехника Афоню и др.» — Киноклуб «Киммерия-Арт»">
   <meta name="twitter:description" content="Документальный фильм о легенде отечественной сценаристики Александре Бородянском. Ялта, 8 мая, 19:00. Ведущая — Мария Вихрова. Оплата на месте.">
   <meta name="twitter:image" content="https://res.cloudinary.com/dmzsczjzd/image/upload/v1778183480/event-borodyansky-cover.jpg">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -168,11 +168,11 @@
   <div class="event-hero-bg" style="background-image: url('https://res.cloudinary.com/dmzsczjzd/image/upload/v1778183480/event-borodyansky-cover.jpg');"></div>
   <div class="event-hero-inner">
     <div class="event-hero-poster">
-      <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1778183480/event-borodyansky-cover.jpg" alt="Про Бородянского — документальный фильм" onclick="openLightbox(this.src)">
+      <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1778183480/event-borodyansky-cover.jpg" alt="«Про Бородянского, автора сценария про сантехника Афоню и др.»" onclick="openLightbox(this.src)">
     </div>
     <div class="event-hero-text">
       <div class="event-hero-tag">Кинопоказ · Киноклуб · 12+</div>
-      <h1 class="event-hero-title">«Про Бородянского»</h1>
+      <h1 class="event-hero-title">«Про Бородянского, автора сценария про сантехника Афоню и др.»</h1>
       <div class="event-hero-subtitle">автора сценария про сантехника Афоню и др.</div>
       <div class="event-hero-date">8 мая 2026 · Пятница · 19:00</div>
     </div>
@@ -322,7 +322,7 @@ function submitForm(e) {
   });
   if (!utmLines && document.referrer) utmLines = '\n🔗 Реферер: ' + document.referrer;
 
-  var text = '🎬 Новая заявка: «Про Бородянского» (8 мая)\n\n'
+  var text = '🎬 Новая заявка: «Про Бородянского, автора сценария про сантехника Афоню и др.» (8 мая)\n\n'
            + '👤 Имя: ' + name + '\n'
            + '📞 Телефон: ' + phone
            + (utmLines ? '\n\n📊 Источник:' + utmLines : '');
@@ -374,7 +374,7 @@ document.addEventListener('keydown', function(e) { if (e.key === 'Escape') { clo
 function shareEvent(btn) {
   var url = window.location.href;
   var popup = btn.querySelector('.share-popup');
-  if (navigator.share) { navigator.share({ title: '«Про Бородянского» — Киноклуб Киммерия-Арт', url: url }).catch(function(){}); return; }
+  if (navigator.share) { navigator.share({ title: '«Про Бородянского, автора сценария про сантехника Афоню и др.» — Киноклуб Киммерия-Арт', url: url }).catch(function(){}); return; }
   function showPopup() { popup.classList.add('visible'); setTimeout(function() { popup.classList.remove('visible'); }, 2000); }
   function fallback() { var ta = document.createElement('textarea'); ta.value = url; ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); showPopup(); }
   if (navigator.clipboard) { navigator.clipboard.writeText(url).then(showPopup).catch(fallback); } else { fallback(); }
