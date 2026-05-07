@@ -67,12 +67,37 @@
     .sidebar-price-label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #666666; font-weight: 600; margin-bottom: 12px; }
     .sidebar-price-main { font-size: 36px; font-weight: 700; color: #111111; line-height: 1; margin-bottom: 6px; }
     .sidebar-price-note { font-size: 13px; color: #666666; margin-top: 4px; }
-    .btn-primary { display: block; width: 100%; padding: 16px 24px; text-align: center; background: #111111; color: #ffffff; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; text-decoration: none; border-radius: 100px; transition: opacity 0.15s; }
-    .btn-primary:hover { opacity: 0.85; }
+    .sidebar-form-title { font-size: 18px; font-weight: 700; color: #111111; margin-bottom: 16px; }
+    .reg-form { display: flex; flex-direction: column; gap: 10px; }
+    .reg-form input { width: 100%; padding: 13px 16px; font-family: 'Inter', sans-serif; font-size: 15px; color: #111111; background: #f7f7f7; border: 1px solid #e8e8e8; border-radius: 10px; outline: none; transition: border-color 0.15s, background 0.15s; }
+    .reg-form input:focus { border-color: #1a4a3a; background: #ffffff; }
+    .reg-form input::placeholder { color: #aaaaaa; }
+    .btn-submit { width: 100%; padding: 16px 24px; background: #1a4a3a; color: #ffffff; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 700; border: none; border-radius: 100px; cursor: pointer; transition: opacity 0.15s; margin-top: 4px; }
+    .btn-submit:hover { opacity: 0.88; }
+    .btn-submit:disabled { opacity: 0.5; cursor: default; }
+    .form-consent { display: flex; align-items: flex-start; gap: 10px; cursor: pointer; margin-top: 2px; }
+    .form-consent input[type="checkbox"] { flex-shrink: 0; width: 16px; height: 16px; margin-top: 2px; accent-color: #1a4a3a; cursor: pointer; }
+    .form-consent span { font-size: 12px; color: #888888; line-height: 1.55; }
+    .form-consent a { color: #1a4a3a; text-decoration: underline; }
+    .form-error { font-size: 13px; color: #cc3333; margin-top: 6px; display: none; }
     .btn-secondary { display: block; width: 100%; padding: 14px 24px; text-align: center; background: #ffffff; color: #111111; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; text-decoration: none; border: 1px solid #e8e8e8; border-radius: 100px; transition: background 0.15s; margin-top: 10px; }
     .btn-secondary:hover { background: #f5f5f5; }
-    .btn-tg { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 14px 24px; background: #229ED9; color: #ffffff; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; text-decoration: none; border-radius: 100px; transition: opacity 0.15s; margin-top: 10px; }
-    .btn-tg:hover { opacity: 0.88; }
+    .popup-overlay { display: none; position: fixed; inset: 0; z-index: 9000; background: rgba(0,0,0,0.55); backdrop-filter: blur(4px); align-items: center; justify-content: center; padding: 20px; }
+    .popup-overlay.open { display: flex; }
+    .popup-box { background: #ffffff; border-radius: 20px; max-width: 440px; width: 100%; padding: 40px 36px 36px; text-align: center; box-shadow: 0 24px 80px rgba(0,0,0,0.3); animation: popupIn 0.3s cubic-bezier(0.34,1.56,0.64,1); position: relative; }
+    @keyframes popupIn { from { opacity: 0; transform: scale(0.85) translateY(20px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+    .popup-close { position: absolute; top: 16px; right: 20px; background: none; border: none; font-size: 24px; color: #aaaaaa; cursor: pointer; line-height: 1; }
+    .popup-close:hover { color: #111111; }
+    .popup-icon { font-size: 52px; margin-bottom: 16px; }
+    .popup-title { font-size: 22px; font-weight: 800; color: #111111; margin-bottom: 8px; line-height: 1.2; }
+    .popup-sub { font-size: 15px; color: #555555; margin-bottom: 28px; line-height: 1.6; }
+    .popup-card { background: #f0f7f5; border-radius: 14px; padding: 20px 24px; text-align: left; margin-bottom: 24px; }
+    .popup-card-row { display: flex; gap: 12px; align-items: baseline; padding: 9px 0; border-bottom: 1px solid #ddeee9; }
+    .popup-card-row:last-child { border-bottom: none; }
+    .popup-card-key { font-size: 11px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: #1a4a3a; min-width: 72px; flex-shrink: 0; }
+    .popup-card-val { font-size: 14px; color: #111111; font-weight: 600; line-height: 1.4; }
+    .popup-btn { display: block; width: 100%; padding: 14px 24px; background: #111111; color: #ffffff; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700; border: none; border-radius: 100px; cursor: pointer; text-decoration: none; text-align: center; transition: opacity 0.15s; }
+    .popup-btn:hover { opacity: 0.85; }
     .event-back-section { padding: 0 48px 60px; }
     .event-back-link { font-size: 13px; font-weight: 600; color: #111111; text-decoration: none; padding: 8px 16px; border-radius: 100px; border: 1px solid #e8e8e8; display: inline-block; transition: background 0.15s; }
     .event-back-link:hover { background: #f5f5f5; }
@@ -206,9 +231,18 @@
       <div class="sidebar-price-main">По записи</div>
       <div class="sidebar-price-note">Оплата на месте</div>
     </div>
-    <a href="https://forms.yandex.ru/u/6819fd4b84227c30497e0e18/" target="_blank" class="btn-primary">Записаться через форму</a>
-    <a href="tel:+79780602986" class="btn-secondary">Позвонить: +7-978-060-29-86</a>
-    <button class="btn-share" onclick="shareEvent(this)">
+    <div class="sidebar-form-title">Записаться</div>
+    <form class="reg-form" id="regForm" onsubmit="submitForm(event)">
+      <input type="text" name="name" placeholder="Ваше имя" required maxlength="80">
+      <input type="tel" name="phone" placeholder="Номер телефона" required maxlength="20">
+      <label class="form-consent">
+        <input type="checkbox" name="consent" required>
+        <span>Согласен на <a href="/privacy/" target="_blank">обработку персональных данных</a></span>
+      </label>
+      <button type="submit" class="btn-submit" id="submitBtn">Записаться →</button>
+      <div class="form-error" id="formError"></div>
+    </form>
+    <button class="btn-share" onclick="shareEvent(this)" style="margin-top:16px;">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
       Поделиться
       <span class="share-popup">Ссылка скопирована!</span>
@@ -222,12 +256,104 @@
 
 <div id="site-footer"></div>
 
+<!-- ПОПАП БЛАГОДАРНОСТИ -->
+<div class="popup-overlay" id="thankPopup" onclick="if(event.target===this)closeThankPopup()">
+  <div class="popup-box">
+    <button class="popup-close" onclick="closeThankPopup()">×</button>
+    <div class="popup-icon">🎬</div>
+    <div class="popup-title">Вы записаны!</div>
+    <div class="popup-sub">Мы получили вашу заявку и скоро свяжемся с вами.</div>
+    <div class="popup-card">
+      <div class="popup-card-row">
+        <span class="popup-card-key">Дата</span>
+        <span class="popup-card-val">8 мая 2026, пятница</span>
+      </div>
+      <div class="popup-card-row">
+        <span class="popup-card-key">Время</span>
+        <span class="popup-card-val">19:00</span>
+      </div>
+      <div class="popup-card-row">
+        <span class="popup-card-key">Место</span>
+        <span class="popup-card-val">Ялта, ул. Игнатенко, 5, офис 2</span>
+      </div>
+      <div class="popup-card-row">
+        <span class="popup-card-key">Оплата</span>
+        <span class="popup-card-val">На месте</span>
+      </div>
+    </div>
+    <button class="popup-btn" onclick="closeThankPopup()">Отлично, жду!</button>
+  </div>
+</div>
+
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
   <button class="lightbox-close" onclick="closeLightbox()">&#x2715;</button>
   <img id="lightboxImg" src="" alt="" onclick="event.stopPropagation()">
 </div>
 
 <script>
+var TG_TOKEN = '8555296982:AAE2LCN_eeCy33jGJfyWh7guxS2ia2yq68A';
+var TG_CHAT  = '214662526';
+var GS_URL   = 'https://script.google.com/macros/s/AKfycbz4rkLWsDP4Oz7C6FvOqMKoqqb9E3MJvP7iQUCvQ-M5AiFm2Ml5816rxXWmSiS4d49d/exec';
+
+function submitForm(e) {
+  e.preventDefault();
+  var form  = document.getElementById('regForm');
+  var btn   = document.getElementById('submitBtn');
+  var err   = document.getElementById('formError');
+  var name  = form.name.value.trim();
+  var phone = form.phone.value.trim();
+
+  var digits = phone.replace(/\D/g, '');
+  if (!phone || digits.length < 10) {
+    err.textContent = 'Введите корректный номер телефона';
+    err.style.display = 'block';
+    form.phone.focus();
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Отправляем…';
+  err.style.display = 'none';
+
+  var params = new URLSearchParams(window.location.search);
+  var utmLines = '';
+  ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'].forEach(function(k) {
+    if (params.get(k)) utmLines += '\n🔖 ' + k + ': ' + params.get(k);
+  });
+  if (!utmLines && document.referrer) utmLines = '\n🔗 Реферер: ' + document.referrer;
+
+  var text = '🎬 Новая заявка: «Про Бородянского» (8 мая)\n\n'
+           + '👤 Имя: ' + name + '\n'
+           + '📞 Телефон: ' + phone
+           + (utmLines ? '\n\n📊 Источник:' + utmLines : '');
+
+  var gsParams = new URLSearchParams({
+    name: name,
+    phone: phone,
+    event: 'event-borodyansky',
+    utm_source: params.get('utm_source') || '',
+    utm_medium: params.get('utm_medium') || '',
+    utm_campaign: params.get('utm_campaign') || '',
+    referrer: document.referrer || ''
+  });
+
+  fetch(GS_URL + '?' + gsParams.toString(), { method: 'GET', mode: 'no-cors' }).catch(function() {});
+  fetch('https://api.telegram.org/bot' + TG_TOKEN + '/sendMessage', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ chat_id: TG_CHAT, text: text })
+  }).catch(function() {});
+
+  if (window.ym) ym(108987141, 'reachGoal', 'zayavka');
+  document.getElementById('thankPopup').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeThankPopup() {
+  document.getElementById('thankPopup').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
 function fabGoBack() {
   if (document.referrer && document.referrer !== window.location.href) {
     history.back();
@@ -244,7 +370,7 @@ function closeLightbox() {
   document.getElementById('lightbox').classList.remove('open');
   document.body.style.overflow = '';
 }
-document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeLightbox(); });
+document.addEventListener('keydown', function(e) { if (e.key === 'Escape') { closeLightbox(); closeThankPopup(); } });
 function shareEvent(btn) {
   var url = window.location.href;
   var popup = btn.querySelector('.share-popup');
