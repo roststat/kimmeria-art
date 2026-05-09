@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Программы для туристов — Киммерия-Арт · Ялта</title>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Киммерия-Арт">
+  <meta property="og:url" content="https://art-kimmeria.ru/inturist/">
+  <meta property="og:title" content="Программы для туристов — Киммерия-Арт · Ялта">
+  <meta property="og:description" content="Авторские культурные программы для туристов в Ялте — спектакли, лекции, перформансы, кинопоказы.">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --accent: #1a4a3a; --accent-dark: #0f2e24; --accent-light: #e8f4f0; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Onest', Arial, sans-serif; background: #f5f5f3; color: #111; font-size: 16px; line-height: 1.6; overflow-x: hidden; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: 60px; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid #e8e8e8; }
+    .nav-logo { font-size: 15px; font-weight: 700; color: #111; text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; }
+    .nav-right { display: flex; align-items: center; gap: 12px; }
+    .nav-back { font-size: 13px; font-weight: 600; color: #111; text-decoration: none; padding: 7px 16px; border-radius: 100px; border: 1px solid #e8e8e8; transition: background 0.15s; }
+    .nav-back:hover { background: #f5f5f5; }
+    .nav-admin-badge { display: none; font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); background: var(--accent-light); padding: 5px 12px; border-radius: 100px; cursor: pointer; }
+    .nav-admin-badge.visible { display: inline-flex; align-items: center; gap: 6px; }
+
+    /* HERO */
+    .hero { padding-top: 60px; position: relative; height: 48vh; min-height: 320px; overflow: hidden; background: #0d1f18; }
+    .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 55% 80% at 75% 50%, rgba(26,74,58,0.75) 0%, transparent 65%), radial-gradient(ellipse 40% 60% at 15% 60%, rgba(15,46,36,0.5) 0%, transparent 60%); }
+    .hero-overlay { position: absolute; inset: 0; display: flex; align-items: flex-end; padding: 48px; }
+    .hero-tag { display: inline-block; background: rgba(255,255,255,0.12); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.2); color: #fff; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 12px; border-radius: 100px; margin-bottom: 14px; }
+    .hero-title { font-size: 48px; font-weight: 700; color: #fff; line-height: 1.1; margin-bottom: 10px; }
+    .hero-sub { font-size: 16px; color: rgba(255,255,255,0.65); max-width: 560px; }
+
+    /* MAIN */
+    .page-main { max-width: 900px; margin: 0 auto; padding: 64px 40px 140px; }
+
+    /* AUTH GATE */
+    .auth-gate { background: #fff; border-radius: 16px; padding: 40px; margin-bottom: 40px; text-align: center; border: 1.5px solid #e8e8e8; }
+    .auth-gate-icon { font-size: 36px; margin-bottom: 16px; }
+    .auth-gate-title { font-size: 20px; font-weight: 700; color: #111; margin-bottom: 8px; }
+    .auth-gate-sub { font-size: 14px; color: #888; margin-bottom: 24px; }
+    .auth-gate-row { display: flex; gap: 10px; max-width: 360px; margin: 0 auto; }
+    .auth-input { flex: 1; padding: 12px 16px; border: 1.5px solid #e8e8e8; border-radius: 100px; font-family: 'Onest', sans-serif; font-size: 14px; color: #111; outline: none; transition: border-color 0.2s; text-align: center; letter-spacing: 0.05em; }
+    .auth-input:focus { border-color: var(--accent); }
+    .auth-btn { flex-shrink: 0; padding: 12px 22px; background: var(--accent); color: #fff; font-family: 'Onest', sans-serif; font-size: 14px; font-weight: 600; border: none; border-radius: 100px; cursor: pointer; transition: background 0.15s; white-space: nowrap; }
+    .auth-btn:hover { background: var(--accent-dark); }
+    .auth-error { font-size: 13px; color: #c0392b; margin-top: 10px; min-height: 18px; }
+    .auth-hint { font-size: 12px; color: #ccc; margin-top: 20px; cursor: pointer; transition: color 0.15s; }
+    .auth-hint:hover { color: #888; }
+
+    /* INTRO */
+    .intro-block { background: #fff; border-radius: 14px; padding: 32px 36px; margin-bottom: 48px; display: flex; gap: 40px; align-items: flex-start; }
+    .intro-text { flex: 1; }
+    .intro-label { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #999; margin-bottom: 10px; }
+    .intro-title { font-size: 22px; font-weight: 700; color: #111; line-height: 1.25; margin-bottom: 12px; }
+    .intro-desc { font-size: 15px; color: #555; line-height: 1.75; }
+    .intro-contacts { flex-shrink: 0; background: var(--accent-light); border-radius: 12px; padding: 24px 28px; min-width: 240px; }
+    .intro-contacts-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+    .contact-row { font-size: 14px; color: #333; margin-bottom: 8px; line-height: 1.45; }
+    .contact-row a { color: var(--accent); text-decoration: none; font-weight: 600; }
+    .contact-row a:hover { text-decoration: underline; }
+
+    /* SECTION HEADER */
+    .section-label { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #999; margin-bottom: 8px; }
+    .section-title { font-size: 26px; font-weight: 700; color: #111; margin-bottom: 6px; }
+    .section-sub { font-size: 14px; color: #888; margin-bottom: 32px; }
+
+    /* ACCORDION */
+    .accordion { border: 1px solid #e8e8e8; border-radius: 14px; overflow: hidden; background: #fff; }
+    .acc-item { border-bottom: 1px solid #e8e8e8; }
+    .acc-item:last-child { border-bottom: none; }
+    .acc-header { display: flex; align-items: center; gap: 20px; padding: 22px 28px; cursor: pointer; transition: background 0.15s; user-select: none; }
+    .acc-header:hover { background: #fafafa; }
+    .acc-header.open { background: #fafafa; }
+    .acc-num { font-size: 12px; font-weight: 700; color: #ccc; letter-spacing: 0.05em; flex-shrink: 0; width: 24px; }
+    .acc-thumb { flex-shrink: 0; width: 52px; height: 52px; border-radius: 8px; background: var(--accent); overflow: hidden; }
+    .acc-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .acc-thumb-empty { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+    .acc-thumb-empty svg { width: 20px; height: 20px; opacity: 0.35; }
+    .acc-info { flex: 1; min-width: 0; }
+    .acc-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #999; margin-bottom: 3px; }
+    .acc-name { font-size: 17px; font-weight: 700; color: #111; line-height: 1.25; }
+    .acc-subtitle { font-size: 13px; color: #888; margin-top: 2px; }
+    .acc-price-badge { flex-shrink: 0; font-size: 15px; font-weight: 700; color: var(--accent); background: var(--accent-light); padding: 6px 14px; border-radius: 100px; white-space: nowrap; }
+    .acc-arrow { flex-shrink: 0; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 50%; border: 1.5px solid #e0e0e0; transition: transform 0.25s, border-color 0.15s; }
+    .acc-header.open .acc-arrow { transform: rotate(180deg); border-color: var(--accent); }
+    .acc-arrow svg { width: 14px; height: 14px; color: #666; transition: color 0.15s; }
+    .acc-header.open .acc-arrow svg { color: var(--accent); }
+
+    /* ACCORDION BODY */
+    .acc-body { display: none; border-top: 1px solid #f0f0f0; }
+    .acc-body.open { display: block; }
+    .acc-body-inner { padding: 28px 28px 32px 72px; display: grid; grid-template-columns: 1fr 280px; gap: 32px; }
+    .acc-desc-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #bbb; margin-bottom: 10px; }
+    .acc-desc-text { font-size: 15px; color: #444; line-height: 1.8; margin-bottom: 16px; }
+    .acc-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: var(--accent); text-decoration: none; border-bottom: 1.5px solid transparent; transition: border-color 0.15s; }
+    .acc-link:hover { border-color: var(--accent); }
+    .acc-link svg { width: 13px; height: 13px; }
+
+    /* KP BOX */
+    .acc-kp-box { background: var(--accent-light); border-radius: 12px; padding: 22px 24px; }
+    .acc-kp-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+    .acc-kp-row { display: flex; justify-content: space-between; align-items: baseline; padding: 9px 0; border-bottom: 1px solid rgba(26,74,58,0.12); font-size: 14px; }
+    .acc-kp-row:last-of-type { border-bottom: none; }
+    .acc-kp-key { color: #555; }
+    .acc-kp-val { font-weight: 700; color: #111; text-align: right; }
+    .acc-kp-note { font-size: 12px; color: #777; margin-top: 12px; line-height: 1.6; }
+
+    /* ADD TO SCHEDULE BUTTON */
+    .btn-add-schedule { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; margin-top: 14px; padding: 13px 20px; background: var(--accent); color: #fff; font-family: 'Onest', sans-serif; font-size: 14px; font-weight: 600; border: none; border-radius: 100px; cursor: pointer; transition: background 0.15s; }
+    .btn-add-schedule:hover { background: var(--accent-dark); }
+    .btn-add-schedule.added { background: #fff; color: var(--accent); border: 2px solid var(--accent); }
+    .btn-add-schedule svg { width: 15px; height: 15px; flex-shrink: 0; }
+
+    /* FLOATING SCHEDULE BUTTON */
+    .float-btn { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%); z-index: 300; display: none; align-items: center; gap: 10px; padding: 14px 28px; background: var(--accent); color: #fff; font-family: 'Onest', sans-serif; font-size: 15px; font-weight: 700; border: none; border-radius: 100px; cursor: pointer; box-shadow: 0 8px 32px rgba(26,74,58,0.35); transition: background 0.15s, transform 0.15s; white-space: nowrap; }
+    .float-btn:hover { background: var(--accent-dark); transform: translateX(-50%) translateY(-2px); }
+    .float-btn.visible { display: flex; }
+    .float-btn-count { background: #fff; color: var(--accent); font-size: 13px; font-weight: 800; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+
+    /* SCHEDULE MODAL */
+    .modal-overlay { position: fixed; inset: 0; z-index: 400; background: rgba(0,0,0,0.5); backdrop-filter: blur(6px); display: flex; align-items: flex-end; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.25s; }
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+    .modal-box { background: #fff; border-radius: 20px 20px 0 0; width: 100%; max-width: 760px; max-height: 90vh; display: flex; flex-direction: column; transform: translateY(30px); transition: transform 0.25s; }
+    .modal-overlay.open .modal-box { transform: translateY(0); }
+    .modal-head { padding: 24px 28px 20px; border-bottom: 1px solid #f0f0f0; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
+    .modal-title { font-size: 18px; font-weight: 700; color: #111; }
+    .modal-close { width: 32px; height: 32px; border: none; background: #f5f5f3; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.15s; }
+    .modal-close:hover { background: #eee; }
+    .modal-close svg { width: 14px; height: 14px; color: #666; }
+    .modal-body { flex: 1; overflow-y: auto; padding: 0 28px; }
+    .modal-empty { padding: 48px 0; text-align: center; color: #bbb; font-size: 15px; }
+    .modal-foot { padding: 20px 28px; border-top: 1px solid #f0f0f0; flex-shrink: 0; }
+    .modal-total { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+    .modal-total-label { font-size: 14px; color: #888; }
+    .modal-total-sum { font-size: 22px; font-weight: 700; color: var(--accent); }
+    .modal-actions { display: flex; gap: 10px; }
+    .btn-print { flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 13px; background: var(--accent); color: #fff; font-family: 'Onest', sans-serif; font-size: 14px; font-weight: 600; border: none; border-radius: 100px; cursor: pointer; transition: background 0.15s; }
+    .btn-print:hover { background: var(--accent-dark); }
+    .btn-clear { padding: 13px 20px; background: #fff; color: #c0392b; font-family: 'Onest', sans-serif; font-size: 14px; font-weight: 600; border: 1.5px solid #ffd0d0; border-radius: 100px; cursor: pointer; transition: border-color 0.15s; white-space: nowrap; }
+    .btn-clear:hover { border-color: #c0392b; }
+
+    /* SCHEDULE ITEM IN MODAL */
+    .sched-item { padding: 18px 0; border-bottom: 1px solid #f0f0f0; display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: start; }
+    .sched-item:last-child { border-bottom: none; }
+    .sched-name { font-size: 15px; font-weight: 700; color: #111; margin-bottom: 4px; }
+    .sched-format { font-size: 12px; color: #999; margin-bottom: 10px; }
+    .sched-fields { display: flex; gap: 10px; flex-wrap: wrap; }
+    .sched-field { display: flex; flex-direction: column; gap: 3px; }
+    .sched-field label { font-size: 10px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: #bbb; }
+    .sched-field input { padding: 7px 12px; border: 1.5px solid #e8e8e8; border-radius: 8px; font-family: 'Onest', sans-serif; font-size: 13px; color: #111; outline: none; transition: border-color 0.2s; background: #fafafa; width: 140px; }
+    .sched-field input[type="time"], .sched-field input[type="number"] { width: 100px; }
+    .sched-field input:focus { border-color: var(--accent); background: #fff; }
+    .sched-right { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
+    .sched-price { font-size: 16px; font-weight: 700; color: var(--accent); white-space: nowrap; }
+    .sched-remove { background: none; border: none; cursor: pointer; color: #ccc; font-size: 18px; line-height: 1; transition: color 0.15s; padding: 2px; }
+    .sched-remove:hover { color: #c0392b; }
+
+    /* PRINT STYLES */
+    @media print {
+      nav, .float-btn, .modal-overlay, .auth-gate, .intro-block, .section-label, .section-title, .section-sub, .accordion, .cta-block, #site-footer { display: none !important; }
+      body { background: #fff; }
+      .page-main { padding: 0; max-width: 100%; }
+      .print-only { display: block !important; }
+    }
+    .print-only { display: none; }
+
+    /* BOTTOM CTA */
+    .cta-block { margin-top: 56px; background: var(--accent); border-radius: 16px; padding: 40px 48px; display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+    .cta-title { font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+    .cta-sub { font-size: 15px; color: rgba(255,255,255,0.7); }
+    .cta-btn { flex-shrink: 0; display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; background: #fff; color: var(--accent); font-family: 'Onest', sans-serif; font-size: 15px; font-weight: 700; border: none; border-radius: 100px; cursor: pointer; text-decoration: none; white-space: nowrap; transition: opacity 0.15s; }
+    .cta-btn:hover { opacity: 0.9; }
+
+    @media (max-width: 760px) {
+      nav { padding: 0 16px; }
+      .hero-overlay { padding: 32px 24px; }
+      .hero-title { font-size: 30px; }
+      .page-main { padding: 40px 16px 140px; }
+      .intro-block { flex-direction: column; gap: 20px; padding: 24px; }
+      .intro-contacts { min-width: unset; width: 100%; }
+      .acc-body-inner { grid-template-columns: 1fr; padding: 20px 16px; }
+      .acc-header { padding: 16px 18px; gap: 12px; }
+      .acc-price-badge { display: none; }
+      .cta-block { flex-direction: column; padding: 28px 24px; }
+      .modal-box { border-radius: 16px 16px 0 0; }
+      .sched-fields { gap: 8px; }
+      .sched-field input { width: 120px; }
+    }
+  </style>
+  <script type="text/javascript">(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");ym(108987141,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true});</script>
+  <noscript><div><img src="https://mc.yandex.ru/watch/108987141" style="position:absolute;left:-9999px;" alt=""/></div></noscript>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">Киммерия-Арт</a>
+  <div class="nav-right">
+    <span class="nav-admin-badge" id="navAdminBadge" onclick="adminLogout()">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="width:12px;height:12px;"><circle cx="8" cy="5" r="2.5"/><path d="M2.5 13c0-2.76 2.46-5 5.5-5s5.5 2.24 5.5 5"/></svg>
+      Режим администратора · Выйти
+    </span>
+    <a href="/" class="nav-back">← На главную</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay">
+    <div>
+      <div class="hero-tag">Для туристов и туроператоров</div>
+      <h1 class="hero-title">Программы<br>Киммерии-Арт</h1>
+      <div class="hero-sub">Авторские культурные события в Ялте — для ваших гостей</div>
+    </div>
+  </div>
+</div>
+
+<main class="page-main">
+
+  <!-- AUTH GATE -->
+  <div class="auth-gate" id="authGate">
+    <div class="auth-gate-icon">🔒</div>
+    <div class="auth-gate-title">Раздел для организаторов</div>
+    <div class="auth-gate-sub">Введите пароль, чтобы увидеть условия и цены программ и составить расписание</div>
+    <div class="auth-gate-row">
+      <input class="auth-input" type="password" id="authInput" placeholder="Пароль" onkeydown="if(event.key==='Enter')checkAuth()">
+      <button class="auth-btn" onclick="checkAuth()">Войти</button>
+    </div>
+    <div class="auth-error" id="authError"></div>
+    <div class="auth-hint" onclick="toggleAuthHint()" id="authHintToggle">Нет пароля? Напишите нам</div>
+    <div id="authHintContacts" style="display:none;margin-top:12px;font-size:13px;color:#888;">
+      Telegram: <a href="https://t.me/kimmeria_art" target="_blank" style="color:var(--accent);font-weight:600;">@kimmeria_art</a>
+    </div>
+  </div>
+
+  <!-- CONTENT (скрыто до авторизации) -->
+  <div id="mainContent" style="display:none;">
+
+    <!-- INTRO -->
+    <div class="intro-block">
+      <div class="intro-text">
+        <div class="intro-label">Киммерия-Арт · Ялта</div>
+        <div class="intro-title">Культурные программы для туристических групп</div>
+        <div class="intro-desc">Авторские спектакли, лекции, перформансы и кинопоказы в Ялте. Все программы подходят для включения в туристические маршруты. Добавьте нужные программы в расписание, установите даты и время — и скачайте готовый PDF для организаторов.</div>
+      </div>
+      <div class="intro-contacts">
+        <div class="intro-contacts-label">Контакты</div>
+        <div class="contact-row">Telegram: <a href="https://t.me/kimmeria_art" target="_blank">@kimmeria_art</a></div>
+        <div class="contact-row">Email: <a href="mailto:kimmeria.art@gmail.com">kimmeria.art@gmail.com</a></div>
+        <div class="contact-row" style="margin-top:10px;font-size:13px;color:#888;line-height:1.55;">Обсуждаем даты, условия и форматы под вашу группу.</div>
+      </div>
+    </div>
+
+    <!-- PROGRAMS -->
+    <div class="section-label">Каталог программ</div>
+    <h2 class="section-title">13 авторских программ</h2>
+    <div class="section-sub">Нажмите на программу, чтобы раскрыть условия и добавить в расписание</div>
+
+    <div class="accordion" id="accordion">
+
+      <!-- 1 -->
+      <div class="acc-item" data-slug="afrodita" data-name="«Пространство Афродиты»" data-format="Авторская лекция" data-price="25000">
+        <div class="acc-header" onclick="toggleItem(this)">
+          <div class="acc-num">01</div>
+          <div class="acc-thumb"><img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156883/kimmeria/lecture-afrodita.jpg" alt=""></div>
+          <div class="acc-info">
+            <div class="acc-eyebrow">Лекция · Цикл «Ялта: Территория Божественных игр» · 1 из 3</div>
+            <div class="acc-name">«Пространство Афродиты»</div>
+            <div class="acc-subtitle">Лектор: Наталия Добрынская</div>
+          </div>
+          <div class="acc-price-badge">от 25 000 ₽</div>
+          <div class="acc-arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6l4 4 4-4"/></svg></div>
+        </div>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <div>
+              <div class="acc-desc-label">О программе</div>
+              <div class="acc-desc-text">Первая и самая нежная часть цикла. Лекция исследует Ялту как пространство богини любви. Проводники вечера: Пушкин и Чехов. Три авторские лекции, объединённые единой идеей: Ялта как пространство мифа. Каждая встреча исследует один из женских архетипов античной мифологии через призму русской и мировой литературы.</div>
+              <a class="acc-link" href="/programmy/afrodita/" target="_blank"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 3H3a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1v-3"/><path d="M10 2h4v4"/><line x1="14" y1="2" x2="8" y2="8"/></svg>Подробная страница программы</a>
+            </div>
+            <div class="acc-sidebar">
+              <div class="acc-kp-box">
+                <div class="acc-kp-label">Условия</div>
+                <div class="acc-kp-row"><span class="acc-kp-key">Стоимость</span><span class="acc-kp-val">от 25 000 ₽</span></div>
+                <div class="acc-kp-row"><span class="acc-kp-key">Формат</span><span class="acc-kp-val">Авторская лекция</span></div>
+                <div class="acc-kp-row"><span class="acc-kp-key">Площадка</span><span class="acc-kp-val">Киммерия-Арт, Ялта</span></div>
+                <div class="acc-kp-note">Возможен выездной формат — обсуждается отдельно.</div>
+                <button class="btn-add-schedule" onclick="addToSchedule(this.closest('.acc-item'))">
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="2" width="12" height="13" rx="2"/><line x1="8" y1="6" x2="8" y2="11"/><line x1="5.5" y1="8.5" x2="10.5" y2="8.5"/></svg>
+                  Добавить в расписание
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2 -->
+      <div class="acc-item" data-slug="gekata" data-name="«Геката в Фияльте»" data-format="Авторская лекция" data-price="25000">
+        <div class="acc-header" onclick="toggleItem(this)">
+          <div class="acc-num">02</div>
+          <div class="acc-thumb"><img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156886/kimmeria/lecture-gekata.jpg" alt=""></div>
+          <div class="acc-info">
+            <div class="acc-eyebrow">Лекция · Цикл «Ялта: Территория Божественных игр» · 2 из 3</div>
+            <div class="acc-name">«Геката в Фияльте»</div>
+            <div class="acc-subtitle">Лектор: Наталия Добрынская</div>
+          </div>
+          <div class="acc-price-badge">от 25 000 ₽</div>
+          <div class="acc-arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6l4 4 4-4"/></svg></div>
+        </div>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <div>
+              <div class="acc-desc-label">О программе</div>
+              <div class="acc-desc-text">Тёмная женственность, подземный мир, лунный свет. Богини Геката и Персефона. Проводник вечера: Владимир Набоков и его повесть «Весна в Фияльте» — литературный двойник Ялты.</div>
+              <a class="acc-link" href="/programmy/gekata/" target="_blank"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 3H3a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1v-3"/><path d="M10 2h4v4"/><line x1="14" y1="2" x2="8" y2="8"/></svg>Подробная страница программы</a>
+            </div>
+            <div class="acc-sidebar">
+              <div class="acc-kp-box">
+                <div class="acc-kp-label">Условия</div>
+                <div class="acc-kp-row"><span class="acc-kp-key">Стоимость</span><span class="acc-kp-val">от 25 000 ₽</span></div>
+                <div class="acc-kp-row"><span class="acc-kp-key">Формат</span><span class="acc-kp-val">Авторская лекция</span></div>
+                <div class="acc-kp-row"><span class="acc-kp-key">Площадка</span><span class="acc-kp-val">Киммерия-Арт, Ялта</span></div>
+                <div class="acc-kp-note">Возможен выездной формат — обсуждается отдельно.</div>
+                <button class="btn-add-schedule" onclick="addToSchedule(this.closest('.acc-item'))">
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="2" width="12" height="13" rx="2"/><line x1="8" y1="6" x2="8" y2="11"/><line x1="5.5" y1="8.5" x2="10.5" y2="8.5"/></svg>
+                  Добавить в расписание
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 -->
+      <div class="acc-item" data-slug="lilit" data-name="«Осторожно, Лилит!»" data-format="Авторская лекция" data-price="25000">
+        <div class="acc-header" onclick="toggleItem(this)">
+          <div class="acc-num">03</div>
+          <div class="acc-thumb"><img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156887/kimmeria/lecture-lilit.jpg" alt=""></div>
+          <div class="acc-info">
+            <div class="acc-eyebrow">Лекция · Цикл «Ялта: Территория Божественных игр» · 3 из 3</div>
+            <div class="acc-name">«Осторожно, Лилит!»</div>
+            <div class="acc-subtitle">Лектор: Наталия Добрынская</div>
+          </div>
+          <div class="acc-price-badge">от 25 000 ₽</div>
+          <div class="acc-arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6l4 4 4-4"/></svg></div>
+        </div>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <div>
+              <div class="acc-desc-label">О программе</div>
+              <div class="acc-desc-text">Самая будоражащая часть цикла. Лилит — первая женщина, отказавшаяся подчиниться, демон ночи и символ свободы. Завершение трилогии о женских архетипах в пространстве Ялты.</div>
+              <a class="acc-link" href="/programmy/lilit/" target="_blank"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 3H3a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1v-3"/><path d="M10 2h4v4"/><line x1="14" y1="2" x2="8" y2="8"/></svg>Подробная страница программы</a>
+            </div>
+            <div class="acc-sidebar">
+              <div class="acc-kp-box">
+                <div class="acc-kp-label">Условия</div>
+                <div class="acc-kp-row"><span class="acc-kp-key">Стоимость</span><span class="acc-kp-val">от 25 000 ₽</span></div>
+                <div class="acc-kp-row"><span class="acc-kp-key">Формат</span><span class="acc-kp-val">Авторская лекция</span></div>
+                <div class="acc-kp-row"><span class="acc-kp-key">Площадка</span><span class="acc-kp-val">Киммерия-Арт, Ялта</span></div>
+                <div class="acc-kp-note">Возможен выездной формат — обсуждается отдельно.</div>
+                <button class="btn-add-schedule" onclick="addToSchedule(this.closest('.acc-item'))">
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="2" width="12" height="13" rx="2"/><line x1="8" y1="6" x2="8" y2="11"/><line x1="5.5" y1="8.5" x2="10.5" y2="8.5"/></svg>
+                  Добавить в расписание
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 -->
+      <div class="acc-item" data-slug="korolkova" data-name="«Что у нас на сладкое»" data-format="Творческая встреча" data-price="45000">
+        <div class="acc-header" onclick="toggleItem(this)">
+          <div class="acc-num">04</div>
+          <div class="acc-thumb"><img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156829/kimmeria/event-korolkova-adults-cover.jpg" alt=""></div>
+          <div class="acc-info">
+            <div class="acc-eyebrow">Творческая встреча</div>
+            <div class="acc-name">«Что у нас на сладкое»</div>
+            <div class="acc-subtitle">Второй режиссёр «Триггера», «Мажора», «Пищеблока» — о том, как создаётся кино</div>
+          </div>
+          <div class="acc-price-badge">от 45 000 ₽</div>
+          <div class="acc-arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6l4 4 4-4"/></svg></div>
+        </div>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <div>
+              <div class="acc-desc-label">О программе</div>
+              <div class="acc-desc-text">Встреча с Анастасией Корольковой — вторым режиссёром сериалов «Триггер», «Мажор», «Пищеблок» — о том, как кино создаётся от сценария до экрана. Реальные истории со съёмок, профессии на площадке, путь в профессию.</div>
+              <a class="acc-link" href="/programmy/korolkova/" target="_blank"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 3H3a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1v-3"/><path d="M10 2h4v4"/><line x1="14" y1="2" x2="8" y2="8"/></svg>Подробная страница программы</a>
+            </div>
+            <div class="acc-sidebar">
+              <div class="acc-kp-box">
+                <div class="acc-kp-label">Условия</div>
+                <div class="acc-kp-row"><span class="acc-kp-key">Стоимость</span><span class="acc-kp-val">от 45 000 ₽</span></div>
+                <div class="acc-kp-row"><span class="acc-kp-key">Формат</span><span class="acc-kp-val">Творческая встреча</span></div>
+                <div class="acc-kp-row"><span class="acc-kp-key">Площадка</span><span class="acc-kp-val">Киммерия-Арт, Ялта</span></div>
+                <div class="acc-kp-note">Включает дегустацию.</div>
+                <button class="btn-add-schedule" onclick="addToSchedule(this.closest('.acc-item'))">
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="2" width="12" height="13" rx="2"/><line x1="8" y1="6" x2="8" y2="11"/><line x1="5.5" y1="8.5" x2="10.5" y2="8.5"/></svg>
+                  Добавить в расписание
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5 -->
+      <div class="acc-item" data-slug="popolam" data-name="«Пополам»" data-format="Концерт, 16+" data-price="45000">
+        <div class="acc-header" onclick="toggleItem(this)">
+          <div class="acc-num">05</div>
+          <div class="acc-thumb"><img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777831399/kimmeria/popolam/cover.jpg" alt=""></div>
+          <div class="acc-info">
+            <div class="acc-eyebrow">Концерт · 16+ · Музыкально-поэтическая программа</div>
+            <div class="acc-name">«Пополам»</div>
+            <div class="acc-subtitle">Мимла Же и Луиза</div>
+          </div>
+          <div class="acc-price-badge">от 45 000 ₽</div>
+          <div class="acc-arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6l4 4 4-4"/></svg></div>
+        </div>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <div>
+              <div class="acc-desc-label">О программе</div>
+              <div class="acc-desc-text">Музыкально-поэтический дуэт Мимлы Же и Луизы. Живая музыка, авторские стихи, атмосфера камерного концерта. Они долго писали стихи, наигрывали мелодии, нащупывали стиль — а потом всё склеилось «Пополам».</div>
+              <a class="acc-link" href="/programmy/popolam/" target="_blank"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 3H3a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1v-3"/><path d="M10 2h4v4"/><line x1="14" y1="2" x2="8" y2="8"/></svg>Подробная страница программы</a>
+            </div>
+            <div class="acc-sidebar">
+              <div class="acc-kp-box">
+                <div class="acc-kp-label">Условия</div>
+                <div class="acc-kp-row"><span class="acc-kp-key">Стоимость</span><span class="acc-kp-val">от 45 000 ₽</span></div>
+                <div class="acc-kp-row"><span class="acc-kp-key">Формат</span><span class="acc-kp-val">Концерт, 16+</span></div>
+                <div class="acc-kp-row"><span class="acc-kp-key">Площадка</span><span class="acc-kp-val">Киммерия-Арт, Ялта</span></div>
+                <div class="acc-kp-note">Возможен выездной формат.</div>
+                <button class="btn-add-schedule" onclick="addToSchedule(this.closest('.acc-item'))">
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="2" width="12" height="13" rx="2"/><line x1="8" y1="6" x2="8" y2="11"/><line x1="5.5" y1="8.5" x2="10.5" y2="8.5"/></svg>
+                  Добавить в расписание
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6 -->
+      <div class="acc-item" data-slug="uzhe" data-name="«УЖЕ»" data-format="Спектакль, 12+" data-price="35000">
+        <div class="acc-header" onclick="toggleItem(this)">
+          <div class="acc-num">06</div>
+          <div class="acc-thumb"><img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156925/kimmeria/photo_819%4030-03-2026_09-17-02.jpg" alt=""></div>
+          <div class="acc-info">
+            <div class="acc-eyebrow">Спектакль · 12+ · Мультимедийный поэтический перформанс</div>
+            <div class="acc-name">«УЖЕ»</div>
+            <div class="acc-subtitle">Авторская постановка Мимлы Же</div>
+          </div>
+          <div class="acc-price-badge">от 35 000 ₽</div>
+          <div class="acc-arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6l4 4 4-4"/></svg></div>
+        </div>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <div>
+              <div class="acc-desc-label">О программе</div>
+              <div class="acc-desc-text">Авторская экспериментальная постановка поэтессы и художницы Мимлы Же. Спектакль из четырёх стихотворных сказок, в которых бытовой символизм соседствует с философскими вопросами о выборе, поиске себя и счастье.</div>
+              <a class="acc-link" href="/programmy/uzhe/" target="_blank"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 3H3a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1v-3"/><path d="M10 2h4v4"/><line x1="14" y1="2" x2="8" y2="8"/></svg>Подробная страница программы</a>
+            </div>
+            <div class="acc-sidebar">
+              <div class="acc-kp-box">
+                <div class="acc-kp-label">Условия</div>
+                <div class="acc-kp-row"><span class="acc-kp-key">Стоимость</span><span class="acc-kp-val">от 35 000 ₽</span></div>
+                <div class="acc-kp-row"><span class="acc-kp-key">Формат</span><span class="acc-kp-val">Спектакль, 12+</span></div>
+                <div class="acc-kp-row"><span class="acc-kp-key">Площадка</span><span class="acc-kp-val">Киммерия-Арт, Ялта</span></div>
+                <button class="btn-add-schedule" onclick="addToSchedule(this.closest('.acc-item'))">
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="2" width="12" height="13" rx="2"/><line x1="8" y1="6" x2="8" y2="11"/><line x1="5.5" y1="8.5" x2="10.5" y2="8.5"/></svg>
+                  Добавить в расписание
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7 -->
+      <div class="acc-item" data-slug="lyubov" data-name="«Любовь, море и десерты»" data-format="Перформанс, 18+" data-price="55000">
+        <div class="acc-header" onclick="toggleItem(this)">
+          <div class="acc-num">07</div>
+          <div class="acc-thumb"><img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156895/kimmeria/lyubov-cover.jpg" alt=""></div>
+          <div class="acc-info">
+            <div class="acc-eyebrow">Перформанс · 18+ · Абсурдистский декаданс</div>
+            <div class="acc-name">«Любовь, море и десерты»</div>
+            <div class="acc-subtitle">Музыкально-поэтический перформанс</div>
+          </div>
+          <div class="acc-price-badge">от 55 000 ₽</div>
+          <div class="acc-arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6l4 4 4-4"/></svg></div>
+        </div>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <div>
+              <div class="acc-desc-label">О программе</div>
+              <div class="acc-desc-text">Проект на стыке авторской музыки и театрализованной поэзии. Атмосферное погружение в мир, где роскошь граничит с иронией, а чувственная поэзия сплетается с утончённой музыкой.</div>
+              <a class="acc-link" href="/programmy/lyubov/" target="_blank"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 3H3a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1v-3"/><path d="M10 2h4v4"/><line x1="14" y1="2" x2="8" y2="8"/></svg>Подробная страница программы</a>
+            </div>
+            <div class="acc-sidebar">
+              <div class="acc-kp-box">
+                <div class="acc-kp-label">Условия</div>
+                <div class="acc-kp-row"><span class="acc-kp-key">Стоимость</span><span class="acc-kp-val">от 55 000 ₽</span></div>
+                <div class="acc-kp-row"><span class="acc-kp-key">Формат</span><span class="acc-kp-val">Перформанс, 18+</span></div>
+                <div class="acc-kp-row"><span class="acc-kp-key">Площадка</span><span class="acc-kp-val">Киммерия-Арт, Ялта</span></div>
+                <button class="btn-add-schedule" onclick="addToSchedule(this.closest('.acc-item'))">
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="2" width="12" height="13" rx="2"/><line x1="8" y1="6" x2="8" y2="11"/><line x1="5.5" y1="8.5" x2="10.5" y2="8.5"/></svg>
+                  Добавить в расписание
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8 -->
+      <div class="acc-item" data-slug="ryba" data-name="«Лучше я буду рыбой»" data-format="Спектакль-притча, 12+, 60 мин." data-price="90000">
+        <div class="acc-header" onclick="toggleItem(this)">
+          <div class="acc-num">08</div>
+          <div class="acc-thumb"><img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156861/kimmeria/event-ryba.jpg" alt=""></div>
+          <div class="acc-info">
+            <div class="acc-eyebrow">Спектакль-притча · 12+ · 60 минут</div>
+            <div class="acc-name">«Лучше я буду рыбой»</div>
+            <div class="acc-subtitle">По мотивам Чингиза Айтматова «Белый пароход»</div>
+          </div>
+          <div class="acc-price-badge">от 90 000 ₽</div>
+          <div class="acc-arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6l4 4 4-4"/></svg></div>
+        </div>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <div>
+              <div class="acc-desc-label">О программе</div>
+              <div class="acc-desc-text">Спектакль по мотивам философской повести Чингиза Айтматова «Белый пароход» (1970). Четыре актрисы, живая музыка, 60 минут без антракта. Одно из самых пронзительных произведений советской литературы.</div>
+              <a class="acc-link" href="/programmy/ryba/" target="_blank"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 3H3a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1v-3"/><path d="M10 2h4v4"/><line x1="14" y1="2" x2="8" y2="8"/></svg>Подробная страница программы</a>
+            </div>
+            <div class="acc-sidebar">
+              <div class="acc-kp-box">
+                <div class="acc-kp-label">Условия</div>
+                <div class="acc-kp-row"><span class="acc-kp-key">Стоимость</span><span class="acc-kp-val">от 90 000 ₽</span></div>
+                <div class="acc-kp-row"><span class="acc-kp-key">Формат</span><span class="acc-kp-val">Спектакль, 12+</span></div>
+                <div class="acc-kp-row"><span class="acc-kp-key">Длительность</span><span class="acc-kp-val">60 минут</span></div>
+                <div class="acc-kp-row"><span class="acc-kp-key">Площадка</span><span class="acc-kp-val">Киммерия-Арт, Ялта</span></div>
+                <button class="btn-add-schedule" onclick="addToSchedule(this.closest('.acc-item'))">
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="2" width="12" height="13" rx="2"/><line x1="8" y1="6" x2="8" y2="11"/><line x1="5.5" y1="8.5" x2="10.5" y2="8.5"/></svg>
+                  Добавить в расписание
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 9 -->
+      <div class="acc-item" data-slug="nazarov-dark" data-name="«Тёмная энергия»" data-format="Науч-поп лекция" data-price="30000">
+        <div class="acc-header" onclick="toggleItem(this)">
+          <div class="acc-num">09</div>
+          <div class="acc-thumb"><img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156921/kimmeria/photo_814%4027-03-2026_18-42-39.jpg" alt=""></div>
+          <div class="acc-info">
+            <div class="acc-eyebrow">Научно-популярная лекция · Астрофизика</div>
+            <div class="acc-name">«Тёмная энергия»</div>
+            <div class="acc-subtitle">Лектор: Сергей Назаров</div>
+          </div>
+          <div class="acc-price-badge">от 30 000 ₽</div>
+          <div class="acc-arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6l4 4 4-4"/></svg></div>
+        </div>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <div>
+              <div class="acc-desc-label">О программе</div>
+              <div class="acc-desc-text">Один из лучших лекторов России разбирает тему тёмной материи и тёмной энергии. Лекция прошла в Ялте впервые — с аншлагом. Научно-популярный формат с мультимедийным сопровождением — понятно для всех, интересно для учёных.</div>
+              <a class="acc-link" href="/programmy/nazarov-dark/" target="_blank"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 3H3a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1v-3"/><path d="M10 2h4v4"/><line x1="14" y1="2" x2="8" y2="8"/></svg>Подробная страница программы</a>
+            </div>
+            <div class="acc-sidebar">
+              <div class="acc-kp-box">
+                <div class="acc-kp-label">Условия</div>
+                <div class="acc-kp-row"><span class="acc-kp-key">Стоимость</span><span class="acc-kp-val">от 30 000 ₽</span></div>
+                <div class="acc-kp-row"><span class="acc-kp-key">Формат</span><span class="acc-kp-val">Науч-поп лекция</span></div>
+                <div class="acc-kp-row"><span class="acc-kp-key">Площадка</span><span class="acc-kp-val">Киммерия-Арт, Ялта</span></div>
+                <div class="acc-kp-note">Необходим проектор и экран.</div>
+                <button class="btn-add-schedule" onclick="addToSchedule(this.closest('.acc-item'))">
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="2" width="12" height="13" rx="2"/><line x1="8" y1="6" x2="8" y2="11"/><line x1="5.5" y1="8.5" x2="10.5" y2="8.5"/></svg>
+                  Добавить в расписание
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 10 -->
+      <div class="acc-item" data-slug="nazarov-black" data-name="«Чёрные дыры»" data-format="Науч-поп лекция" data-price="30000">
+        <div class="acc-header" onclick="toggleItem(this)">
+          <div class="acc-num">10</div>
+          <div class="acc-thumb"><img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156921/kimmeria/photo_814%4027-03-2026_18-42-39.jpg" alt=""></div>
+          <div class="acc-info">
+            <div class="acc-eyebrow">Научно-популярная лекция · Астрофизика</div>
+            <div class="acc-name">«Чёрные дыры»</div>
+            <div class="acc-subtitle">Лектор: Сергей Назаров</div>
+          </div>
+          <div class="acc-price-badge">от 30 000 ₽</div>
+          <div class="acc-arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6l4 4 4-4"/></svg></div>
+        </div>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <div>
+              <div class="acc-desc-label">О программе</div>
+              <div class="acc-desc-text">Лекция о самых загадочных объектах Вселенной. Сергей Назаров рассказывает о природе чёрных дыр, как они образуются, как их обнаруживают и что происходит внутри. Научно-популярный формат с мультимедийным сопровождением.</div>
+              <a class="acc-link" href="/programmy/nazarov-black/" target="_blank"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 3H3a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1v-3"/><path d="M10 2h4v4"/><line x1="14" y1="2" x2="8" y2="8"/></svg>Подробная страница программы</a>
+            </div>
+            <div class="acc-sidebar">
+              <div class="acc-kp-box">
+                <div class="acc-kp-label">Условия</div>
+                <div class="acc-kp-row"><span class="acc-kp-key">Стоимость</span><span class="acc-kp-val">от 30 000 ₽</span></div>
+                <div class="acc-kp-row"><span class="acc-kp-key">Формат</span><span class="acc-kp-val">Науч-поп лекция</span></div>
+                <div class="acc-kp-row"><span class="acc-kp-key">Площадка</span><span class="acc-kp-val">Киммерия-Арт, Ялта</span></div>
+                <div class="acc-kp-note">Необходим проектор и экран.</div>
+                <button class="btn-add-schedule" onclick="addToSchedule(this.closest('.acc-item'))">
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="2" width="12" height="13" rx="2"/><line x1="8" y1="6" x2="8" y2="11"/><line x1="5.5" y1="8.5" x2="10.5" y2="8.5"/></svg>
+                  Добавить в расписание
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 11 -->
+      <div class="acc-item" data-slug="tavrichersky" data-name="«Ведение МК»" data-format="Творческая встреча" data-price="25000">
+        <div class="acc-header" onclick="toggleItem(this)">
+          <div class="acc-num">11</div>
+          <div class="acc-thumb"><img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156862/kimmeria/event-tavrichersky-cover.jpg" alt=""></div>
+          <div class="acc-info">
+            <div class="acc-eyebrow">Творческая встреча</div>
+            <div class="acc-name">«Ведение МК»</div>
+            <div class="acc-subtitle">Океанолог, гидронавт и писатель — о море, науке и жизни</div>
+          </div>
+          <div class="acc-price-badge">от 25 000 ₽</div>
+          <div class="acc-arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6l4 4 4-4"/></svg></div>
+        </div>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <div>
+              <div class="acc-desc-label">О программе</div>
+              <div class="acc-desc-text">Творческая встреча с океанологом, гидронавтом и писателем Анатолием Таврическим. Разговор о море, подводных экспедициях, науке и литературном творчестве. Живая история человека, побывавшего на глубине.</div>
+              <a class="acc-link" href="/programmy/tavrichersky/" target="_blank"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 3H3a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1v-3"/><path d="M10 2h4v4"/><line x1="14" y1="2" x2="8" y2="8"/></svg>Подробная страница программы</a>
+            </div>
+            <div class="acc-sidebar">
+              <div class="acc-kp-box">
+                <div class="acc-kp-label">Условия</div>
+                <div class="acc-kp-row"><span class="acc-kp-key">Стоимость</span><span class="acc-kp-val">от 25 000 ₽</span></div>
+                <div class="acc-kp-row"><span class="acc-kp-key">Формат</span><span class="acc-kp-val">Творческая встреча</span></div>
+                <div class="acc-kp-row"><span class="acc-kp-key">Площадка</span><span class="acc-kp-val">Киммерия-Арт, Ялта</span></div>
+                <button class="btn-add-schedule" onclick="addToSchedule(this.closest('.acc-item'))">
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="2" width="12" height="13" rx="2"/><line x1="8" y1="6" x2="8" y2="11"/><line x1="5.5" y1="8.5" x2="10.5" y2="8.5"/></svg>
+                  Добавить в расписание
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 12 -->
+      <div class="acc-item" data-slug="stihii" data-name="«4 стихии + МК»" data-format="Кинопоказ + мастер-класс" data-price="55000">
+        <div class="acc-header" onclick="toggleItem(this)">
+          <div class="acc-num">12</div>
+          <div class="acc-thumb"><div class="acc-thumb-empty"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div></div>
+          <div class="acc-info">
+            <div class="acc-eyebrow">Кинопоказ + мастер-класс</div>
+            <div class="acc-name">«4 стихии + МК»</div>
+            <div class="acc-subtitle">Документальный фильм + гончарный мастер-класс</div>
+          </div>
+          <div class="acc-price-badge">от 55 000 ₽</div>
+          <div class="acc-arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6l4 4 4-4"/></svg></div>
+        </div>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <div>
+              <div class="acc-desc-label">О программе</div>
+              <div class="acc-desc-text">Показ документального фильма «Четыре стихии» при поддержке Фонда «Хранители Традиций». После показа — гончарный мастер-класс с Павлом Ермоленко. Уникальное сочетание кинематографа и живого ремесла.</div>
+              <a class="acc-link" href="/programmy/stihii/" target="_blank"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 3H3a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1v-3"/><path d="M10 2h4v4"/><line x1="14" y1="2" x2="8" y2="8"/></svg>Подробная страница программы</a>
+            </div>
+            <div class="acc-sidebar">
+              <div class="acc-kp-box">
+                <div class="acc-kp-label">Условия</div>
+                <div class="acc-kp-row"><span class="acc-kp-key">Стоимость</span><span class="acc-kp-val">от 55 000 ₽</span></div>
+                <div class="acc-kp-row"><span class="acc-kp-key">Формат</span><span class="acc-kp-val">Показ + мастер-класс</span></div>
+                <div class="acc-kp-row"><span class="acc-kp-key">Площадка</span><span class="acc-kp-val">Киммерия-Арт, Ялта</span></div>
+                <div class="acc-kp-note">Включает расходные материалы для МК.</div>
+                <button class="btn-add-schedule" onclick="addToSchedule(this.closest('.acc-item'))">
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="2" width="12" height="13" rx="2"/><line x1="8" y1="6" x2="8" y2="11"/><line x1="5.5" y1="8.5" x2="10.5" y2="8.5"/></svg>
+                  Добавить в расписание
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 13 -->
+      <div class="acc-item" data-slug="kinoklub" data-name="Показ авторских фильмов" data-format="Кинопоказ" data-price="10000">
+        <div class="acc-header" onclick="toggleItem(this)">
+          <div class="acc-num">13</div>
+          <div class="acc-thumb"><div class="acc-thumb-empty"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5"><rect x="2" y="3" width="20" height="18" rx="2"/><path d="M8 3v18M16 3v18M2 12h20M2 7h6M2 17h6M16 17h6M16 7h6"/></svg></div></div>
+          <div class="acc-info">
+            <div class="acc-eyebrow">Кинопоказ</div>
+            <div class="acc-name">Показ авторских фильмов</div>
+            <div class="acc-subtitle">Короткометражное и документальное кино Киммерии-Арт</div>
+          </div>
+          <div class="acc-price-badge">от 10 000 ₽</div>
+          <div class="acc-arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6l4 4 4-4"/></svg></div>
+        </div>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <div>
+              <div class="acc-desc-label">О программе</div>
+              <div class="acc-desc-text">Кинопоказ короткометражных и документальных фильмов, созданных Киммерией-Арт. Авторское кино о Ялте, её людях и историях — уникальный взгляд изнутри. Можно совместить с обсуждением.</div>
+            </div>
+            <div class="acc-sidebar">
+              <div class="acc-kp-box">
+                <div class="acc-kp-label">Условия</div>
+                <div class="acc-kp-row"><span class="acc-kp-key">Стоимость</span><span class="acc-kp-val">от 10 000 ₽</span></div>
+                <div class="acc-kp-row"><span class="acc-kp-key">Формат</span><span class="acc-kp-val">Кинопоказ</span></div>
+                <div class="acc-kp-row"><span class="acc-kp-key">Площадка</span><span class="acc-kp-val">Киммерия-Арт, Ялта</span></div>
+                <div class="acc-kp-note">Программа показа уточняется при бронировании.</div>
+                <button class="btn-add-schedule" onclick="addToSchedule(this.closest('.acc-item'))">
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="2" width="12" height="13" rx="2"/><line x1="8" y1="6" x2="8" y2="11"/><line x1="5.5" y1="8.5" x2="10.5" y2="8.5"/></svg>
+                  Добавить в расписание
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /accordion -->
+
+    <div class="cta-block">
+      <div>
+        <div class="cta-title">Хотите включить программу в маршрут?</div>
+        <div class="cta-sub">Обсудим даты, условия и индивидуальные форматы под вашу группу</div>
+      </div>
+      <a class="cta-btn" href="https://t.me/kimmeria_art" target="_blank">Написать в Telegram</a>
+    </div>
+
+  </div><!-- /mainContent -->
+
+</main>
+
+<!-- FLOATING SCHEDULE BUTTON -->
+<button class="float-btn" id="floatBtn" onclick="openModal()">
+  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="width:18px;height:18px;"><rect x="2" y="2" width="12" height="13" rx="2"/><line x1="5" y1="6" x2="11" y2="6"/><line x1="5" y1="9" x2="11" y2="9"/><line x1="5" y1="12" x2="8" y2="12"/></svg>
+  Расписание
+  <span class="float-btn-count" id="floatCount">0</span>
+</button>
+
+<!-- SCHEDULE MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="overlayClick(event)">
+  <div class="modal-box">
+    <div class="modal-head">
+      <div class="modal-title">Расписание для организаторов</div>
+      <button class="modal-close" onclick="closeModal()">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="3" x2="13" y2="13"/><line x1="13" y1="3" x2="3" y2="13"/></svg>
+      </button>
+    </div>
+    <div class="modal-body" id="modalBody">
+      <div class="modal-empty">Добавьте программы из каталога</div>
+    </div>
+    <div class="modal-foot">
+      <div class="modal-total">
+        <div class="modal-total-label">Итоговая стоимость (от)</div>
+        <div class="modal-total-sum" id="modalTotal">0 ₽</div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-print" onclick="printSchedule()">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="width:15px;height:15px;"><path d="M4 5V2h8v3"/><rect x="2" y="5" width="12" height="7" rx="1"/><path d="M4 9h8M4 12h5"/><path d="M4 9v5h8V9"/></svg>
+          Сохранить PDF / Печать
+        </button>
+        <button class="btn-clear" onclick="clearSchedule()">Очистить</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PRINT TEMPLATE -->
+<div class="print-only" id="printArea"></div>
+
+<div id="site-footer"></div>
+<script src="/footer.js"></script>
+
+<script>
+  const PASS = 'Inturist';
+  let isAdmin = sessionStorage.getItem('inturist_admin') === '1';
+  let schedule = []; // [{slug, name, format, price, date, time, guests}]
+
+  // ---- AUTH ----
+  function checkAuth() {
+    const val = document.getElementById('authInput').value.trim();
+    if (val === PASS) {
+      sessionStorage.setItem('inturist_admin', '1');
+      isAdmin = true;
+      showContent();
+    } else {
+      const err = document.getElementById('authError');
+      err.textContent = 'Неверный пароль';
+      setTimeout(() => err.textContent = '', 2000);
+    }
+  }
+
+  function showContent() {
+    document.getElementById('authGate').style.display = 'none';
+    document.getElementById('mainContent').style.display = 'block';
+    document.getElementById('navAdminBadge').classList.add('visible');
+  }
+
+  function adminLogout() {
+    sessionStorage.removeItem('inturist_admin');
+    isAdmin = false;
+    document.getElementById('mainContent').style.display = 'none';
+    document.getElementById('authGate').style.display = 'block';
+    document.getElementById('navAdminBadge').classList.remove('visible');
+    document.getElementById('authInput').value = '';
+    // close all accordions
+    document.querySelectorAll('.acc-header.open').forEach(h => {
+      h.classList.remove('open');
+      h.closest('.acc-item').querySelector('.acc-body').classList.remove('open');
+    });
+  }
+
+  function toggleAuthHint() {
+    const c = document.getElementById('authHintContacts');
+    c.style.display = c.style.display === 'none' ? 'block' : 'none';
+  }
+
+  // ---- ACCORDION ----
+  function toggleItem(header) {
+    const item = header.closest('.acc-item');
+    const body = item.querySelector('.acc-body');
+    const isOpen = header.classList.contains('open');
+    document.querySelectorAll('.acc-header.open').forEach(h => {
+      h.classList.remove('open');
+      h.closest('.acc-item').querySelector('.acc-body').classList.remove('open');
+    });
+    if (!isOpen) {
+      header.classList.add('open');
+      body.classList.add('open');
+      setTimeout(() => item.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
+    }
+  }
+
+  // ---- SCHEDULE ----
+  function addToSchedule(item) {
+    const slug = item.dataset.slug;
+    if (schedule.find(s => s.slug === slug)) {
+      openModal();
+      return;
+    }
+    schedule.push({
+      slug,
+      name: item.dataset.name,
+      format: item.dataset.format,
+      price: parseInt(item.dataset.price),
+      date: '',
+      time: '',
+      guests: ''
+    });
+    updateFloatBtn();
+    // update button in accordion
+    const btn = item.querySelector('.btn-add-schedule');
+    btn.classList.add('added');
+    btn.innerHTML = `<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="2,8 6,12 14,4"/></svg>В расписании — открыть`;
+    btn.onclick = () => openModal();
+    openModal();
+  }
+
+  function removeFromSchedule(slug) {
+    schedule = schedule.filter(s => s.slug !== slug);
+    updateFloatBtn();
+    renderModal();
+    // restore button in accordion
+    const item = document.querySelector(`.acc-item[data-slug="${slug}"]`);
+    if (item) {
+      const btn = item.querySelector('.btn-add-schedule');
+      btn.classList.remove('added');
+      btn.innerHTML = `<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="2" width="12" height="13" rx="2"/><line x1="8" y1="6" x2="8" y2="11"/><line x1="5.5" y1="8.5" x2="10.5" y2="8.5"/></svg>Добавить в расписание`;
+      btn.onclick = () => addToSchedule(item);
+    }
+  }
+
+  function clearSchedule() {
+    const slugs = schedule.map(s => s.slug);
+    schedule = [];
+    updateFloatBtn();
+    renderModal();
+    slugs.forEach(slug => {
+      const item = document.querySelector(`.acc-item[data-slug="${slug}"]`);
+      if (item) {
+        const btn = item.querySelector('.btn-add-schedule');
+        btn.classList.remove('added');
+        btn.innerHTML = `<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="2" width="12" height="13" rx="2"/><line x1="8" y1="6" x2="8" y2="11"/><line x1="5.5" y1="8.5" x2="10.5" y2="8.5"/></svg>Добавить в расписание`;
+        btn.onclick = () => addToSchedule(item);
+      }
+    });
+  }
+
+  function updateFloatBtn() {
+    const btn = document.getElementById('floatBtn');
+    const cnt = document.getElementById('floatCount');
+    cnt.textContent = schedule.length;
+    btn.classList.toggle('visible', schedule.length > 0);
+  }
+
+  // ---- MODAL ----
+  function openModal() {
+    renderModal();
+    document.getElementById('modalOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('modalOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function overlayClick(e) {
+    if (e.target === document.getElementById('modalOverlay')) closeModal();
+  }
+
+  function renderModal() {
+    const body = document.getElementById('modalBody');
+    const totalEl = document.getElementById('modalTotal');
+
+    if (schedule.length === 0) {
+      body.innerHTML = '<div class="modal-empty">Добавьте программы из каталога</div>';
+      totalEl.textContent = '0 ₽';
+      return;
+    }
+
+    let total = 0;
+    body.innerHTML = schedule.map((s, i) => {
+      total += s.price;
+      return `
+        <div class="sched-item">
+          <div>
+            <div class="sched-name">${s.name}</div>
+            <div class="sched-format">${s.format}</div>
+            <div class="sched-fields">
+              <div class="sched-field">
+                <label>Дата</label>
+                <input type="date" value="${s.date}" onchange="schedule[${i}].date=this.value">
+              </div>
+              <div class="sched-field">
+                <label>Время</label>
+                <input type="time" value="${s.time || '19:00'}" onchange="schedule[${i}].time=this.value">
+              </div>
+              <div class="sched-field">
+                <label>Гостей</label>
+                <input type="number" placeholder="чел." min="1" value="${s.guests}" onchange="schedule[${i}].guests=this.value" style="width:90px;">
+              </div>
+            </div>
+          </div>
+          <div class="sched-right">
+            <div class="sched-price">от ${s.price.toLocaleString('ru-RU')} ₽</div>
+            <button class="sched-remove" onclick="removeFromSchedule('${s.slug}')" title="Удалить">✕</button>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    totalEl.textContent = 'от ' + total.toLocaleString('ru-RU') + ' ₽';
+  }
+
+  // ---- PRINT ----
+  function printSchedule() {
+    // sync time/date/guests values from inputs before printing
+    document.querySelectorAll('.sched-item').forEach((el, i) => {
+      const inputs = el.querySelectorAll('input');
+      if (inputs[0]) schedule[i].date = inputs[0].value;
+      if (inputs[1]) schedule[i].time = inputs[1].value;
+      if (inputs[2]) schedule[i].guests = inputs[2].value;
+    });
+
+    const total = schedule.reduce((s, e) => s + e.price, 0);
+    const now = new Date().toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
+
+    const rows = schedule.map(s => {
+      const dateStr = s.date ? new Date(s.date).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' }) : '—';
+      const timeStr = s.time || '—';
+      const guestsStr = s.guests ? s.guests + ' чел.' : '—';
+      return `
+        <tr>
+          <td style="padding:12px 16px;border-bottom:1px solid #e8e8e8;font-weight:600;font-size:14px;">${s.name}</td>
+          <td style="padding:12px 16px;border-bottom:1px solid #e8e8e8;font-size:13px;color:#555;">${s.format}</td>
+          <td style="padding:12px 16px;border-bottom:1px solid #e8e8e8;font-size:13px;color:#111;">${dateStr}</td>
+          <td style="padding:12px 16px;border-bottom:1px solid #e8e8e8;font-size:13px;color:#111;">${timeStr}</td>
+          <td style="padding:12px 16px;border-bottom:1px solid #e8e8e8;font-size:13px;color:#111;">${guestsStr}</td>
+          <td style="padding:12px 16px;border-bottom:1px solid #e8e8e8;font-size:14px;font-weight:700;color:#1a4a3a;white-space:nowrap;">от ${s.price.toLocaleString('ru-RU')} ₽</td>
+        </tr>
+      `;
+    }).join('');
+
+    const html = `
+      <div style="font-family:'Onest',Arial,sans-serif;max-width:800px;margin:0 auto;padding:40px 24px;color:#111;">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:32px;padding-bottom:20px;border-bottom:2px solid #1a4a3a;">
+          <div>
+            <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#999;margin-bottom:6px;">Культурное предложение</div>
+            <div style="font-size:26px;font-weight:700;color:#111;line-height:1.2;">Киммерия-Арт · Ялта</div>
+            <div style="font-size:14px;color:#888;margin-top:4px;">Расписание программ для организаторов</div>
+          </div>
+          <div style="text-align:right;font-size:12px;color:#aaa;">Составлено: ${now}</div>
+        </div>
+        <table style="width:100%;border-collapse:collapse;margin-bottom:24px;">
+          <thead>
+            <tr style="background:#f5f5f3;">
+              <th style="padding:10px 16px;text-align:left;font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:#999;border-bottom:2px solid #e8e8e8;">Программа</th>
+              <th style="padding:10px 16px;text-align:left;font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:#999;border-bottom:2px solid #e8e8e8;">Формат</th>
+              <th style="padding:10px 16px;text-align:left;font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:#999;border-bottom:2px solid #e8e8e8;">Дата</th>
+              <th style="padding:10px 16px;text-align:left;font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:#999;border-bottom:2px solid #e8e8e8;">Время</th>
+              <th style="padding:10px 16px;text-align:left;font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:#999;border-bottom:2px solid #e8e8e8;">Гостей</th>
+              <th style="padding:10px 16px;text-align:left;font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:#999;border-bottom:2px solid #e8e8e8;">Стоимость</th>
+            </tr>
+          </thead>
+          <tbody>${rows}</tbody>
+        </table>
+        <div style="display:flex;justify-content:flex-end;padding:16px 16px 0;border-top:2px solid #1a4a3a;">
+          <div style="text-align:right;">
+            <div style="font-size:12px;color:#999;margin-bottom:4px;">Итого (от)</div>
+            <div style="font-size:24px;font-weight:700;color:#1a4a3a;">от ${total.toLocaleString('ru-RU')} ₽</div>
+          </div>
+        </div>
+        <div style="margin-top:32px;padding-top:20px;border-top:1px solid #e8e8e8;display:flex;justify-content:space-between;font-size:12px;color:#aaa;">
+          <div>art-kimmeria.ru · Ялта</div>
+          <div>Telegram: @kimmeria_art · kimmeria.art@gmail.com</div>
+        </div>
+      </div>
+    `;
+
+    const printArea = document.getElementById('printArea');
+    printArea.innerHTML = html;
+
+    // hide main content, print, restore
+    const main = document.getElementById('mainContent');
+    const modal = document.getElementById('modalOverlay');
+    const floatBtn = document.getElementById('floatBtn');
+    const authGate = document.getElementById('authGate');
+    const hero = document.querySelector('.hero');
+    const nav = document.querySelector('nav');
+
+    [main, modal, floatBtn, authGate, hero, nav].forEach(el => el && (el.style.display = 'none'));
+    printArea.style.display = 'block';
+
+    window.print();
+
+    printArea.style.display = 'none';
+    printArea.innerHTML = '';
+    [hero, nav].forEach(el => el && (el.style.display = ''));
+    main.style.display = 'block';
+    modal.style.display = '';
+    floatBtn.style.display = schedule.length > 0 ? 'flex' : 'none';
+    // re-open modal
+    setTimeout(() => modal.classList.add('open'), 100);
+  }
+
+  // ---- INIT ----
+  if (isAdmin) showContent();
+</script>
+
+</body>
+</html>
