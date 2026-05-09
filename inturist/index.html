@@ -60,16 +60,46 @@
     .intro-label { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #999; margin-bottom: 10px; }
     .intro-title { font-size: 22px; font-weight: 700; color: #111; line-height: 1.25; margin-bottom: 12px; }
     .intro-desc { font-size: 15px; color: #555; line-height: 1.75; }
-    .intro-contacts { flex-shrink: 0; background: var(--accent-light); border-radius: 12px; padding: 24px 28px; min-width: 240px; }
-    .intro-contacts-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+    .intro-contacts { flex-shrink: 0; background: var(--accent-light); border-radius: 12px; padding: 24px 28px; min-width: 260px; }
+    .intro-contacts-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
     .contact-row { font-size: 14px; color: #333; margin-bottom: 8px; line-height: 1.45; }
     .contact-row a { color: var(--accent); text-decoration: none; font-weight: 600; }
     .contact-row a:hover { text-decoration: underline; }
+    .contact-person { display: flex; align-items: center; gap: 14px; padding: 12px 0; border-bottom: 1px solid rgba(26,74,58,0.1); }
+    .contact-person:last-child { border-bottom: none; padding-bottom: 0; }
+    .contact-person:first-of-type { padding-top: 0; }
+    .contact-avatar { width: 52px; height: 52px; border-radius: 50%; overflow: hidden; flex-shrink: 0; background: #c8e6dc; display: flex; align-items: center; justify-content: center; }
+    .contact-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .contact-avatar svg { width: 22px; height: 22px; opacity: 0.4; }
+    .contact-person-info { }
+    .contact-person-name { font-size: 14px; font-weight: 700; color: #111; line-height: 1.2; margin-bottom: 2px; }
+    .contact-person-role { font-size: 11px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: #888; margin-bottom: 4px; }
+    .contact-person-phone { font-size: 13px; color: var(--accent); font-weight: 600; text-decoration: none; }
+    .contact-person-phone:hover { text-decoration: underline; }
 
     /* SECTION HEADER */
     .section-label { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #999; margin-bottom: 8px; }
     .section-title { font-size: 26px; font-weight: 700; color: #111; margin-bottom: 6px; }
     .section-sub { font-size: 14px; color: #888; margin-bottom: 32px; }
+
+    /* CYCLE GROUP */
+    .acc-cycle-group { border: 1.5px solid #c8e6dc; border-radius: 14px; overflow: hidden; margin-bottom: 12px; background: #fff; }
+    .acc-cycle-header { background: var(--accent-light); padding: 16px 28px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    .acc-cycle-header-left { }
+    .acc-cycle-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; }
+    .acc-cycle-title { font-size: 16px; font-weight: 700; color: #111; }
+    .acc-cycle-sub { font-size: 13px; color: #666; margin-top: 2px; }
+    .acc-cycle-offer { display: flex; align-items: center; gap: 14px; flex-shrink: 0; }
+    .acc-cycle-price { text-align: right; }
+    .acc-cycle-price-old { font-size: 12px; color: #aaa; text-decoration: line-through; }
+    .acc-cycle-price-new { font-size: 20px; font-weight: 700; color: var(--accent); }
+    .acc-cycle-price-save { font-size: 11px; font-weight: 700; color: #2d8a5e; background: #d4f0e4; padding: 2px 8px; border-radius: 100px; margin-top: 2px; display: inline-block; }
+    .btn-add-cycle { display: flex; align-items: center; gap: 7px; padding: 11px 20px; background: var(--accent); color: #fff; font-family: 'Onest', sans-serif; font-size: 13px; font-weight: 700; border: none; border-radius: 100px; cursor: pointer; white-space: nowrap; transition: background 0.15s; flex-shrink: 0; }
+    .btn-add-cycle:hover { background: var(--accent-dark); }
+    .btn-add-cycle.added { background: #fff; color: var(--accent); border: 2px solid var(--accent); }
+    .btn-add-cycle svg { width: 14px; height: 14px; flex-shrink: 0; }
+    .acc-cycle-group .acc-item { border-bottom: 1px solid #e8e8e8; }
+    .acc-cycle-group .acc-item:last-child { border-bottom: none; }
 
     /* ACCORDION */
     .accordion { border: 1px solid #e8e8e8; border-radius: 14px; overflow: hidden; background: #fff; }
@@ -248,14 +278,31 @@
     <div class="intro-block">
       <div class="intro-text">
         <div class="intro-label">Киммерия-Арт · Ялта</div>
-        <div class="intro-title">Культурные программы для туристических групп</div>
+        <div class="intro-title">Что мы предлагаем?</div>
         <div class="intro-desc">Авторские спектакли, лекции, перформансы и кинопоказы в Ялте. Все программы подходят для включения в туристические маршруты. Добавьте нужные программы в расписание, установите даты и время — и скачайте готовый PDF для организаторов.</div>
       </div>
       <div class="intro-contacts">
-        <div class="intro-contacts-label">Контакты</div>
-        <div class="contact-row">Telegram: <a href="https://t.me/kimmeria_art" target="_blank">@kimmeria_art</a></div>
-        <div class="contact-row">Email: <a href="mailto:kimmeria.art@gmail.com">kimmeria.art@gmail.com</a></div>
-        <div class="contact-row" style="margin-top:10px;font-size:13px;color:#888;line-height:1.55;">Обсуждаем даты, условия и форматы под вашу группу.</div>
+        <div class="intro-contacts-label">С кем говорить</div>
+        <div class="contact-person">
+          <div class="contact-avatar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#1a4a3a" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.58-7 8-7s8 3 8 7"/></svg>
+          </div>
+          <div class="contact-person-info">
+            <div class="contact-person-name">Наталья Лебедева</div>
+            <div class="contact-person-role">Генеральный продюсер</div>
+            <a class="contact-person-phone" href="tel:+79999999999">+7 (999) 999-99-99</a>
+          </div>
+        </div>
+        <div class="contact-person">
+          <div class="contact-avatar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#1a4a3a" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.58-7 8-7s8 3 8 7"/></svg>
+          </div>
+          <div class="contact-person-info">
+            <div class="contact-person-name">Филипп Емельянов</div>
+            <div class="contact-person-role">Продюсер</div>
+            <a class="contact-person-phone" href="tel:+79999999998">+7 (999) 999-99-98</a>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -264,7 +311,26 @@
     <h2 class="section-title">Готовые программы с высоким рейтингом</h2>
     <div class="section-sub">Нажмите на программу, чтобы раскрыть условия и добавить в расписание</div>
 
-    <div class="accordion" id="accordion">
+    <!-- ЦИКЛ -->
+    <div class="acc-cycle-group" id="cycleGroup">
+      <div class="acc-cycle-header">
+        <div class="acc-cycle-header-left">
+          <div class="acc-cycle-label">Специальное предложение · Цикл из 3 лекций</div>
+          <div class="acc-cycle-title">«Ялта: Территория Божественных игр»</div>
+          <div class="acc-cycle-sub">Три вечера подряд — полный цикл авторских лекций Наталии Добрынской</div>
+        </div>
+        <div class="acc-cycle-offer">
+          <div class="acc-cycle-price">
+            <div class="acc-cycle-price-old">75 000 ₽</div>
+            <div class="acc-cycle-price-new">85 000 ₽</div>
+            <div class="acc-cycle-price-save">Пакет · 3 дня</div>
+          </div>
+          <button class="btn-add-cycle" id="btnAddCycle" onclick="addCycleToSchedule()">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="2" width="12" height="13" rx="2"/><line x1="8" y1="6" x2="8" y2="11"/><line x1="5.5" y1="8.5" x2="10.5" y2="8.5"/></svg>
+            Добавить цикл целиком
+          </button>
+        </div>
+      </div>
 
       <!-- 1 -->
       <div class="acc-item" data-slug="afrodita" data-name="«Пространство Афродиты»" data-format="Авторская лекция" data-price="25000">
@@ -376,6 +442,10 @@
           </div>
         </div>
       </div>
+
+    </div><!-- /acc-cycle-group -->
+
+    <div class="accordion" id="accordion">
 
       <!-- 4 -->
       <div class="acc-item" data-slug="korolkova" data-name="«Что у нас на сладкое»" data-format="Творческая встреча" data-price="45000">
@@ -863,6 +933,34 @@
   }
 
   // ---- SCHEDULE ----
+  function addCycleToSchedule() {
+    const btn = document.getElementById('btnAddCycle');
+    if (schedule.find(s => s.slug === 'cycle-dobryn')) {
+      openModal();
+      return;
+    }
+    // убираем отдельные лекции цикла если были добавлены
+    ['afrodita', 'gekata', 'lilit'].forEach(slug => {
+      if (schedule.find(s => s.slug === slug)) {
+        removeFromSchedule(slug);
+      }
+    });
+    schedule.push({
+      slug: 'cycle-dobryn',
+      name: 'Цикл «Ялта: Территория Божественных игр» (3 лекции)',
+      format: 'Авторский лекционный цикл · 3 вечера подряд',
+      price: 85000,
+      date: '',
+      time: '',
+      guests: ''
+    });
+    btn.classList.add('added');
+    btn.innerHTML = `<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="2,8 6,12 14,4"/></svg>В расписании — открыть`;
+    btn.onclick = () => openModal();
+    updateFloatBtn();
+    openModal();
+  }
+
   function addToSchedule(item) {
     const slug = item.dataset.slug;
     if (schedule.find(s => s.slug === slug)) {
@@ -891,7 +989,15 @@
     schedule = schedule.filter(s => s.slug !== slug);
     updateFloatBtn();
     renderModal();
-    // restore button in accordion
+    if (slug === 'cycle-dobryn') {
+      const btn = document.getElementById('btnAddCycle');
+      if (btn) {
+        btn.classList.remove('added');
+        btn.innerHTML = `<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="2" width="12" height="13" rx="2"/><line x1="8" y1="6" x2="8" y2="11"/><line x1="5.5" y1="8.5" x2="10.5" y2="8.5"/></svg>Добавить цикл целиком`;
+        btn.onclick = () => addCycleToSchedule();
+      }
+      return;
+    }
     const item = document.querySelector(`.acc-item[data-slug="${slug}"]`);
     if (item) {
       const btn = item.querySelector('.btn-add-schedule');
@@ -907,6 +1013,15 @@
     updateFloatBtn();
     renderModal();
     slugs.forEach(slug => {
+      if (slug === 'cycle-dobryn') {
+        const btn = document.getElementById('btnAddCycle');
+        if (btn) {
+          btn.classList.remove('added');
+          btn.innerHTML = `<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="2" width="12" height="13" rx="2"/><line x1="8" y1="6" x2="8" y2="11"/><line x1="5.5" y1="8.5" x2="10.5" y2="8.5"/></svg>Добавить цикл целиком`;
+          btn.onclick = () => addCycleToSchedule();
+        }
+        return;
+      }
       const item = document.querySelector(`.acc-item[data-slug="${slug}"]`);
       if (item) {
         const btn = item.querySelector('.btn-add-schedule');
