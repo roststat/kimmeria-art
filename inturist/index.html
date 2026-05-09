@@ -996,13 +996,14 @@
     openModal();
   }
 
+  let scheduleIdCounter = 0;
+
   function addToSchedule(item) {
     const slug = item.dataset.slug;
-    if (schedule.find(s => s.slug === slug)) {
-      openModal();
-      return;
-    }
+    const alreadyAdded = schedule.find(s => s.slug === slug);
+    const id = ++scheduleIdCounter;
     schedule.push({
+      id,
       slug,
       name: item.dataset.name,
       format: item.dataset.format,
@@ -1012,42 +1013,54 @@
       guests: ''
     });
     updateFloatBtn();
-    // update button in accordion
+    // update button state
     const btn = item.querySelector('.btn-add-schedule');
     btn.classList.add('added');
-    btn.innerHTML = `<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="2,8 6,12 14,4"/></svg>В расписании — открыть`;
-    btn.onclick = () => openModal();
+    btn.innerHTML = `<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="2,8 6,12 14,4"/></svg>В расписании`;
+    btn.onclick = () => addToSchedule(item);
+    if (alreadyAdded) {
+      showToast('Программа уже есть в расписании — добавлена на другую дату');
+    }
     openModal();
   }
 
-  function removeFromSchedule(slug) {
-    schedule = schedule.filter(s => s.slug !== slug);
+  function removeFromSchedule(id) {
+    const entry = schedule.find(s => s.id === id);
+    if (!entry) return;
+    const slug = entry.slug;
+    schedule = schedule.filter(s => s.id !== id);
     updateFloatBtn();
     renderModal();
+    // restore accordion button only if no more entries with this slug
+    const stillInSchedule = schedule.find(s => s.slug === slug);
     if (slug === 'cycle-dobryn') {
-      const btn = document.getElementById('btnAddCycle');
-      if (btn) {
-        btn.classList.remove('added');
-        btn.innerHTML = `<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="2" width="12" height="13" rx="2"/><line x1="8" y1="6" x2="8" y2="11"/><line x1="5.5" y1="8.5" x2="10.5" y2="8.5"/></svg>Добавить цикл целиком`;
-        btn.onclick = () => addCycleToSchedule();
+      if (!stillInSchedule) {
+        const btn = document.getElementById('btnAddCycle');
+        if (btn) {
+          btn.classList.remove('added');
+          btn.innerHTML = `<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="2" width="12" height="13" rx="2"/><line x1="8" y1="6" x2="8" y2="11"/><line x1="5.5" y1="8.5" x2="10.5" y2="8.5"/></svg>Добавить цикл целиком`;
+          btn.onclick = () => addCycleToSchedule();
+        }
       }
       return;
     }
-    const item = document.querySelector(`.acc-item[data-slug="${slug}"]`);
-    if (item) {
-      const btn = item.querySelector('.btn-add-schedule');
-      btn.classList.remove('added');
-      btn.innerHTML = `<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="2" width="12" height="13" rx="2"/><line x1="8" y1="6" x2="8" y2="11"/><line x1="5.5" y1="8.5" x2="10.5" y2="8.5"/></svg>Добавить в расписание`;
-      btn.onclick = () => addToSchedule(item);
+    if (!stillInSchedule) {
+      const item = document.querySelector(`.acc-item[data-slug="${slug}"]`);
+      if (item) {
+        const btn = item.querySelector('.btn-add-schedule');
+        btn.classList.remove('added');
+        btn.innerHTML = `<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="2" width="12" height="13" rx="2"/><line x1="8" y1="6" x2="8" y2="11"/><line x1="5.5" y1="8.5" x2="10.5" y2="8.5"/></svg>Добавить в расписание`;
+        btn.onclick = () => addToSchedule(item);
+      }
     }
   }
 
   function clearSchedule() {
-    const slugs = schedule.map(s => s.slug);
+    const uniqueSlugs = [...new Set(schedule.map(s => s.slug))];
     schedule = [];
     updateFloatBtn();
     renderModal();
-    slugs.forEach(slug => {
+    uniqueSlugs.forEach(slug => {
       if (slug === 'cycle-dobryn') {
         const btn = document.getElementById('btnAddCycle');
         if (btn) {
@@ -1065,6 +1078,18 @@
         btn.onclick = () => addToSchedule(item);
       }
     });
+  }
+
+  // ---- TOAST ----
+  function showToast(msg) {
+    const existing = document.getElementById('schedToast');
+    if (existing) existing.remove();
+    const t = document.createElement('div');
+    t.id = 'schedToast';
+    t.textContent = msg;
+    t.style.cssText = 'position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:#111;color:#fff;font-family:Onest,sans-serif;font-size:13px;font-weight:500;padding:10px 20px;border-radius:100px;z-index:500;white-space:nowrap;box-shadow:0 4px 16px rgba(0,0,0,0.2);animation:fadeInUp 0.2s ease;';
+    document.body.appendChild(t);
+    setTimeout(() => t.remove(), 3000);
   }
 
   function updateFloatBtn() {
@@ -1132,7 +1157,7 @@
                 <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="4" y="7" width="8" height="7" rx="1"/><path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2"/></svg>
               </button>
             </div>
-            <button class="sched-remove" onclick="removeFromSchedule('${s.slug}')" title="Удалить">✕</button>
+            <button class="sched-remove" onclick="removeFromSchedule(${s.id})" title="Удалить">✕</button>
           </div>
         </div>
       `;
