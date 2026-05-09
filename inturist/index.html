@@ -878,10 +878,7 @@
       <div class="modal-empty">Добавьте программы из каталога</div>
     </div>
     <div class="modal-foot">
-      <div class="modal-total">
-        <div class="modal-total-label">Итоговая стоимость</div>
-        <div class="modal-total-sum" id="modalTotal">0 ₽</div>
-      </div>
+
       <button class="btn-add-more" onclick="closeModal()">
         <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="width:15px;height:15px;"><line x1="8" y1="3" x2="8" y2="13"/><line x1="3" y1="8" x2="13" y2="8"/></svg>
         Добавить ещё программы
@@ -1113,17 +1110,13 @@
 
   function renderModal() {
     const body = document.getElementById('modalBody');
-    const totalEl = document.getElementById('modalTotal');
 
     if (schedule.length === 0) {
       body.innerHTML = '<div class="modal-empty">Добавьте программы из каталога</div>';
-      totalEl.textContent = '0 ₽';
       return;
     }
 
-    let total = 0;
     body.innerHTML = schedule.map((s, i) => {
-      total += s.price;
       return `
         <div class="sched-item">
           <div>
@@ -1148,7 +1141,7 @@
             <div class="sched-price-wrap">
               <span class="sched-price" id="sched-price-label-${i}">${s.price.toLocaleString('ru-RU')} ₽</span>
               <input class="sched-price-input" id="sched-price-input-${i}" type="number" value="${s.price}" min="0"
-                onchange="schedule[${i}].price=parseInt(this.value)||0; document.getElementById('sched-price-label-${i}').textContent=(parseInt(this.value)||0).toLocaleString('ru-RU')+' ₽'; recalcTotal();">
+                onchange="schedule[${i}].price=parseInt(this.value)||0; document.getElementById('sched-price-label-${i}').textContent=(parseInt(this.value)||0).toLocaleString('ru-RU')+' ₽';">
               <button class="sched-lock-btn" id="sched-lock-btn-${i}" onclick="requestPriceEdit(${i})" title="Редактировать цену">
                 <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="4" y="7" width="8" height="7" rx="1"/><path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2"/></svg>
               </button>
@@ -1159,13 +1152,9 @@
       `;
     }).join('');
 
-    totalEl.textContent = total.toLocaleString('ru-RU') + ' ₽';
   }
 
-  function recalcTotal() {
-    const total = schedule.reduce((s, e) => s + (e.price || 0), 0);
-    document.getElementById('modalTotal').textContent = total.toLocaleString('ru-RU') + ' ₽';
-  }
+  function recalcTotal() {}
 
   // ---- PRICE EDIT AUTH ----
   const KIMMERIA_PASS = 'kimmeria';
@@ -1251,7 +1240,6 @@
       if (inputs[2]) schedule[i].guests = inputs[2].value;
     });
 
-    const total = schedule.reduce((s, e) => s + e.price, 0);
     const now = new Date().toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
 
     const rows = schedule.map(s => {
@@ -1293,12 +1281,6 @@
           </thead>
           <tbody>${rows}</tbody>
         </table>
-        <div style="display:flex;justify-content:flex-end;padding:16px 16px 0;border-top:2px solid #1a4a3a;">
-          <div style="text-align:right;">
-            <div style="font-size:12px;color:#999;margin-bottom:4px;">Итого</div>
-            <div style="font-size:24px;font-weight:700;color:#1a4a3a;">${total.toLocaleString('ru-RU')} ₽</div>
-          </div>
-        </div>
       </div>
     `;
 
