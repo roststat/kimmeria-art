@@ -180,6 +180,35 @@
     .btn-print:hover { border-color: #111; }
     .btn-clear { padding: 13px 20px; background: #fff; color: #c0392b; font-family: 'Onest', sans-serif; font-size: 14px; font-weight: 600; border: 1.5px solid #ffd0d0; border-radius: 100px; cursor: pointer; transition: border-color 0.15s; white-space: nowrap; }
     .btn-clear:hover { border-color: #c0392b; }
+    .btn-contacts { flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 13px; background: var(--accent-light); color: var(--accent); font-family: 'Onest', sans-serif; font-size: 14px; font-weight: 600; border: 1.5px solid #c8e6dc; border-radius: 100px; cursor: pointer; transition: background 0.15s; }
+    .btn-contacts:hover { background: #d4ede8; }
+
+    /* SIMPLE POPUP */
+    .simple-popup-overlay { position: fixed; inset: 0; z-index: 600; background: rgba(0,0,0,0.45); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; padding: 24px; opacity: 0; pointer-events: none; transition: opacity 0.2s; }
+    .simple-popup-overlay.open { opacity: 1; pointer-events: all; }
+    .simple-popup { background: #fff; border-radius: 20px; padding: 32px 28px; max-width: 400px; width: 100%; text-align: center; transform: scale(0.95); transition: transform 0.2s; }
+    .simple-popup-overlay.open .simple-popup { transform: scale(1); }
+    .simple-popup-icon { font-size: 36px; margin-bottom: 14px; }
+    .simple-popup-title { font-size: 18px; font-weight: 700; color: #111; margin-bottom: 10px; line-height: 1.3; }
+    .simple-popup-text { font-size: 14px; color: #666; line-height: 1.7; margin-bottom: 24px; }
+    .simple-popup-close { display: inline-flex; align-items: center; justify-content: center; padding: 11px 28px; background: var(--accent); color: #fff; font-family: 'Onest', sans-serif; font-size: 14px; font-weight: 600; border: none; border-radius: 100px; cursor: pointer; transition: background 0.15s; }
+    .simple-popup-close:hover { background: var(--accent-dark); }
+
+    /* CONTACTS POPUP */
+    .contacts-popup { background: #fff; border-radius: 20px; padding: 28px; max-width: 420px; width: 100%; transform: scale(0.95); transition: transform 0.2s; }
+    .simple-popup-overlay.open .contacts-popup { transform: scale(1); }
+    .contacts-popup-title { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #999; margin-bottom: 20px; }
+    .contacts-popup-person { display: flex; align-items: center; gap: 16px; padding: 16px 0; border-bottom: 1px solid #f0f0f0; }
+    .contacts-popup-person:last-child { border-bottom: none; padding-bottom: 0; }
+    .contacts-popup-person:first-of-type { padding-top: 0; }
+    .contacts-popup-avatar { width: 56px; height: 56px; border-radius: 50%; background: var(--accent); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; color: #fff; font-family: 'Onest', sans-serif; }
+    .contacts-popup-name { font-size: 15px; font-weight: 700; color: #111; margin-bottom: 2px; }
+    .contacts-popup-role { font-size: 11px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: #999; margin-bottom: 6px; }
+    .contacts-popup-links { display: flex; gap: 10px; flex-wrap: wrap; }
+    .contacts-popup-link { display: inline-flex; align-items: center; gap: 5px; font-size: 13px; font-weight: 600; color: var(--accent); text-decoration: none; padding: 5px 12px; background: var(--accent-light); border-radius: 100px; transition: background 0.15s; }
+    .contacts-popup-link:hover { background: #d4ede8; }
+    .contacts-popup-close { width: 100%; margin-top: 20px; padding: 12px; background: #f5f5f3; color: #555; font-family: 'Onest', sans-serif; font-size: 14px; font-weight: 600; border: none; border-radius: 100px; cursor: pointer; transition: background 0.15s; }
+    .contacts-popup-close:hover { background: #eee; }
 
     /* SCHEDULE ITEM IN MODAL */
     .sched-item { padding: 18px 0; border-bottom: 1px solid #f0f0f0; display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: start; }
@@ -887,13 +916,68 @@
         Добавить ещё программы
       </button>
       <div class="modal-actions">
-        <button class="btn-print" onclick="printSchedule()">
+        <button class="btn-print" onclick="handlePrintClick()">
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="width:15px;height:15px;"><path d="M4 5V2h8v3"/><rect x="2" y="5" width="12" height="7" rx="1"/><path d="M4 9h8M4 12h5"/><path d="M4 9v5h8V9"/></svg>
-          Сохранить расписание целиком в PDF
+          Сохранить в PDF
+        </button>
+        <button class="btn-contacts" onclick="openContactsPopup()">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="width:15px;height:15px;"><circle cx="8" cy="5" r="2.5"/><path d="M2.5 13c0-2.76 2.46-5 5.5-5s5.5 2.24 5.5 5"/></svg>
+          Контакты
         </button>
         <button class="btn-clear" onclick="clearSchedule()">Очистить</button>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- MOBILE PDF POPUP -->
+<div class="simple-popup-overlay" id="mobilePdfPopup" onclick="closeMobilePdfPopup(event)">
+  <div class="simple-popup">
+    <div class="simple-popup-icon">🖥️</div>
+    <div class="simple-popup-title">Откройте на компьютере</div>
+    <div class="simple-popup-text">Сохранение в PDF доступно только в десктопной версии.<br><br>Или напишите нашим продюсерам — они пришлют готовое расписание.</div>
+    <button class="simple-popup-close" onclick="document.getElementById('mobilePdfPopup').classList.remove('open'); openContactsPopup()">Написать продюсерам</button>
+    <div style="margin-top:12px;">
+      <button onclick="document.getElementById('mobilePdfPopup').classList.remove('open')" style="background:none;border:none;font-family:'Onest',sans-serif;font-size:13px;color:#aaa;cursor:pointer;">Закрыть</button>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACTS POPUP -->
+<div class="simple-popup-overlay" id="contactsPopup" onclick="closeContactsPopup(event)">
+  <div class="contacts-popup">
+    <div class="contacts-popup-title">С кем говорить</div>
+    <div class="contacts-popup-person">
+      <div class="contacts-popup-avatar">НЛ</div>
+      <div>
+        <div class="contacts-popup-name">Наталья Лебедева</div>
+        <div class="contacts-popup-role">Генеральный продюсер</div>
+        <div class="contacts-popup-links">
+          <a class="contacts-popup-link" href="tel:+79780602986">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="width:12px;height:12px;"><path d="M2 2.5C2 2.5 4 2 5 4l1 2-2 2c1 2 3 4 5 5l2-2 2 1c2 1 1.5 3 1.5 3A12 12 0 0 1 2 2.5z"/></svg>
+            +7 978 060-29-86
+          </a>
+          <a class="contacts-popup-link" href="https://t.me/kimmeria_art" target="_blank">
+            <svg viewBox="0 0 16 16" fill="currentColor" style="width:12px;height:12px;"><path d="M13.9 2.3L1.6 7c-.8.3-.8.8-.1 1l3.1 1 1.2 3.6c.2.5.3.7.8.7.4 0 .6-.2.9-.4l1.8-1.8 3.4 2.5c.6.4 1 .2 1.2-.6l2.2-10.4c.3-.9-.3-1.3-1.2-.8z"/></svg>
+            Telegram
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="contacts-popup-person">
+      <div class="contacts-popup-avatar">ФЕ</div>
+      <div>
+        <div class="contacts-popup-name">Филипп Емельянов</div>
+        <div class="contacts-popup-role">Продюсер</div>
+        <div class="contacts-popup-links">
+          <a class="contacts-popup-link" href="tel:+79260662878">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="width:12px;height:12px;"><path d="M2 2.5C2 2.5 4 2 5 4l1 2-2 2c1 2 3 4 5 5l2-2 2 1c2 1 1.5 3 1.5 3A12 12 0 0 1 2 2.5z"/></svg>
+            +7 926 066-28-78
+          </a>
+        </div>
+      </div>
+    </div>
+    <button class="contacts-popup-close" onclick="document.getElementById('contactsPopup').classList.remove('open')">Закрыть</button>
   </div>
 </div>
 
@@ -905,6 +989,32 @@
 
 <script>
   const PASS = 'Inturist';
+
+  function isMobile() { return window.innerWidth < 760; }
+
+  function handlePrintClick() {
+    if (isMobile()) {
+      document.getElementById('mobilePdfPopup').classList.add('open');
+    } else {
+      printSchedule();
+    }
+  }
+
+  function closeMobilePdfPopup(e) {
+    if (e.target === document.getElementById('mobilePdfPopup')) {
+      document.getElementById('mobilePdfPopup').classList.remove('open');
+    }
+  }
+
+  function openContactsPopup() {
+    document.getElementById('contactsPopup').classList.add('open');
+  }
+
+  function closeContactsPopup(e) {
+    if (e.target === document.getElementById('contactsPopup')) {
+      document.getElementById('contactsPopup').classList.remove('open');
+    }
+  }
   let isAdmin = sessionStorage.getItem('inturist_admin') === '1';
   let schedule = []; // [{slug, name, format, price, date, time, guests}]
 
