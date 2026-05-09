@@ -190,9 +190,23 @@
     .sched-field input[type="time"], .sched-field input[type="number"] { width: 100px; }
     .sched-field input:focus { border-color: var(--accent); background: #fff; }
     .sched-right { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
+    .sched-price-wrap { display: flex; align-items: center; gap: 6px; }
     .sched-price { font-size: 16px; font-weight: 700; color: var(--accent); white-space: nowrap; }
+    .sched-price-input { font-size: 15px; font-weight: 700; color: var(--accent); width: 110px; padding: 5px 10px; border: 1.5px solid var(--accent); border-radius: 8px; font-family: 'Onest', sans-serif; text-align: right; outline: none; background: #fff; display: none; }
+    .sched-price-input:focus { border-color: var(--accent-dark); }
+    .sched-lock-btn { background: none; border: none; cursor: pointer; color: #ccc; padding: 2px; transition: color 0.15s; display: flex; align-items: center; }
+    .sched-lock-btn:hover { color: var(--accent); }
+    .sched-lock-btn svg { width: 13px; height: 13px; }
     .sched-remove { background: none; border: none; cursor: pointer; color: #ccc; font-size: 18px; line-height: 1; transition: color 0.15s; padding: 2px; }
     .sched-remove:hover { color: #c0392b; }
+    /* PRICE AUTH POPUP */
+    .price-auth-popup { position: absolute; right: 0; top: 100%; margin-top: 6px; background: #fff; border: 1.5px solid #e8e8e8; border-radius: 12px; padding: 14px 16px; box-shadow: 0 8px 24px rgba(0,0,0,0.12); z-index: 500; min-width: 240px; }
+    .price-auth-popup-title { font-size: 12px; font-weight: 700; color: #111; margin-bottom: 10px; }
+    .price-auth-popup-row { display: flex; gap: 8px; }
+    .price-auth-popup input { flex: 1; padding: 8px 12px; border: 1.5px solid #e8e8e8; border-radius: 8px; font-family: 'Onest', sans-serif; font-size: 13px; outline: none; transition: border-color 0.2s; }
+    .price-auth-popup input:focus { border-color: var(--accent); }
+    .price-auth-popup button { padding: 8px 14px; background: var(--accent); color: #fff; font-family: 'Onest', sans-serif; font-size: 12px; font-weight: 600; border: none; border-radius: 8px; cursor: pointer; white-space: nowrap; }
+    .price-auth-err { font-size: 11px; color: #c0392b; margin-top: 6px; min-height: 14px; }
 
     /* PRINT STYLES */
     @media print {
@@ -1088,8 +1102,15 @@
               </div>
             </div>
           </div>
-          <div class="sched-right">
-            <div class="sched-price">${s.price.toLocaleString('ru-RU')} ₽</div>
+          <div class="sched-right" style="position:relative;">
+            <div class="sched-price-wrap">
+              <span class="sched-price" id="sched-price-label-${i}">${s.price.toLocaleString('ru-RU')} ₽</span>
+              <input class="sched-price-input" id="sched-price-input-${i}" type="number" value="${s.price}" min="0"
+                onchange="schedule[${i}].price=parseInt(this.value)||0; document.getElementById('sched-price-label-${i}').textContent=(parseInt(this.value)||0).toLocaleString('ru-RU')+' ₽'; recalcTotal();">
+              <button class="sched-lock-btn" id="sched-lock-btn-${i}" onclick="requestPriceEdit(${i})" title="Редактировать цену">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="4" y="7" width="8" height="7" rx="1"/><path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2"/></svg>
+              </button>
+            </div>
             <button class="sched-remove" onclick="removeFromSchedule('${s.slug}')" title="Удалить">✕</button>
           </div>
         </div>
@@ -1099,11 +1120,90 @@
     totalEl.textContent = total.toLocaleString('ru-RU') + ' ₽';
   }
 
+  function recalcTotal() {
+    const total = schedule.reduce((s, e) => s + (e.price || 0), 0);
+    document.getElementById('modalTotal').textContent = total.toLocaleString('ru-RU') + ' ₽';
+  }
+
+  // ---- PRICE EDIT AUTH ----
+  const KIMMERIA_PASS = 'kimmeria';
+  let priceEditUnlocked = sessionStorage.getItem('kimmeria_price_edit') === '1';
+
+  function requestPriceEdit(idx) {
+    if (priceEditUnlocked) {
+      togglePriceEdit(idx);
+      return;
+    }
+    // показываем попап с паролем
+    closePriceAuthPopup();
+    const lockBtn = document.getElementById(`sched-lock-btn-${idx}`);
+    const popup = document.createElement('div');
+    popup.className = 'price-auth-popup';
+    popup.id = 'priceAuthPopup';
+    popup.innerHTML = `
+      <div class="price-auth-popup-title">Пароль администратора Киммерии</div>
+      <div class="price-auth-popup-row">
+        <input type="password" id="priceAuthInput" placeholder="Пароль" onkeydown="if(event.key==='Enter')confirmPriceAuth(${idx})">
+        <button onclick="confirmPriceAuth(${idx})">Войти</button>
+      </div>
+      <div class="price-auth-err" id="priceAuthErr"></div>
+    `;
+    lockBtn.parentElement.appendChild(popup);
+    setTimeout(() => popup.querySelector('input').focus(), 50);
+  }
+
+  function confirmPriceAuth(idx) {
+    const val = document.getElementById('priceAuthInput').value;
+    if (val === KIMMERIA_PASS) {
+      priceEditUnlocked = true;
+      sessionStorage.setItem('kimmeria_price_edit', '1');
+      closePriceAuthPopup();
+      togglePriceEdit(idx);
+    } else {
+      document.getElementById('priceAuthErr').textContent = 'Неверный пароль';
+    }
+  }
+
+  function closePriceAuthPopup() {
+    const p = document.getElementById('priceAuthPopup');
+    if (p) p.remove();
+  }
+
+  function togglePriceEdit(idx) {
+    closePriceAuthPopup();
+    const label = document.getElementById(`sched-price-label-${idx}`);
+    const input = document.getElementById(`sched-price-input-${idx}`);
+    const lockBtn = document.getElementById(`sched-lock-btn-${idx}`);
+    const editing = input.style.display === 'block';
+    if (editing) {
+      // закрыть
+      input.style.display = 'none';
+      label.style.display = 'inline';
+      lockBtn.innerHTML = `<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="4" y="7" width="8" height="7" rx="1"/><path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2"/></svg>`;
+      lockBtn.title = 'Редактировать цену';
+    } else {
+      // открыть
+      input.style.display = 'block';
+      label.style.display = 'none';
+      input.focus();
+      lockBtn.innerHTML = `<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="4" y="7" width="8" height="7" rx="1"/><path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2"/><line x1="8" y1="10" x2="8" y2="11.5"/></svg>`;
+      lockBtn.title = 'Сохранить цену';
+    }
+  }
+
+  // закрывать попап при клике вне
+  document.addEventListener('click', e => {
+    const popup = document.getElementById('priceAuthPopup');
+    if (popup && !popup.contains(e.target) && !e.target.closest('.sched-lock-btn')) {
+      closePriceAuthPopup();
+    }
+  });
+
   // ---- PRINT ----
   function printSchedule() {
-    // sync time/date/guests values from inputs before printing
+    // sync all fields before printing
     document.querySelectorAll('.sched-item').forEach((el, i) => {
-      const inputs = el.querySelectorAll('input');
+      const inputs = el.querySelectorAll('input[type="date"], input[type="time"], input[type="number"]:not(.sched-price-input)');
       if (inputs[0]) schedule[i].date = inputs[0].value;
       if (inputs[1]) schedule[i].time = inputs[1].value;
       if (inputs[2]) schedule[i].guests = inputs[2].value;
