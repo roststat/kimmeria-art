@@ -210,7 +210,7 @@
 
     /* PRINT STYLES */
     @media print {
-      nav, .float-btn, .modal-overlay, .auth-gate, .intro-block, .section-label, .section-title, .section-sub, .accordion, .cta-block, #site-footer { display: none !important; }
+      nav, .float-btn, .modal-overlay, .auth-gate, .intro-block, .section-label, .section-title, .section-sub, .accordion, .cta-block, #site-footer, footer, .cookie-bar { display: none !important; }
       body { background: #fff; }
       .page-main { padding: 0; max-width: 100%; }
       .print-only { display: block !important; }
@@ -905,6 +905,43 @@
   let isAdmin = sessionStorage.getItem('inturist_admin') === '1';
   let schedule = []; // [{slug, name, format, price, date, time, guests}]
 
+  const LS_KEY = 'kimmeria_inturist_schedule';
+
+  function saveSchedule() {
+    localStorage.setItem(LS_KEY, JSON.stringify({ schedule, counter: scheduleIdCounter }));
+  }
+
+  function restoreSchedule() {
+    try {
+      const raw = localStorage.getItem(LS_KEY);
+      if (!raw) return;
+      const { schedule: saved, counter } = JSON.parse(raw);
+      if (!Array.isArray(saved) || saved.length === 0) return;
+      schedule = saved;
+      scheduleIdCounter = counter || saved.length;
+      // восстанавливаем состояние кнопок
+      schedule.forEach(s => {
+        if (s.slug === 'cycle-dobryn') {
+          const btn = document.getElementById('btnAddCycle');
+          if (btn) {
+            btn.classList.add('added');
+            btn.innerHTML = `<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="2,8 6,12 14,4"/></svg>В расписании — открыть`;
+            btn.onclick = () => openModal();
+          }
+        } else {
+          const item = document.querySelector(`.acc-item[data-slug="${s.slug}"]`);
+          if (item) {
+            const btn = item.querySelector('.btn-add-schedule');
+            btn.classList.add('added');
+            btn.innerHTML = `<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="2,8 6,12 14,4"/></svg>В расписании`;
+            btn.onclick = () => addToSchedule(item);
+          }
+        }
+      });
+      updateFloatBtn();
+    } catch(e) {}
+  }
+
   // ---- AUTH ----
   function checkAuth() {
     const val = document.getElementById('authInput').value.trim();
@@ -923,6 +960,7 @@
     document.getElementById('authGate').style.display = 'none';
     document.getElementById('mainContent').style.display = 'block';
     document.getElementById('navAdminBadge').classList.add('visible');
+    restoreSchedule();
   }
 
   function adminLogout() {
@@ -986,6 +1024,7 @@
     btn.innerHTML = `<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="2,8 6,12 14,4"/></svg>В расписании — открыть`;
     btn.onclick = () => openModal();
     updateFloatBtn();
+    saveSchedule();
     openModal();
   }
 
@@ -1006,6 +1045,7 @@
       guests: ''
     });
     updateFloatBtn();
+    saveSchedule();
     // update button state
     const btn = item.querySelector('.btn-add-schedule');
     btn.classList.add('added');
@@ -1023,6 +1063,7 @@
     const slug = entry.slug;
     schedule = schedule.filter(s => s.id !== id);
     updateFloatBtn();
+    saveSchedule();
     renderModal();
     // restore accordion button only if no more entries with this slug
     const stillInSchedule = schedule.find(s => s.slug === slug);
@@ -1052,6 +1093,7 @@
     const uniqueSlugs = [...new Set(schedule.map(s => s.slug))];
     schedule = [];
     updateFloatBtn();
+    saveSchedule();
     renderModal();
     uniqueSlugs.forEach(slug => {
       if (slug === 'cycle-dobryn') {
@@ -1125,15 +1167,15 @@
             <div class="sched-fields">
               <div class="sched-field">
                 <label>Дата</label>
-                <input type="date" value="${s.date}" onchange="schedule[${i}].date=this.value">
+                <input type="date" value="${s.date}" onchange="schedule[${i}].date=this.value;saveSchedule()">
               </div>
               <div class="sched-field">
                 <label>Время</label>
-                <input type="time" value="${s.time || '19:00'}" onchange="schedule[${i}].time=this.value">
+                <input type="time" value="${s.time || '19:00'}" onchange="schedule[${i}].time=this.value;saveSchedule()">
               </div>
               <div class="sched-field">
                 <label>Гостей</label>
-                <input type="number" placeholder="чел." min="1" value="${s.guests}" onchange="schedule[${i}].guests=this.value" style="width:90px;">
+                <input type="number" placeholder="чел." min="1" value="${s.guests}" onchange="schedule[${i}].guests=this.value;saveSchedule()" style="width:90px;">
               </div>
             </div>
           </div>
@@ -1141,7 +1183,7 @@
             <div class="sched-price-wrap">
               <span class="sched-price" id="sched-price-label-${i}">${s.price.toLocaleString('ru-RU')} ₽</span>
               <input class="sched-price-input" id="sched-price-input-${i}" type="number" value="${s.price}" min="0"
-                onchange="schedule[${i}].price=parseInt(this.value)||0; document.getElementById('sched-price-label-${i}').textContent=(parseInt(this.value)||0).toLocaleString('ru-RU')+' ₽';">
+                onchange="schedule[${i}].price=parseInt(this.value)||0; document.getElementById('sched-price-label-${i}').textContent=(parseInt(this.value)||0).toLocaleString('ru-RU')+' ₽'; saveSchedule();">
               <button class="sched-lock-btn" id="sched-lock-btn-${i}" onclick="requestPriceEdit(${i})" title="Редактировать цену">
                 <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="4" y="7" width="8" height="7" rx="1"/><path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2"/></svg>
               </button>
@@ -1281,6 +1323,28 @@
           </thead>
           <tbody>${rows}</tbody>
         </table>
+
+        <div style="margin-top:32px;padding-top:24px;border-top:1.5px solid #e8e8e8;">
+          <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#999;margin-bottom:16px;">С кем говорить</div>
+          <div style="display:flex;gap:24px;">
+            <div style="display:flex;align-items:center;gap:14px;flex:1;">
+              <div style="width:52px;height:52px;border-radius:50%;background:#1a4a3a;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:#fff;font-family:'Onest',Arial,sans-serif;">НЛ</div>
+              <div>
+                <div style="font-size:14px;font-weight:700;color:#111;margin-bottom:2px;">Наталья Лебедева</div>
+                <div style="font-size:11px;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;color:#888;margin-bottom:4px;">Генеральный продюсер</div>
+                <div style="font-size:13px;color:#1a4a3a;font-weight:600;">+7 978 060-29-86</div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:14px;flex:1;">
+              <div style="width:52px;height:52px;border-radius:50%;background:#1a4a3a;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:#fff;font-family:'Onest',Arial,sans-serif;">ФЕ</div>
+              <div>
+                <div style="font-size:14px;font-weight:700;color:#111;margin-bottom:2px;">Филипп Емельянов</div>
+                <div style="font-size:11px;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;color:#888;margin-bottom:4px;">Продюсер</div>
+                <div style="font-size:13px;color:#1a4a3a;font-weight:600;">+7 926 066-28-78</div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     `;
 
