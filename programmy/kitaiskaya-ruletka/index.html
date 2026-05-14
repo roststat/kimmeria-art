@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -195,5 +195,18 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbo
 <button class="fab-share" id="fabShare" onclick="fabShareClick()" title="Поделиться"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg><span class="fab-share-label">Поделиться</span></button>
 <div class="fab-share-toast" id="fabShareToast">Ссылка скопирована!</div>
 <script>function fabShareClick(){var url=window.location.href.split('?')[0];var titleEl=document.querySelector('h1,.page-title');var shareText=(titleEl?titleEl.textContent.trim():document.title)+' — Киммерия-Арт';if(navigator.share){navigator.share({title:shareText,url:url}).catch(function(){});}else{navigator.clipboard.writeText(url).then(function(){var toast=document.getElementById('fabShareToast');toast.style.display='block';setTimeout(function(){toast.style.display='none';},2500);}).catch(function(){var ta=document.createElement('textarea');ta.value=url;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);var toast=document.getElementById('fabShareToast');toast.style.display='block';setTimeout(function(){toast.style.display='none';},2500);});}}</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var selectors = ['.poster-img', '.speaker-photo', '.team-photo', '.gallery-item img'];
+  selectors.forEach(function(sel) {
+    document.querySelectorAll(sel).forEach(function(img) {
+      img.style.cursor = 'zoom-in';
+      img.addEventListener('click', function() {
+        openLightbox(img.src);
+      });
+    });
+  });
+});
+</script>
 </body>
 </html>

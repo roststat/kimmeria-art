@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -532,6 +532,19 @@ function fabShareClick() {
     });
   }
 }
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var selectors = ['.poster-img', '.speaker-photo', '.team-photo', '.gallery-item img'];
+  selectors.forEach(function(sel) {
+    document.querySelectorAll(sel).forEach(function(img) {
+      img.style.cursor = 'zoom-in';
+      img.addEventListener('click', function() {
+        openLightbox(img.src);
+      });
+    });
+  });
+});
 </script>
 </body>
 </html>
