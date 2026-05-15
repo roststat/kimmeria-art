@@ -79,6 +79,13 @@
     .lightbox-close { position: absolute; top: 20px; right: 24px; font-size: 32px; color: #fff; cursor: pointer; background: none; border: none; opacity: 0.7; line-height: 1; }
     .lightbox-close:hover { opacity: 1; }
 
+    .photo-section { max-width: 1200px; margin: 0 auto; padding: 0 48px 60px; }
+    .photo-section-title { font-size: 20px; font-weight: 600; color: #111; margin-bottom: 16px; }
+    .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .gallery-grid img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 8px; cursor: zoom-in; display: block; transition: opacity 0.15s; }
+    .gallery-grid img:hover { opacity: 0.88; }
+    @media (max-width: 600px) { .photo-section { padding: 0 16px 40px; } .gallery-grid { grid-template-columns: repeat(2, 1fr); } }
+
     @media (max-width: 900px) {
       nav { padding: 0 20px; }
       .event-hero-inner { grid-template-columns: 1fr; gap: 24px; padding: 32px 20px; justify-items: center; text-align: center; }
@@ -173,6 +180,18 @@
       <a href="https://t.me/kimmeria_art" target="_blank" class="btn-secondary">Написать в Telegram</a>
     </div>
   </aside>
+</div>
+
+<div class="photo-section">
+  <h2 class="photo-section-title">Фотоотчёт</h2>
+  <div class="gallery-grid">
+    <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1778875077/kimmeria/sladkoe-1.jpg" alt="А что у нас на сладкое — фото 1" onclick="openLightbox(this.src)" loading="lazy">
+    <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1778875079/kimmeria/sladkoe-2.jpg" alt="А что у нас на сладкое — фото 2" onclick="openLightbox(this.src)" loading="lazy">
+    <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1778875081/kimmeria/sladkoe-3.jpg" alt="А что у нас на сладкое — фото 3" onclick="openLightbox(this.src)" loading="lazy">
+    <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1778875082/kimmeria/sladkoe-4.jpg" alt="А что у нас на сладкое — фото 4" onclick="openLightbox(this.src)" loading="lazy">
+    <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1778875084/kimmeria/sladkoe-5.jpg" alt="А что у нас на сладкое — фото 5" onclick="openLightbox(this.src)" loading="lazy">
+    <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1778875086/kimmeria/sladkoe-6.jpg" alt="А что у нас на сладкое — фото 6" onclick="openLightbox(this.src)" loading="lazy">
+  </div>
 </div>
 
 <div class="back-section">
