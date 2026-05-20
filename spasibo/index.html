@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Вы записаны на курс! — Кинокомпания «Киммерия»</title>
+<title>Вы записаны! — Киммерия-Арт</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -17,84 +17,133 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 60px; di
 .icon { font-size: 64px; margin-bottom: 24px; }
 .title { font-size: 32px; font-weight: 800; color: #111; line-height: 1.2; margin-bottom: 16px; letter-spacing: -0.01em; }
 .subtitle { font-size: 16px; color: #555; line-height: 1.7; margin-bottom: 32px; }
-.details { background: #f0f7f5; border-radius: 16px; padding: 24px; text-align: left; margin-bottom: 32px; }
-.details-row { display: flex; gap: 12px; align-items: baseline; padding: 9px 0; border-bottom: 1px solid #ddeee9; }
+.details { border-radius: 16px; padding: 24px; text-align: left; margin-bottom: 32px; }
+.details-row { display: flex; gap: 12px; align-items: baseline; padding: 9px 0; border-bottom: 1px solid rgba(0,0,0,0.07); }
 .details-row:last-child { border-bottom: none; }
-.details-key { font-size: 11px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: #1a4a3a; min-width: 88px; flex-shrink: 0; }
+.details-key { font-size: 11px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; min-width: 88px; flex-shrink: 0; }
 .details-val { font-size: 15px; color: #111; font-weight: 600; }
-.btn { display: block; width: 100%; padding: 16px 24px; background: #1a4a3a; color: #fff; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 700; text-decoration: none; border-radius: 100px; transition: opacity 0.15s; text-align: center; border: none; cursor: pointer; }
+.btn { display: block; width: 100%; padding: 16px 24px; color: #fff; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 700; text-decoration: none; border-radius: 100px; transition: opacity 0.15s; text-align: center; border: none; cursor: pointer; }
 .btn:hover { opacity: 0.88; }
-.btn-share { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 14px 24px; background: #fff; color: #1a4a3a; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; border: 1.5px solid #1a4a3a; border-radius: 100px; cursor: pointer; transition: background 0.15s; margin-top: 12px; }
-.btn-share:hover { background: #f0f7f5; }
-.share-toast { display: none; font-size: 13px; color: #1a4a3a; margin-top: 12px; font-weight: 500; }
-@media (max-width: 600px) {
-  .card { padding: 36px 24px; }
-  .title { font-size: 26px; }
-  nav { padding: 0 20px; }
-}
+.btn-share { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 14px 24px; background: #fff; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; border-radius: 100px; cursor: pointer; transition: background 0.15s; margin-top: 12px; border: 1.5px solid currentColor; }
+.share-toast { display: none; font-size: 13px; margin-top: 12px; font-weight: 500; }
+@media (max-width: 600px) { .card { padding: 36px 24px; } .title { font-size: 26px; } nav { padding: 0 20px; } }
 </style>
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");ym(108987141,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true});</script>
 <noscript><div><img src="https://mc.yandex.ru/watch/108987141" style="position:absolute;left:-9999px;" alt=""/></div></noscript>
-<!-- /Yandex.Metrika counter -->
 </head>
 <body>
 <nav>
   <a href="/" class="nav-logo">Киммерия-Арт</a>
 </nav>
-<div class="card">
-  <div class="icon">🎬</div>
-  <h1 class="title">Вы записаны на курс!</h1>
-  <p class="subtitle">Спасибо! Мы получили вашу заявку. В ближайшее время с вами свяжется менеджер для подтверждения записи и уточнения деталей оплаты.</p>
-  <div class="details">
-    <div class="details-row">
-      <span class="details-key">Начало</span>
-      <span class="details-val">5 мая 2026</span>
-    </div>
-    <div class="details-row">
-      <span class="details-key">Расписание</span>
-      <span class="details-val">Вторник и суббота, 18:00</span>
-    </div>
-    <div class="details-row">
-      <span class="details-key">Формат</span>
-      <span class="details-val">8 встреч · 4 недели</span>
-    </div>
-    <div class="details-row">
-      <span class="details-key">Оплата</span>
-      <span class="details-val">На месте при первом посещении</span>
-    </div>
-  </div>
-  <button class="btn" id="backBtn" onclick="goBack()">Отлично, назад к курсу →</button>
-  <button class="btn-share" onclick="shareInfo()">
+<div class="card" id="card">
+  <div class="icon" id="icon">🎬</div>
+  <h1 class="title" id="title">Вы записаны!</h1>
+  <p class="subtitle">Спасибо! Мы получили вашу заявку. В ближайшее время с вами свяжется менеджер для подтверждения записи и уточнения деталей.</p>
+  <div class="details" id="details"></div>
+  <button class="btn" id="backBtn" onclick="goBack()">Отлично, назад →</button>
+  <button class="btn-share" id="shareBtn" onclick="shareInfo()">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
-    Поделиться информацией о записи
+    Поделиться
   </button>
   <div class="share-toast" id="shareToast">Скопировано в буфер обмена!</div>
 </div>
 <div id="site-footer"></div>
+
 <script>
+// Конфиг курсов — при добавлении нового курса просто добавить блок сюда
+var COURSES = {
+  'kurs-mikrodram': {
+    accent: '#1a4a3a',
+    accentLight: '#e8f4f0',
+    accentText: '#1a4a3a',
+    icon: '🎬',
+    title: 'Вы записаны на курс!',
+    rows: [
+      { key: 'Курс',       val: 'Как создать микродраму' },
+      { key: 'Начало',     val: '12 мая 2026' },
+      { key: 'Расписание', val: 'Вт и Сб · 18:00' },
+      { key: 'Формат',     val: '8 встреч · 4 недели' },
+      { key: 'Стоимость',  val: '15 000 ₽' }
+    ],
+    url: '/kurs-mikrodram/',
+    shareText: 'Я записалась на курс «Как создать микродраму» в Кинокомпании «Киммерия»!\n\n📅 Начало: 12 мая 2026\n🕕 Вт и Сб, 18:00\n🎬 8 встреч · 4 недели\n📍 Ялта\n\nhttps://art-kimmeria.ru/kurs-mikrodram/'
+  },
+  'kino-intensiv': {
+    accent: '#c8360a',
+    accentLight: '#fdf0ec',
+    accentText: '#c8360a',
+    icon: '🎥',
+    title: 'Вы записаны на интенсив!',
+    rows: [
+      { key: 'Курс',       val: 'Летний киноинтенсив для подростков' },
+      { key: 'Начало',     val: '3 июня 2026' },
+      { key: 'Расписание', val: 'Пн, Ср, Пт · 12:00–15:00' },
+      { key: 'Длительность', val: '5 недель · 15 занятий' },
+      { key: 'Адрес',     val: 'Ялта, ул. Игнатенко, 5' },
+      { key: 'Стоимость',  val: 'от 5 000 ₽ в неделю' }
+    ],
+    url: '/kino-intensiv/',
+    shareText: 'Мой ребёнок идёт на Летний киноинтенсив в Киношколу «Киммерия»!\n\n📅 3 июня — 5 июля 2026\n🕛 Пн, Ср, Пт · 12:00–15:00\n🎬 Актёрство · Сценарий · Съёмки фильма\n📍 Ялта, ул. Игнатенко, 5\n\nhttps://art-kimmeria.ru/kino-intensiv/'
+  }
+};
+
+// Дефолт — если курс не определён
+var DEFAULT = {
+  accent: '#1a4a3a',
+  accentLight: '#e8f4f0',
+  accentText: '#1a4a3a',
+  icon: '🎬',
+  title: 'Вы записаны!',
+  rows: [
+    { key: 'Статус', val: 'Заявка принята' }
+  ],
+  url: '/',
+  shareText: 'Я записалась на мероприятие Кинокомпании «Киммерия»! https://art-kimmeria.ru'
+};
+
+var from = new URLSearchParams(window.location.search).get('from') || '';
+var cfg = COURSES[from] || DEFAULT;
+
+// Применяем цвета
+document.getElementById('icon').textContent = cfg.icon;
+document.getElementById('title').textContent = cfg.title;
+
+var details = document.getElementById('details');
+details.style.background = cfg.accentLight;
+var html = '';
+cfg.rows.forEach(function(r) {
+  html += '<div class="details-row">'
+    + '<span class="details-key" style="color:' + cfg.accentText + '">' + r.key + '</span>'
+    + '<span class="details-val">' + r.val + '</span>'
+    + '</div>';
+});
+details.innerHTML = html;
+
+var btn = document.getElementById('backBtn');
+btn.style.background = cfg.accent;
+
+var shareBtn = document.getElementById('shareBtn');
+shareBtn.style.color = cfg.accent;
+shareBtn.style.borderColor = cfg.accent;
+
+var toast = document.getElementById('shareToast');
+toast.style.color = cfg.accent;
+
 function goBack() {
   var ref = document.referrer;
   if (ref && ref.indexOf(location.hostname) !== -1 && ref.indexOf('/spasibo') === -1) {
     history.back();
   } else {
-    window.location.href = '/kurs-mikrodram/';
+    window.location.href = cfg.url;
   }
 }
 
 function shareInfo() {
-  var text = 'Я записалась на курс «Как создать микродраму» в Кинокомпании «Киммерия»!\n\n'
-    + '📅 Начало: 5 мая 2026\n'
-    + '🕕 Вторник и суббота, 18:00\n'
-    + '🎬 Формат: 8 встреч · 4 недели\n'
-    + '📍 Ялта\n\n'
-    + 'Подробнее: https://art-kimmeria.ru/kurs-mikrodram/';
-
   if (navigator.share) {
-    navigator.share({ title: 'Записалась на курс по микродрамам', text: text });
+    navigator.share({ title: cfg.title, text: cfg.shareText });
   } else {
-    navigator.clipboard.writeText(text).then(function() {
-      var toast = document.getElementById('shareToast');
+    navigator.clipboard.writeText(cfg.shareText).then(function() {
       toast.style.display = 'block';
       setTimeout(function() { toast.style.display = 'none'; }, 3000);
     });
