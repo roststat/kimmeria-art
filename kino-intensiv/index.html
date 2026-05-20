@@ -204,6 +204,55 @@ h1.hero-title { font-size: 52px; font-weight: 800; color: #fff; line-height: 1.0
 .fab-share-toast { position: fixed; top: calc(50% - 56px); right: 24px; z-index: 201; background: var(--accent); color: #fff; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; padding: 10px 18px; border-radius: 100px; display: none; box-shadow: 0 4px 16px rgba(0,0,0,0.15); }
 @media (max-width: 600px) { .fab-share { right: 16px; padding: 10px 14px; } .fab-share-label { display: none; } .fab-share-toast { right: 16px; } }
 @media (max-width: 900px) { .gallery-wrap { padding: 0 24px 52px !important; } }
+
+/* ГОСТЬ В РАСПИСАНИИ (Веденьё) */
+.week-day-guest { display: flex; align-items: center; gap: 10px; margin-top: 12px; padding: 10px 14px; background: var(--accent-light); border-radius: 10px; cursor: pointer; transition: background 0.15s; border: 1px solid rgba(200,54,10,0.12); }
+.week-day-guest:hover { background: #f9ddd5; }
+.guest-avatar { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 2px solid rgba(200,54,10,0.2); }
+.guest-info { flex: 1; min-width: 0; }
+.guest-name { font-size: 13px; font-weight: 700; color: #111; }
+.guest-role { font-size: 11px; color: #777; margin-top: 1px; }
+.guest-more { font-size: 12px; font-weight: 700; color: var(--accent); white-space: nowrap; flex-shrink: 0; }
+
+/* ПИТЧИНГ */
+.week-day-pitch { border: 2px solid var(--accent) !important; border-radius: 12px; overflow: hidden; }
+.week-day-date-pitch { background: var(--accent) !important; color: #fff !important; }
+.week-day-body-pitch { border-color: transparent !important; background: var(--accent-light); }
+.week-day-title-pitch { color: var(--accent); }
+.week-day-desc-pitch { color: #444; }
+.pitch-header { display: flex; align-items: flex-start; gap: 16px; justify-content: space-between; }
+.pitch-logo-wrap { flex-shrink: 0; text-align: center; }
+.pitch-logo { width: 64px; height: 64px; object-fit: contain; border-radius: 8px; display: block; mix-blend-mode: multiply; }
+.pitch-logo-label { font-size: 10px; color: #888; margin-top: 4px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
+
+/* ВЫПУСКНОЙ */
+.week-day-graduation { border: 2px solid #7c5a00 !important; border-radius: 12px; overflow: hidden; }
+.week-day-date-graduation { background: #7c5a00 !important; color: #fff !important; }
+.week-day-body-graduation { border-color: transparent !important; background: #fdf8ec; }
+.week-day-title-graduation { color: #7c5a00; }
+.week-day-desc-graduation { color: #555; }
+
+/* БОНУС-БЛОК ПОКАЗА */
+.program-week-bonus { opacity: 0.85; }
+.week-label-bonus { color: #888; border-bottom-color: #e8e8e8; }
+.week-day-screening { border: 2px dashed #bbb !important; border-radius: 12px; overflow: hidden; }
+.week-day-date-screening { background: #f0f0f0 !important; color: #888 !important; font-style: italic; }
+.week-day-body-screening { border-color: transparent !important; background: #fafafa; }
+.week-day-title-screening { color: #555; }
+.week-day-desc-screening { color: #888; }
+.screening-header { display: flex; align-items: flex-start; gap: 16px; justify-content: space-between; }
+.screening-badge { flex-shrink: 0; font-size: 11px; font-weight: 700; color: #888; background: #e8e8e8; padding: 4px 12px; border-radius: 100px; white-space: nowrap; margin-top: 2px; }
+
+/* ПОПАП ВЕДЕНЬЁ */
+.vedene-popup { background: #fff; border-radius: 24px; max-width: 520px; width: 100%; padding: 40px; position: relative; box-shadow: 0 24px 80px rgba(0,0,0,0.2); animation: popIn 0.25s cubic-bezier(0.34,1.56,0.64,1); }
+.vedene-popup-header { display: flex; gap: 20px; align-items: center; margin-bottom: 20px; }
+.vedene-popup-avatar { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 3px solid var(--accent-light); }
+.vedene-popup-name { font-size: 22px; font-weight: 800; color: #111; margin-bottom: 4px; }
+.vedene-popup-role { font-size: 13px; color: #888; }
+.vedene-popup-bio { font-size: 15px; color: #444; line-height: 1.75; margin-bottom: 16px; }
+.vedene-popup-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.vedene-popup-tag { font-size: 11px; font-weight: 700; color: var(--accent); background: var(--accent-light); padding: 4px 12px; border-radius: 100px; }
+@media (max-width: 600px) { .pitch-logo { width: 48px; height: 48px; } .screening-badge { display: none; } }
 </style>
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");ym(108987141,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true});</script>
@@ -364,6 +413,14 @@ h1.hero-title { font-size: 52px; font-weight: 800; color: #fff; line-height: 1.0
           <div class="week-day-body">
             <div class="week-day-title">Основы сценарного мастерства</div>
             <div class="week-day-desc">Что такое история · Герой и конфликт · Структура короткого метра</div>
+            <div class="week-day-guest" onclick="openVedenePopup()">
+              <img class="guest-avatar" src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156959/kimmeria/speaker-vedene.jpg" alt="Сергей Веденьё">
+              <div class="guest-info">
+                <div class="guest-name">Сергей Веденьё</div>
+                <div class="guest-role">Сценарист · ВГИК · Союз писателей</div>
+              </div>
+              <div class="guest-more">Подробнее →</div>
+            </div>
           </div>
         </div>
         <div class="week-day">
@@ -384,13 +441,28 @@ h1.hero-title { font-size: 52px; font-weight: 800; color: #fff; line-height: 1.0
     </div>
 
     <div class="program-week">
-      <div class="week-label">Неделя 3 — Репетиции</div>
+      <div class="week-label">Неделя 3 — Репетиции и защита проекта</div>
       <div class="week-days">
         <div class="week-day">
-          <div class="week-day-date">17–21 июня</div>
+          <div class="week-day-date">17–19 июня</div>
           <div class="week-day-body">
             <div class="week-day-title">Репетиции сцен фильма</div>
             <div class="week-day-desc">Распределение ролей · Разбор сцен · Работа с партнёром · Репетиции на площадке</div>
+          </div>
+        </div>
+        <div class="week-day week-day-pitch">
+          <div class="week-day-date week-day-date-pitch">21 июня · Пт · 12:00</div>
+          <div class="week-day-body week-day-body-pitch">
+            <div class="pitch-header">
+              <div>
+                <div class="week-day-title week-day-title-pitch">🎤 Защита проекта — Питчинг</div>
+                <div class="week-day-desc week-day-desc-pitch">Участники презентуют свои сценарии перед экспертной группой кинокомпании «Киммерия» · Обратная связь от профессионалов · Ключевое событие третьей недели</div>
+              </div>
+              <div class="pitch-logo-wrap">
+                <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156887/kimmeria/logo-kimmeria.jpg" alt="Кинокомпания Киммерия" class="pitch-logo">
+                <div class="pitch-logo-label">Экспертная группа</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -410,20 +482,38 @@ h1.hero-title { font-size: 52px; font-weight: 800; color: #fff; line-height: 1.0
     </div>
 
     <div class="program-week">
-      <div class="week-label">Неделя 5 — Личная видео-визитка и финал</div>
+      <div class="week-label">Неделя 5 — Личная видео-визитка и выпускной</div>
       <div class="week-days">
         <div class="week-day">
-          <div class="week-day-date">1 июля · Вт · 12:00</div>
+          <div class="week-day-date">1–3 июля</div>
           <div class="week-day-body">
             <div class="week-day-title">Съёмка личной видео-визитки</div>
-            <div class="week-day-desc">Каждый участник снимает профессиональную актёрскую визитку для кастингов</div>
+            <div class="week-day-desc">Каждый участник снимает профессиональную актёрскую визитку для кастингов и актёрских баз</div>
           </div>
         </div>
-        <div class="week-day" style="border: 2px solid var(--accent); border-radius: 12px;">
-          <div class="week-day-date" style="background: var(--accent); color: #fff;">5 июля · Сб · 12:00</div>
-          <div class="week-day-body" style="border-color: transparent; background: var(--accent-light);">
-            <div class="week-day-title" style="color: var(--accent);">🎬 Показ фильма и вручение сертификатов</div>
-            <div class="week-day-desc" style="color: #444;">Закрытый показ готового фильма для родителей и друзей. Главное событие интенсива.</div>
+        <div class="week-day week-day-graduation">
+          <div class="week-day-date week-day-date-graduation">5 июля · Сб · 12:00</div>
+          <div class="week-day-body week-day-body-graduation">
+            <div class="week-day-title week-day-title-graduation">🎓 Выпускной · Вручение сертификатов</div>
+            <div class="week-day-desc week-day-desc-graduation">Торжественное закрытие интенсива · Вручение сертификатов каждому участнику · Праздник для ребят и родителей</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="program-week program-week-bonus">
+      <div class="week-label week-label-bonus">После интенсива — Монтаж и показ</div>
+      <div class="week-days">
+        <div class="week-day week-day-screening">
+          <div class="week-day-date week-day-date-screening">Дата уточняется</div>
+          <div class="week-day-body week-day-body-screening">
+            <div class="screening-header">
+              <div>
+                <div class="week-day-title week-day-title-screening">🎬 Показ фильма и видео-визиток</div>
+                <div class="week-day-desc week-day-desc-screening">Закрытый показ смонтированного короткометражного фильма и личных видео-визиток для родителей и друзей · Дата будет объявлена после завершения монтажа</div>
+              </div>
+              <div class="screening-badge">Ожидаем монтаж</div>
+            </div>
           </div>
         </div>
       </div>
@@ -526,6 +616,29 @@ h1.hero-title { font-size: 52px; font-weight: 800; color: #fff; line-height: 1.0
   </div>
 </div>
 
+<!-- ПОПАП ВЕДЕНЬЁ -->
+<div class="overlay" id="vedeneOverlay" onclick="if(event.target===this)closeVedenePopup()">
+  <div class="vedene-popup">
+    <button class="popup-close" onclick="closeVedenePopup()">×</button>
+    <div class="vedene-popup-header">
+      <img class="vedene-popup-avatar" src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156959/kimmeria/speaker-vedene.jpg" alt="Сергей Веденьё">
+      <div>
+        <div class="vedene-popup-name">Сергей Веденьё</div>
+        <div class="vedene-popup-role">Сценарист · Писатель · Мастер афоризма</div>
+      </div>
+    </div>
+    <p class="vedene-popup-bio">Российский писатель, член Союза писателей, сценарист и автор тысяч афоризмов, ставших вирусными в социальных сетях. Окончил сценарный факультет и аспирантуру ВГИКа. Писал и редактировал сценарии для ОРТ, НТВ, «России» и других крупнейших телеканалов страны. Преподавал теорию драматургии и сторителлинга.</p>
+    <div class="vedene-popup-tags">
+      <span class="vedene-popup-tag">ВГИК</span>
+      <span class="vedene-popup-tag">Союз писателей</span>
+      <span class="vedene-popup-tag">ОРТ</span>
+      <span class="vedene-popup-tag">НТВ</span>
+      <span class="vedene-popup-tag">Россия</span>
+      <span class="vedene-popup-tag">Драматургия</span>
+    </div>
+  </div>
+</div>
+
 <!-- SHARE FAB -->
 <button class="fab-share" id="fabShare" onclick="fabShareClick()" title="Поделиться">
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
@@ -545,6 +658,16 @@ function closeLightbox() {
   document.body.style.overflow = '';
 }
 
+// Vedene popup
+function openVedenePopup() {
+  document.getElementById('vedeneOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeVedenePopup() {
+  document.getElementById('vedeneOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
 // Form
 function openForm() {
   document.getElementById('formOverlay').classList.add('open');
@@ -556,7 +679,7 @@ function closeForm() {
 }
 
 document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') { closeLightbox(); closeForm(); }
+  if (e.key === 'Escape') { closeLightbox(); closeForm(); closeVedenePopup(); }
 });
 
 var TG_TOKEN = '8555296982:AAE2LCN_eeCy33jGJfyWh7guxS2ia2yq68A';
