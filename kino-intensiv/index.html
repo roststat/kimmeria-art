@@ -133,7 +133,9 @@ h1.hero-title { font-size: 52px; font-weight: 800; color: #fff; line-height: 1.0
 .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
 .gallery img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 14px; display: block; cursor: zoom-in; transition: transform 0.2s, box-shadow 0.2s; }
 .gallery img:hover { transform: scale(1.02); box-shadow: 0 8px 32px rgba(0,0,0,0.15); }
-@media (max-width: 700px) { .gallery { grid-template-columns: 1fr 1fr; } }
+.gallery img:nth-child(4) { grid-column: 1 / 2; }
+.gallery img:nth-child(5) { grid-column: 2 / 4; aspect-ratio: 16/9; }
+@media (max-width: 700px) { .gallery { grid-template-columns: 1fr 1fr; } .gallery img:nth-child(5) { grid-column: 1 / 3; } }
 
 /* МЕСТО */
 .location-block { background: #f8f8f8; border-radius: 20px; padding: 40px 48px; display: flex; align-items: center; gap: 40px; }
@@ -532,7 +534,9 @@ h1.hero-title { font-size: 52px; font-weight: 800; color: #fff; line-height: 1.0
 <div class="gallery-wrap" style="max-width: 1060px; margin: 0 auto; padding: 0 48px 72px;">
   <div class="gallery">
     <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1779261965/kimmeria/intensiv2026/zco3dixkstkbo5o78gi4.jpg" alt="Работа с камерой и сценарием" onclick="openLightbox(this.src)">
-    <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1779262577/kimmeria/intensiv2026/alisa-seletskaya.webp" alt="Алиса Селецкая, педагог" onclick="openLightbox(this.src)">
+    <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1779261986/kimmeria/intensiv2026/y2wm3fbnzfyypmtaa93p.jpg" alt="Съёмочная площадка" onclick="openLightbox(this.src)">
+    <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1779261987/kimmeria/intensiv2026/hneiapjek16ufuevbplu.jpg" alt="Подростки на съёмках" onclick="openLightbox(this.src)">
+    <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1779261987/kimmeria/intensiv2026/rhjgajoqlibdweuwei5g.jpg" alt="Работа с камерой" onclick="openLightbox(this.src)">
     <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1779261986/kimmeria/intensiv2026/ltmz47jno9gi5e0x3biq.jpg" alt="Летние съёмки на природе" onclick="openLightbox(this.src)">
   </div>
 </div>
