@@ -264,13 +264,19 @@
       .intro-block { flex-direction: column; gap: 20px; padding: 24px; }
       .intro-contacts { min-width: unset; width: 100%; }
       .acc-body-inner { grid-template-columns: 1fr; padding: 20px 16px; }
-      .acc-header { padding: 16px 18px; gap: 12px; }
+      .acc-header { padding: 16px 18px; gap: 10px; }
+      .acc-num { display: none; }
+      .acc-thumb { width: 44px; height: 44px; }
       .acc-price-badge { display: none; }
+      .acc-info .acc-price-mobile { display: block; }
+      .acc-cycle-offer { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .acc-cycle-price { text-align: left; }
       .cta-block { flex-direction: column; padding: 28px 24px; }
       .modal-box { border-radius: 16px 16px 0 0; }
       .sched-fields { gap: 8px; }
       .sched-field input { width: 120px; }
     }
+    .acc-price-mobile { display: none; font-size: 13px; font-weight: 700; color: var(--accent); margin-top: 3px; }
   </style>
   <script type="text/javascript">(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");ym(108987141,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true});</script>
   <noscript><div><img src="https://mc.yandex.ru/watch/108987141" style="position:absolute;left:-9999px;" alt=""/></div></noscript>
@@ -407,6 +413,10 @@
           <div class="acc-cycle-label">Специальное предложение · Цикл из 3 лекций</div>
           <div class="acc-cycle-title">«Ялта: Территория Божественных игр»</div>
           <div class="acc-cycle-sub">Три вечера подряд — полный цикл авторских лекций Наталии Добрынской</div>
+          <div style="margin-top:8px;display:inline-flex;align-items:center;gap:6px;font-size:11px;color:#888;background:rgba(0,0,0,0.06);padding:4px 10px;border-radius:100px;">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="width:11px;height:11px;flex-shrink:0;"><circle cx="8" cy="8" r="6"/><line x1="8" y1="5" x2="8" y2="8.5"/><circle cx="8" cy="11" r="0.5" fill="currentColor"/></svg>
+            Даты трёх вечеров согласовываются отдельно
+          </div>
         </div>
         <div class="acc-cycle-offer">
           <div class="acc-cycle-price">
@@ -1131,6 +1141,18 @@
   }
 
   // ---- ACCORDION ----
+  // Добавляем мобильную цену под названием для каждой карточки
+  document.querySelectorAll('.acc-item[data-price]').forEach(function(item) {
+    var price = parseInt(item.dataset.price);
+    if (!price) return;
+    var info = item.querySelector('.acc-info');
+    if (!info) return;
+    var mob = document.createElement('div');
+    mob.className = 'acc-price-mobile';
+    mob.textContent = price.toLocaleString('ru-RU') + ' ₽';
+    info.appendChild(mob);
+  });
+
   function toggleItem(header) {
     const item = header.closest('.acc-item');
     const body = item.querySelector('.acc-body');
