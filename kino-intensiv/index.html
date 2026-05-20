@@ -215,9 +215,9 @@ h1.hero-title { font-size: 52px; font-weight: 800; color: #fff; line-height: 1.0
 .week-day-guest:hover { background: #f9ddd5; }
 .guest-avatar { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 2px solid rgba(200,54,10,0.2); }
 .guest-info { flex: 1; min-width: 0; }
-.guest-name { font-size: 13px; font-weight: 700; color: #111; }
-.guest-role { font-size: 11px; color: #777; margin-top: 1px; }
-.guest-more { font-size: 12px; font-weight: 700; color: var(--accent); white-space: nowrap; flex-shrink: 0; }
+.guest-name { font-size: 13px; font-weight: 700; color: #111; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.guest-role { font-size: 11px; color: #777; margin-top: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.guest-more { font-size: 12px; font-weight: 700; color: var(--accent); white-space: nowrap; flex-shrink: 0; padding-left: 4px; }
 
 /* ПИТЧИНГ */
 .week-day-pitch { border: 2px solid var(--accent) !important; border-radius: 12px; overflow: hidden; }
@@ -225,10 +225,10 @@ h1.hero-title { font-size: 52px; font-weight: 800; color: #fff; line-height: 1.0
 .week-day-body-pitch { border-color: transparent !important; background: var(--accent-light); }
 .week-day-title-pitch { color: var(--accent); }
 .week-day-desc-pitch { color: #444; }
-.pitch-header { display: flex; align-items: flex-start; gap: 16px; justify-content: space-between; }
-.pitch-logo-wrap { flex-shrink: 0; text-align: center; }
-.pitch-logo { width: 64px; height: 64px; object-fit: contain; border-radius: 8px; display: block; mix-blend-mode: multiply; }
-.pitch-logo-label { font-size: 10px; color: #888; margin-top: 4px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
+.pitch-header { display: block; }
+.pitch-logo-wrap { display: flex; align-items: center; gap: 10px; margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(200,54,10,0.15); }
+.pitch-logo { width: 48px; height: 48px; object-fit: contain; border-radius: 6px; display: block; flex-shrink: 0; mix-blend-mode: multiply; }
+.pitch-logo-label { font-size: 11px; color: #666; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; }
 
 /* ВЫПУСКНОЙ */
 .week-day-graduation { border: 2px solid #7c5a00 !important; border-radius: 12px; overflow: hidden; }
@@ -478,13 +478,11 @@ h1.hero-title { font-size: 52px; font-weight: 800; color: #fff; line-height: 1.0
           <div class="week-day-date week-day-date-pitch">21 июня · Пт · 12:00</div>
           <div class="week-day-body week-day-body-pitch">
             <div class="pitch-header">
-              <div>
-                <div class="week-day-title week-day-title-pitch">🎤 Защита проекта — Питчинг</div>
-                <div class="week-day-desc week-day-desc-pitch">Группа презентует сценарий будущего фильма перед экспертной группой кинокомпании «Киммерия» · Получают обратную связь и зелёный свет на съёмки</div>
-              </div>
+              <div class="week-day-title week-day-title-pitch">🎤 Защита проекта — Питчинг</div>
+              <div class="week-day-desc week-day-desc-pitch">Группа презентует сценарий будущего фильма перед экспертной группой кинокомпании «Киммерия» · Получают обратную связь и зелёный свет на съёмки</div>
               <div class="pitch-logo-wrap">
                 <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156887/kimmeria/logo-kimmeria.jpg" alt="Кинокомпания Киммерия" class="pitch-logo">
-                <div class="pitch-logo-label">Экспертная группа</div>
+                <div class="pitch-logo-label">Экспертная группа кинокомпании «Киммерия»</div>
               </div>
             </div>
           </div>
