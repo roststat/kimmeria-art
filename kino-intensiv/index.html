@@ -119,6 +119,9 @@ h1.hero-title { font-size: 52px; font-weight: 800; color: #fff; line-height: 1.0
 
 /* ПРОГРАММА */
 .program-weeks { display: flex; flex-direction: column; gap: 28px; }
+.program-block-label { display: flex; align-items: center; justify-content: space-between; background: #111; color: #fff; border-radius: 12px; padding: 14px 20px; font-size: 14px; font-weight: 700; }
+.program-block-weeks { font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.5); white-space: nowrap; }
+@media (max-width: 600px) { .program-block-label { flex-direction: column; align-items: flex-start; gap: 4px; } }
 .program-week { }
 .week-label { font-size: 12px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); padding: 0 0 12px; border-bottom: 2px solid var(--accent-light); margin-bottom: 12px; }
 .week-days { display: flex; flex-direction: column; gap: 4px; }
@@ -347,7 +350,7 @@ h1.hero-title { font-size: 52px; font-weight: 800; color: #fff; line-height: 1.0
   <div class="teacher-section">
     <div class="teacher-photo-wrap">
       <img class="teacher-photo"
-           src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1779262577/kimmeria/intensiv2026/alisa-seletskaya.webp"
+           src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1779266845/kimmeria/intensiv2026/dgaemtjma6zbyz1wd8op.jpg"
            alt="Алиса Селецкая" onclick="openLightbox(this.src)">
       <div>
         <div class="teacher-name">Алиса Игоревна Селецкая</div>
@@ -380,8 +383,14 @@ h1.hero-title { font-size: 52px; font-weight: 800; color: #fff; line-height: 1.0
   <h2 class="section-title">Программа — 5 недель, 15 занятий</h2>
   <div class="program-weeks">
 
+    <!-- БЛОК 1: ВИЗИТКА -->
+    <div class="program-block-label">
+      <span>📽️ Часть 1 — Личная видео-визитка</span>
+      <span class="program-block-weeks">Недели 1–2</span>
+    </div>
+
     <div class="program-week">
-      <div class="week-label">Неделя 1 — Актёрские основы</div>
+      <div class="week-label">Неделя 1 — Актёрское мастерство и речь</div>
       <div class="week-days">
         <div class="week-day">
           <div class="week-day-date">3 июня · Пн · 12:00</div>
@@ -400,18 +409,51 @@ h1.hero-title { font-size: 52px; font-weight: 800; color: #fff; line-height: 1.0
         <div class="week-day">
           <div class="week-day-date">7 июня · Пт · 12:00</div>
           <div class="week-day-body">
-            <div class="week-day-title">Фантазия и креативное мышление</div>
-            <div class="week-day-desc">Игры и этюды на развитие воображения и импровизационного мышления</div>
+            <div class="week-day-title">Фантазия и сценические этюды</div>
+            <div class="week-day-desc">Игры на воображение · Работа с партнёром · Импровизация перед камерой</div>
           </div>
         </div>
       </div>
     </div>
 
     <div class="program-week">
-      <div class="week-label">Неделя 2 — Сторителлинг и сценарий</div>
+      <div class="week-label">Неделя 2 — Репетиция и съёмка визитки</div>
       <div class="week-days">
         <div class="week-day">
           <div class="week-day-date">10 июня · Пн · 12:00</div>
+          <div class="week-day-body">
+            <div class="week-day-title">Подготовка к визитке</div>
+            <div class="week-day-desc">Выбор монолога или этюда · Работа над образом · Репетиция с педагогом</div>
+          </div>
+        </div>
+        <div class="week-day">
+          <div class="week-day-date">12 июня · Ср · 12:00</div>
+          <div class="week-day-body">
+            <div class="week-day-title">Репетиция и постановка кадра</div>
+            <div class="week-day-desc">Знакомство с камерой · Свет · Как работать на крупном плане</div>
+          </div>
+        </div>
+        <div class="week-day">
+          <div class="week-day-date">14 июня · Пт · 12:00</div>
+          <div class="week-day-body">
+            <div class="week-day-title">🎥 Съёмка личной видео-визитки</div>
+            <div class="week-day-desc">Каждый участник снимает профессиональную актёрскую визитку для кастингов и актёрских баз</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- БЛОК 2: КОМАНДНЫЙ ФИЛЬМ -->
+    <div class="program-block-label" style="margin-top: 8px;">
+      <span>🎬 Часть 2 — Командный короткометражный фильм</span>
+      <span class="program-block-weeks">Недели 3–5</span>
+    </div>
+
+    <div class="program-week">
+      <div class="week-label">Неделя 3 — Сценарий и питчинг</div>
+      <div class="week-days">
+        <div class="week-day">
+          <div class="week-day-date">17 июня · Пн · 12:00</div>
           <div class="week-day-body">
             <div class="week-day-title">Основы сценарного мастерства</div>
             <div class="week-day-desc">Что такое история · Герой и конфликт · Структура короткого метра</div>
@@ -426,30 +468,10 @@ h1.hero-title { font-size: 52px; font-weight: 800; color: #fff; line-height: 1.0
           </div>
         </div>
         <div class="week-day">
-          <div class="week-day-date">12 июня · Ср · 12:00</div>
+          <div class="week-day-date">19 июня · Ср · 12:00</div>
           <div class="week-day-body">
-            <div class="week-day-title">Пишем сценарий вместе</div>
-            <div class="week-day-desc">Группа придумывает и фиксирует историю будущего фильма</div>
-          </div>
-        </div>
-        <div class="week-day">
-          <div class="week-day-date">14 июня · Пт · 12:00</div>
-          <div class="week-day-body">
-            <div class="week-day-title">Разбор и доработка сценария</div>
-            <div class="week-day-desc">Педагог разбирает каждый элемент истории, финальные правки</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="program-week">
-      <div class="week-label">Неделя 3 — Репетиции и защита проекта</div>
-      <div class="week-days">
-        <div class="week-day">
-          <div class="week-day-date">17–19 июня</div>
-          <div class="week-day-body">
-            <div class="week-day-title">Репетиции сцен фильма</div>
-            <div class="week-day-desc">Распределение ролей · Разбор сцен · Работа с партнёром · Репетиции на площадке</div>
+            <div class="week-day-title">Пишем командный сценарий</div>
+            <div class="week-day-desc">Вся группа вместе придумывает одну историю · Распределение ролей · Фиксируем сценарий</div>
           </div>
         </div>
         <div class="week-day week-day-pitch">
@@ -458,7 +480,7 @@ h1.hero-title { font-size: 52px; font-weight: 800; color: #fff; line-height: 1.0
             <div class="pitch-header">
               <div>
                 <div class="week-day-title week-day-title-pitch">🎤 Защита проекта — Питчинг</div>
-                <div class="week-day-desc week-day-desc-pitch">Участники презентуют свои сценарии перед экспертной группой кинокомпании «Киммерия» · Обратная связь от профессионалов · Ключевое событие третьей недели</div>
+                <div class="week-day-desc week-day-desc-pitch">Группа презентует сценарий будущего фильма перед экспертной группой кинокомпании «Киммерия» · Получают обратную связь и зелёный свет на съёмки</div>
               </div>
               <div class="pitch-logo-wrap">
                 <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156887/kimmeria/logo-kimmeria.jpg" alt="Кинокомпания Киммерия" class="pitch-logo">
@@ -471,26 +493,33 @@ h1.hero-title { font-size: 52px; font-weight: 800; color: #fff; line-height: 1.0
     </div>
 
     <div class="program-week">
-      <div class="week-label">Неделя 4 — Съёмки</div>
+      <div class="week-label">Неделя 4 — Репетиции</div>
       <div class="week-days">
         <div class="week-day">
-          <div class="week-day-date">24–28 июня</div>
+          <div class="week-day-date">24–26 июня</div>
           <div class="week-day-body">
-            <div class="week-day-title">Съёмки короткометражного фильма</div>
-            <div class="week-day-desc">Дети работают на площадке как актёры и члены съёмочной группы · Знакомство с камерой, светом, звуком</div>
+            <div class="week-day-title">Репетиции сцен фильма</div>
+            <div class="week-day-desc">Разбор сцен по сценарию · Работа с партнёром · Репетиции на площадке · Финальная подготовка к съёмкам</div>
+          </div>
+        </div>
+        <div class="week-day">
+          <div class="week-day-date">28 июня · Сб · 12:00</div>
+          <div class="week-day-body">
+            <div class="week-day-title">Пробные съёмки и разбор материала</div>
+            <div class="week-day-desc">Тестируем площадку · Смотрим пробный материал · Вносим правки перед основными съёмками</div>
           </div>
         </div>
       </div>
     </div>
 
     <div class="program-week">
-      <div class="week-label">Неделя 5 — Личная видео-визитка и выпускной</div>
+      <div class="week-label">Неделя 5 — Съёмки и выпускной</div>
       <div class="week-days">
         <div class="week-day">
           <div class="week-day-date">1–3 июля</div>
           <div class="week-day-body">
-            <div class="week-day-title">Съёмка личной видео-визитки</div>
-            <div class="week-day-desc">Каждый участник снимает профессиональную актёрскую визитку для кастингов и актёрских баз</div>
+            <div class="week-day-title">Съёмки командного фильма</div>
+            <div class="week-day-desc">Снимаем по готовому сценарию · Каждый в роли актёра и члена съёмочной группы · Камера, свет, звук</div>
           </div>
         </div>
         <div class="week-day week-day-graduation">
