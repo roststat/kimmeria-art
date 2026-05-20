@@ -211,13 +211,14 @@ h1.hero-title { font-size: 52px; font-weight: 800; color: #fff; line-height: 1.0
 @media (max-width: 900px) { .gallery-wrap { padding: 0 24px 52px !important; } }
 
 /* ГОСТЬ В РАСПИСАНИИ (Веденьё) */
-.week-day-guest { display: flex; align-items: center; gap: 10px; margin-top: 12px; padding: 10px 14px; background: var(--accent-light); border-radius: 10px; cursor: pointer; transition: background 0.15s; border: 1px solid rgba(200,54,10,0.12); }
+.week-day-guest { display: flex; align-items: center; gap: 10px; margin-top: 12px; padding: 10px 14px; background: var(--accent-light); border-radius: 10px; cursor: pointer; transition: background 0.15s; border: 1px solid rgba(200,54,10,0.12); flex-wrap: wrap; }
 .week-day-guest:hover { background: #f9ddd5; }
 .guest-avatar { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 2px solid rgba(200,54,10,0.2); }
 .guest-info { flex: 1; min-width: 0; }
 .guest-name { font-size: 13px; font-weight: 700; color: #111; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .guest-role { font-size: 11px; color: #777; margin-top: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .guest-more { font-size: 12px; font-weight: 700; color: var(--accent); white-space: nowrap; flex-shrink: 0; padding-left: 4px; }
+@media (max-width: 480px) { .guest-more { flex-basis: 100%; padding-left: 48px; padding-top: 4px; } }
 
 /* ПИТЧИНГ */
 .week-day-pitch { border: 2px solid var(--accent) !important; border-radius: 12px; overflow: hidden; }
