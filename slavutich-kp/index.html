@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Коммерческое предложение — Рекламный сериал для Санатория «Славутич»</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; background: #0c0c0c; color: #fff; font-size: 16px; line-height: 1.6; overflow-x: hidden; }
+:root { --gold: #c9a84c; --gold-light: #f5e6c0; --gold-dark: #9a7a2e; --accent: #1a4a3a; --accent-light: #e8f4f0; }
+
+/* NAV */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 64px; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; background: rgba(12,12,12,0.92); backdrop-filter: blur(24px); border-bottom: 1px solid rgba(255,255,255,0.08); }
+.nav-logo { font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.9); text-decoration: none; letter-spacing: 0.12em; text-transform: uppercase; }
+.nav-badge { font-size: 11px; font-weight: 700; color: var(--gold); background: rgba(201,168,76,0.12); border: 1px solid rgba(201,168,76,0.3); padding: 5px 14px; border-radius: 100px; letter-spacing: 0.06em; }
+@media (max-width: 600px) { nav { padding: 0 20px; } .nav-badge { display: none; } }
+
+/* HERO */
+.hero { min-height: 100vh; padding-top: 64px; display: flex; align-items: center; position: relative; overflow: hidden; }
+.hero-bg { position: absolute; inset: 0; background-image: url('https://res.cloudinary.com/dmzsczjzd/image/upload/v1779268782/kimmeria/slavutich/tdxvxexvtnti4osamfha.jpg'); background-size: cover; background-position: center; }
+.hero-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(110deg, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.65) 55%, rgba(0,0,0,0.45) 100%); }
+/* ГАЛЕРЕЯ ЛОКАЦИЙ */
+.locations-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: 240px 200px; gap: 10px; margin-top: 48px; border-radius: 20px; overflow: hidden; }
+.loc-img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s; cursor: zoom-in; }
+.loc-img:hover { transform: scale(1.04); }
+.loc-item { overflow: hidden; position: relative; }
+.loc-item-tall { grid-row: 1 / 3; }
+.loc-caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 10px 14px; background: linear-gradient(transparent, rgba(0,0,0,0.65)); font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.85); letter-spacing: 0.05em; text-transform: uppercase; }
+@media (max-width: 900px) { .locations-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 180px 180px 180px; } .loc-item-tall { grid-row: 1 / 2; } }
+@media (max-width: 600px) { .locations-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 140px 140px 140px; gap: 6px; } }
+.hero-inner { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 80px 48px; width: 100%; }
+.hero-kp-label { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.25); padding: 7px 18px; border-radius: 100px; margin-bottom: 32px; }
+.hero-kp-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); }
+.hero-for { font-size: 18px; font-weight: 500; color: rgba(255,255,255,0.45); margin-bottom: 12px; letter-spacing: 0.02em; }
+.hero-title { font-size: 62px; font-weight: 800; line-height: 1.04; letter-spacing: -0.03em; margin-bottom: 20px; }
+.hero-title span { color: var(--gold); }
+.hero-sub { font-size: 20px; color: rgba(255,255,255,0.55); max-width: 600px; line-height: 1.6; margin-bottom: 56px; }
+.hero-stats { display: flex; gap: 0; flex-wrap: wrap; }
+.hero-stat { padding: 24px 40px 24px 0; border-right: 1px solid rgba(255,255,255,0.1); margin-right: 40px; }
+.hero-stat:last-child { border-right: none; }
+.hero-stat-num { font-size: 40px; font-weight: 800; color: #fff; letter-spacing: -0.02em; line-height: 1; margin-bottom: 4px; }
+.hero-stat-num span { color: var(--gold); }
+.hero-stat-label { font-size: 13px; color: rgba(255,255,255,0.45); font-weight: 500; }
+@media (max-width: 900px) { .hero-inner { padding: 60px 24px; } .hero-title { font-size: 38px; } .hero-sub { font-size: 16px; } .hero-stat { padding: 16px 24px 16px 0; margin-right: 24px; } .hero-stat-num { font-size: 28px; } }
+@media (max-width: 600px) { .hero-title { font-size: 30px; } .hero-stats { gap: 16px; } .hero-stat { border-right: none; padding-right: 0; margin-right: 0; } }
+
+/* SECTIONS */
+.section { max-width: 1100px; margin: 0 auto; padding: 80px 48px; }
+@media (max-width: 900px) { .section { padding: 60px 24px; } }
+.section-tag { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+.section-title { font-size: 40px; font-weight: 800; color: #fff; letter-spacing: -0.02em; line-height: 1.12; margin-bottom: 16px; }
+.section-sub { font-size: 17px; color: rgba(255,255,255,0.5); line-height: 1.65; max-width: 640px; }
+@media (max-width: 600px) { .section-title { font-size: 28px; } }
+
+/* DIVIDER */
+.divider { border: none; border-top: 1px solid rgba(255,255,255,0.07); margin: 0; }
+
+/* ИДЕЯ */
+.concept-block { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 24px; padding: 52px 56px; margin-top: 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+.concept-text { }
+.concept-heading { font-size: 28px; font-weight: 800; color: #fff; line-height: 1.2; margin-bottom: 20px; letter-spacing: -0.01em; }
+.concept-heading span { color: var(--gold); }
+.concept-desc { font-size: 16px; color: rgba(255,255,255,0.6); line-height: 1.8; }
+.concept-desc p + p { margin-top: 14px; }
+.concept-visual { display: flex; flex-direction: column; gap: 12px; }
+.concept-series { display: flex; align-items: center; gap: 16px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 18px 22px; transition: border-color 0.2s; }
+.concept-series:hover { border-color: rgba(201,168,76,0.3); }
+.concept-series-num { font-size: 11px; font-weight: 800; letter-spacing: 0.1em; color: var(--gold); background: rgba(201,168,76,0.1); border-radius: 8px; padding: 6px 10px; flex-shrink: 0; }
+.concept-series-title { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 2px; }
+.concept-series-desc { font-size: 12px; color: rgba(255,255,255,0.45); }
+@media (max-width: 900px) { .concept-block { grid-template-columns: 1fr; gap: 36px; padding: 36px 28px; } }
+
+/* ЧТО ВХОДИТ */
+.includes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 48px; }
+.include-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 32px 28px; transition: border-color 0.2s, background 0.2s; }
+.include-card:hover { border-color: rgba(201,168,76,0.25); background: rgba(255,255,255,0.06); }
+.include-icon { font-size: 28px; margin-bottom: 16px; }
+.include-title { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+.include-desc { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.65; }
+@media (max-width: 900px) { .includes-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px) { .includes-grid { grid-template-columns: 1fr; } }
+
+/* PRODUCT PLACEMENT */
+.pp-block { margin-top: 48px; background: linear-gradient(135deg, rgba(26,74,58,0.3) 0%, rgba(201,168,76,0.08) 100%); border: 1px solid rgba(201,168,76,0.2); border-radius: 24px; padding: 48px 52px; }
+.pp-title { font-size: 24px; font-weight: 800; color: #fff; margin-bottom: 8px; }
+.pp-sub { font-size: 15px; color: rgba(255,255,255,0.5); margin-bottom: 32px; }
+.pp-items { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.pp-item { display: flex; align-items: flex-start; gap: 12px; }
+.pp-item-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); flex-shrink: 0; margin-top: 8px; }
+.pp-item-text { font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.5; }
+@media (max-width: 700px) { .pp-block { padding: 32px 24px; } .pp-items { grid-template-columns: 1fr; } }
+
+/* РЕЗУЛЬТАТ */
+.results-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 48px; }
+.result-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 28px 24px; text-align: center; }
+.result-num { font-size: 36px; font-weight: 800; color: var(--gold); letter-spacing: -0.02em; line-height: 1; margin-bottom: 8px; }
+.result-label { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.5; }
+@media (max-width: 900px) { .results-row { grid-template-columns: 1fr 1fr; } }
+
+/* ПРОЦЕСС */
+.process-steps { display: flex; flex-direction: column; gap: 0; margin-top: 48px; }
+.process-step { display: grid; grid-template-columns: 80px 1fr; gap: 0; position: relative; }
+.process-step:not(:last-child)::before { content: ''; position: absolute; left: 39px; top: 56px; bottom: -1px; width: 2px; background: rgba(255,255,255,0.08); }
+.process-step-num-wrap { display: flex; flex-direction: column; align-items: center; padding-top: 4px; }
+.process-step-num { width: 40px; height: 40px; border-radius: 50%; background: rgba(201,168,76,0.12); border: 1.5px solid rgba(201,168,76,0.35); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 800; color: var(--gold); flex-shrink: 0; }
+.process-step-body { padding: 0 0 44px 24px; }
+.process-step-title { font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 6px; line-height: 1.3; padding-top: 6px; }
+.process-step-desc { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.65; }
+.process-step-tag { display: inline-block; font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.4); background: rgba(255,255,255,0.06); padding: 3px 10px; border-radius: 100px; margin-top: 8px; }
+
+/* КИНО */
+.kimmeria-block { margin-top: 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+.kimmeria-text { }
+.kimmeria-logo { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; }
+.kimmeria-logo img { width: 56px; height: 56px; object-fit: contain; border-radius: 8px; background: #fff; padding: 4px; }
+.kimmeria-logo-name { font-size: 18px; font-weight: 800; color: #fff; letter-spacing: 0.04em; }
+.kimmeria-logo-sub { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 1px; }
+.kimmeria-desc { font-size: 15px; color: rgba(255,255,255,0.6); line-height: 1.8; margin-bottom: 24px; }
+.kimmeria-facts { display: flex; flex-direction: column; gap: 10px; }
+.kimmeria-fact { display: flex; align-items: center; gap: 12px; font-size: 14px; color: rgba(255,255,255,0.7); }
+.kimmeria-fact-icon { font-size: 16px; flex-shrink: 0; }
+.kimmeria-credits { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 32px; display: flex; flex-direction: column; gap: 20px; }
+.credit-card { display: flex; align-items: center; gap: 16px; }
+.credit-avatar { width: 52px; height: 52px; border-radius: 50%; background: rgba(201,168,76,0.15); border: 2px solid rgba(201,168,76,0.25); display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+.credit-name { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 2px; }
+.credit-role { font-size: 12px; color: rgba(255,255,255,0.45); }
+.credit-phone { font-size: 13px; color: var(--gold); font-weight: 600; text-decoration: none; display: block; margin-top: 2px; }
+@media (max-width: 900px) { .kimmeria-block { grid-template-columns: 1fr; gap: 32px; } }
+
+/* ЦЕНА */
+.price-section { }
+.price-main-card { background: linear-gradient(135deg, rgba(201,168,76,0.15) 0%, rgba(201,168,76,0.05) 100%); border: 1.5px solid rgba(201,168,76,0.35); border-radius: 28px; padding: 56px 60px; margin-top: 48px; display: grid; grid-template-columns: 1fr auto; gap: 48px; align-items: center; }
+.price-amount { font-size: 72px; font-weight: 800; color: var(--gold); letter-spacing: -0.04em; line-height: 1; margin-bottom: 8px; }
+.price-period { font-size: 16px; color: rgba(255,255,255,0.45); font-weight: 500; }
+.price-includes { display: flex; flex-direction: column; gap: 10px; }
+.price-include-item { display: flex; align-items: center; gap: 10px; font-size: 15px; color: rgba(255,255,255,0.75); }
+.price-check { width: 20px; height: 20px; border-radius: 50%; background: rgba(201,168,76,0.2); border: 1.5px solid var(--gold); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.price-check svg { width: 10px; height: 10px; color: var(--gold); }
+.price-note { font-size: 13px; color: rgba(255,255,255,0.3); margin-top: 20px; line-height: 1.6; }
+@media (max-width: 900px) { .price-main-card { grid-template-columns: 1fr; gap: 32px; padding: 36px 28px; } .price-amount { font-size: 52px; } }
+
+/* ФИНАЛ CTA */
+.final { background: linear-gradient(135deg, #1a4a3a 0%, #0f2e24 100%); border-top: 1px solid rgba(255,255,255,0.07); }
+.final-inner { max-width: 800px; margin: 0 auto; padding: 100px 48px; text-align: center; }
+.final-title { font-size: 44px; font-weight: 800; color: #fff; line-height: 1.12; margin-bottom: 16px; letter-spacing: -0.02em; }
+.final-sub { font-size: 18px; color: rgba(255,255,255,0.6); margin-bottom: 48px; line-height: 1.65; }
+.final-contacts { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+.final-contact { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15); border-radius: 20px; padding: 24px 32px; text-align: left; min-width: 240px; }
+.final-contact-name { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+.final-contact-role { font-size: 12px; color: rgba(255,255,255,0.45); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.06em; }
+.final-contact-phone { font-size: 18px; font-weight: 700; color: var(--gold-light); text-decoration: none; display: block; margin-bottom: 6px; }
+.final-contact-phone:hover { color: #fff; }
+.final-contact-tg { font-size: 14px; color: rgba(255,255,255,0.5); text-decoration: none; }
+.final-contact-tg:hover { color: rgba(255,255,255,0.8); }
+.final-note { font-size: 13px; color: rgba(255,255,255,0.25); margin-top: 40px; }
+@media (max-width: 900px) { .final-inner { padding: 72px 24px; } .final-title { font-size: 30px; } .final-sub { font-size: 16px; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">Киммерия-Арт</a>
+  <div class="nav-badge">Конфиденциально · Только для Славутича</div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-inner">
+    <div class="hero-kp-label"><span class="hero-kp-dot"></span>Коммерческое предложение · 2026</div>
+    <div class="hero-for">Для санатория «Славутич»</div>
+    <h1 class="hero-title">Рекламный сериал<br>в формате <span>микродрамы</span></h1>
+    <p class="hero-sub">Пять серий художественного кино, где санаторий — часть истории. Не рекламный ролик, а настоящее кино с вашей локацией в главной роли.</p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-num">5<span> серий</span></div>
+        <div class="hero-stat-label">Полноценный сезон</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">1,5–2<span> мин</span></div>
+        <div class="hero-stat-label">Каждая серия</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">500<span>к ₽</span></div>
+        <div class="hero-stat-label">Под ключ</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">1<span> премьера</span></div>
+        <div class="hero-stat-label">Включена в стоимость</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ГАЛЕРЕЯ ЛОКАЦИЙ -->
+<div class="section">
+  <div class="section-tag">Локации</div>
+  <h2 class="section-title">Санаторий «Славутич» —<br>кинематографичная среда</h2>
+  <p class="section-sub">Парк, море, бассейн, интерьеры — каждый уголок территории готов к съёмке.</p>
+  <div class="locations-grid">
+    <div class="loc-item loc-item-tall">
+      <img class="loc-img" src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1779268922/kimmeria/slavutich/xnhfcglg1yts7gmun7ij.jpg" alt="Парк Славутича">
+      <div class="loc-caption">Реликтовый парк</div>
+    </div>
+    <div class="loc-item">
+      <img class="loc-img" src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1779268782/kimmeria/slavutich/tdxvxexvtnti4osamfha.jpg" alt="Бассейн">
+      <div class="loc-caption">Открытый бассейн</div>
+    </div>
+    <div class="loc-item">
+      <img class="loc-img" src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1779268785/kimmeria/slavutich/tigff1q5alxzopedf95u.jpg" alt="Море">
+      <div class="loc-caption">Чёрное море</div>
+    </div>
+    <div class="loc-item">
+      <img class="loc-img" src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1779268790/kimmeria/slavutich/nggezbip1fvhv2cdxxvw.jpg" alt="SPA">
+      <div class="loc-caption">SPA и бассейн</div>
+    </div>
+    <div class="loc-item">
+      <img class="loc-img" src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1779268907/kimmeria/slavutich/a7qk25pa1c4z2gf96rmf.jpg" alt="Номер">
+      <div class="loc-caption">Номерной фонд</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- КОНЦЕПЦИЯ -->
+<div class="section" id="concept">
+  <div class="section-tag">Концепция</div>
+  <h2 class="section-title">Не реклама — кино,<br>в котором живёт ваш санаторий</h2>
+  <p class="section-sub">Зритель не видит рекламного сообщения. Он смотрит историю — и влюбляется в место, где она происходит.</p>
+
+  <div class="concept-block">
+    <div class="concept-text">
+      <div class="concept-heading">Максимальный product placement — <span>органично и красиво</span></div>
+      <div class="concept-desc">
+        <p>Мы пишем художественный сценарий, действие которого разворачивается на территории «Славутича». Реальные локации санатория — ресторан, парк, пляж, SPA, номера — становятся естественной средой для историй.</p>
+        <p>Профессиональные актёры, качественный свет, живой монтаж. Каждая серия — законченная микродрама с эмоцией, конфликтом и разрядкой. Зритель досматривает до конца и делится сам.</p>
+        <p>Итог: контент, который работает как кино и продаёт как реклама.</p>
+      </div>
+    </div>
+    <div class="concept-visual">
+      <div class="concept-series">
+        <div class="concept-series-num">С01</div>
+        <div>
+          <div class="concept-series-title">Первый вечер</div>
+          <div class="concept-series-desc">Прибытие гостя · Ресторан «Библиотека» · Знакомство</div>
+        </div>
+      </div>
+      <div class="concept-series">
+        <div class="concept-series-num">С02</div>
+        <div>
+          <div class="concept-series-title">Утро у моря</div>
+          <div class="concept-series-desc">Парк · Пляж · Подогреваемый бассейн</div>
+        </div>
+      </div>
+      <div class="concept-series">
+        <div class="concept-series-num">С03</div>
+        <div>
+          <div class="concept-series-title">Точка перелома</div>
+          <div class="concept-series-desc">SPA-центр · Косметология · Тишина</div>
+        </div>
+      </div>
+      <div class="concept-series">
+        <div class="concept-series-num">С04</div>
+        <div>
+          <div class="concept-series-title">Вечер с вином</div>
+          <div class="concept-series-desc">Бар Пробка · Терраса · Крымские закаты</div>
+        </div>
+      </div>
+      <div class="concept-series">
+        <div class="concept-series-num">С05</div>
+        <div>
+          <div class="concept-series-title">До свидания, Славутич</div>
+          <div class="concept-series-desc">Финал · Решение вернуться</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ЧТО ВХОДИТ -->
+<div class="section" id="includes">
+  <div class="section-tag">Состав работ</div>
+  <h2 class="section-title">Всё включено в стоимость</h2>
+  <p class="section-sub">От идеи до премьеры — под ключ. Вы не тратите время на координацию подрядчиков.</p>
+
+  <div class="includes-grid">
+    <div class="include-card">
+      <div class="include-icon">✍️</div>
+      <div class="include-title">Авторский сценарий</div>
+      <div class="include-desc">Профессиональный сценарист пишет 5 историй с вашими локациями. Согласование с санаторием на каждом этапе.</div>
+    </div>
+    <div class="include-card">
+      <div class="include-icon">🎭</div>
+      <div class="include-title">Кастинг актёров</div>
+      <div class="include-desc">Отбор профессиональных актёров. Образы, близкие вашей целевой аудитории: семьи, пары, деловые гости.</div>
+    </div>
+    <div class="include-card">
+      <div class="include-icon">📍</div>
+      <div class="include-title">Подбор локаций</div>
+      <div class="include-desc">Работаем на территории санатория. Выбираем сцены, раскрывающие инфраструктуру и атмосферу наиболее выгодно.</div>
+    </div>
+    <div class="include-card">
+      <div class="include-icon">🎬</div>
+      <div class="include-title">Съёмка и продакшн</div>
+      <div class="include-desc">Профессиональная камера, свет, звук. Режиссёр и съёмочная команда кинокомпании «Киммерия».</div>
+    </div>
+    <div class="include-card">
+      <div class="include-icon">🎞️</div>
+      <div class="include-title">Монтаж и постпродакшн</div>
+      <div class="include-desc">Цветокоррекция, звуковой дизайн, субтитры, адаптация форматов для всех платформ: Reels, YouTube, ВКонтакте.</div>
+    </div>
+    <div class="include-card">
+      <div class="include-icon">🥂</div>
+      <div class="include-title">Премьера</div>
+      <div class="include-desc">Организуем закрытую премьеру сериала на площадке санатория. Событие для гостей, партнёров и СМИ.</div>
+    </div>
+  </div>
+
+  <div class="pp-block">
+    <div class="pp-title">Локации «Славутича», которые войдут в кадр</div>
+    <div class="pp-sub">Каждое место санатория — это сцена. Показываем так, что хочется приехать.</div>
+    <div class="pp-items">
+      <div class="pp-item"><div class="pp-item-dot"></div><div class="pp-item-text">Ресторан «Библиотека» и бар Пробка</div></div>
+      <div class="pp-item"><div class="pp-item-dot"></div><div class="pp-item-text">Реликтовый парк · 9 гектаров</div></div>
+      <div class="pp-item"><div class="pp-item-dot"></div><div class="pp-item-text">Подогреваемый бассейн</div></div>
+      <div class="pp-item"><div class="pp-item-dot"></div><div class="pp-item-text">Собственный пляж на Чёрном море</div></div>
+      <div class="pp-item"><div class="pp-item-dot"></div><div class="pp-item-text">SPA-центр и косметология</div></div>
+      <div class="pp-item"><div class="pp-item-dot"></div><div class="pp-item-text">Номерной фонд: люксы, бизнес-класс</div></div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- РЕЗУЛЬТАТ -->
+<div class="section" id="result">
+  <div class="section-tag">Результат</div>
+  <h2 class="section-title">Что получает санаторий</h2>
+  <div class="results-row">
+    <div class="result-card">
+      <div class="result-num">5</div>
+      <div class="result-label">готовых серий для публикации в соцсетях</div>
+    </div>
+    <div class="result-card">
+      <div class="result-num">10+</div>
+      <div class="result-label">форматов: Reels, Stories, YouTube, ВК</div>
+    </div>
+    <div class="result-card">
+      <div class="result-num">1</div>
+      <div class="result-label">премьера как медиаповод и PR-событие</div>
+    </div>
+    <div class="result-card">
+      <div class="result-num">∞</div>
+      <div class="result-label">повторные публикации без ограничений</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ПРОЦЕСС -->
+<div class="section" id="process">
+  <div class="section-tag">Как это работает</div>
+  <h2 class="section-title">От встречи до премьеры</h2>
+  <div class="process-steps">
+    <div class="process-step">
+      <div class="process-step-num-wrap"><div class="process-step-num">1</div></div>
+      <div class="process-step-body">
+        <div class="process-step-title">Встреча и бриф</div>
+        <div class="process-step-desc">Обсуждаем позиционирование санатория, целевую аудиторию, ключевые смыслы и локации. Согласовываем общую концепцию сериала.</div>
+        <div class="process-step-tag">1–2 дня</div>
+      </div>
+    </div>
+    <div class="process-step">
+      <div class="process-step-num-wrap"><div class="process-step-num">2</div></div>
+      <div class="process-step-body">
+        <div class="process-step-title">Написание сценария</div>
+        <div class="process-step-desc">Сценарист пишет 5 историй. Вы читаете и согласовываете каждую. Никаких сюрпризов на площадке.</div>
+        <div class="process-step-tag">7–10 дней</div>
+      </div>
+    </div>
+    <div class="process-step">
+      <div class="process-step-num-wrap"><div class="process-step-num">3</div></div>
+      <div class="process-step-body">
+        <div class="process-step-title">Подготовка к съёмкам</div>
+        <div class="process-step-desc">Кастинг актёров, рекогносцировка локаций, съёмочный план, согласование с администрацией санатория.</div>
+        <div class="process-step-tag">5–7 дней</div>
+      </div>
+    </div>
+    <div class="process-step">
+      <div class="process-step-num-wrap"><div class="process-step-num">4</div></div>
+      <div class="process-step-body">
+        <div class="process-step-title">Съёмки</div>
+        <div class="process-step-desc">Работаем на территории санатория. Профессиональная команда, минимум вмешательства в жизнь гостей.</div>
+        <div class="process-step-tag">3–5 дней</div>
+      </div>
+    </div>
+    <div class="process-step">
+      <div class="process-step-num-wrap"><div class="process-step-num">5</div></div>
+      <div class="process-step-body">
+        <div class="process-step-title">Монтаж и постпродакшн</div>
+        <div class="process-step-desc">Монтаж 5 серий, цветокоррекция, звук, субтитры. Показываем черновой монтаж для согласования.</div>
+        <div class="process-step-tag">10–14 дней</div>
+      </div>
+    </div>
+    <div class="process-step">
+      <div class="process-step-num-wrap"><div class="process-step-num">6</div></div>
+      <div class="process-step-body">
+        <div class="process-step-title">Премьера</div>
+        <div class="process-step-desc">Организуем закрытый показ для гостей санатория, партнёров и прессы. Создаём медиаповод и запускаем публикации.</div>
+        <div class="process-step-tag">1 день · событие</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- О КИММЕРИИ -->
+<div class="section" id="about">
+  <div class="section-tag">Кто мы</div>
+  <h2 class="section-title">Кинокомпания «Киммерия»</h2>
+  <div class="kimmeria-block">
+    <div class="kimmeria-text">
+      <div class="kimmeria-logo">
+        <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1777156887/kimmeria/logo-kimmeria.jpg" alt="Киммерия">
+        <div>
+          <div class="kimmeria-logo-name">КИММЕРИЯ</div>
+          <div class="kimmeria-logo-sub">Кинокомпания · Ялта · Крым</div>
+        </div>
+      </div>
+      <div class="kimmeria-desc">
+        Кинокомпания «Киммерия» — производитель авторского кино и культурных событий в Крыму. Мы снимаем короткометражные фильмы, организуем кинофестивали и проводим образовательные программы в области кинематографа.
+      </div>
+      <div class="kimmeria-facts">
+        <div class="kimmeria-fact"><span class="kimmeria-fact-icon">🎬</span>Производство художественного и документального кино</div>
+        <div class="kimmeria-fact"><span class="kimmeria-fact-icon">🏆</span>Участники и призёры кинофестивалей</div>
+        <div class="kimmeria-fact"><span class="kimmeria-fact-icon">🎭</span>Работаем со Славутичем — регулярные программы для гостей</div>
+        <div class="kimmeria-fact"><span class="kimmeria-fact-icon">📍</span>Базируемся в Ялте, снимаем по всему Крыму</div>
+      </div>
+    </div>
+    <div class="kimmeria-credits">
+      <div style="font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:8px;">Контакты для переговоров</div>
+      <div class="credit-card">
+        <div class="credit-avatar">👩</div>
+        <div>
+          <div class="credit-name">Наталья Лебедева</div>
+          <div class="credit-role">Генеральный продюсер</div>
+          <a class="credit-phone" href="tel:+79780602986">+7 978 060-29-86</a>
+        </div>
+      </div>
+      <div class="credit-card">
+        <div class="credit-avatar">👨</div>
+        <div>
+          <div class="credit-name">Филипп Емельянов</div>
+          <div class="credit-role">Продюсер</div>
+          <a class="credit-phone" href="tel:+79260662878">+7 926 066-28-78</a>
+        </div>
+      </div>
+      <div style="margin-top:8px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.07);">
+        <div style="font-size:13px;color:rgba(255,255,255,0.4);">Telegram</div>
+        <div style="font-size:15px;font-weight:700;color:var(--gold);margin-top:2px;">@kimmeria_art</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ЦЕНА -->
+<div class="section" id="price">
+  <div class="section-tag">Стоимость</div>
+  <h2 class="section-title">Инвестиция в контент,<br>который работает годами</h2>
+
+  <div class="price-main-card">
+    <div>
+      <div class="price-amount">500 000 ₽</div>
+      <div class="price-period">Полный проект · Под ключ · НДС не облагается</div>
+      <div class="price-note">Оплата поэтапно: 50% при подписании договора, 50% после согласования черновых монтажей. Возможно обсуждение иных условий.</div>
+    </div>
+    <div class="price-includes">
+      <div class="price-include-item"><div class="price-check"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>Авторский сценарий (5 серий)</div>
+      <div class="price-include-item"><div class="price-check"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>Кастинг профессиональных актёров</div>
+      <div class="price-include-item"><div class="price-check"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>Подготовка и подбор локаций</div>
+      <div class="price-include-item"><div class="price-check"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>Профессиональная съёмка</div>
+      <div class="price-include-item"><div class="price-check"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>Монтаж, цвет, звук, субтитры</div>
+      <div class="price-include-item"><div class="price-check"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>Организация премьеры</div>
+    </div>
+  </div>
+</div>
+
+<!-- ФИНАЛ -->
+<div class="final">
+  <div class="final-inner">
+    <div class="final-title">Давайте сделаем кино<br>о «Славутиче»</div>
+    <div class="final-sub">Свяжитесь с нами, чтобы обсудить детали, посмотреть примеры работ и договориться о встрече на площадке санатория.</div>
+    <div class="final-contacts">
+      <div class="final-contact">
+        <div class="final-contact-name">Наталья Лебедева</div>
+        <div class="final-contact-role">Генеральный продюсер</div>
+        <a class="final-contact-phone" href="tel:+79780602986">+7 978 060-29-86</a>
+        <a class="final-contact-tg" href="https://t.me/kimmeria_art">@kimmeria_art</a>
+      </div>
+      <div class="final-contact">
+        <div class="final-contact-name">Филипп Емельянов</div>
+        <div class="final-contact-role">Продюсер</div>
+        <a class="final-contact-phone" href="tel:+79260662878">+7 926 066-28-78</a>
+        <a class="final-contact-tg" href="https://t.me/kimmeria_art">@kimmeria_art</a>
+      </div>
+    </div>
+    <div class="final-note">Кинокомпания «Киммерия» · Ялта, Крым · art-kimmeria.ru</div>
+  </div>
+</div>
+
+</body>
+</html>

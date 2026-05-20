@@ -12,6 +12,7 @@
     { "source": "/cookies", "destination": "/cookies/index.html" },
     { "source": "/kurs-mikrodram", "destination": "/kurs-mikrodram/index.html" },
     { "source": "/kino-intensiv", "destination": "/kino-intensiv/index.html" },
+    { "source": "/slavutich-kp", "destination": "/slavutich-kp/index.html" },
     { "source": "/spasibo", "destination": "/spasibo/index.html" },
     { "source": "/spasibo-kashtanka", "destination": "/spasibo-kashtanka/index.html" },
     { "source": "/hotel-foros", "destination": "/hotel-foros/index.html" },
