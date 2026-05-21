@@ -55,6 +55,13 @@
     .event-section-label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #666666; font-weight: 600; margin-bottom: 12px; }
     .event-description { font-size: 20px; font-weight: 500; line-height: 1.6; color: #111111; margin-bottom: 32px; max-width: 620px; }
     .event-body-text { font-size: 15px; color: #444444; line-height: 1.8; max-width: 620px; margin-bottom: 18px; }
+    .event-crew { margin-bottom: 40px; }
+    .event-crew-title { font-size: 20px; font-weight: 600; color: #111111; margin-bottom: 16px; }
+    .event-crew-card { display: flex; align-items: center; gap: 16px; padding: 16px 0; border-bottom: 1px solid #e8e8e8; }
+    .event-crew-photo { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; object-position: center top; flex-shrink: 0; border: 2px solid #e8e8e8; cursor: zoom-in; }
+    .event-crew-info-name { font-size: 16px; font-weight: 600; color: #111111; }
+    .event-crew-info-role { font-size: 13px; color: #888888; margin-top: 2px; }
+    .event-crew-info-desc { font-size: 13px; color: #666666; margin-top: 4px; line-height: 1.5; }
     .event-details-list { list-style: none; margin-bottom: 40px; }
     .event-details-list li { font-size: 16px; color: #666666; padding: 12px 0; border-bottom: 1px solid #e8e8e8; display: flex; gap: 16px; align-items: baseline; }
     .event-details-list li strong { color: #111111; font-weight: 600; min-width: 90px; font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; }
@@ -72,12 +79,10 @@
     .sidebar-price-block { margin-top: 24px; border-top: 1px solid #e8e8e8; padding-top: 24px; margin-bottom: 24px; }
     .sidebar-price-label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #666666; font-weight: 600; margin-bottom: 12px; }
     .sidebar-price-main { font-size: 36px; font-weight: 700; color: #111111; line-height: 1; margin-bottom: 6px; }
-    .sidebar-speaker { display: flex; align-items: center; gap: 12px; margin-top: 20px; padding-top: 20px; border-top: 1px solid #e8e8e8; }
-    .sidebar-speaker-avatar { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; object-position: center top; border: 1.5px solid #e8e8e8; flex-shrink: 0; }
-    .sidebar-speaker-name { font-size: 15px; font-weight: 600; color: #111111; }
-    .sidebar-speaker-role { font-size: 12px; color: #666666; margin-top: 2px; }
-    .btn-buy { display: block; width: 100%; padding: 16px 24px; text-align: center; background: #111111; color: #ffffff; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; border: none; border-radius: 100px; cursor: pointer; text-decoration: none; transition: background 0.15s; }
-    .btn-buy:hover { background: #333333; }
+    .btn-buy { display: block; width: 100%; padding: 16px 24px; text-align: center; background: #1a4a3a; color: #ffffff; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700; border: none; border-radius: 100px; cursor: pointer; text-decoration: none; transition: background 0.15s; letter-spacing: 0.02em; }
+    .btn-buy:hover { background: #0f2e24; }
+    .sidebar-program-link { display: block; text-align: center; font-size: 12px; color: #999999; text-decoration: none; margin-top: 16px; padding-top: 16px; border-top: 1px solid #e8e8e8; transition: color 0.15s; }
+    .sidebar-program-link:hover { color: #1a4a3a; }
     .btn-secondary { display: block; width: 100%; padding: 14px 24px; text-align: center; background: #ffffff; color: #111111; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; text-decoration: none; border: 1px solid #e8e8e8; border-radius: 100px; transition: background 0.15s; margin-top: 10px; }
     .btn-secondary:hover { background: #f5f5f5; }
     .btn-share { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 14px 24px; background: #ffffff; color: #111111; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; border: 1px solid #e8e8e8; border-radius: 100px; cursor: pointer; transition: background 0.15s; margin-top: 10px; position: relative; }
@@ -195,6 +200,18 @@
       <li><strong>Возраст</strong> 12+ <span class="age-badge">12+</span></li>
       <li><strong>Организатор</strong> ИП Лебедев С.А., ИНН: 910315106749</li>
     </ul>
+
+    <div class="event-crew">
+      <h2 class="event-crew-title">Лектор</h2>
+      <div class="event-crew-card">
+        <img class="event-crew-photo" src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1779372379/kimmeria/kimmeria/speakers/speaker-nazarov.jpg" alt="Сергей Назаров" onclick="openLightbox(this.src)">
+        <div class="event-crew-info">
+          <div class="event-crew-info-name">Сергей Назаров</div>
+          <div class="event-crew-info-role">Научный сотрудник КрАО, популяризатор астрономии</div>
+          <div class="event-crew-info-desc">Первооткрыватель ряда астероидов и переменных звёзд. Финалист всероссийского конкурса «Лектор года» (2019).</div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="event-sidebar">
@@ -216,13 +233,7 @@
       Поделиться
       <span class="share-popup">Ссылка скопирована!</span>
     </button>
-    <div class="sidebar-speaker">
-      <img class="sidebar-speaker-avatar" src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1779372379/kimmeria/kimmeria/speakers/speaker-nazarov.jpg" alt="Сергей Назаров">
-      <div>
-        <div class="sidebar-speaker-name">Сергей Назаров</div>
-        <div class="sidebar-speaker-role">Научный сотрудник КрАО<br>Популяризатор астрономии</div>
-      </div>
-    </div>
+    <a href="/programmy/nazarov-poisk/" class="sidebar-program-link">Подробнее о программе →</a>
   </div>
 </div>
 
