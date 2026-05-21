@@ -186,6 +186,11 @@ h1.hero-title { font-size: 52px; font-weight: 800; color: #fff; line-height: 1.0
 .btn-submit:disabled { opacity: 0.5; cursor: default; }
 .form-error { font-size: 13px; color: #cc3333; display: none; }
 
+/* ЗАПИСЬ В HERO */
+.hero-recording { display: flex; align-items: center; gap: 10px; margin-top: 20px; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; color: rgba(255,255,255,0.75); text-transform: uppercase; }
+.hero-recording-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent-mid); flex-shrink: 0; animation: recPulse 1.6s ease-in-out infinite; }
+.hero-recording-sub { font-weight: 400; color: rgba(255,255,255,0.45); letter-spacing: 0; text-transform: none; }
+
 /* ЗАПИСЬ */
 .price-recording { display: flex; align-items: center; gap: 10px; margin-top: 18px; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; color: #555; text-transform: uppercase; }
 .price-recording-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); flex-shrink: 0; animation: recPulse 1.6s ease-in-out infinite; }
@@ -303,6 +308,10 @@ h1.hero-title { font-size: 52px; font-weight: 800; color: #fff; line-height: 1.0
       <div class="hero-cta-row">
         <button class="btn-cta" onclick="openForm()">Записаться на интенсив →</button>
         <div class="hero-price-note">от <strong>5 000 ₽</strong> за неделю<br>оплата понедельно</div>
+      </div>
+      <div class="hero-recording">
+        <span class="hero-recording-dot"></span>
+        ИДЁТ ПРЕДВАРИТЕЛЬНАЯ ЗАПИСЬ <span class="hero-recording-sub">(оплата после подписания договора)</span>
       </div>
     </div>
     <div class="hero-photos">
