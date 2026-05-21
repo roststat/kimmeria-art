@@ -67,8 +67,8 @@
     .event-details-list li strong { color: #111111; font-weight: 600; min-width: 90px; font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; }
     .event-gallery { margin-bottom: 40px; }
     .event-gallery-title { font-size: 20px; font-weight: 600; color: #111111; margin-bottom: 16px; }
-    .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-    .gallery-grid img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; border-radius: 8px; }
+    .gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    .gallery-grid img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; border-radius: 8px; cursor: zoom-in; }
     .event-sidebar { position: sticky; top: 80px; background: #ffffff; border: 1px solid #e8e8e8; border-radius: 16px; padding: 32px; }
     .sidebar-date-block { margin-bottom: 24px; border-bottom: 1px solid #e8e8e8; padding-bottom: 24px; }
     .sidebar-date-label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #666666; font-weight: 600; margin-bottom: 6px; }
@@ -210,6 +210,14 @@
           <div class="event-crew-info-role">Научный сотрудник КрАО, популяризатор астрономии</div>
           <div class="event-crew-info-desc">Первооткрыватель ряда астероидов и переменных звёзд. Финалист всероссийского конкурса «Лектор года» (2019).</div>
         </div>
+      </div>
+    </div>
+
+    <div class="event-gallery">
+      <h2 class="event-gallery-title">Как это бывает</h2>
+      <div class="gallery-grid">
+        <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1779373613/kimmeria/kimmeria/poisk-zhizni-1.jpg" alt="Лекция Назарова — фото 1" onclick="openLightbox(this.src)">
+        <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1779373615/kimmeria/kimmeria/poisk-zhizni-2.jpg" alt="Лекция Назарова — фото 2" onclick="openLightbox(this.src)">
       </div>
     </div>
   </div>
