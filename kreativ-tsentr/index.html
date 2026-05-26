@@ -9,7 +9,7 @@
 <meta property="og:url" content="https://art-kimmeria.ru/kreativ-tsentr/">
 <meta property="og:title" content="Открытая встреча с киношколой «Киммерия» — 31 мая, Креатив Центр, Ялта">
 <meta property="og:description" content="Мастер-класс по актёрскому мастерству + кинопоказ для подростков 12–17 лет. Вход свободный, по предварительной записи.">
-<meta property="og:image" content="https://res.cloudinary.com/dmzsczjzd/image/upload/kimmeria/kreativ-tsentr-banner.jpg">
+<meta property="og:image" content="https://res.cloudinary.com/dmzsczjzd/image/upload/v1779790859/kreativ-tsentr-banner.png">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -52,8 +52,6 @@ h1.hero-title { font-size: 48px; font-weight: 800; color: #fff; line-height: 1.0
 /* HERO PHOTO */
 .hero-photo-wrap { display: flex; align-items: center; justify-content: center; }
 .hero-photo { width: 100%; max-width: 420px; aspect-ratio: 3/4; object-fit: cover; border-radius: 20px; display: block; box-shadow: 0 16px 56px rgba(0,0,0,0.55); }
-.hero-photo-placeholder { width: 100%; max-width: 420px; aspect-ratio: 3/4; border-radius: 20px; background: rgba(255,255,255,0.06); border: 2px dashed rgba(255,255,255,0.12); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; color: rgba(255,255,255,0.3); font-size: 13px; font-weight: 600; letter-spacing: 0.05em; }
-.hero-photo-placeholder-icon { font-size: 40px; opacity: 0.4; }
 
 .hero-free-badge { display: inline-flex; align-items: center; gap: 8px; margin-top: 20px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); border-radius: 100px; padding: 8px 16px; font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.7); letter-spacing: 0.08em; text-transform: uppercase; }
 .hero-free-badge-dot { width: 8px; height: 8px; border-radius: 50%; background: #4ade80; animation: recPulse 1.6s ease-in-out infinite; }
@@ -225,10 +223,9 @@ h1.hero-title { font-size: 48px; font-weight: 800; color: #fff; line-height: 1.0
       </div>
     </div>
     <div class="hero-photo-wrap">
-      <div class="hero-photo-placeholder">
-        <span class="hero-photo-placeholder-icon">🎬</span>
-        <span>Фото скоро появится</span>
-      </div>
+      <img class="hero-photo"
+           src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1779790859/kreativ-tsentr-banner.png"
+           alt="Открытая встреча с киношколой Киммерия" onclick="openLightbox(this.src)">
     </div>
   </div>
 </div>
