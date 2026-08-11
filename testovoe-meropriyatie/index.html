@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Тестовое мероприятие · 14 августа 2026 Суббота 20:00 · Киммерия-Арт</title>
+<meta name="description" content="Вот такое мероприятие прекрасное">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://art-kimmeria.ru/testovoe-meropriyatie/">
+<meta property="og:title" content="Тестовое мероприятие · Киммерия-Арт">
+<meta property="og:description" content="Вот такое мероприятие прекрасное">
+<meta property="og:image" content="https://res.cloudinary.com/dmzsczjzd/image/upload/v1786460250/kimmeria/poster-testovoe-meropriyatie.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; background: #f8f8f8; color: #111; font-size: 16px; line-height: 1.6; }
+
+/* NAV */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 60px; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid #e8e8e8; }
+.nav-logo { font-size: 15px; font-weight: 700; color: #111; text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; }
+.nav-back { font-size: 14px; font-weight: 600; color: #1a4a3a; text-decoration: none; }
+.nav-back:hover { opacity: 0.75; }
+.nav-back-mobile { display: none; background: #1a4a3a; color: #fff; border: none; border-radius: 100px; padding: 7px 16px; font-size: 13px; font-weight: 700; cursor: pointer; font-family: inherit; text-decoration: none; }
+
+/* FAB */
+.fab-back { position: fixed; top: 72px; right: 20px; z-index: 200; background: #fff; border: 1px solid #e8e8e8; border-radius: 100px; padding: 9px 16px 9px 12px; box-shadow: 0 4px 16px rgba(0,0,0,.10); font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit; display: flex; align-items: center; gap: 6px; }
+.fab-back:hover { background: #f5f5f5; }
+
+/* HERO */
+.event-hero { background: #0d0d0d; position: relative; overflow: hidden; padding-top: 60px; }
+.event-hero-bg { position: absolute; inset: -40px; background-size: cover; background-position: center; filter: blur(28px); opacity: 0.55; transform: scale(1.08); }
+.event-hero-inner { position: relative; z-index: 1; display: grid; grid-template-columns: auto 1fr; gap: 48px; align-items: center; max-width: 1200px; margin: 0 auto; padding: 48px; }
+.event-hero-poster { flex-shrink: 0; max-height: 480px; max-width: 340px; display: flex; align-items: center; }
+.event-hero-poster img { display: block; width: 100%; height: auto; object-fit: contain; border-radius: 8px; box-shadow: 0 24px 64px rgba(0,0,0,.6); cursor: zoom-in; }
+.event-hero-text { color: #fff; }
+.event-hero-tag { display: inline-block; background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.25); color: #fff; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: 4px 12px; border-radius: 100px; margin-bottom: 16px; }
+.event-hero-title { font-size: 44px; font-weight: 800; color: #fff; line-height: 1.1; margin-bottom: 12px; }
+.event-hero-date { font-size: 15px; font-weight: 500; color: rgba(255,255,255,.75); }
+.event-hero-speaker { display: flex; align-items: center; gap: 10px; margin-top: 20px; }
+.event-hero-speaker-avatar { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; object-position: center top; border: 2px solid rgba(255,255,255,.4); flex-shrink: 0; }
+.event-hero-speaker-name { font-size: 14px; font-weight: 600; color: #fff; }
+.event-hero-speaker-role { font-size: 12px; color: rgba(255,255,255,.65); margin-top: 1px; }
+
+/* MAIN GRID */
+.event-main { display: grid; grid-template-columns: 1fr 360px; gap: 48px; max-width: 1200px; margin: 0 auto; padding: 60px 48px; align-items: start; }
+
+/* CONTENT LEFT */
+.event-content { }
+.event-section-label { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #888; margin-bottom: 20px; }
+.event-description { font-size: 20px; font-weight: 500; color: #111; line-height: 1.6; max-width: 620px; margin-bottom: 28px; }
+.event-body-text { font-size: 15px; color: #444; line-height: 1.8; max-width: 580px; margin-bottom: 16px; }
+.event-details-list { list-style: none; margin: 32px 0; max-width: 580px; }
+.event-details-list li { display: flex; gap: 16px; padding: 10px 0; border-bottom: 1px solid #eee; font-size: 15px; }
+.event-details-list li:last-child { border-bottom: none; }
+.event-details-list strong { min-width: 90px; flex-shrink: 0; color: #888; font-weight: 600; font-size: 13px; }
+
+/* CREW */
+.event-crew { margin-top: 40px; }
+.event-crew-title { font-size: 18px; font-weight: 700; color: #111; margin-bottom: 20px; }
+.event-crew-card { display: flex; align-items: flex-start; gap: 16px; padding: 20px; background: #fff; border: 1px solid #e8e8e8; border-radius: 12px; }
+.event-crew-photo { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; object-position: center top; flex-shrink: 0; border: 2px solid #e8e8e8; cursor: zoom-in; }
+.event-crew-info-name { font-size: 16px; font-weight: 700; color: #111; }
+.event-crew-info-role { font-size: 13px; color: #666; margin-top: 2px; }
+.event-crew-info-desc { font-size: 14px; color: #444; margin-top: 8px; line-height: 1.6; }
+
+/* SIDEBAR */
+.event-sidebar { position: sticky; top: 80px; background: #fff; border: 1px solid #e8e8e8; border-radius: 16px; padding: 32px; }
+.sidebar-date-label { font-size: 11px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: #888; margin-bottom: 6px; }
+.sidebar-date { font-size: 22px; font-weight: 700; color: #111; line-height: 1.2; }
+.sidebar-time { font-size: 14px; color: #888; margin-top: 4px; }
+.sidebar-divider { border: none; border-top: 1px solid #eee; margin: 18px 0; }
+.sidebar-place-label { font-size: 11px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: #888; margin-bottom: 6px; }
+.sidebar-place { font-size: 16px; font-weight: 600; color: #111; }
+.sidebar-address { font-size: 13px; color: #888; margin-top: 3px; }
+.sidebar-price-label { font-size: 11px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: #888; margin-top: 18px; margin-bottom: 6px; }
+.sidebar-price { font-size: 28px; font-weight: 800; color: #111; }
+.btn-register { display: block; width: 100%; padding: 14px 20px; text-align: center; background: #1a4a3a; color: #fff; border-radius: 100px; font-size: 14px; font-weight: 700; text-decoration: none; margin-top: 16px; transition: opacity .15s; }
+.btn-register:hover { opacity: .85; }
+.btn-secondary { display: block; width: 100%; padding: 13px 20px; text-align: center; background: transparent; color: #111; border: 1.5px solid #e0e0e0; border-radius: 100px; font-size: 14px; font-weight: 600; text-decoration: none; margin-top: 10px; transition: background .15s; }
+.btn-secondary:hover { background: #f5f5f5; }
+
+/* BACK SECTION */
+.back-section { max-width: 1200px; margin: 0 auto; padding: 32px 48px 60px; }
+.back-link { font-size: 14px; font-weight: 600; color: #1a4a3a; text-decoration: none; }
+.back-link:hover { opacity: .75; }
+
+/* LIGHTBOX */
+.lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.9); z-index: 1000; align-items: center; justify-content: center; cursor: zoom-out; }
+.lightbox.active { display: flex; }
+.lightbox img { max-width: 90vw; max-height: 90vh; object-fit: contain; border-radius: 4px; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .event-hero-inner { grid-template-columns: 1fr; gap: 24px; padding: 32px 20px; justify-items: center; }
+  .event-hero-text { width: 100%; text-align: center; }
+  .event-hero-title { font-size: 28px; }
+  .event-hero-poster { max-width: 300px; max-height: 400px; }
+  .event-hero-speaker { justify-content: center; }
+  .event-main { grid-template-columns: 1fr; padding: 36px 20px; gap: 32px; }
+  .event-sidebar { position: static; }
+  nav { padding: 0 20px; }
+  .nav-back { display: none; }
+  .nav-back-mobile { display: block; }
+  .back-section { padding: 20px 20px 48px; }
+}
+@media (max-width: 600px) {
+  .event-hero-poster { max-width: 220px; }
+  .event-hero-title { font-size: 22px; }
+  .fab-back { display: none; }
+}
+</style>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");ym(108987141,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true});</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/108987141" style="position:absolute;left:-9999px;" alt=""/></div></noscript>
+</head>
+<body>
+
+<button class="fab-back" onclick="fabGoBack()">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+  Назад
+</button>
+
+<nav>
+  <a href="/" class="nav-logo">Киммерия-Арт</a>
+  <a href="/" class="nav-back">← На главную</a>
+  <a href="/" class="nav-back-mobile">Все события</a>
+</nav>
+
+<div class="event-hero">
+  <div class="event-hero-bg" style="background-image: url('https://res.cloudinary.com/dmzsczjzd/image/upload/v1786460250/kimmeria/poster-testovoe-meropriyatie.jpg');"></div>
+  <div class="event-hero-inner">
+    <div class="event-hero-poster">
+      <img src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1786460250/kimmeria/poster-testovoe-meropriyatie.jpg" alt="Тестовое мероприятие" onclick="openLightbox(this.src)">
+    </div>
+    <div class="event-hero-text">
+      <div class="event-hero-tag">Лекция</div>
+      <h1 class="event-hero-title">Тестовое мероприятие</h1>
+      <div class="event-hero-date">14 августа 2026 Суббота 20:00</div>
+      
+        <div class="event-hero-speaker">
+          <img class="event-hero-speaker-avatar" src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1786460213/kimmeria/speaker-filipp.jpg" alt="ФИЛИПП">
+          <div>
+            <div class="event-hero-speaker-name">ФИЛИПП</div>
+            <div class="event-hero-speaker-role"></div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+<div class="event-main">
+  <div class="event-content">
+    <div class="event-section-label">О мероприятии</div>
+    <p class="event-description">Вот такое мероприятие прекрасное</p>
+    <p class="event-body-text">НЕТА</p>
+    <ul class="event-details-list">
+  <li><strong>Дата</strong> 14 августа 2026 Суббота 20:00</li>
+  <li><strong>Место</strong> Кинозал Киммерия — Ялта, ул. Игнатенко, 10</li>
+  <li><strong>Стоимость</strong> Бесплатно</li>
+</ul>
+    
+      <div class="event-crew">
+        <h2 class="event-crew-title">Спикер</h2>
+        <div class="event-crew-card">
+          <img class="event-crew-photo" src="https://res.cloudinary.com/dmzsczjzd/image/upload/v1786460213/kimmeria/speaker-filipp.jpg" alt="ФИЛИПП" onclick="openLightbox(this.src)">
+          <div class="event-crew-info">
+            <div class="event-crew-info-name">ФИЛИПП</div>
+            <div class="event-crew-info-role"></div>
+            <div class="event-crew-info-desc">КРУТОЙ</div>
+          </div>
+        </div>
+      </div>
+  </div>
+
+  <aside class="event-sidebar">
+    <div class="sidebar-date-label">Когда</div>
+    <div class="sidebar-date">14 августа 2026 Суббота 20:00</div>
+    <div class="sidebar-time">Кинозал Киммерия</div>
+    <hr class="sidebar-divider">
+    <div class="sidebar-price-label">Стоимость</div>
+    <div class="sidebar-price">Бесплатно</div>
+    <a href="tel:+79260662878" class="btn-register">Записаться</a>
+        <a href="https://t.me/kimmeria_art" target="_blank" class="btn-secondary">Написать в Telegram</a>
+  </aside>
+</div>
+
+<div class="back-section">
+  <a href="/" class="back-link">← На главную</a>
+</div>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <img id="lightboxImg" src="" alt="">
+</div>
+
+<div id="site-footer"></div>
+
+<script>
+function fabGoBack() {
+  if (document.referrer && document.referrer !== window.location.href) {
+    history.back();
+  } else {
+    window.location.href = '/';
+  }
+}
+function openLightbox(src) {
+  document.getElementById('lightboxImg').src = src;
+  document.getElementById('lightbox').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('active');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+</script>
+<script src="/footer.js"></script>
+</body>
+</html>
